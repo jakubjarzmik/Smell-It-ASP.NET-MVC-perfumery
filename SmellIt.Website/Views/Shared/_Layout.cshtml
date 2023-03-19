@@ -1,372 +1,338 @@
 ﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Perfumeria Smell it">
+    <title>Smell it | Poczuj każdy zapach</title>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Construction Html5 Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="author" content="Jakub Jarzmik">
-    <title>Home | E-Shopper</title>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/css/prettyPhoto.css" rel="stylesheet">
-    <link href="~/css/price-range.css" rel="stylesheet">
-    <link href="~/css/animate.css" rel="stylesheet">
-    <link href="~/css/main.css" rel="stylesheet">
-    <link href="~/css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="~/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+    <meta name="generator" content="Jakub Jarzmik Smell it v1.0">
 
-<body>
-    <header id="header">
-        <!--header-->
-        <div class="header_top">
-            <!--header_top-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +48 777 321 321</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@smellit.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/header_top-->
+    <!-- theme meta -->
+    <meta name="theme-name" content="smell it" />
 
-        <div class="header-middle">
-            <!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="#"><img src="~/images/home/logo.png" alt="" /></a>
-                        </div>
-                    </div>
-                   
-                    <div class="col-sm-6">
-                        <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Konto</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Ulubione</a></li>
-                                @*<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>*@
-                                <li><a href="#"><i class="fa fa-phone"></i>Kontakt</a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i> Koszyk</a></li>
-                                <li><a href="#"><i class="fa fa-lock"></i> Zaloguj</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="search_box">
-                            <input type="text" placeholder="Search" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/header-middle-->
-    </header><!--/header-->
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.png" />
 
-    <section id="main">
-        <!--slider-->
-        <div class="container">
-            @RenderBody()
-        </div>
-    </section><!--/slider-->
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="~/plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css">
 
-    <section>
+    <!-- Animate css -->
+    <link rel="stylesheet" href="~/plugins/animate/animate.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="~/plugins/slick/slick.css">
+    <link rel="stylesheet" href="~/plugins/slick/slick-theme.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="~/css/style.css">
+
+</head>
+
+<body id="body">
+
+    <!-- Start Top Header Bar -->
+    <section class="top-header">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="recommended_items">
-                        <!--recommended_items-->
-                        <h2 class="title text-center">recommended items</h2>
-
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend1.jpg" alt=""/>
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
-
-                                            </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="contact-number">
+                        <i class="tf-ion-ios-telephone"></i>
+                        <span>+48 777 321 321</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Site Logo -->
+                    <div class="logo text-center">
+                        <a href="@Url.Action("Index", "Home")">
+                            <!-- replace logo here -->
+                            <img src="~/images/logo.png" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Cart -->
+                    <ul class="top-menu text-right list-inline">
+                        <li class="dropdown cart-nav dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <i class="tf-ion-android-cart"></i>Koszyk
+                            </a>
+                            <div class="dropdown-menu cart-dropdown">
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#!">
+                                        <img class="media-object" src="~/images/shop/cart/cart-1.jpg" alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
                                         </div>
+                                        <h5><strong>1200 zł</strong></h5>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend2.jpg" alt=""/>
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
-
-                                            </div>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="~/images/shop/cart/cart-2.jpg" alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
                                         </div>
+                                        <h5><strong>1200 zł</strong></h5>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend3.jpg" alt=""/>
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
 
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="cart-summary">
+                                    <span>Razem</span>
+                                    <span class="total-price">1799.00 zł</span>
                                 </div>
-                                <div class="item">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend1.jpg" alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend2.jpg" alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="~/images/home/recommend3.jpg" alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul class="text-center cart-buttons">
+                                    <li><a href="cart.html" class="btn btn-small">Koszyk</a></li>
+                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">Realizuj</a></li>
+                                </ul>
                             </div>
-                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div><!--/recommended_items-->
 
+                        </li><!-- / Cart -->
+                        <!-- Search -->
+                        <li class="dropdown search dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <i class="tf-ion-ios-search-strong"></i> Szukaj
+                            </a>
+                            <ul class="dropdown-menu search-dropdown">
+                                <li>
+                                    <form action="post"><input type="search" class="form-control" placeholder="Szukaj..."></form>
+                                </li>
+                            </ul>
+                        </li><!-- / Search -->
+                        <!-- Languages -->
+                        <li class="commonSelect">
+                            <select class="form-control">
+                                <option>PL</option>
+                                <option>EN</option>
+                            </select>
+                        </li><!-- / Languages -->
+
+                    </ul><!-- / .nav .navbar-nav .navbar-right -->
                 </div>
             </div>
         </div>
+    </section><!-- End Top Header Bar -->
+    <!-- Main Menu Section -->
+    <section class="menu">
+        <nav class="navbar navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <h2 class="menu-title">Menu</h2>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div><!-- / .navbar-header -->
+                <!-- Navbar Links -->
+                <div id="navbar" class="navbar-collapse collapse text-center">
+                    <ul class="nav navbar-nav">
+
+                        <!-- Home -->
+                        <li class="dropdown ">
+                            <a href="@Url.Action("Index", "Home")">Strona główna</a>
+                        </li><!-- / Home -->
+                        <!-- Elements -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                Produkty <span class="tf-ion-ios-arrow-down"></span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Urządzenia</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Dyfuzory Smell it</a></li>
+                                            <li><a href="#">Dyfuzory na olejki</a></li>
+                                            <li><a href="#">Odświeżacze powietrza</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Perfumy</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Damskie</a></li>
+                                            <li><a href="#">Męskie</a></li>
+                                            <li><a href="#">Unisex</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Zapachy do domu</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Świece zapachowe</a></li>
+                                            <li><a href="#">Olejki eteryczne</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Inne</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Zapachy do samochodu</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- / .row -->
+                            </div><!-- / .dropdown-menu -->
+                        </li><!-- / Elements -->
+
+                        <li class="dropdown ">
+                            <a href="#">Kontakt</a>
+                        </li>
+                        
+                        <li class="dropdown ">
+                            <a href="#">O nas</a>
+                        </li>
+                        
+                        <li class="dropdown ">
+                            <a href="#"><b>Zaloguj</b></a>
+                        </li>
+                        
+                        <li class="dropdown ">
+                            <a href="#">Zarejestruj</a>
+                        </li>
+                    </ul><!-- / .nav .navbar-nav -->
+
+                </div>
+                <!--/.navbar-collapse -->
+            </div><!-- / .container -->
+        </nav>
     </section>
 
-    <footer id="footer">
-        <!--Footer-->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="~/images/home/iframe1.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
+    @RenderBody()
 
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="~/images/home/iframe2.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="~/images/home/iframe3.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="~/images/home/iframe4.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
+    <!--
+    Start Call To Action
+    ==================================== -->
+    <section class="call-to-action bg-gray section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="title">
+                        <h2>Zapisz się do newsletter'a</h2>
+                        <p>Jako pierwszy dowiesz się o najnowszych promocjach i produktach</p>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="address">
-                            <img src="~/images/home/map.png" alt="" />
-                            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-                        </div>
-                    </div>
+                    <div class="col-lg-6 col-md-offset-3">
+                        <div class="input-group subscription-form">
+                            <input type="text" class="form-control" placeholder="Podaj swój adres e-mail">
+                            <span class="input-group-btn">
+                                <button class="btn btn-main" type="button">Subskrybuj!</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+
+                </div>
+            </div> 		<!-- End row -->
+        </div>   	<!-- End container -->
+    </section>   <!-- End section -->
+    @*	<section class="section instagram-feed">
+    <div class="container">
+    <div class="row">
+    <div class="title">
+    <h2>View us on instagram</h2>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <div class="instagram-slider" id="instafeed" data-accessToken="IGQVJYeUk4YWNIY1h4OWZANeS1wRHZARdjJ5QmdueXN2RFR6NF9iYUtfcGp1NmpxZA3RTbnU1MXpDNVBHTzZAMOFlxcGlkVHBKdjhqSnUybERhNWdQSE5hVmtXT013MEhOQVJJRGJBRURn"></div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    *@
+    <footer class="footer section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="social-media">
+                        <li>
+                            <a href="https://www.facebook.com/jakubjarzmik00">
+                                <i class="tf-ion-social-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/jjerzu">
+                                <i class="tf-ion-social-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/jakub-jarzmik">
+                                <i class="tf-ion-social-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="footer-menu text-uppercase">
+                        <li>
+                            <a href="#">Kontakt</a>
+                        </li>
+                        <li>
+                            <a href="#">PRODUKTY</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("POLITYKA PRYWATNOŚCI", "Privacy","Home")
+                        </li>
+                    </ul>
+                    <p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by <a href="https://www.linkedin.com/in/jakub-jarzmik">Jakub Jarzmik</a></p>
                 </div>
             </div>
         </div>
+    </footer>
 
-        <div class="footer-widget">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Service</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Online Help</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Order Status</a></li>
-                                <li><a href="#">Change Location</a></li>
-                                <li><a href="#">FAQ’s</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Quock Shop</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Policies</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Terms of Use</a></li>
-                                <li><a href="#">Privecy Policy</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                                <li><a href="#">Billing System</a></li>
-                                <li><a href="#">Ticket System</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Company Information</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Store Location</a></li>
-                                <li><a href="#">Affillate Program</a></li>
-                                <li><a href="#">Copyright</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-1">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                            </form>
-                        </div>
-                    </div>
+    <!--
+    Essential Scripts
+    =====================================-->
+    <!-- Main jQuery -->
+    <script src="~/plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Touchpin -->
+    <script src="~/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- Instagram Feed Js -->
+    <script src="~/plugins/instafeed/instafeed.min.js"></script>
+    <!-- Video Lightbox Plugin -->
+    <script src="~/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <!-- Count Down Js -->
+    <script src="~/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
-                </div>
-            </div>
-        </div>
+    <!-- slick Carousel -->
+    <script src="~/plugins/slick/slick.min.js"></script>
+    <script src="~/plugins/slick/slick-animation.min.js"></script>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-                </div>
-            </div>
-        </div>
+    <!-- Google Mapl -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script type="text/javascript" src="~/plugins/google-map/gmap.js"></script>
 
-    </footer><!--/Footer-->
+    <!-- Main Js File -->
+    <script src="~/js/script.js"></script>
 
 
-
-    <script src="~/js/jquery.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.scrollUp.min.js"></script>
-    <script src="~/js/price-range.js"></script>
-    <script src="~/js/jquery.prettyPhoto.js"></script>
-    <script src="~/js/main.js"></script>
 
 </body>
 </html>

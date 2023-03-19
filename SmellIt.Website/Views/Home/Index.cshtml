@@ -2,63 +2,294 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-	<div class="col-sm-12">
-		<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-				<li data-target="#slider-carousel" data-slide-to="1"></li>
-				<li data-target="#slider-carousel" data-slide-to="2"></li>
-			</ol>
-
-			<div class="carousel-inner">
-				<div class="item active">
-					<div class="col-sm-6">
-						<h1><span>E</span>-SHOPPER</h1>
-						<h2>Free E-Commerce Template</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<button type="button" class="btn btn-default get">Get it now</button>
-					</div>
-					<div class="col-sm-6">
-						<img src="~/images/home/girl1.jpg" class="girl img-responsive" alt="" />
-						<img src="~/images/home/pricing.png" class="pricing" alt="" />
-					</div>
+<div class="hero-slider">
+	<div class="slider-item th-fullpage hero-area" style="background-image: url(/images/slider/banner.jpg);">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 text-right">
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
+                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Poczuj każdy zapach<br/>niewychodząc z domu</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
 				</div>
-				<div class="item">
-					<div class="col-sm-6">
-						<h1><span>E</span>-SHOPPER</h1>
-						<h2>100% Responsive Design</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<button type="button" class="btn btn-default get">Get it now</button>
-					</div>
-					<div class="col-sm-6">
-						<img src="~/images/home/girl2.jpg" class="girl img-responsive" alt="" />
-						<img src="~/images/home/pricing.png" class="pricing" alt="" />
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="col-sm-6">
-						<h1><span>E</span>-SHOPPER</h1>
-						<h2>Free Ecommerce Template</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<button type="button" class="btn btn-default get">Get it now</button>
-					</div>
-					<div class="col-sm-6">
-						<img src="~/images/home/girl3.jpg" class="girl img-responsive" alt="" />
-						<img src="~/images/home/pricing.png" class="pricing" alt="" />
-					</div>
-				</div>
-
 			</div>
-
-			<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			</a>
-			<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			</a>
 		</div>
-
+	</div>
+	<div class="slider-item th-fullpage hero-area" style="background-image: url(/images/slider/banner1.jpg);">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 text-center">
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
+                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Dior - SAVUAGE<br/>
+                        oczaruje Cię już w chwili,<br/>gdy otworzysz flakon</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/banner4.png);">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 text-right">
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>perfumy damskie,<br />których nie zapomnisz</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/banner3.jpg);">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 text-left">
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Zapachy do domu,<br>które wytworzą przytulną atmosferę</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+<section class="product-category section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2>Kategorie produktów</h2>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box">
+					<a href="#!">
+						<img src="~/images/shop/category/category-1.jpg" alt="" />
+						<div class="content">
+							<h3>Perfumy damskie</h3>
+                            <p>Zapachy, które skradną<br/>Twoje zmysły</p>
+						</div>
+					</a>
+				</div>
+				<div class="category-box">
+					<a href="#!">
+						<img src="~/images/shop/category/category-2.jpg" alt="" />
+						<div class="content">
+							<h3 style="color: white">Perfumy męskie</h3>
+							<p>Odkryj swój wyjątkowy<br/>zapach męskości</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box category-box-2">
+					<a href="#!">
+						<img src="~/images/shop/category/category-3.jpg" alt="" />
+						<div class="content">
+							<h3>Zapachy do domu</h3>
+                            <p>Stwórz atmosferę,<br>jaka Ci się marzy</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Najpopularniejsze produkty</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="#">Dyfuzor Smell it</a></h4>
+						<p class="price">799 zł</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="#">Armani Si</a></h4>
+						<p class="price">342 zł</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="#">Dior Savuage</a></h4>
+						<p class="price">502 zł</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="#">YSL Black Opium</a></h4>
+						<p class="price">448 zł</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="#">Carolina Herrera Good Girl</a></h4>
+						<p class="price">600 zł</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="~/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="#"><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="product-single.html">Paco Rabanne 1 Million</a></h4>
+						<p class="price">360 zł</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal product-modal fade" id="product-modal">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<i class="tf-ion-close"></i>
+				</button>
+				<div class="modal-dialog " role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-8 col-sm-6 col-xs-12">
+									<div class="modal-image">
+										<img class="img-responsive" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="product-img" />
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6 col-xs-12">
+									<div class="product-short-details">
+										<h2 class="product-title">Dyfuzor Smell it</h2>
+										<p class="product-price">799 zł</p>
+										<p class="product-short-description">
+                                            Nowoczesny dyfuzor zapachów, który dzięki zaawansowanej technologii jest w stanie odwzorować 99% zapachów dostrzeganych przez człowieka. Urządzenie to łączy się bezprzewodowo z komputerem lub telefonem za pomocą Bluetooth.
+											Dzięki Smell it sprawdzisz zapach perfum bez wychodzenia z domu, a także doświadczysz niesamowitych wrażeń sensorycznych podczas oglądania filmów
+										</p>
+										<a href="cart.html" class="btn btn-main">Dodaj do koszyka</a>
+										<a href="product-single.html" class="btn btn-transparent">Zobacz szczegóły produktu</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal -->
+
+		</div>
+	</div>
+</section>
