@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Kontakt";
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">Kontakt</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Kontakt</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="page-wrapper">
+    <div class="contact-section">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="contact-form col-md-6 ">
+                    <form id="contact-form" method="post" action="" role="form">
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Twoje imię" class="form-control" name="name" id="name">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" placeholder="Twój Email" class="form-control" name="email" id="email">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Temat" class="form-control" name="subject" id="subject">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea rows="6" placeholder="Wiadomość" class="form-control" name="message" id="message"></textarea>
+                        </div>
+
+                        <div id="mail-success" class="success">
+                            Dziękujemy za wiadomość :)
+                        </div>
+
+                        <div id="mail-fail" class="error">
+                            Coś poszło nie tak :( Spróbuj ponownie później
+                        </div>
+
+                        <div id="cf-submit">
+                            <input type="submit" id="contact-submit" class="btn btn-transparent" value="Wyślij">
+                        </div>
+
+                    </form>
+                </div>
+                <!-- ./End Contact Form -->
+                <!-- Contact Details -->
+                <div class="contact-details col-md-6 ">
+                    <div id="map-container-google-1" class="z-depth-1-half">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d990.4938175053778!2d19.93867906313302!3d50.0620961354306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b11e583871b%3A0xf4207ef88770e2d6!2sFloria%C5%84ska%201%2C%2031-019%20Krak%C3%B3w!5e1!3m2!1spl!2spl!4v1679253960731!5m2!1spl!2spl" 
+                                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <ul class="contact-short-info">
+                        <li>
+                            <i class="tf-ion-ios-home"></i>
+                            <span>Floriańska 1, 31-019 Kraków, Polska</span>
+                        </li>
+                        <li>
+                            <i class="tf-ion-android-phone-portrait"></i>
+                            <span>Telefon: +48 777 321 321</span>
+                        </li>
+                        <li>
+                            <i class="tf-ion-android-globe"></i>
+                            <span>Fax: +48 777 321 321</span>
+                        </li>
+                        <li>
+                            <i class="tf-ion-android-mail"></i>
+                            <span>Email: info@smellit.com</span>
+                        </li>
+                    </ul>
+                    <!-- Footer Social Links -->
+                    <div class="social-icon">
+                        <ul>
+                            <li><a class="fb-icon" href="https://www.facebook.com/jakubjarzmik00"><i class="tf-ion-social-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/jjerzu"><i class="tf-ion-social-instagram"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/jakub-jarzmik"><i class="tf-ion-social-linkedin-outline"></i></a></li>
+                            <li><a href="https://github.com/jakubjarzmik"><i class="tf-ion-social-github-outline"></i></a></li>
+                        </ul>
+                    </div>
+                    <!--/. End Footer Social Links -->
+                </div>
+                <!-- / End Contact Details -->
+
+
+
+            </div> <!-- end row -->
+        </div> <!-- end container -->
+    </div>
+</section>
