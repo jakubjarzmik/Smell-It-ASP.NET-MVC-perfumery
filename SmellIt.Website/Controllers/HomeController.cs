@@ -2,6 +2,7 @@
 using SmellIt.Website.Models;
 using System.Diagnostics;
 using System.Runtime.Versioning;
+using Microsoft.AspNetCore.Localization;
 
 namespace SmellIt.Website.Controllers
 {
@@ -27,6 +28,15 @@ namespace SmellIt.Website.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions(){Expires = DateTimeOffset.UtcNow.AddYears(1)});
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

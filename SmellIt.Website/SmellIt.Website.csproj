@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="App_GlobalResources\Resource.en.resx">
+    <EmbeddedResource Update="Resources\SharedResource.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="App_GlobalResources\Resource.pl.resx">
+    <EmbeddedResource Update="Resources\SharedResource.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>

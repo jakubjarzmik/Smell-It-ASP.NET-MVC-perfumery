@@ -174,6 +174,12 @@
   <data name="HomeFragranceDesc" xml:space="preserve">
     <value>Create the atmosphere of your dreams</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageForIcon" xml:space="preserve">
+    <value>gb</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -186,11 +192,14 @@
   <data name="MensAftershaveDesc" xml:space="preserve">
     <value>Discover your unique scent of masculinity</value>
   </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
   <data name="PopularProducts" xml:space="preserve">
     <value>Popular products</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>PrivacyPolicy</value>
+    <value>Privacy policy</value>
   </data>
   <data name="ProductCategories" xml:space="preserve">
     <value>Product categories</value>
