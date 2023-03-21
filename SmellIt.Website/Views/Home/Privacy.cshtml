@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Polityka prywatności";
+﻿@inject LanguageService Language
+@{
+    ViewData["Title"] = @Language.GetKey("PrivacyPolicy");
 }
 <style>
     .dot:before {
@@ -10,64 +11,64 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h2 class="text-center">Polityka prywatności sklepu internetowego "Smell it"</h2>
+            <h2 class="text-center">@Language.GetKey("PrivacyTitle")</h2>
 
-            <p>Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych przez sklep internetowy "Smell it" prowadzony przez Smell it sp. z o.o., z siedzibą w Krakowie.</p>
+            <p>@Language.GetKey("PrivacyDesc")</p>
 
-            <h3>1. Administrator danych osobowych</h3>
-            <p>Administratorem danych osobowych jest Smell it sp. z o.o., z siedzibą w Krakowie.</p>
+            <h3>@Language.GetKey("Privacy1Heading")</h3>
+            <p>@Language.GetKey("Privacy1Paragraph")</p>
 
-            <h3>2. Cele i podstawy przetwarzania danych osobowych</h3>
-            <p>Sklep internetowy "Smell it" przetwarza dane osobowe w celu realizacji zamówień, w tym dokonywania płatności oraz dostawy zamówionych produktów, oraz w celu umożliwienia korzystania z pozostałych funkcjonalności sklepu, w tym newslettera oraz konta klienta.</p>
+            <h3>@Language.GetKey("Privacy2Heading")</h3>
+            <p>@Language.GetKey("Privacy2Paragraph")</p>
             <p>
-                Podstawą przetwarzania danych osobowych jest:
+                @Language.GetKey("Privacy2ParagraphListBeginning")
                 <ul>
-                    <li class="dot">zawarcie i wykonanie umowy sprzedaży (art. 6 ust. 1 lit. b RODO)</li>
-                    <li class="dot">prawnie uzasadniony interes Administratora polegający na realizacji zamówień oraz umożliwieniu korzystania z funkcjonalności sklepu (art. 6 ust. 1 lit. f RODO)</li>
-                    <li class="dot">zgoda klienta na przetwarzanie danych osobowych w celu otrzymywania newslettera oraz korzystania z konta klienta (art. 6 ust. 1 lit. a RODO)</li>
+                    <li class="dot">@Language.GetKey("Privacy2ParagraphList1")</li>
+                    <li class="dot">@Language.GetKey("Privacy2ParagraphList2")</li>
+                    <li class="dot">@Language.GetKey("Privacy2ParagraphList3")</li>
                 </ul>
             </p>
 
-            <h3>3. Rodzaje przetwarzanych danych osobowych</h3>
+            <h3>@Language.GetKey("Privacy3Heading")</h3>
             <p>
-                Sklep internetowy "Smell it" przetwarza następujące dane osobowe:
+                @Language.GetKey("Privacy3ParagraphListBeginning")
                 <ul>
-                    <li class="dot">imię i nazwisko</li>
-                    <li class="dot">adres e-mail</li>
-                    <li class="dot">numer telefonu</li>
-                    <li class="dot">adres dostawy</li>
-                    <li class="dot">numer rachunku bankowego lub karty płatniczej (w przypadku dokonywania płatności)</li>
+                    <li class="dot">@Language.GetKey("Privacy3ParagraphList1")</li>
+                    <li class="dot">@Language.GetKey("Privacy3ParagraphList2")</li>
+                    <li class="dot">@Language.GetKey("Privacy3ParagraphList3")</li>
+                    <li class="dot">@Language.GetKey("Privacy3ParagraphList4")</li>
+                    <li class="dot">@Language.GetKey("Privacy3ParagraphList5")</li>
                 </ul>
             </p>
 
-            <h3>4. Odbiorcy danych osobowych</h3>
-            <p>Dane osobowe przetwarzane przez sklep internetowy "Smell it" mogą być przekazywane podmiotom zajmującym się obsługą płatności oraz dostawą zamówionych produktów. Ponadto, Administrator może przekazywać dane osobowe organom uprawnionym na mocy prawa oraz podmiotom przetwarzającym dane na zlecenie Administratora (np. dostawcom usług IT).</p>
+            <h3>@Language.GetKey("Privacy4Heading")</h3>
+            <p>@Language.GetKey("Privacy4Paragraph")</p>
 
-            <h3>5. Okres przechowywania danych osobowych</h3>
-            <p>Dane osobowe przetwarzane przez sklep internetowy "Smell it" będą przechowywane przez okres niezbędny do realizacji zamówienia oraz w celu umożliwienia korzystania z funkcjonalności sklepu. Dane osobowe przetwarzane w celu otrzymywania newslettera oraz korzystania z konta klienta będą przechowywane do czasu wycofania zgody na ich przetwarzanie.</p>
+            <h3>@Language.GetKey("Privacy5Heading")</h3>
+            <p>@Language.GetKey("Privacy5Paragraph")</p>
 
-            <h3>6. Prawa osoby, której dane dotyczą</h3>
+            <h3>@Language.GetKey("Privacy6Heading")</h3>
             <p>
-                Każda osoba, której dane osobowe są przetwarzane przez sklep internetowy "Smell it", ma prawo do:
+                @Language.GetKey("Privacy6ParagraphListBeginning")
                 <ul class="list-group">
-                    <li class="dot">dostępu do swoich danych osobowych</li>
-                    <li class="dot">sprostowania swoich danych osobowych</li>
-                    <li class="dot">usunięcia swoich danych osobowych</li>
-                    <li class="dot">ograniczenia przetwarzania swoich danych osobowych</li>
-                    <li class="dot">przenoszenia swoich danych osobowych</li>
-                    <li class="dot">wniesienia sprzeciwu wobec przetwarzania swoich danych osobowych</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList1")</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList2")</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList3")</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList4")</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList5")</li>
+                    <li class="dot">@Language.GetKey("Privacy6ParagraphList6")</li>
                 </ul>
             </p>
 
-            <h3>7. Pliki cookies</h3>
-            <p>Sklep internetowy "Smell it" korzysta z plików cookies w celu umożliwienia korzystania z funkcjonalności sklepu oraz poprawy jakości świadczonych usług. Pliki cookies są małymi plikami tekstowymi przechowywanymi na urządzeniu końcowym użytkownika sklepu.</p>
-            <p>Użytkownik może w każdej chwili zablokować lub usunąć pliki cookies za pomocą odpowiednich ustawień w przeglądarce internetowej.</p>
+            <h3>@Language.GetKey("Privacy7Heading")</h3>
+            <p>@Language.GetKey("Privacy7Paragraph1")</p>
+            <p>@Language.GetKey("Privacy7Paragraph2")</p>
 
-            <h3>8. Zmiany w Polityce Prywatności</h3>
-            <p>Administrator zastrzega sobie prawo do dokonywania zmian w Polityce Prywatności w dowolnym czasie. Zmiany te będą publikowane na stronie internetowej sklepu.</p>
+            <h3>@Language.GetKey("Privacy8Heading")</h3>
+            <p>@Language.GetKey("Privacy8Paragraph")</p>
 
-            <h3>9. Kontakt z Administratorem</h3>
-            <p>W sprawach związanych z przetwarzaniem danych osobowych przez sklep internetowy "Smell it" należy skontaktować się z Administratorem danych osobowych za pomocą adresu e-mail info@smellit.com lub pisemnie na adres siedziby firmy.</p>
+            <h3>@Language.GetKey("Privacy9Heading")</h3>
+            <p>@Language.GetKey("Privacy9Paragraph")</p>
         </div>
     </div>
 </div>
