@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject LanguageService Language
+
+<!DOCTYPE html>
 <html lang="pl">
 <head>
 
@@ -31,6 +33,9 @@
     <!-- Slick Carousel -->
     <link rel="stylesheet" href="~/plugins/slick/slick.css">
     <link rel="stylesheet" href="~/plugins/slick/slick-theme.css">
+    
+    <!-- Flag icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" type="text/css">
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="~/css/style.css">
@@ -63,47 +68,47 @@
                     <ul class="top-menu text-right list-inline">
                         <li class="dropdown cart-nav dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-android-cart"></i>Koszyk
+                                <i class="tf-ion-android-cart"></i>@Language.GetKey("Cart")
                             </a>
                             <div class="dropdown-menu cart-dropdown">
                                 <!-- Cart Item -->
                                 <div class="media">
                                     <a class="pull-left" href="#!">
-                                        <img class="media-object" src="~/images/shop/cart/cart-1.jpg" alt="image" />
+                                        <img class="media-object" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="image" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <h4 class="media-heading"><a href="#!">@Language.GetKey("SmellItDiffuser")</a></h4>
                                         <div class="cart-price">
                                             <span>1 x</span>
-                                            <span>1250.00</span>
+                                            <span>799.00</span>
                                         </div>
-                                        <h5><strong>1200 zł</strong></h5>
+                                        <h5><strong>799 zł</strong></h5>
                                     </div>
                                     <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
                                 </div><!-- / Cart Item -->
                                 <!-- Cart Item -->
                                 <div class="media">
                                     <a class="pull-left" href="#">
-                                        <img class="media-object" src="~/images/shop/cart/cart-2.jpg" alt="image" />
+                                        <img class="media-object" src="~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png" alt="image" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <h4 class="media-heading"><a href="#!">Dior Savuage</a></h4>
                                         <div class="cart-price">
                                             <span>1 x</span>
-                                            <span>1250.00</span>
+                                            <span>502.00</span>
                                         </div>
-                                        <h5><strong>1200 zł</strong></h5>
+                                        <h5><strong>502 zł</strong></h5>
                                     </div>
                                     <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
                                 </div><!-- / Cart Item -->
 
                                 <div class="cart-summary">
-                                    <span>Razem</span>
-                                    <span class="total-price">1799.00 zł</span>
+                                    <span>@Language.GetKey("Total")</span>
+                                    <span class="total-price">1301.00 zł</span>
                                 </div>
                                 <ul class="text-center cart-buttons">
-                                    <li><a href="cart.html" class="btn btn-small">Koszyk</a></li>
-                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">Realizuj</a></li>
+                                    <li><a href="cart.html" class="btn btn-small">@Language.GetKey("Cart")</a></li>
+                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">@Language.GetKey("Checkout")</a></li>
                                 </ul>
                             </div>
 
@@ -111,20 +116,25 @@
                         <!-- Search -->
                         <li class="dropdown search dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-ios-search-strong"></i> Szukaj
+                                <i class="tf-ion-ios-search-strong"></i> @Language.GetKey("Search")
                             </a>
-                            <ul class="dropdown-menu search-dropdown">
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <form action="post"><input type="search" class="form-control" placeholder="Szukaj..."></form>
+                                    <form action="post"><input type="search" class="form-control" placeholder="@Language.GetKey("Search")..."></form>
                                 </li>
                             </ul>
                         </li><!-- / Search -->
                         <!-- Languages -->
-                        <li class="commonSelect">
-                            <select class="form-control">
-                                <option>PL</option>
-                                <option>EN</option>
-                            </select>
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <span class="flag-icon flag-icon-@Language.GetKey("LanguageForIcon")"></span>
+                            </a>
+                            <ul class="dropdown-menu ">
+                                <li>
+                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="nav-link"><span class="flag-icon flag-icon-pl"></span> Polski</a>
+                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="nav-link"><span class="flag-icon flag-icon-gb"></span> English</a>
+                                </li>
+                            </ul>
                         </li><!-- / Languages -->
 
                     </ul><!-- / .nav .navbar-nav .navbar-right -->
@@ -153,19 +163,19 @@
 
                         <!-- Home -->
                         <li class="dropdown ">
-                            <a href="@Url.Action("Index", "Home")">Strona główna</a>
+                            <a href="@Url.Action("Index", "Home")">@Language.GetKey("Home")</a>
                         </li><!-- / Home -->
                         <!-- Elements -->
                         <li class="dropdown dropdown-slide">
-                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                                role="button" aria-haspopup="true" aria-expanded="false">
-                                Produkty <span class="tf-ion-ios-arrow-down"></span>
+                                @Language.GetKey("Products") <span class="tf-ion-ios-arrow-down"></span>
                             </a>
                             <div class="dropdown-menu">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">Urządzenia</li>
+                                            <li class="dropdown-header">@Language.GetKey("Devices")</li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#">@Language.GetKey("SmellItDiffuser")</a></li>
                                             <li><a href="#">@Language.GetKey("Diffusers")</a></li>
@@ -174,7 +184,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">Perfumy</li>
+                                            <li class="dropdown-header">@Language.GetKey("Fragrance")</li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#">@Language.GetKey("Women")</a></li>
                                             <li><a href="#">@Language.GetKey("Men")</a></li>
@@ -185,7 +195,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">Zapachy do domu</li>
+                                            <li class="dropdown-header">@Language.GetKey("HomeFragrance")</li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#">@Language.GetKey("ScentedCandles")</a></li>
                                             <li><a href="#">@Language.GetKey("EssentialOils")</a></li>
@@ -193,7 +203,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">Inne</li>
+                                            <li class="dropdown-header">@Language.GetKey("Others")</li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#">@Language.GetKey("CarFresheners")</a></li>
                                         </ul>
@@ -203,19 +213,19 @@
                         </li><!-- / Elements -->
 
                         <li class="dropdown ">
-                            <a href="#">Kontakt</a>
+                            <a href="@Url.Action("Contact", "Home")">@Language.GetKey("Contact")</a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#">O nas</a>
+                            <a href="#">@Language.GetKey("AboutUs")</a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#"><b>Zaloguj</b></a>
+                            <a href="#"><b>@Language.GetKey("Login")</b></a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#">Zarejestruj</a>
+                            <a href="#">@Language.GetKey("SignIn")</a>
                         </li>
                     </ul><!-- / .nav .navbar-nav -->
 
@@ -235,14 +245,14 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="title">
-                        <h2>Zapisz się do newsletter'a</h2>
-                        <p>Jako pierwszy dowiesz się o najnowszych promocjach i produktach</p>
+                        <h2>@Language.GetKey("SubscribeToNewsletter")</h2>
+                        <p>@Language.GetKey("SubscribeToNewsletterDesc")</p>
                     </div>
                     <div class="col-lg-6 col-md-offset-3">
                         <div class="input-group subscription-form">
-                            <input type="text" class="form-control" placeholder="Podaj swój adres e-mail">
+                            <input type="text" class="form-control" placeholder="@Language.GetKey("EnterEmail")">
                             <span class="input-group-btn">
-                                <button class="btn btn-main" type="button">Subskrybuj!</button>
+                                <button class="btn btn-main" type="button">@Language.GetKey("SubscribeNow")</button>
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
@@ -251,22 +261,7 @@
             </div> 		<!-- End row -->
         </div>   	<!-- End container -->
     </section>   <!-- End section -->
-    @*	<section class="section instagram-feed">
-    <div class="container">
-    <div class="row">
-    <div class="title">
-    <h2>View us on instagram</h2>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-12">
-    <div class="instagram-slider" id="instafeed" data-accessToken="IGQVJYeUk4YWNIY1h4OWZANeS1wRHZARdjJ5QmdueXN2RFR6NF9iYUtfcGp1NmpxZA3RTbnU1MXpDNVBHTzZAMOFlxcGlkVHBKdjhqSnUybERhNWdQSE5hVmtXT013MEhOQVJJRGJBRURn"></div>
-    </div>
-    </div>
-    </div>
-    </section>
 
-    *@
     <footer class="footer section text-center">
         <div class="container">
             <div class="row">
@@ -287,16 +282,21 @@
                                 <i class="tf-ion-social-linkedin"></i>
                             </a>
                         </li>
+                        <li>
+                            <a href="https://github.com/jakubjarzmik">
+                                <i class="tf-ion-social-github"></i>
+                            </a>
+                        </li>
                     </ul>
                     <ul class="footer-menu text-uppercase">
                         <li>
-                            <a href="#">Kontakt</a>
+                            <a href="@Url.Action("Contact", "Home")">@Language.GetKey("Contact")</a>
                         </li>
                         <li>
-                            <a href="#">PRODUKTY</a>
+                            <a href="#">@Language.GetKey("Products")</a>
                         </li>
                         <li>
-                            @Html.ActionLink("POLITYKA PRYWATNOŚCI", "Privacy","Home")
+                            <a href="@Url.Action("Privacy", "Home")">@Language.GetKey("PrivacyPolicy")</a>
                         </li>
                     </ul>
                     <p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by <a href="https://www.linkedin.com/in/jakub-jarzmik">Jakub Jarzmik</a></p>

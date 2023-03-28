@@ -8,10 +8,10 @@
 	<div class="slider-item th-fullpage hero-area" style="background-image: url(/images/slider/banner.jpg);">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 text-right">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
-                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Poczuj każdy zapach<br/>niewychodząc z domu</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+				<div class="col-lg-8 text-center">
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
+                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetKey("BannerText1")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">@Language.GetKey("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -20,10 +20,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-center">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Dior - SAVUAGE<br/>
-                        oczaruje Cię już w chwili,<br/>gdy otworzysz flakon</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+						@Language.GetKey("BannerText2")
+					</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">@Language.GetKey("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -32,9 +33,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-right">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>perfumy damskie,<br />których nie zapomnisz</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>@Language.GetKey("BannerText3")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">@Language.GetKey("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -43,9 +44,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-left">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUKTY</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Zapachy do domu,<br>które wytworzą przytulną atmosferę</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">Zobacz teraz</a>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetKey("BannerText4")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="#">@Language.GetKey("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -57,7 +58,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title text-center">
-					<h2>Kategorie produktów</h2>
+					<h2>@Language.GetKey("ProductCategories")</h2>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -65,8 +66,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-1.jpg" alt="" />
 						<div class="content">
-							<h3>Perfumy damskie</h3>
-                            <p>Zapachy, które skradną<br/>Twoje zmysły</p>
+							<h3>@Language.GetKey("WomensPerfume")</h3>
+							<p>@Language.GetKey("WomensPerfumeDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -74,8 +75,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-2.jpg" alt="" />
 						<div class="content">
-							<h3 style="color: white">Perfumy męskie</h3>
-							<p>Odkryj swój wyjątkowy<br/>zapach męskości</p>
+							<h3 style="color: white">@Language.GetKey("MensAftershave")</h3>
+							<p>@Language.GetKey("MensAftershaveDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -85,8 +86,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-3.jpg" alt="" />
 						<div class="content">
-							<h3>Zapachy do domu</h3>
-                            <p>Stwórz atmosferę,<br>jaka Ci się marzy</p>
+							<h3>@Language.GetKey("HomeFragrance")</h3>
+							<p>@Language.GetKey("HomeFragranceDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -99,7 +100,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>Najpopularniejsze produkty</h2>
+				<h2>@Language.GetKey("PopularProducts")</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -124,7 +125,7 @@
 						</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="#">Dyfuzor Smell it</a></h4>
+						<h4><a href="#">@Language.GetKey("SmellItDiffuser")</a></h4>
 						<p class="price">799 zł</p>
 					</div>
 				</div>
@@ -254,7 +255,7 @@
 						</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="product-single.html">Paco Rabanne 1 Million</a></h4>
+						<h4><a href="product-single.html">Paco Rabanne 1Million</a></h4>
 						<p class="price">360 zł</p>
 					</div>
 				</div>
@@ -276,14 +277,13 @@
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-12">
 									<div class="product-short-details">
-										<h2 class="product-title">Dyfuzor Smell it</h2>
+										<h2 class="product-title">@Language.GetKey("SmellItDiffuser")</h2>
 										<p class="product-price">799 zł</p>
 										<p class="product-short-description">
-                                            Nowoczesny dyfuzor zapachów, który dzięki zaawansowanej technologii jest w stanie odwzorować 99% zapachów dostrzeganych przez człowieka. Urządzenie to łączy się bezprzewodowo z komputerem lub telefonem za pomocą Bluetooth.
-											Dzięki Smell it sprawdzisz zapach perfum bez wychodzenia z domu, a także doświadczysz niesamowitych wrażeń sensorycznych podczas oglądania filmów
-										</p>
-										<a href="cart.html" class="btn btn-main">Dodaj do koszyka</a>
-										<a href="product-single.html" class="btn btn-transparent">Zobacz szczegóły produktu</a>
+                                            @Language.GetKey("SmellItDiffuserDesc")
+                                            </p>
+										<a href="cart.html" class="btn btn-main">@Language.GetKey("AddToCart")</a>
+										<a href="product-single.html" class="btn btn-transparent">@Language.GetKey("ViewProductDetails")</a>
 									</div>
 								</div>
 							</div>
