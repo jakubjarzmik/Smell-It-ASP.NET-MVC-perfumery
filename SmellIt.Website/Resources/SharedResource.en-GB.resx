@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
+  <data name="Aromatic" xml:space="preserve">
+    <value>Aromatic</value>
+  </data>
+  <data name="BannerText1" xml:space="preserve">
+    <value>Experience every scent without leaving your home</value>
+  </data>
+  <data name="BannerText2" xml:space="preserve">
+    <value>will captivate you from the moment you open the bottle</value>
+  </data>
+  <data name="BannerText3" xml:space="preserve">
+    <value>women's perfume, unforgettable</value>
+  </data>
+  <data name="BannerText4" xml:space="preserve">
+    <value>Home fragrances that will create a cozy atmosphere</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="CarFresheners" xml:space="preserve">
+    <value>Car Fresheners</value>
+  </data>
+  <data name="Cart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Checkout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="Citrus" xml:space="preserve">
+    <value>Citrus</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Devices" xml:space="preserve">
+    <value>Devices</value>
+  </data>
+  <data name="Diffusers" xml:space="preserve">
+    <value>Diffusers</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Enter your email address</value>
+  </data>
+  <data name="EssentialOils" xml:space="preserve">
+    <value>Essential Oils</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="Floral" xml:space="preserve">
+    <value>Floral</value>
+  </data>
+  <data name="Fragrance" xml:space="preserve">
+    <value>Fragrance</value>
+  </data>
+  <data name="FragranceCategory" xml:space="preserve">
+    <value>Fragrance category</value>
+  </data>
+  <data name="Fresheners" xml:space="preserve">
+    <value>Fresheners</value>
+  </data>
+  <data name="Fruity" xml:space="preserve">
+    <value>Fruity</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeFragrance" xml:space="preserve">
+    <value>Home Fragrance</value>
+  </data>
+  <data name="HomeFragranceDesc" xml:space="preserve">
+    <value>Create the atmosphere of your dreams</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageForIcon" xml:space="preserve">
+    <value>gb</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Men" xml:space="preserve">
+    <value>Men</value>
+  </data>
+  <data name="MensAftershave" xml:space="preserve">
+    <value>Men's aftershave</value>
+  </data>
+  <data name="MensAftershaveDesc" xml:space="preserve">
+    <value>Discover your unique scent of masculinity</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>Oldest</value>
+  </data>
+  <data name="Oriental" xml:space="preserve">
+    <value>Oriental</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PopularProducts" xml:space="preserve">
+    <value>Popular products</value>
+  </data>
+  <data name="PriceAsc" xml:space="preserve">
+    <value>Price ascending</value>
+  </data>
+  <data name="PriceDesc" xml:space="preserve">
+    <value>Price descending</value>
+  </data>
+  <data name="Privacy1Heading" xml:space="preserve">
+    <value>1. Personal data controller</value>
+  </data>
+  <data name="Privacy1Paragraph" xml:space="preserve">
+    <value>The personal data controller is Smell it Sp. z o.o. with its registered office in Cracow</value>
+  </data>
+  <data name="Privacy2Heading" xml:space="preserve">
+    <value>2. Purposes and legal basis for processing personal data</value>
+  </data>
+  <data name="Privacy2Paragraph" xml:space="preserve">
+    <value>The "Smell it" online store processes personal data for the purpose of fulfilling orders, including payment processing and delivery of ordered products, as well as enabling the use of other store functionalities, such as a newsletter and a customer account.</value>
+  </data>
+  <data name="Privacy2ParagraphList1" xml:space="preserve">
+    <value>the conclusion and performance of a sales contract (Art. 6(1)(b) of the GDPR)</value>
+  </data>
+  <data name="Privacy2ParagraphList2" xml:space="preserve">
+    <value>the legitimate interests of the data controller, consisting in fulfilling orders and enabling the use of store functionalities (Art. 6(1)(f) of the GDPR)</value>
+  </data>
+  <data name="Privacy2ParagraphList3" xml:space="preserve">
+    <value>the customer's consent to the processing of personal data for the purpose of receiving a newsletter and using a customer account (Art. 6(1)(a) of the GDPR)</value>
+  </data>
+  <data name="Privacy2ParagraphListBeginning" xml:space="preserve">
+    <value>The legal basis for processing personal data is:</value>
+  </data>
+  <data name="Privacy3Heading" xml:space="preserve">
+    <value>3. Types of personal data processed</value>
+  </data>
+  <data name="Privacy3ParagraphList1" xml:space="preserve">
+    <value>first and last name</value>
+  </data>
+  <data name="Privacy3ParagraphList2" xml:space="preserve">
+    <value>email address</value>
+  </data>
+  <data name="Privacy3ParagraphList3" xml:space="preserve">
+    <value>telephone number</value>
+  </data>
+  <data name="Privacy3ParagraphList4" xml:space="preserve">
+    <value>delivery address</value>
+  </data>
+  <data name="Privacy3ParagraphList5" xml:space="preserve">
+    <value>bank account number or credit card information (in case of payment processing)</value>
+  </data>
+  <data name="Privacy3ParagraphListBeginning" xml:space="preserve">
+    <value>The "Smell it" online store processes the following personal data:</value>
+  </data>
+  <data name="Privacy4Heading" xml:space="preserve">
+    <value>4. Recipients of personal data</value>
+  </data>
+  <data name="Privacy4Paragraph" xml:space="preserve">
+    <value>Personal data processed by the "Smell it" online store may be disclosed to entities responsible for payment processing and delivery of ordered products. Additionally, the controller may disclose personal data to authorities authorized by law and to entities processing data on behalf of the controller (e.g. IT service providers).</value>
+  </data>
+  <data name="Privacy5Heading" xml:space="preserve">
+    <value>5. Retention period for personal data</value>
+  </data>
+  <data name="Privacy5Paragraph" xml:space="preserve">
+    <value>Personal data processed by the "Smell it" online store will be stored for the period necessary to fulfill an order and to enable the use of store functionalities. Personal data processed for the purpose of receiving a newsletter and using a customer account will be stored until consent is withdrawn.</value>
+  </data>
+  <data name="Privacy6Heading" xml:space="preserve">
+    <value>6. Rights of data subjects</value>
+  </data>
+  <data name="Privacy6ParagraphList1" xml:space="preserve">
+    <value>access their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphList2" xml:space="preserve">
+    <value>rectify their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphList3" xml:space="preserve">
+    <value>erase their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphList4" xml:space="preserve">
+    <value>restrict the processing of their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphList5" xml:space="preserve">
+    <value>transfer their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphList6" xml:space="preserve">
+    <value>object to the processing of their personal data</value>
+  </data>
+  <data name="Privacy6ParagraphListBeginning" xml:space="preserve">
+    <value>Each person whose personal data is processed by the "Smell it" online store has the right to:</value>
+  </data>
+  <data name="Privacy7Heading" xml:space="preserve">
+    <value>7. Cookies</value>
+  </data>
+  <data name="Privacy7Paragraph1" xml:space="preserve">
+    <value>The "Smell it" online store uses cookies to enable the use of store functionalities and to improve the quality of provided services. Cookies are small text files stored on the user's device.</value>
+  </data>
+  <data name="Privacy7Paragraph2" xml:space="preserve">
+    <value>The user can block or delete cookies at any time by using the appropriate settings in their web browser.</value>
+  </data>
+  <data name="Privacy8Heading" xml:space="preserve">
+    <value>8. Changes to the Privacy Policy</value>
+  </data>
+  <data name="Privacy8Paragraph" xml:space="preserve">
+    <value>The controller reserves the right to make changes to the Privacy Policy at any time. These changes will be published on the store's website.</value>
+  </data>
+  <data name="Privacy9Heading" xml:space="preserve">
+    <value>9. Contact with the Administrator</value>
+  </data>
+  <data name="Privacy9Paragraph" xml:space="preserve">
+    <value>For issues related to the processing of personal data by the "Smell it" online store, please contact the personal data Administrator via email at info@smellit.com or in writing at the registered office address.</value>
+  </data>
+  <data name="PrivacyDesc" xml:space="preserve">
+    <value>This Privacy Policy sets out the rules for processing personal data by the online store "Smell it" operated by Smell it Sp. z o.o. with its registered office in Cracow</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyTitle" xml:space="preserve">
+    <value>Privacy Policy of the online store "Smell it"</value>
+  </data>
+  <data name="ProductCategories" xml:space="preserve">
+    <value>Product categories</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="ReedDiffusers" xml:space="preserve">
+    <value>Reed Diffusers</value>
+  </data>
+  <data name="ScentedCandles" xml:space="preserve">
+    <value>Scented Candles</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SeeNow" xml:space="preserve">
+    <value>SeeNow</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SmellItAddress" xml:space="preserve">
+    <value>Floriańska 1, 31-019 Cracow, Poland</value>
+  </data>
+  <data name="SmellItDiffuser" xml:space="preserve">
+    <value>Smell it diffuser</value>
+  </data>
+  <data name="SmellItDiffuserDesc" xml:space="preserve">
+    <value>The modern scent diffuser, which, thanks to advanced technology, is able to replicate 99% of scents perceived by humans. This device connects wirelessly to a computer or phone via Bluetooth. With Smell it, you can test a perfume's scent without leaving your home and also experience incredible sensory experiences while watching movies</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Something went wrong :( Try again later</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="SubscribeNow" xml:space="preserve">
+    <value>SUBSCRIBE NOW!</value>
+  </data>
+  <data name="SubscribeToNewsletter" xml:space="preserve">
+    <value>SUBSCRIBE TO NEWSLETTER</value>
+  </data>
+  <data name="SubscribeToNewsletterDesc" xml:space="preserve">
+    <value>Be the first to find out about the latest promotions and products</value>
+  </data>
+  <data name="ThanksForMessage" xml:space="preserve">
+    <value>Thanks for the message :)</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Unisex" xml:space="preserve">
+    <value>Unisex</value>
+  </data>
+  <data name="ViewProductDetails" xml:space="preserve">
+    <value>View product details</value>
+  </data>
+  <data name="Women" xml:space="preserve">
+    <value>Women</value>
+  </data>
+  <data name="WomensPerfume" xml:space="preserve">
+    <value>Women's Perfume</value>
+  </data>
+  <data name="WomensPerfumeDesc" xml:space="preserve">
+    <value>Fragrances that will steal your senses</value>
+  </data>
+  <data name="YourEmail" xml:space="preserve">
+    <value>Your email</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Your name</value>
+  </data>
+</root>

@@ -1,49 +1,117 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@inject LanguageService language
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css"
+          rel="stylesheet"
+          href="~/lib/materialize/css/materialize.min.css"
+          media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="~/css/main.css" />
+
+    <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SmellIt.Admin</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SmellIt.Admin.styles.css" asp-append-version="true" />
+    <title>MAdmin | Welcome</title>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SmellIt.Admin</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+<body class="grey darken-2">
+    <!-- Navigation : START -->
+    <div class="navbar-fixed">
+        <nav class="grey darken-4">
+            <div class="nav-wrapper">
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" class="left hide-on-med-and-down">
+                    <div class="valign-wrapper">
+                        <img src="~/images/av.jpg" alt="" class="circle menu-avatar">
+                        John Doe
+                    </div>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="@Url.Action("Index", "Home")">@language.GetKey("Dashboard")</a></li>
+                    <li><a href="">@language.GetKey("Products")</a></li>
+                    <li><a href="@Url.Action("Categories", "Home")">@language.GetKey("Categories")</a></li>
+                    <li><a href="">@language.GetKey("Users")</a></li>
+                    <li>
+                        <a class="dropdown-trigger" href="#" data-target="dropdown1">@language.GetKey("Language")<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="dropdown1" class="dropdown-content grey darken-2">
+                            <li>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="white-text"> English</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+                <a href="@Url.Action("Index", "Home")" class="brand-logo center"><img src="~/images/logo.png" /></a>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
     </div>
+    <!-- Side Nav: START -->
+    <ul id="mobile-demo" class="sidenav grey darken-4">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="~/images/ocean.jpg" alt="" />
+                </div>
+                <a href="#">
+                    <img src="~/images/person1.jpg" alt="" class="circle" />
+                </a>
+                <a href="#">
+                    <span class="name white-text">John Doe</span>
+                </a>
+                <a href="#">
+                    <span class="email white-text">jdoe@email.com</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Home")" class="white-text">@language.GetKey("Dashboard")</a>
+        </li>
+        <li><a href="" class="white-text">@language.GetKey("Products")</a></li>
+        <li><a href="@Url.Action("Categories", "Home")" class="white-text">@language.GetKey("Categories")</a></li>
+        <li><a href="" class="white-text">@language.GetKey("Clients")</a></li>
+        <li>
+            <a class="dropdown-trigger white-text" href="#" data-target="dropdown2">@language.GetKey("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
+            <ul id="dropdown2" class="dropdown-content grey darken-2">
+                <li>
+                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="white-text"> English</a>
+                </li>
+            </ul>
+        </li>
+        <li><div class="divider"></div></li>
+        <li><a href="" class="waves-effect white-text">@language.GetKey("Logout")</a></li>
+    </ul>
+    <!-- Side Nav: END -->
+    <!-- Navigation : END -->
+    <main class="section">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - SmellIt.Admin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <!-- Footer : START -->
+    <footer class="page-footer section grey darken-4 white-text center ">
+        <p>Smell it Admin &copy; 2023</p>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Footer : END -->
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Materialize -->
+    <script type="text/javascript" src="~/lib/materialize/js/materialize.min.js"></script>
+    <!-- Chart js -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="~/js/chart.js"></script>
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 </body>
+
 </html>
