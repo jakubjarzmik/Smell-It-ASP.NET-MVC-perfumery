@@ -7,7 +7,6 @@
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Smell it | Poczuj każdy zapach</title>
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -177,18 +176,18 @@
                                         <ul>
                                             <li class="dropdown-header">@Language.GetKey("Devices")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="#">@Language.GetKey("SmellItDiffuser")</a></li>
-                                            <li><a href="#">@Language.GetKey("Diffusers")</a></li>
-                                            <li><a href="#">@Language.GetKey("Fresheners")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("SmellItDiffuser")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Diffusers")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Fresheners")</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
                                             <li class="dropdown-header">@Language.GetKey("Fragrance")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="#">@Language.GetKey("Women")</a></li>
-                                            <li><a href="#">@Language.GetKey("Men")</a></li>
-                                            <li><a href="#">@Language.GetKey("Unisex")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Women")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Men")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Unisex")</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -197,15 +196,15 @@
                                         <ul>
                                             <li class="dropdown-header">@Language.GetKey("HomeFragrance")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="#">@Language.GetKey("ScentedCandles")</a></li>
-                                            <li><a href="#">@Language.GetKey("EssentialOils")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("ScentedCandles")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("EssentialOils")</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
                                             <li class="dropdown-header">@Language.GetKey("Others")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="#">@Language.GetKey("CarFresheners")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("CarFresheners")</a></li>
                                         </ul>
                                     </div>
                                 </div><!-- / .row -->
@@ -293,7 +292,7 @@
                             <a href="@Url.Action("Contact", "Home")">@Language.GetKey("Contact")</a>
                         </li>
                         <li>
-                            <a href="#">@Language.GetKey("Products")</a>
+                            <a href="@Url.Action("Products", "Home")">@Language.GetKey("Products")</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Privacy", "Home")">@Language.GetKey("PrivacyPolicy")</a>
