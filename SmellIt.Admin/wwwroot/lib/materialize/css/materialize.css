@@ -5272,7 +5272,6 @@ button.btn-floating {
 }
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #26a69a;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -6905,14 +6904,14 @@ select:disabled {
 }
 
 body.keyboard-focused .select-dropdown.dropdown-content li:focus {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .select-dropdown.dropdown-content li:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .select-dropdown.dropdown-content li.selected {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.6;
 }
 
 .prefix ~ .select-wrapper {

@@ -120,6 +120,12 @@
   <data name="AboutUs" xml:space="preserve">
     <value>About us</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddNewCategory" xml:space="preserve">
+    <value>Add new category</value>
+  </data>
   <data name="AddToCart" xml:space="preserve">
     <value>Add to cart</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="SeeNow" xml:space="preserve">
     <value>SeeNow</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>Select option</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Send</value>

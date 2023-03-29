@@ -1,0 +1,154 @@
+﻿@inject LanguageService language
+@{
+    ViewData["Title"] = language.GetKey("Categories");
+}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div class="card grey darken-3 white-text">
+                <div class="card-content">
+                    <div class="card-title">
+                        @language.GetKey("Categories")
+                        <a class="btn waves-effect waves-light btn modal-trigger right" href="#modal1"> <i class="material-icons">add</i></a>
+                    </div>
+
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>@language.GetKey("Name")</th>
+                                <th>@language.GetKey("ParentCategory")</th>
+                                <th>@language.GetKey("DateCreated")</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@language.GetKey("Devices")</td>
+                                <td></td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("Diffusers")</td>
+                                <td>@language.GetKey("Devices")</td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("Fresheners")</td>
+                                <td>@language.GetKey("Devices")</td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("Women")</td>
+                                <td>@language.GetKey("Fragrance")</td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("Men")</td>
+                                <td>@language.GetKey("Fragrance")</td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("Unisex")</td>
+                                <td>@language.GetKey("Fragrance")</td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@language.GetKey("HomeFragrance")</td>
+                                <td></td>
+                                <td>27.03.2023</td>
+                                <td class="right">
+                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-action">
+                    <ul class="pagination">
+                        <li class="disabled">
+                            <a href="#" class="purple-text">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                        <li class="active purple lighten-1">
+                            <a href="#" class="white-text center">
+                                1
+                            </a>
+                        </li>
+                        <li class="waves-effect">
+                            <a href="#" class="purple-text">
+                                2
+                            </a>
+                        </li>
+                        <li class="waves-effect">
+                            <a href="#" class="purple-text">
+                                3
+                            </a>
+                        </li>
+                        <li class="waves-effect">
+                            <a href="#" class="purple-text">
+                                4
+                            </a>
+                        </li>
+                        <li class="waves-effect">
+                            <a href="#" class="purple-text">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>@language.GetKey("AddNewCategory")</h4>
+        <form>
+            <div class="input-field">
+                <label for="title">@language.GetKey("Title")</label>
+                <input type="text" id="title" />
+            </div>
+            <div class="input-field">
+                <select id="category">
+                    <option value="" disabled="disabled" selected>@language.GetKey("SelectCategory")</option>
+                    <option value="1">@language.GetKey("Devices")</option>
+                    <option value="2">@language.GetKey("Fragrance")</option>
+                    <option value="3">@language.GetKey("HomeFragrance")</option>
+                    <option value="4">@language.GetKey("Others")</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer grey darken-2">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">@language.GetKey("Add")</a>
+    </div>
+</div>

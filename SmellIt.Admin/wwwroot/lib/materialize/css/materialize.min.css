@@ -5099,13 +5099,13 @@ small {
     }
 
     .btn:focus, .btn-small:focus, .btn-large:focus, .btn-floating:focus {
-        background-color: #1d7d74
+        background-color: #ba68c8
     }
 
 .btn, .btn-small, .btn-large {
     text-decoration: none;
     color: #fff;
-    background-color: #26a69a;
+    background-color: #8e24aa;
     text-align: center;
     letter-spacing: .5px;
     -webkit-transition: background-color .2s ease-out;
@@ -5114,7 +5114,7 @@ small {
 }
 
     .btn:hover, .btn-small:hover, .btn-large:hover {
-        background-color: #2bbbad
+        background-color: #ba68c8
     }
 
 .btn-floating {
@@ -5347,7 +5347,7 @@ button.btn-floating {
 .btn-flat {
     -webkit-box-shadow: none;
     box-shadow: none;
-    background-color: rgba(0,0,0,0);
+    background-color: #ffffff;
     color: #343434;
     cursor: pointer;
     -webkit-transition: background-color .2s;
@@ -5415,7 +5415,8 @@ button.btn-floating {
 
     .dropdown-content li {
         clear: both;
-        color: rgba(0,0,0,.87);
+        color: rgba(255,255,255,.87);
+        background-color: #757575;
         cursor: pointer;
         min-height: 50px;
         line-height: 1.5rem;
@@ -5438,7 +5439,6 @@ button.btn-floating {
 
         .dropdown-content li > a, .dropdown-content li > span {
             font-size: 16px;
-            color: #26a69a;
             display: block;
             line-height: 22px;
             padding: 14px 16px
@@ -5646,7 +5646,8 @@ body.keyboard-focused .dropdown-content li:focus {
     position: fixed;
     left: 0;
     right: 0;
-    background-color: #fafafa;
+    background-color: #616161;
+    color: #ffffff;
     padding: 0;
     max-height: 70%;
     width: 55%;
@@ -6012,6 +6013,7 @@ label {
 
 input:not([type]):not(.browser-default), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=month]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
     background-color: rgba(0,0,0,0);
+    color: #ffffff;
     border: none;
     border-bottom: 1px solid #9e9e9e;
     border-radius: 0;
@@ -6801,20 +6803,20 @@ select:disabled {
 }
 
 .select-dropdown li.disabled, .select-dropdown li.disabled > span, .select-dropdown li.optgroup {
-    color: rgba(0,0,0,.3);
-    background-color: rgba(0,0,0,0)
+    background-color: #616161;
+    color: rgb(255, 255, 255, 0.8);
 }
 
 body.keyboard-focused .select-dropdown.dropdown-content li:focus {
-    background-color: rgba(0,0,0,.08)
+    background-color: rgba(0,0,0,0.6)
 }
 
 .select-dropdown.dropdown-content li:hover {
-    background-color: rgba(0,0,0,.08)
+    background-color: rgba(0,0,0,.6)
 }
 
 .select-dropdown.dropdown-content li.selected {
-    background-color: rgba(0,0,0,.03)
+    background-color: rgba(0,0,0,.6)
 }
 
 .prefix ~ .select-wrapper {
@@ -7161,11 +7163,11 @@ input[type=range]::-ms-thumb {
             }
 
             .sidenav li > a.btn:hover, .sidenav li > a.btn-small:hover, .sidenav li > a.btn-large:hover {
-                background-color: #2bbbad
+                background-color: #ba68c8
             }
 
             .sidenav li > a.btn-floating:hover {
-                background-color: #26a69a
+                background-color: #ba68c8
             }
 
             .sidenav li > a > i, .sidenav li > a > [class^=mdi-], .sidenav li > a li > a > [class*=mdi-], .sidenav li > a > i.material-icons {

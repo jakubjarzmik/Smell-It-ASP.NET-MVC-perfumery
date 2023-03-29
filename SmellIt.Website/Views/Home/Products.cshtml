@@ -1,0 +1,327 @@
+﻿@inject LanguageService Language
+@{
+	ViewData["Title"] = @Language.GetKey("Products");
+}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">@Language.GetKey("Products")</h1>
+					<ol class="breadcrumb">
+						<li><a href="index.html">Home</a></li>
+						<li class="active">@Language.GetKey("Products")</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="products section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="widget">
+					<h4 class="widget-title">@Language.GetKey("SortBy")</h4>
+					<form method="post" action="#">
+						<select class="form-control">
+							<option>@Language.GetKey("Newest")</option>
+							<option>@Language.GetKey("Oldest")</option>
+							<option>@Language.GetKey("PriceAsc")</option>
+							<option>@Language.GetKey("PriceDesc")</option>
+						</select>
+					</form>
+				</div>
+				<div class="widget product-category">
+					<h4 class="widget-title">@Language.GetKey("Filters")</h4>
+					<div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        @Language.GetKey("Gender")
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">
+									<ul>
+										<li><a href="#!">@Language.GetKey("Men")</a></li>
+										<li><a href="#!">@Language.GetKey("Women")</a></li>
+										<li><a href="#!">@Language.GetKey("Unisex")</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        @Language.GetKey("Brand")
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<ul>
+										<li><a href="#!">Smell it</a></li>
+										<li><a href="#!">Dior</a></li>
+										<li><a href="#!">Versace</a></li>
+										<li><a href="#!">Armani</a></li>
+										<li><a href="#!">Yves Saint Laurent</a></li>
+										<li><a href="#!">Carolina Herrera</a></li>
+										<li><a href="#!">Paco Rabanne</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										@Language.GetKey("FragranceCategory")
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<ul>
+										<li><a href="#!">@Language.GetKey("Oriental")</a></li>
+										<li><a href="#!">@Language.GetKey("Fruity")</a></li>
+										<li><a href="#!">@Language.GetKey("Citrus")</a></li>
+										<li><a href="#!">@Language.GetKey("Aromatic")</a></li>
+										<li><a href="#!">@Language.GetKey("Floral")</a></li>
+										<li><a href="#!">@Language.GetKey("Other")</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="#">@Language.GetKey("SmellItDiffuser")</a></h4>
+								<p class="price">799 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="#">Armani Si</a></h4>
+								<p class="price">342 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="#">Dior Savuage</a></h4>
+								<p class="price">502 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="#">YSL Black Opium</a></h4>
+								<p class="price">448 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="#">Carolina Herrera Good Girl</a></h4>
+								<p class="price">600 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="product-single.html">Paco Rabanne 1Million</a></h4>
+								<p class="price">360 zł</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product-item">
+							<div class="product-thumb">
+								<img class="img-responsive" src="~/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png" alt="product-img" />
+								<div class="preview-meta">
+									<ul>
+										<li>
+											<span data-toggle="modal" data-target="#product-modal">
+												<i class="tf-ion-ios-search-strong"></i>
+											</span>
+										</li>
+										<li>
+											<a href="#"><i class="tf-ion-ios-heart"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4><a href="product-single.html">Versace Eros</a></h4>
+								<p class="price">255 zł</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal -->
+					<div class="modal product-modal fade white-text" id="product-modal">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<i class="tf-ion-close"></i>
+						</button>
+						<div class="modal-dialog " role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-8 col-sm-6 col-xs-12">
+											<div class="modal-image">
+												<img class="img-responsive" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="product-img" />
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-6 col-xs-12">
+											<div class="product-short-details">
+												<h2 class="product-title">@Language.GetKey("SmellItDiffuser")</h2>
+												<p class="product-price">799 zł</p>
+												<p class="product-short-description">
+													@Language.GetKey("SmellItDiffuserDesc")
+												</p>
+												<a href="cart.html" class="btn btn-main">@Language.GetKey("AddToCart")</a>
+												<a href="product-single.html" class="btn btn-transparent">@Language.GetKey("ViewProductDetails")</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.modal -->
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

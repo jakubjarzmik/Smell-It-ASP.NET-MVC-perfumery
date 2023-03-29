@@ -120,6 +120,12 @@
   <data name="AboutUs" xml:space="preserve">
     <value>O nas</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="AddNewCategory" xml:space="preserve">
+    <value>Dodaj nową kategorię</value>
+  </data>
   <data name="AddToCart" xml:space="preserve">
     <value>Dodaj do koszyka</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="SeeNow" xml:space="preserve">
     <value>Zobacz teraz</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>Wybierz opcję</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Wyślij</value>

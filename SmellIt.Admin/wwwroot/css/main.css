@@ -1,0 +1,25 @@
+.loader {
+	position: absolute;
+	top: 40%;
+	left: 47%;
+}
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+      color: #ffffff;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .menu-avatar {
+      padding: 0px 10px;
+  }
+
+  .small-img {
+      height: 40px;
+      width: 40px;
+  }

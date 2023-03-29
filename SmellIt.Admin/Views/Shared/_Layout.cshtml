@@ -14,7 +14,6 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAdmin | Welcome</title>
 </head>
 
 <body class="grey darken-2">
@@ -31,7 +30,8 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="@Url.Action("Index", "Home")">@language.GetKey("Dashboard")</a></li>
-                    <li><a href="">@language.GetKey("Products")</a></li>
+                    <li><a href="">@language.GetKey("Orders")</a></li>
+                    <li><a href="@Url.Action("Products", "Home")">@language.GetKey("Products")</a></li>
                     <li><a href="@Url.Action("Categories", "Home")">@language.GetKey("Categories")</a></li>
                     <li><a href="">@language.GetKey("Users")</a></li>
                     <li>
@@ -74,7 +74,7 @@
         <li>
             <a href="@Url.Action("Index", "Home")" class="white-text">@language.GetKey("Dashboard")</a>
         </li>
-        <li><a href="" class="white-text">@language.GetKey("Products")</a></li>
+        <li><a href="@Url.Action("Products", "Home")" class="white-text">@language.GetKey("Products")</a></li>
         <li><a href="@Url.Action("Categories", "Home")" class="white-text">@language.GetKey("Categories")</a></li>
         <li><a href="" class="white-text">@language.GetKey("Clients")</a></li>
         <li>
