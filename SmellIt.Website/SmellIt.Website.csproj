@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmellIt.Application\SmellIt.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Resources\SharedResource.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>

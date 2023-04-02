@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Website", "SmellIt.Website\SmellIt.Website.csproj", "{D4E4E8A1-798C-4F87-83E4-7FCB4862CF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Website", "SmellIt.Website\SmellIt.Website.csproj", "{D4E4E8A1-798C-4F87-83E4-7FCB4862CF3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Admin", "SmellIt.Admin\SmellIt.Admin.csproj", "{24403B49-C050-4E93-835F-693A7FB0B6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Admin", "SmellIt.Admin\SmellIt.Admin.csproj", "{24403B49-C050-4E93-835F-693A7FB0B6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Domain", "SmellIt.Domain\SmellIt.Domain.csproj", "{0CA745FF-B3D5-43BA-91C4-01B2AB597062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Application", "SmellIt.Application\SmellIt.Application.csproj", "{13B636A3-AF05-46BB-984F-03DAB947F66A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Infrastructure", "SmellIt.Infrastructure\SmellIt.Infrastructure.csproj", "{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{24403B49-C050-4E93-835F-693A7FB0B6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24403B49-C050-4E93-835F-693A7FB0B6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24403B49-C050-4E93-835F-693A7FB0B6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA745FF-B3D5-43BA-91C4-01B2AB597062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA745FF-B3D5-43BA-91C4-01B2AB597062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA745FF-B3D5-43BA-91C4-01B2AB597062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA745FF-B3D5-43BA-91C4-01B2AB597062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B636A3-AF05-46BB-984F-03DAB947F66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B636A3-AF05-46BB-984F-03DAB947F66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B636A3-AF05-46BB-984F-03DAB947F66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B636A3-AF05-46BB-984F-03DAB947F66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
