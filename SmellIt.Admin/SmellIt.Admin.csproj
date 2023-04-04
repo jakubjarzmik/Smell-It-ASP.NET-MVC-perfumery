@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\CMS\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SmellIt.Application\SmellIt.Application.csproj" />
   </ItemGroup>
 

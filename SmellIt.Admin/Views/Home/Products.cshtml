@@ -121,13 +121,20 @@
                 <input type="text" id="title" />
             </div>
             <div class="input-field">
-                <select id="category">
+                @*<select id="category" class="select2">
                     <option value="" disabled="disabled" selected>@language.GetKey("SelectCategory")</option>
                     <option value="1">@language.GetKey("Devices")</option>
                     <option value="2">@language.GetKey("Fragrance")</option>
                     <option value="3">@language.GetKey("HomeFragrance")</option>
                     <option value="4">@language.GetKey("Others")</option>
-                </select>
+                </select>*@
+                <input type="text" list="categories" />
+                <datalist id="categories">
+                    <option value="@language.GetKey("Devices")"/>
+                    <option value="@language.GetKey("Fragrance")"/>
+                    <option value="@language.GetKey("HomeFragrance")"/>
+                    <option value="@language.GetKey("Others")"/>
+                </datalist>
             </div>
             <div class="input-field">
                 <label for="category">@language.GetKey("Price") (zł)</label>
