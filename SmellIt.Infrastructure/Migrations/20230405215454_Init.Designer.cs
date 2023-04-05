@@ -12,7 +12,7 @@ using SmellIt.Infrastructure.Persistence;
 namespace SmellIt.Infrastructure.Migrations
 {
     [DbContext(typeof(SmellItDbContext))]
-    [Migration("20230405214824_Init")]
+    [Migration("20230405215454_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

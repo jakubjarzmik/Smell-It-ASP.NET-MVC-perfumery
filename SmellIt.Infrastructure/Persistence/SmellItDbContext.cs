@@ -10,14 +10,14 @@ namespace SmellIt.Infrastructure.Persistence
 {
     public class SmellItDbContext : DbContext
     {
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<FragranceGroup> FragranceGroups { get; set; }
-        public DbSet<Gender> Genders { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Address> Addresses { get; set; } = default!;
+        public DbSet<User> Users { get; set; } = default!;
+        public DbSet<Brand> Brands { get; set; } = default!;
+        public DbSet<FragranceGroup> FragranceGroups { get; set; } = default!;
+        public DbSet<Gender> Genders { get; set; } = default!;
+        public DbSet<Product> Products { get; set; } = default!;
+        public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
+        public DbSet<ProductImage> ProductImages { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
