@@ -2,13 +2,19 @@ using System.Globalization;
 using System.Reflection;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.WebSockets;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using SmellIt.Infrastructure.Extensions;
+using SmellIt.Infrastructure.Persistence;
 using SmellIt.Website.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add db
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // Add multi languages
 builder.Services.AddSingleton<LanguageService>();

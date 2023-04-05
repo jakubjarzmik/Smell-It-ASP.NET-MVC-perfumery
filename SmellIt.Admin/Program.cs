@@ -3,11 +3,18 @@ using System.Globalization;
 using System.Reflection;
 using SmellIt.Website.Models;
 using Microsoft.Extensions.Options;
+using SmellIt.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using SmellIt.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add db
+builder.Services.AddInfrastructure(builder.Configuration);
+
 // Add multi languages
 builder.Services.AddSingleton<LanguageService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

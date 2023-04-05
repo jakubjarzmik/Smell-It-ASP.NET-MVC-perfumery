@@ -10,6 +10,10 @@ namespace SmellIt.Infrastructure.Persistence
 {
     public class SmellItDbContext : DbContext
     {
+        public SmellItDbContext(DbContextOptions<SmellItDbContext> options) : base(options)
+        {
+
+        }
         public DbSet<Address> Addresses { get; set; } = default!;
         public DbSet<User> Users { get; set; } = default!;
         public DbSet<Brand> Brands { get; set; } = default!;
@@ -19,21 +23,16 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
         public DbSet<ProductImage> ProductImages { get; set; } = default!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=JJERZUPC;Database=SmellItDb;Trusted_Connection=True;");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Address>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedAddresses)
+                .WithMany(u => u.CreatedAddresses)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Address>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedAddresses)
+                .WithMany(u => u.ModifiedAddresses)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Address>()
@@ -44,12 +43,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<Brand>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedBrands)
+                .WithMany(u => u.CreatedBrands)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Brand>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedBrands)
+                .WithMany(u => u.ModifiedBrands)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Brand>()
@@ -60,12 +59,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<FragranceGroup>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedFragranceGroups)
+                .WithMany(u => u.CreatedFragranceGroups)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<FragranceGroup>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedFragranceGroups)
+                .WithMany(u => u.ModifiedFragranceGroups)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<FragranceGroup>()
@@ -76,12 +75,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<Gender>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedGenders)
+                .WithMany(u => u.CreatedGenders)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Gender>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedGenders)
+                .WithMany(u => u.ModifiedGenders)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Gender>()
@@ -92,12 +91,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<Product>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedProducts)
+                .WithMany(u => u.CreatedProducts)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Product>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedProducts)
+                .WithMany(u => u.ModifiedProducts)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Product>()
@@ -108,12 +107,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedProductCategories)
+                .WithMany(u => u.CreatedProductCategories)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedProductCategories)
+                .WithMany(u => u.ModifiedProductCategories)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductCategory>()
@@ -124,12 +123,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<ProductImage>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedProductImages)
+                .WithMany(u => u.CreatedProductImages)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductImage>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedProductImages)
+                .WithMany(u => u.ModifiedProductImages)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductImage>()
@@ -140,12 +139,12 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<User>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u=>u.CreatedUsers)
+                .WithMany(u => u.CreatedUsers)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<User>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u=>u.ModifiedUsers)
+                .WithMany(u => u.ModifiedUsers)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<User>()
