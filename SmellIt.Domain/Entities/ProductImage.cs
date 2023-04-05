@@ -1,6 +1,7 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace SmellIt.Domain.Entities
 {
     public class ProductImage : BaseEntity
     {
+        [MaxLength(255)]
         public string ImagePath { get; set; } = default!;
+        [MaxLength(20)]
         public string? ImageAlt { get; set; }
 
         [ForeignKey("Product")]
