@@ -9,5 +9,6 @@ namespace SmellIt.Domain.Entities
 {
     public class Gender : DictionaryEntity
     {
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

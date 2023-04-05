@@ -13,5 +13,8 @@ namespace SmellIt.Domain.Entities
         [ForeignKey("ParentCategory")]
         public int? ParentCategoryId { get; set; }
         public virtual ProductCategory? ParentCategory { get; set; }
+
+        public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

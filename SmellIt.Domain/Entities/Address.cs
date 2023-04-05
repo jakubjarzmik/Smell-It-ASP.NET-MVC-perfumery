@@ -18,5 +18,7 @@ namespace SmellIt.Domain.Entities
         public string City { get; set; } = default!;
         [MaxLength(50)]
         public string Country { get; set; } = default!;
+
+        public virtual ICollection<User>? Users { get; set; }
     }
 }

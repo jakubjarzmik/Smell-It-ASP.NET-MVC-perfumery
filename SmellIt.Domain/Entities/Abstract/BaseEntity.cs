@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,19 +12,19 @@ namespace SmellIt.Domain.Entities.Abstract
     public abstract class BaseEntity
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [ForeignKey("CreatedBy")]
-        public int CreatedByID { get; set; }
-        public User CreatedBy { get; set; } = default!;
-        public DateTime CreatedDate { get; set; }
+        public int CreatedById { get; set; }
+        public virtual User CreatedBy { get; set; } = default!;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         [ForeignKey("ModifiedBy")]
         public int? ModifiedById { get; set; }
-        public User? ModifiedBy { get; set; } = default!;
-        public DateTime? ModifiedDate { get; set; }
+        public virtual User? ModifiedBy { get; set; } = default!;
+        public DateTime? ModifiedAt { get; set; }
         [ForeignKey("DeletedBy")]
         public int? DeletedById { get; set; }
-        public User? DeletedBy { get; set; } = default!;
-        public DateTime? DeletedDate { get; set; }
+        public virtual User? DeletedBy { get; set; } = default!;
+        public DateTime? DeletedAt { get; set; }
         public bool IsActive { get; set; }
     }
 }

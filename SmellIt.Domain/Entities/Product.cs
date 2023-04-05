@@ -27,6 +27,6 @@ namespace SmellIt.Domain.Entities
         public int GenderId { get; set; }
         public virtual Gender Gender { get; set; } = default!;
 
-        public virtual ICollection<ProductImage> ProductImages { get; set; } = default!;
+        public virtual ICollection<ProductImage>? ProductImages { get; set; }
     }
 }
