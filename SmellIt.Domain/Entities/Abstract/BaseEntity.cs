@@ -14,17 +14,17 @@ namespace SmellIt.Domain.Entities.Abstract
         [Key]
         public int Id { get; set; }
         [ForeignKey("CreatedBy")]
-        public int CreatedById { get; set; }
-        public virtual User CreatedBy { get; set; } = default!;
+        public int? CreatedById { get; set; }
+        public virtual User? CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         [ForeignKey("ModifiedBy")]
         public int? ModifiedById { get; set; }
-        public virtual User? ModifiedBy { get; set; } = default!;
+        public virtual User? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         [ForeignKey("DeletedBy")]
         public int? DeletedById { get; set; }
-        public virtual User? DeletedBy { get; set; } = default!;
+        public virtual User? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

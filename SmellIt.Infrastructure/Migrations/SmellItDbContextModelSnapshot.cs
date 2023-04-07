@@ -43,7 +43,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -93,7 +93,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -141,7 +141,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -189,7 +189,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -243,7 +243,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -255,10 +255,10 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FragranceGroupId")
+                    b.Property<int?>("FragranceGroupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GenderId")
+                    b.Property<int?>("GenderId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -305,7 +305,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -358,7 +358,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -415,7 +415,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
+                    b.Property<int?>("CreatedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -474,8 +474,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedAddresses")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedAddresses")
@@ -499,8 +498,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedBrands")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedBrands")
@@ -524,8 +522,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedFragranceGroups")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedFragranceGroups")
@@ -549,8 +546,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedGenders")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedGenders")
@@ -586,8 +582,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedProducts")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedProducts")
@@ -596,15 +591,11 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasOne("SmellIt.Domain.Entities.FragranceGroup", "FragranceGroup")
                         .WithMany("Products")
-                        .HasForeignKey("FragranceGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FragranceGroupId");
 
                     b.HasOne("SmellIt.Domain.Entities.Gender", "Gender")
                         .WithMany("Products")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
                         .WithMany("ModifiedProducts")
@@ -631,8 +622,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedProductCategories")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedProductCategories")
@@ -662,8 +652,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedProductImages")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedProductImages")
@@ -699,8 +688,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedUsers")
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
                         .WithMany("DeletedUsers")

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using SmellIt.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using SmellIt.Infrastructure.Extensions;
+using SmellIt.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,8 @@ builder.Services.AddMvc()
 	{
 		options.DataAnnotationLocalizerProvider = (type, factory) =>
 		{
-			var assemblyName = new AssemblyName(typeof(ShareResource).GetTypeInfo().Assembly.FullName);
-			return factory.Create("ShareResource", assemblyName.Name);
+			var assemblyName = new AssemblyName(typeof(ShareResource).GetTypeInfo().Assembly.FullName!);
+			return factory.Create("ShareResource", assemblyName.Name!);
 		};
 	});
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -45,6 +46,11 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 var app = builder.Build();
 
+var scope = app.Services.CreateScope();
+
+var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
+await seeder.Seed();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -54,7 +60,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
-app.UseRequestLocalization(locOptions.Value);
+app.UseRequestLocalization(locOptions!.Value);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

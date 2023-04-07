@@ -20,12 +20,12 @@ namespace SmellIt.Domain.Entities
         public virtual Brand Brand { get; set; } = default!;
 
         [ForeignKey("FragranceGroup")]
-        public int FragranceGroupId { get; set; }
-        public virtual FragranceGroup FragranceGroup { get; set; } = default!;
+        public int? FragranceGroupId { get; set; }
+        public virtual FragranceGroup? FragranceGroup { get; set; } = default!;
 
         [ForeignKey("Gender")]
-        public int GenderId { get; set; }
-        public virtual Gender Gender { get; set; } = default!;
+        public int? GenderId { get; set; }
+        public virtual Gender? Gender { get; set; } = default!;
 
         public virtual ICollection<ProductImage>? ProductImages { get; set; }
     }
