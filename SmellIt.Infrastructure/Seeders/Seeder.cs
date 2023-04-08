@@ -24,7 +24,8 @@ namespace SmellIt.Infrastructure.Seeders
                 new FragranceGroupSeeder(dbContext),
                 new ProductCategorySeeder(dbContext),
                 new ProductSeeder(dbContext),
-                new ProductImageSeeder(dbContext)
+                new ProductImageSeeder(dbContext),
+                new TranslationSeeder(dbContext)
             };
         }
 

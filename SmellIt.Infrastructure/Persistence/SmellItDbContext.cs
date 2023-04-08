@@ -22,6 +22,7 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<Product> Products { get; set; } = default!;
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
         public DbSet<ProductImage> ProductImages { get; set; } = default!;
+        public DbSet<Translation> Translations { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -150,6 +151,22 @@ namespace SmellIt.Infrastructure.Persistence
             modelBuilder.Entity<User>()
                 .HasOne(u => u.DeletedBy)
                 .WithMany(u => u.DeletedUsers)
+                .HasForeignKey(u => u.DeletedById)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Translation>()
+                .HasOne(u => u.CreatedBy)
+                .WithMany(u => u.CreatedTranslations)
+                .HasForeignKey(u => u.CreatedById)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Translation>()
+                .HasOne(u => u.ModifiedBy)
+                .WithMany(u => u.ModifiedTranslations)
+                .HasForeignKey(u => u.ModifiedById)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Translation>()
+                .HasOne(u => u.DeletedBy)
+                .WithMany(u => u.DeletedTranslations)
                 .HasForeignKey(u => u.DeletedById)
                 .OnDelete(DeleteBehavior.NoAction);
         }
