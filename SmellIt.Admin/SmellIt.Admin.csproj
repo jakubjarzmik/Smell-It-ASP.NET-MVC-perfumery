@@ -15,10 +15,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Resources\SharedResource.en-GB.resx">
+		<EmbeddedResource Update="Resources\Resources.en-GB.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\SharedResource.pl-PL.resx">
+		<EmbeddedResource Update="Resources\Resources.pl-PL.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 	</ItemGroup>

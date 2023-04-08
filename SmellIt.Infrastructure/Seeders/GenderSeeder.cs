@@ -21,13 +21,27 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Genders.Any())
             {
-                List<Gender> data = new List<Gender>
+                List<Gender> genders = new List<Gender>
                 {
-                    new Gender { Name = "Women", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new Gender { Name = "Men", CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
-                    new Gender { Name = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
+                    new Gender { NameKey = "Women", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new Gender { NameKey = "Men", CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
+                    new Gender { NameKey = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };
-                await _dbContext.Genders.AddRangeAsync(data);
+                await _dbContext.Genders.AddRangeAsync(genders);
+                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                {
+                    new TranslationEngb{Key="Women", Value = "Women"},
+                    new TranslationEngb{Key="Men", Value = "Men"},
+                    new TranslationEngb{Key="Unisex", Value = "Unisex"},
+                };
+                await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
+                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                {
+                    new TranslationPlpl{Key="Women", Value = "Damskie"},
+                    new TranslationPlpl{Key="Men", Value = "Męskie"},
+                    new TranslationPlpl{Key="Unisex", Value = "Unisex"},
+                };
+                await _dbContext.TranslationPlpls.AddRangeAsync(translationPlpls);
             }
         }
     }

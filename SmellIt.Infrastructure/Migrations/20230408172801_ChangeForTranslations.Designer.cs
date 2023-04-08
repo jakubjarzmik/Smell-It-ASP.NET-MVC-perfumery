@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmellIt.Infrastructure.Persistence;
 
@@ -11,9 +12,10 @@ using SmellIt.Infrastructure.Persistence;
 namespace SmellIt.Infrastructure.Migrations
 {
     [DbContext(typeof(SmellItDbContext))]
-    partial class SmellItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230408172801_ChangeForTranslations")]
+    partial class ChangeForTranslations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -406,7 +408,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("SmellIt.Domain.Entities.TranslationEngb", b =>
+            modelBuilder.Entity("SmellIt.Domain.Entities.Translation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -434,57 +436,10 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Value")
+                    b.Property<string>("LanguageCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("DeletedById");
-
-                    b.HasIndex("Key")
-                        .IsUnique();
-
-                    b.HasIndex("ModifiedById");
-
-                    b.ToTable("TranslationEngbs");
-                });
-
-            modelBuilder.Entity("SmellIt.Domain.Entities.TranslationPlpl", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedById")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedById")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Key")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -502,12 +457,9 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.HasIndex("Key")
-                        .IsUnique();
-
                     b.HasIndex("ModifiedById");
 
-                    b.ToTable("TranslationPlpls");
+                    b.ToTable("Translations");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.User", b =>
@@ -788,44 +740,20 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SmellIt.Domain.Entities.TranslationEngb", b =>
+            modelBuilder.Entity("SmellIt.Domain.Entities.Translation", b =>
                 {
                     b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
-                        .WithMany("CreatedTranslationsEngbs")
+                        .WithMany("CreatedTranslations")
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
-                        .WithMany("DeletedTranslationEngbs")
+                        .WithMany("DeletedTranslations")
                         .HasForeignKey("DeletedById")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
-                        .WithMany("ModifiedTranslationEngbs")
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("ModifiedBy");
-                });
-
-            modelBuilder.Entity("SmellIt.Domain.Entities.TranslationPlpl", b =>
-                {
-                    b.HasOne("SmellIt.Domain.Entities.User", "CreatedBy")
-                        .WithMany("CreatedTranslationsPlpls")
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("SmellIt.Domain.Entities.User", "DeletedBy")
-                        .WithMany("DeletedTranslationPlpls")
-                        .HasForeignKey("DeletedById")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
-                        .WithMany("ModifiedTranslationPlpls")
+                        .WithMany("ModifiedTranslations")
                         .HasForeignKey("ModifiedById")
                         .OnDelete(DeleteBehavior.NoAction);
 
@@ -914,9 +842,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Navigation("CreatedProducts");
 
-                    b.Navigation("CreatedTranslationsEngbs");
-
-                    b.Navigation("CreatedTranslationsPlpls");
+                    b.Navigation("CreatedTranslations");
 
                     b.Navigation("CreatedUsers");
 
@@ -934,9 +860,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Navigation("DeletedProducts");
 
-                    b.Navigation("DeletedTranslationEngbs");
-
-                    b.Navigation("DeletedTranslationPlpls");
+                    b.Navigation("DeletedTranslations");
 
                     b.Navigation("DeletedUsers");
 
@@ -954,9 +878,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Navigation("ModifiedProducts");
 
-                    b.Navigation("ModifiedTranslationEngbs");
-
-                    b.Navigation("ModifiedTranslationPlpls");
+                    b.Navigation("ModifiedTranslations");
 
                     b.Navigation("ModifiedUsers");
                 });

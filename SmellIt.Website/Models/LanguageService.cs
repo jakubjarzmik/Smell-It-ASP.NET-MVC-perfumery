@@ -9,12 +9,12 @@ namespace SmellIt.Website.Models
 
         public LanguageService( IStringLocalizerFactory factory)
         {
-            var type = typeof(ShareResource);
+            var type = typeof(Resources);
             var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName!);
-            _localizer = factory.Create("SharedResource", assemblyName.Name!);
+            _localizer = factory.Create("Resources", assemblyName.Name!);
         }
 
-        public LocalizedString GetKey(string key)
+        public LocalizedString GetValue(string key)
         {
             return _localizer[key];
         }

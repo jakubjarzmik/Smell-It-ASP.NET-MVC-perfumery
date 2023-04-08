@@ -34,7 +34,8 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductCategory> CreatedProductCategories { get; set; } = default!;
         public virtual ICollection<ProductImage> CreatedProductImages{ get; set; } = default!;
         public virtual ICollection<User> CreatedUsers { get; set; } = default!;
-        public virtual ICollection<Translation> CreatedTranslations { get; set; } = default!;
+        public virtual ICollection<TranslationEngb> CreatedTranslationsEngbs { get; set; } = default!;
+        public virtual ICollection<TranslationPlpl> CreatedTranslationsPlpls { get; set; } = default!;
 
         public virtual ICollection<Address>? ModifiedAddresses { get; set; } = default!;
         public virtual ICollection<Brand>? ModifiedBrands { get; set; } = default!;
@@ -44,7 +45,8 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductCategory>? ModifiedProductCategories { get; set; } = default!;
         public virtual ICollection<ProductImage>? ModifiedProductImages { get; set; } = default!;
         public virtual ICollection<User>? ModifiedUsers { get; set; } = default!;
-        public virtual ICollection<Translation>? ModifiedTranslations { get; set; } = default!;
+        public virtual ICollection<TranslationEngb>? ModifiedTranslationEngbs { get; set; } = default!;
+        public virtual ICollection<TranslationPlpl>? ModifiedTranslationPlpls { get; set; } = default!;
 
         public virtual ICollection<Address>? DeletedAddresses { get; set; } = default!;
         public virtual ICollection<Brand>? DeletedBrands { get; set; } = default!;
@@ -54,7 +56,8 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductCategory>? DeletedProductCategories { get; set; } = default!;
         public virtual ICollection<ProductImage>? DeletedProductImages { get; set; } = default!;
         public virtual ICollection<User>? DeletedUsers { get; set; } = default!;
-        public virtual ICollection<Translation>? DeletedTranslations { get; set; } = default!;
+        public virtual ICollection<TranslationEngb>? DeletedTranslationEngbs { get; set; } = default!;
+        public virtual ICollection<TranslationPlpl>? DeletedTranslationPlpls { get; set; } = default!;
 
     }
 }

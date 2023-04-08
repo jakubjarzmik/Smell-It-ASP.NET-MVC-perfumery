@@ -1,6 +1,6 @@
 ﻿@inject LanguageService Language
 @{
-	ViewData["Title"] = @Language.GetKey("Products");
+	ViewData["Title"] = @Language.GetValue("Products");
 }
 
 <section class="page-header">
@@ -8,10 +8,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">@Language.GetKey("Products")</h1>
+					<h1 class="page-name">@Language.GetValue("Products")</h1>
 					<ol class="breadcrumb">
 						<li><a href="index.html">Home</a></li>
-						<li class="active">@Language.GetKey("Products")</li>
+						<li class="active">@Language.GetValue("Products")</li>
 					</ol>
 				</div>
 			</div>
@@ -25,33 +25,33 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="widget">
-					<h4 class="widget-title">@Language.GetKey("SortBy")</h4>
+					<h4 class="widget-title">@Language.GetValue("SortBy")</h4>
 					<form method="post" action="#">
 						<select class="form-control">
-							<option>@Language.GetKey("Newest")</option>
-							<option>@Language.GetKey("Oldest")</option>
-							<option>@Language.GetKey("PriceAsc")</option>
-							<option>@Language.GetKey("PriceDesc")</option>
+							<option>@Language.GetValue("Newest")</option>
+							<option>@Language.GetValue("Oldest")</option>
+							<option>@Language.GetValue("PriceAsc")</option>
+							<option>@Language.GetValue("PriceDesc")</option>
 						</select>
 					</form>
 				</div>
 				<div class="widget product-category">
-					<h4 class="widget-title">@Language.GetKey("Filters")</h4>
+					<h4 class="widget-title">@Language.GetValue("Filters")</h4>
 					<div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingOne">
 								<h4 class="panel-title">
 									<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        @Language.GetKey("Gender")
+                                        @Language.GetValue("Gender")
 									</a>
 								</h4>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 								<div class="panel-body">
 									<ul>
-										<li><a href="#!">@Language.GetKey("Men")</a></li>
-										<li><a href="#!">@Language.GetKey("Women")</a></li>
-										<li><a href="#!">@Language.GetKey("Unisex")</a></li>
+										<li><a href="#!">@Language.GetValue("Men")</a></li>
+										<li><a href="#!">@Language.GetValue("Women")</a></li>
+										<li><a href="#!">@Language.GetValue("Unisex")</a></li>
 									</ul>
 								</div>
 							</div>
@@ -60,7 +60,7 @@
 							<div class="panel-heading" role="tab" id="headingTwo">
 								<h4 class="panel-title">
 									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        @Language.GetKey("Brand")
+                                        @Language.GetValue("Brand")
 									</a>
 								</h4>
 							</div>
@@ -82,19 +82,19 @@
 							<div class="panel-heading" role="tab" id="headingThree">
 								<h4 class="panel-title">
 									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-										@Language.GetKey("FragranceCategory")
+										@Language.GetValue("FragranceCategory")
 									</a>
 								</h4>
 							</div>
 							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 								<div class="panel-body">
 									<ul>
-										<li><a href="#!">@Language.GetKey("Oriental")</a></li>
-										<li><a href="#!">@Language.GetKey("Fruity")</a></li>
-										<li><a href="#!">@Language.GetKey("Citrus")</a></li>
-										<li><a href="#!">@Language.GetKey("Aromatic")</a></li>
-										<li><a href="#!">@Language.GetKey("Floral")</a></li>
-										<li><a href="#!">@Language.GetKey("Other")</a></li>
+										<li><a href="#!">@Language.GetValue("Oriental")</a></li>
+										<li><a href="#!">@Language.GetValue("Fruity")</a></li>
+										<li><a href="#!">@Language.GetValue("Citrus")</a></li>
+										<li><a href="#!">@Language.GetValue("Aromatic")</a></li>
+										<li><a href="#!">@Language.GetValue("Floral")</a></li>
+										<li><a href="#!">@Language.GetValue("Other")</a></li>
 									</ul>
 								</div>
 							</div>
@@ -126,7 +126,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h4><a href="#">@Language.GetKey("SmellItDiffuser")</a></h4>
+								<h4><a href="#">@Language.GetValue("SmellItDiffuser")</a></h4>
 								<p class="price">799 zł</p>
 							</div>
 						</div>
@@ -304,13 +304,13 @@
 										</div>
 										<div class="col-md-4 col-sm-6 col-xs-12">
 											<div class="product-short-details">
-												<h2 class="product-title">@Language.GetKey("SmellItDiffuser")</h2>
+												<h2 class="product-title">@Language.GetValue("SmellItDiffuser")</h2>
 												<p class="product-price">799 zł</p>
 												<p class="product-short-description">
-													@Language.GetKey("SmellItDiffuserDesc")
+													@Language.GetValue("SmellItDiffuserDesc")
 												</p>
-												<a href="cart.html" class="btn btn-main">@Language.GetKey("AddToCart")</a>
-												<a href="product-single.html" class="btn btn-transparent">@Language.GetKey("ViewProductDetails")</a>
+												<a href="cart.html" class="btn btn-main">@Language.GetValue("AddToCart")</a>
+												<a href="product-single.html" class="btn btn-transparent">@Language.GetValue("ViewProductDetails")</a>
 											</div>
 										</div>
 									</div>

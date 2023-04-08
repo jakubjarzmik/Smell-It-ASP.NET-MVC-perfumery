@@ -8,11 +8,9 @@ using SmellIt.Domain.Entities.Abstract;
 
 namespace SmellIt.Domain.Entities
 {
-    public class Translation : BaseEntity
+    public class TranslationEngb : BaseEntity
     {
-        [MaxLength(10)]
-        public string LanguageCode { get; set; } = "en";
-        [MaxLength(50)] 
+        [MaxLength(50)]
         public string Key { get; set; } = default!;
         public string Value { get; set; } = default!;
     }

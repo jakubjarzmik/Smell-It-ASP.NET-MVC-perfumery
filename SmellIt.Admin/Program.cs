@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
-using SmellIt.Website.Models;
 using Microsoft.Extensions.Options;
 using SmellIt.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using SmellIt.Admin.Models;
 using SmellIt.Infrastructure.Extensions;
 using SmellIt.Infrastructure.Seeders;
 
@@ -25,7 +25,7 @@ builder.Services.AddMvc()
 	{
 		options.DataAnnotationLocalizerProvider = (type, factory) =>
 		{
-			var assemblyName = new AssemblyName(typeof(ShareResource).GetTypeInfo().Assembly.FullName!);
+			var assemblyName = new AssemblyName(typeof(Resources).GetTypeInfo().Assembly.FullName!);
 			return factory.Create("ShareResource", assemblyName.Name!);
 		};
 	});

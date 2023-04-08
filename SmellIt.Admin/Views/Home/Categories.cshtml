@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = language.GetKey("Categories");
+    ViewData["Title"] = language.GetValue("Categories");
 }
 <div class="container">
     <div class="row">
@@ -7,22 +7,22 @@
             <div class="card grey darken-3 white-text">
                 <div class="card-content">
                     <div class="card-title">
-                        @language.GetKey("Categories")
+                        @language.GetValue("Categories")
                         <a class="btn waves-effect waves-light btn modal-trigger right" href="#modal1"> <i class="material-icons">add</i></a>
                     </div>
 
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th>@language.GetKey("Name")</th>
-                                <th>@language.GetKey("ParentCategory")</th>
-                                <th>@language.GetKey("DateCreated")</th>
+                                <th>@language.GetValue("Name")</th>
+                                <th>@language.GetValue("ParentCategory")</th>
+                                <th>@language.GetValue("DateCreated")</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>@language.GetKey("Devices")</td>
+                                <td>@language.GetValue("Devices")</td>
                                 <td></td>
                                 <td>27.03.2023</td>
                                 <td class="right">
@@ -31,8 +31,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("Diffusers")</td>
-                                <td>@language.GetKey("Devices")</td>
+                                <td>@language.GetValue("Diffusers")</td>
+                                <td>@language.GetValue("Devices")</td>
                                 <td>27.03.2023</td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
@@ -40,8 +40,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("Fresheners")</td>
-                                <td>@language.GetKey("Devices")</td>
+                                <td>@language.GetValue("Fresheners")</td>
+                                <td>@language.GetValue("Devices")</td>
                                 <td>27.03.2023</td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
@@ -49,8 +49,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("Women")</td>
-                                <td>@language.GetKey("Fragrance")</td>
+                                <td>@language.GetValue("Women")</td>
+                                <td>@language.GetValue("Fragrance")</td>
                                 <td>27.03.2023</td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
@@ -58,8 +58,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("Men")</td>
-                                <td>@language.GetKey("Fragrance")</td>
+                                <td>@language.GetValue("Men")</td>
+                                <td>@language.GetValue("Fragrance")</td>
                                 <td>27.03.2023</td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
@@ -67,8 +67,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("Unisex")</td>
-                                <td>@language.GetKey("Fragrance")</td>
+                                <td>@language.GetValue("Unisex")</td>
+                                <td>@language.GetValue("Fragrance")</td>
                                 <td>27.03.2023</td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
@@ -76,7 +76,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@language.GetKey("HomeFragrance")</td>
+                                <td>@language.GetValue("HomeFragrance")</td>
                                 <td></td>
                                 <td>27.03.2023</td>
                                 <td class="right">
@@ -130,24 +130,24 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-        <h4>@language.GetKey("AddNewCategory")</h4>
+        <h4>@language.GetValue("AddNewCategory")</h4>
         <form>
             <div class="input-field">
-                <label for="title">@language.GetKey("Title")</label>
+                <label for="title">@language.GetValue("Title")</label>
                 <input type="text" id="title" />
             </div>
             <div class="input-field">
                 <select id="category">
-                    <option value="" disabled="disabled" selected>@language.GetKey("SelectCategory")</option>
-                    <option value="1">@language.GetKey("Devices")</option>
-                    <option value="2">@language.GetKey("Fragrance")</option>
-                    <option value="3">@language.GetKey("HomeFragrance")</option>
-                    <option value="4">@language.GetKey("Others")</option>
+                    <option value="" disabled="disabled" selected>@language.GetValue("SelectCategory")</option>
+                    <option value="1">@language.GetValue("Devices")</option>
+                    <option value="2">@language.GetValue("Fragrance")</option>
+                    <option value="3">@language.GetValue("HomeFragrance")</option>
+                    <option value="4">@language.GetValue("Others")</option>
                 </select>
             </div>
         </form>
     </div>
     <div class="modal-footer grey darken-2">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">@language.GetKey("Add")</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">@language.GetValue("Add")</a>
     </div>
 </div>

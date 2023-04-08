@@ -1,4 +1,5 @@
 ﻿@inject LanguageService Language
+@inject LanguageFromDbService LanguageFromDb
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -44,7 +45,7 @@
                     <ul class="top-menu text-right list-inline">
                         <li class="dropdown cart-nav dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-android-cart"></i>@Language.GetKey("Cart")
+                                <i class="tf-ion-android-cart"></i>@*@Language.GetValue("Cart")*@ @LanguageFromDb.GetValue("Cart")
                             </a>
                             <div class="dropdown-menu cart-dropdown">
                                 <div class="media">
@@ -52,7 +53,7 @@
                                         <img class="media-object" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="image" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">@Language.GetKey("SmellItDiffuser")</a></h4>
+                                        <h4 class="media-heading"><a href="#!">@Language.GetValue("SmellItDiffuser")</a></h4>
                                         <div class="cart-price">
                                             <span>1 x</span>
                                             <span>799.00</span>
@@ -77,28 +78,28 @@
                                 </div>
 
                                 <div class="cart-summary">
-                                    <span>@Language.GetKey("Total")</span>
+                                    <span>@Language.GetValue("Total")</span>
                                     <span class="total-price">1301.00 zł</span>
                                 </div>
                                 <ul class="text-center cart-buttons">
-                                    <li><a href="cart.html" class="btn btn-small">@Language.GetKey("Cart")</a></li>
-                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">@Language.GetKey("Checkout")</a></li>
+                                    <li><a href="cart.html" class="btn btn-small">@Language.GetValue("Cart")</a></li>
+                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">@Language.GetValue("Checkout")</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="dropdown search dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-ios-search-strong"></i> @Language.GetKey("Search")
+                                <i class="tf-ion-ios-search-strong"></i> @Language.GetValue("Search")
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <form action="post"><input type="search" class="form-control" placeholder="@Language.GetKey("Search")..."></form>
+                                    <form action="post"><input type="search" class="form-control" placeholder="@Language.GetValue("Search")..."></form>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <span class="flag-icon flag-icon-@Language.GetKey("LanguageForIcon")"></span>
+                                <span class="flag-icon flag-icon-@Language.GetValue("LanguageForIcon")"></span>
                             </a>
                             <ul class="dropdown-menu ">
                                 <li>
@@ -130,48 +131,48 @@
                 <div id="navbar" class="navbar-collapse collapse text-center">
                     <ul class="nav navbar-nav">
                         <li class="dropdown ">
-                            <a href="@Url.Action("Index", "Home")">@Language.GetKey("Home")</a>
+                            <a href="@Url.Action("Index", "Home")">@Language.GetValue("Home")</a>
                         </li>
                         <li class="dropdown dropdown-slide">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                                role="button" aria-haspopup="true" aria-expanded="false">
-                                @Language.GetKey("Products") <span class="tf-ion-ios-arrow-down"></span>
+                                @Language.GetValue("Products") <span class="tf-ion-ios-arrow-down"></span>
                             </a>
                             <div class="dropdown-menu">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">@Language.GetKey("Devices")</li>
+                                            <li class="dropdown-header">@Language.GetValue("Devices")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("SmellItDiffuser")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Diffusers")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Fresheners")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("SmellItDiffuser")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Diffusers")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Fresheners")</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">@Language.GetKey("Fragrance")</li>
+                                            <li class="dropdown-header">@Language.GetValue("Fragrance")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Women")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Men")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("Unisex")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Women")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Men")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Unisex")</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">@Language.GetKey("HomeFragrance")</li>
+                                            <li class="dropdown-header">@Language.GetValue("HomeFragrance")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("ScentedCandles")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("EssentialOils")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("ScentedCandles")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("EssentialOils")</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-sm-3">
                                         <ul>
-                                            <li class="dropdown-header">@Language.GetKey("Others")</li>
+                                            <li class="dropdown-header">@Language.GetValue("Others")</li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetKey("CarFresheners")</a></li>
+                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("CarFresheners")</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -179,19 +180,19 @@
                         </li>
 
                         <li class="dropdown ">
-                            <a href="@Url.Action("Contact", "Home")">@Language.GetKey("Contact")</a>
+                            <a href="@Url.Action("Contact", "Home")">@Language.GetValue("Contact")</a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#">@Language.GetKey("AboutUs")</a>
+                            <a href="#">@Language.GetValue("AboutUs")</a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#"><b>@Language.GetKey("Login")</b></a>
+                            <a href="#"><b>@Language.GetValue("Login")</b></a>
                         </li>
                         
                         <li class="dropdown ">
-                            <a href="#">@Language.GetKey("SignIn")</a>
+                            <a href="#">@Language.GetValue("SignIn")</a>
                         </li>
                     </ul>
                 </div>
@@ -206,14 +207,14 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="title">
-                        <h2>@Language.GetKey("SubscribeToNewsletter")</h2>
-                        <p>@Language.GetKey("SubscribeToNewsletterDesc")</p>
+                        <h2>@Language.GetValue("SubscribeToNewsletter")</h2>
+                        <p>@Language.GetValue("SubscribeToNewsletterDesc")</p>
                     </div>
                     <div class="col-lg-6 col-md-offset-3">
                         <div class="input-group subscription-form">
-                            <input type="text" class="form-control" placeholder="@Language.GetKey("EnterEmail")">
+                            <input type="text" class="form-control" placeholder="@Language.GetValue("EnterEmail")">
                             <span class="input-group-btn">
-                                <button class="btn btn-main" type="button">@Language.GetKey("SubscribeNow")</button>
+                                <button class="btn btn-main" type="button">@Language.GetValue("SubscribeNow")</button>
                             </span>
                         </div>
                     </div>
@@ -251,13 +252,13 @@
                     </ul>
                     <ul class="footer-menu text-uppercase">
                         <li>
-                            <a href="@Url.Action("Contact", "Home")">@Language.GetKey("Contact")</a>
+                            <a href="@Url.Action("Contact", "Home")">@Language.GetValue("Contact")</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Products", "Home")">@Language.GetKey("Products")</a>
+                            <a href="@Url.Action("Products", "Home")">@Language.GetValue("Products")</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Privacy", "Home")">@Language.GetKey("PrivacyPolicy")</a>
+                            <a href="@Url.Action("Privacy", "Home")">@Language.GetValue("PrivacyPolicy")</a>
                         </li>
                     </ul>
                     <p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by <a href="https://www.linkedin.com/in/jakub-jarzmik">Jakub Jarzmik</a></p>

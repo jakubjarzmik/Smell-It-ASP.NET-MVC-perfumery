@@ -21,51 +21,88 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.ProductCategories.Any())
             {
-                List<ProductCategory> data = new List<ProductCategory>
+                List<ProductCategory> productCategories = new List<ProductCategory>
                 {
-                    new ProductCategory { Name = "Devices", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new ProductCategory { Name = "Fragrance", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new ProductCategory { Name = "HomeFragrance",  CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
-                    new ProductCategory { Name = "Others", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new ProductCategory { NameKey = "Devices", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new ProductCategory { NameKey = "Fragrance", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new ProductCategory { NameKey = "HomeFragrance",  CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
+                    new ProductCategory { NameKey = "Others", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
-                await _dbContext.ProductCategories.AddRangeAsync(data);
+                await _dbContext.ProductCategories.AddRangeAsync(productCategories);
+
+                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                {
+                    new TranslationEngb{Key="Devices", Value = "Devices"},
+                    new TranslationEngb{Key="Fragrance", Value = "Fragrance"},
+                    new TranslationEngb{Key="HomeFragrance", Value = "Home fragrance"},
+                    new TranslationEngb{Key="Others", Value = "Others"},
+                };
+                await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
+                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                {
+                    new TranslationPlpl{Key="Devices", Value = "Urządzenia"},
+                    new TranslationPlpl{Key="Fragrance", Value = "Perfumy"},
+                    new TranslationPlpl{Key="HomeFragrance", Value = "Zapachy do domu"},
+                    new TranslationPlpl{Key="Others", Value = "Inne"},
+                };
+                await _dbContext.TranslationPlpls.AddRangeAsync(translationPlpls);
                 await _dbContext.SaveChangesAsync();
-                List<ProductCategory> data2 = new List<ProductCategory>
+
+                List<ProductCategory> productCategories2 = new List<ProductCategory>
                 {
                     new ProductCategory
                     {
-                        Name = "Diffusers", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.Name.Equals("Devices")).Single()!.Id, 
+                        NameKey = "Diffusers", 
+                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Devices")).Single()!.Id, 
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductCategory
                     {
-                        Name = "Fresheners", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.Name.Equals("Devices")).Single()!.Id, 
-                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
-                    },
-
-                    new ProductCategory
-                    {
-                        Name = "ScentedCandles", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.Name.Equals("HomeFragrance")).Single()!.Id, 
-                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
-                    },
-                    new ProductCategory
-                    {
-                        Name = "EssentialOils", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.Name.Equals("HomeFragrance")).Single()!.Id, 
+                        NameKey = "Fresheners", 
+                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Devices")).Single()!.Id, 
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
 
                     new ProductCategory
                     {
-                        Name = "CarFresheners", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.Name.Equals("Others")).Single()!.Id, 
+                        NameKey = "ScentedCandles", 
+                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("HomeFragrance")).Single()!.Id, 
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
+                    },
+                    new ProductCategory
+                    {
+                        NameKey = "EssentialOils", 
+                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("HomeFragrance")).Single()!.Id, 
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
+                    },
+
+                    new ProductCategory
+                    {
+                        NameKey = "CarFresheners", 
+                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Others")).Single()!.Id, 
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                 };
-                await _dbContext.ProductCategories.AddRangeAsync(data2);
+                await _dbContext.ProductCategories.AddRangeAsync(productCategories2);
+
+                List<TranslationEngb> translationEngbs2 = new List<TranslationEngb>()
+                {
+                    new TranslationEngb{Key="Diffusers", Value = "Diffusers"},
+                    new TranslationEngb{Key="Fresheners", Value = "Fresheners"},
+                    new TranslationEngb{Key="ScentedCandles", Value = "Scented candles"},
+                    new TranslationEngb{Key="EssentialOils", Value = "Essential oils"},
+                    new TranslationEngb{Key="CarFresheners", Value = "Car fresheners"},
+                };
+                await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs2);
+                List<TranslationPlpl> translationPlpls2 = new List<TranslationPlpl>()
+                {
+                    new TranslationPlpl{Key="Diffusers", Value = "Dyfuzory"},
+                    new TranslationPlpl{Key="Fresheners", Value = "Odświeżacze"},
+                    new TranslationPlpl{Key="ScentedCandles", Value = "Świeczki zapachowe"},
+                    new TranslationPlpl{Key="EssentialOils", Value = "Olejki zapachowe"},
+                    new TranslationPlpl{Key="CarFresheners", Value = "Zapachy do samochodu"},
+                };
+                await _dbContext.TranslationPlpls.AddRangeAsync(translationPlpls2);
             }
         }
     }

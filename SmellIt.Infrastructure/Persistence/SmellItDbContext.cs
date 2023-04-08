@@ -22,7 +22,8 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<Product> Products { get; set; } = default!;
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
         public DbSet<ProductImage> ProductImages { get; set; } = default!;
-        public DbSet<Translation> Translations { get; set; } = default!;
+        public DbSet<TranslationEngb> TranslationEngbs { get; set; } = default!;
+        public DbSet<TranslationPlpl> TranslationPlpls { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -154,21 +155,43 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasForeignKey(u => u.DeletedById)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Translation>()
-                .HasOne(u => u.CreatedBy)
-                .WithMany(u => u.CreatedTranslations)
+            modelBuilder.Entity<TranslationEngb>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany(t => t.CreatedTranslationsEngbs)
+                .HasForeignKey(t => t.CreatedById)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<TranslationEngb>()
+                .HasOne(t => t.ModifiedBy)
+                .WithMany(t => t.ModifiedTranslationEngbs)
+                .HasForeignKey(t => t.ModifiedById)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<TranslationEngb>()
+                .HasOne(t => t.DeletedBy)
+                .WithMany(t => t.DeletedTranslationEngbs)
+                .HasForeignKey(t => t.DeletedById)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<TranslationEngb>()
+                .HasIndex(t => t.Key)
+                .IsUnique();
+
+            modelBuilder.Entity<TranslationPlpl>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany(u => u.CreatedTranslationsPlpls)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Translation>()
-                .HasOne(u => u.ModifiedBy)
-                .WithMany(u => u.ModifiedTranslations)
-                .HasForeignKey(u => u.ModifiedById)
+            modelBuilder.Entity<TranslationPlpl>()
+                .HasOne(t => t.ModifiedBy)
+                .WithMany(t => t.ModifiedTranslationPlpls)
+                .HasForeignKey(t => t.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Translation>()
-                .HasOne(u => u.DeletedBy)
-                .WithMany(u => u.DeletedTranslations)
-                .HasForeignKey(u => u.DeletedById)
+            modelBuilder.Entity<TranslationPlpl>()
+                .HasOne(t => t.DeletedBy)
+                .WithMany(u => u.DeletedTranslationPlpls)
+                .HasForeignKey(t => t.DeletedById)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<TranslationPlpl>()
+                .HasIndex(t => t.Key)
+                .IsUnique();
         }
     }
 }

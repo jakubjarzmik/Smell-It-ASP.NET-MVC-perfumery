@@ -19,6 +19,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 // Add multi languages
 builder.Services.AddSingleton<LanguageService>();
+builder.Services.AddScoped<LanguageFromDbService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc()
     .AddViewLocalization()
@@ -26,7 +27,7 @@ builder.Services.AddMvc()
     {
         options.DataAnnotationLocalizerProvider = (type, factory) =>
         {
-            var assemblyName = new AssemblyName(typeof(ShareResource).GetTypeInfo().Assembly.FullName!);
+            var assemblyName = new AssemblyName(typeof(Resources).GetTypeInfo().Assembly.FullName!);
             return factory.Create("ShareResource", assemblyName.Name!);
         };
     });

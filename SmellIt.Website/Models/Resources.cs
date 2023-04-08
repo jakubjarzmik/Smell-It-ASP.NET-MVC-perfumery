@@ -1,6 +1,6 @@
 ﻿namespace SmellIt.Website.Models
 {
-    public class ShareResource
+    public class Resources
     {
     }
 }

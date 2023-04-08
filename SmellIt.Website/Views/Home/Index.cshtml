@@ -1,6 +1,6 @@
 ﻿@inject LanguageService Language
 @{
-    ViewData["Title"] = @Language.GetKey("Home");
+    ViewData["Title"] = @Language.GetValue("Home");
 }
 
 <div class="hero-slider">
@@ -8,9 +8,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-center">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
-                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetKey("BannerText1")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetKey("SeeNow")</a>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
+                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetValue("BannerText1")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -19,11 +19,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-center">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Dior - SAVUAGE<br/>
-						@Language.GetKey("BannerText2")
+						@Language.GetValue("BannerText2")
 					</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetKey("SeeNow")</a>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -32,9 +32,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-right">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>@Language.GetKey("BannerText3")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetKey("SeeNow")</a>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>@Language.GetValue("BannerText3")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -43,9 +43,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 text-left">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetKey("Products")</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetKey("BannerText4")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetKey("SeeNow")</a>
+					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
+					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetValue("BannerText4")</h1>
+					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
 				</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title text-center">
-					<h2>@Language.GetKey("ProductCategories")</h2>
+					<h2>@Language.GetValue("ProductCategories")</h2>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -65,8 +65,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-1.jpg" alt="" />
 						<div class="content">
-							<h3>@Language.GetKey("WomensPerfume")</h3>
-							<p>@Language.GetKey("WomensPerfumeDesc")</p>
+							<h3>@Language.GetValue("WomensPerfume")</h3>
+							<p>@Language.GetValue("WomensPerfumeDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -74,8 +74,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-2.jpg" alt="" />
 						<div class="content">
-							<h3 style="color: white">@Language.GetKey("MensAftershave")</h3>
-							<p>@Language.GetKey("MensAftershaveDesc")</p>
+							<h3 style="color: white">@Language.GetValue("MensAftershave")</h3>
+							<p>@Language.GetValue("MensAftershaveDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -85,8 +85,8 @@
 					<a href="#!">
 						<img src="~/images/shop/category/category-3.jpg" alt="" />
 						<div class="content">
-							<h3>@Language.GetKey("HomeFragrance")</h3>
-							<p>@Language.GetKey("HomeFragranceDesc")</p>
+							<h3>@Language.GetValue("HomeFragrance")</h3>
+							<p>@Language.GetValue("HomeFragranceDesc")</p>
 						</div>
 					</a>
 				</div>
@@ -99,7 +99,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>@Language.GetKey("PopularProducts")</h2>
+				<h2>@Language.GetValue("PopularProducts")</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -124,7 +124,7 @@
 						</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="#">@Language.GetKey("SmellItDiffuser")</a></h4>
+						<h4><a href="#">@Language.GetValue("SmellItDiffuser")</a></h4>
 						<p class="price">799 zł</p>
 					</div>
 				</div>
@@ -275,13 +275,13 @@
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-12">
 									<div class="product-short-details">
-										<h2 class="product-title">@Language.GetKey("SmellItDiffuser")</h2>
+										<h2 class="product-title">@Language.GetValue("SmellItDiffuser")</h2>
 										<p class="product-price">799 zł</p>
 										<p class="product-short-description">
-                                            @Language.GetKey("SmellItDiffuserDesc")
+                                            @Language.GetValue("SmellItDiffuserDesc")
                                             </p>
-										<a href="cart.html" class="btn btn-main">@Language.GetKey("AddToCart")</a>
-										<a href="product-single.html" class="btn btn-transparent">@Language.GetKey("ViewProductDetails")</a>
+										<a href="cart.html" class="btn btn-main">@Language.GetValue("AddToCart")</a>
+										<a href="product-single.html" class="btn btn-transparent">@Language.GetValue("ViewProductDetails")</a>
 									</div>
 								</div>
 							</div>

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = language.GetKey("Dashboard");
+    ViewData["Title"] = language.GetValue("Dashboard");
 }
 <!-- Stats Section : START -->
 <section class="section center">
@@ -7,28 +7,28 @@
         <div class="col s12 m6 l3">
             <div class="card-panel grey darken-3 white-text center">
                 <i class="material-icons medium">insert_emoticon</i>
-                <h5>@language.GetKey("MonthlyVisitors")</h5>
+                <h5>@language.GetValue("MonthlyVisitors")</h5>
                 <h3>1874</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel center black-text">
                 <i class="material-icons medium">mode_edit</i>
-                <h5>@language.GetKey("MonthlyPurchases")</h5>
+                <h5>@language.GetValue("MonthlyPurchases")</h5>
                 <h3>105</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel grey darken-3 white-text center">
                 <i class="material-icons medium">mode_comment</i>
-                <h5>@language.GetKey("MonthlyEarnings")</h5>
+                <h5>@language.GetValue("MonthlyEarnings")</h5>
                 <h3>12468 zł</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel center black-text">
                 <i class="material-icons medium">supervisor_account</i>
-                <h5>@language.GetKey("Users")</h5>
+                <h5>@language.GetValue("Users")</h5>
                 <h3>350</h3>
             </div>
         </div>
@@ -37,13 +37,13 @@
         <div class="col s12 m6 l8">
             <div class="card grey darken-3 white-text">
                 <div class="card-content">
-                    <span class="card-title">@language.GetKey("RecentOrders")</span>
+                    <span class="card-title">@language.GetValue("RecentOrders")</span>
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th>@language.GetKey("Time")</th>
-                                <th>@language.GetKey("User")</th>
-                                <th>@language.GetKey("Value")</th>
+                                <th>@language.GetValue("Time")</th>
+                                <th>@language.GetValue("User")</th>
+                                <th>@language.GetValue("Value")</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -53,7 +53,7 @@
                                 <td>Catie Smith</td>
                                 <td>700 zł</td>
                                 <td>
-                                    <a href="details.html" class="btn purple lighten-2">@language.GetKey("Details")</a>
+                                    <a href="details.html" class="btn purple lighten-2">@language.GetValue("Details")</a>
                                 </td>
                             </tr>
                             <tr>
@@ -61,7 +61,7 @@
                                 <td>Adam Jones</td>
                                 <td>259 zł</td>
                                 <td>
-                                    <a href="details.html" class="btn purple lighten-2">@language.GetKey("Details")</a>
+                                    <a href="details.html" class="btn purple lighten-2">@language.GetValue("Details")</a>
                                 </td>
                             </tr>
                             <tr>
@@ -69,7 +69,7 @@
                                 <td>Kevin Brown</td>
                                 <td>899 zł</td>
                                 <td>
-                                    <a href="details.html" class="btn purple lighten-2">@language.GetKey("Details")</a>
+                                    <a href="details.html" class="btn purple lighten-2">@language.GetValue("Details")</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -82,7 +82,7 @@
             <div class="card">
                 <ul class="collection with-header white-text">
                     <li class="collection-header grey darken-3">
-                        <h5>@language.GetKey("LatestRegisteredUsers")</h5>
+                        <h5>@language.GetValue("LatestRegisteredUsers")</h5>
                     </li>
                     <li class="collection-item avatar left-align grey darken-3">
                         <img src="~/images/person1.jpg" alt="" class="circle" />
@@ -91,7 +91,7 @@
                             Kevin Brown <br />
                             <a href="mailto:kevinbrown@gmail.com"><span class="email">kevinbrown@gmail.com</span></a>
                         </p>
-                        <a href="#" class=" secondary-content btn purple lighten-2">@language.GetKey("Details")</a>
+                        <a href="#" class=" secondary-content btn purple lighten-2">@language.GetValue("Details")</a>
                     </li>
                     <li class="collection-item avatar left-align grey darken-3">
                         <img src="~/images/person2.jpg" alt="" class="circle" />
@@ -100,7 +100,7 @@
                             Steve Smith<br />
                             <a href="mailto:s.smith99@gmail.com"><span class="email">s.smith99@gmail.com</span></a>
                         </p>
-                        <a href="#" class="secondary-content btn purple lighten-2">@language.GetKey("Details")</a>
+                        <a href="#" class="secondary-content btn purple lighten-2">@language.GetValue("Details")</a>
                     </li>
                     <li class="collection-item avatar left-align grey darken-3">
                         <img src="./images/person3.jpg" alt="" class="circle" />
@@ -109,7 +109,7 @@
                             Liza Pisa<br />
                             <a href="mailto:lisapisa89@outlook.com"><span class="email">lisapisa89@outlook.com</span></a>
                         </p>
-                        <a href="#" class="secondary-content btn purple lighten-2">@language.GetKey("Details")</a>
+                        <a href="#" class="secondary-content btn purple lighten-2">@language.GetValue("Details")</a>
                     </li>
                 </ul>
             </div>
