@@ -8,9 +8,9 @@ public class LanguageService
 
     public LanguageService(IStringLocalizerFactory factory)
     {
-        var type = typeof(Resources);
+        var type = typeof(Resource);
         var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName!);
-        _localizer = factory.Create("Resources", assemblyName.Name!);
+        _localizer = factory.Create("Resource", assemblyName.Name!);
     }
 
     public LocalizedString GetValue(string key)
@@ -18,6 +18,6 @@ public class LanguageService
         return _localizer[key];
     }
 }
-public class Resources
+public class Resource
 {
 }
