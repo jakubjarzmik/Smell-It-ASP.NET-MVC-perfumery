@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
+using SmellIt.Infrastructure.Repositories;
 using SmellIt.Infrastructure.Seeders;
 
 namespace SmellIt.Infrastructure.Extensions
@@ -20,6 +22,8 @@ namespace SmellIt.Infrastructure.Extensions
             services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")));
 
             services.AddScoped<Seeder>();
+
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

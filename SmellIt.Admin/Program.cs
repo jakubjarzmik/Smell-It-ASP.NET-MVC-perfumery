@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using SmellIt.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using SmellIt.Admin.Models;
+using SmellIt.Application.Extensions;
 using SmellIt.Infrastructure.Extensions;
 using SmellIt.Infrastructure.Seeders;
 
@@ -15,6 +16,8 @@ builder.Services.AddControllersWithViews();
 
 // Add db
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddApplication();
 
 // Add multi languages
 builder.Services.AddSingleton<LanguageService>();
