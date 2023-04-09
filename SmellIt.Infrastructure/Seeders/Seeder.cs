@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
                 new AddressSeeder(dbContext),
                 new GenderSeeder(dbContext),
                 new BrandSeeder(dbContext),
-                new FragranceGroupSeeder(dbContext),
+                new FragranceCategorySeeder(dbContext),
                 new ProductCategorySeeder(dbContext),
                 new ProductSeeder(dbContext),
                 new ProductImageSeeder(dbContext)

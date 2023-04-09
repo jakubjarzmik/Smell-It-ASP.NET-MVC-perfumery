@@ -17,7 +17,7 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<Address> Addresses { get; set; } = default!;
         public DbSet<User> Users { get; set; } = default!;
         public DbSet<Brand> Brands { get; set; } = default!;
-        public DbSet<FragranceGroup> FragranceGroups { get; set; } = default!;
+        public DbSet<FragranceCategory> FragranceCategories { get; set; } = default!;
         public DbSet<Gender> Genders { get; set; } = default!;
         public DbSet<Product> Products { get; set; } = default!;
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
@@ -59,19 +59,19 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasForeignKey(u => u.DeletedById)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<FragranceGroup>()
+            modelBuilder.Entity<FragranceCategory>()
                 .HasOne(u => u.CreatedBy)
-                .WithMany(u => u.CreatedFragranceGroups)
+                .WithMany(u => u.CreatedFragranceCategories)
                 .HasForeignKey(u => u.CreatedById)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<FragranceGroup>()
+            modelBuilder.Entity<FragranceCategory>()
                 .HasOne(u => u.ModifiedBy)
-                .WithMany(u => u.ModifiedFragranceGroups)
+                .WithMany(u => u.ModifiedFragranceCategories)
                 .HasForeignKey(u => u.ModifiedById)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<FragranceGroup>()
+            modelBuilder.Entity<FragranceCategory>()
                 .HasOne(u => u.DeletedBy)
-                .WithMany(u => u.DeletedFragranceGroups)
+                .WithMany(u => u.DeletedFragranceCategories)
                 .HasForeignKey(u => u.DeletedById)
                 .OnDelete(DeleteBehavior.NoAction);
 

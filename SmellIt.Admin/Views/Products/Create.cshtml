@@ -1,0 +1,42 @@
+﻿
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4>@language.GetValue("AddNewProduct")</h4>
+            <form action="/Products/Create" method="post">
+                <div class="input-field">
+                    <label for="Name">@language.GetValue("Name")</label>
+                    <input type="text" id="Name" name="Name"/>
+                </div>
+                <div class="input-field">
+                    <input type="text" list="categories" />
+                    <datalist id="categories">
+                        <option value="@language.GetValue("Devices")" />
+                        <option value="@language.GetValue("Fragrance")" />
+                        <option value="@language.GetValue("HomeFragrance")" />
+                        <option value="@language.GetValue("Others")" />
+                    </datalist>
+                </div>
+                <div class="input-field">
+                    <label for="price">@language.GetValue("Price") (zł)</label>
+                    <input type="number" id="price" />
+                </div>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>@language.GetValue("Files")</span>
+                        <input type="file" multiple accept="image/png, image/jpeg">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="@language.GetValue("UploadPhotos")">
+                    </div>
+                </div>
+                <div class="input-field">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="description">@language.GetValue("Description")</label>
+                </div>
+            </form>
+
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">@language.GetValue("Add")</a>
+        </div>
+    </div>
+</div>

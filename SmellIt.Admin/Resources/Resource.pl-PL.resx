@@ -123,6 +123,9 @@
   <data name="Add" xml:space="preserve">
     <value>Dodaj</value>
   </data>
+  <data name="AddNewBrand" xml:space="preserve">
+    <value>Dodaj nową markę</value>
+  </data>
   <data name="AddNewCategory" xml:space="preserve">
     <value>Dodaj nową kategorię</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Brand" xml:space="preserve">
     <value>Marka</value>
+  </data>
+  <data name="Brands" xml:space="preserve">
+    <value>Marki</value>
   </data>
   <data name="CarFresheners" xml:space="preserve">
     <value>Zapachy do samochodu</value>
@@ -211,7 +217,7 @@
     <value>Perfumy</value>
   </data>
   <data name="FragranceCategory" xml:space="preserve">
-    <value>Grupy zapachów</value>
+    <value>Grupa zapachu</value>
   </data>
   <data name="Fresheners" xml:space="preserve">
     <value>Odświeżacze</value>

@@ -8,30 +8,30 @@ using SmellIt.Infrastructure.Persistence;
 
 namespace SmellIt.Infrastructure.Seeders
 {
-    public class FragranceGroupSeeder : ISeeder
+    public class FragranceCategorySeeder : ISeeder
     {
         private readonly SmellItDbContext _dbContext;
 
-        public FragranceGroupSeeder(SmellItDbContext dbContext)
+        public FragranceCategorySeeder(SmellItDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         public async Task Seed()
         {
-            if (!_dbContext.FragranceGroups.Any())
+            if (!_dbContext.FragranceCategories.Any())
             {
-                List<FragranceGroup> fragranceGroups = new List<FragranceGroup>
+                List<FragranceCategory> fragranceGroups = new List<FragranceCategory>
                 {
-                    new FragranceGroup { NameKey = "Aromatic", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new FragranceGroup { NameKey = "Citrus", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new FragranceGroup { NameKey = "Floral",  CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
-                    new FragranceGroup { NameKey = "Fruity", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
-                    new FragranceGroup { NameKey = "Oriental", CreatedById = _dbContext.Users.FirstOrDefault() !.Id },
-                    new FragranceGroup { NameKey = "Other", CreatedById = _dbContext.Users.FirstOrDefault() !.Id },
-                    new FragranceGroup { NameKey = "Spicy", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
+                    new FragranceCategory { NameKey = "Aromatic", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new FragranceCategory { NameKey = "Citrus", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new FragranceCategory { NameKey = "Floral",  CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
+                    new FragranceCategory { NameKey = "Fruity", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new FragranceCategory { NameKey = "Oriental", CreatedById = _dbContext.Users.FirstOrDefault() !.Id },
+                    new FragranceCategory { NameKey = "Other", CreatedById = _dbContext.Users.FirstOrDefault() !.Id },
+                    new FragranceCategory { NameKey = "Spicy", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };
-                await _dbContext.FragranceGroups.AddRangeAsync(fragranceGroups);
+                await _dbContext.FragranceCategories.AddRangeAsync(fragranceGroups);
                 List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
                 {
                     new TranslationEngb{Key="Aromatic", Value = "Aromatic"},

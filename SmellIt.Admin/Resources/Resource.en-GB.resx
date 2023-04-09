@@ -123,6 +123,9 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="AddNewBrand" xml:space="preserve">
+    <value>Add new brand</value>
+  </data>
   <data name="AddNewCategory" xml:space="preserve">
     <value>Add new category</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
+  </data>
+  <data name="Brands" xml:space="preserve">
+    <value>Brands</value>
   </data>
   <data name="CarFresheners" xml:space="preserve">
     <value>Car Fresheners</value>

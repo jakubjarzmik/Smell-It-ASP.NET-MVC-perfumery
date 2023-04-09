@@ -28,7 +28,7 @@ namespace SmellIt.Domain.Entities
 
         public virtual ICollection<Address> CreatedAddresses { get; set; } = default!;
         public virtual ICollection<Brand> CreatedBrands { get; set; } = default!;
-        public virtual ICollection<FragranceGroup> CreatedFragranceGroups { get; set; } = default!;
+        public virtual ICollection<FragranceCategory> CreatedFragranceCategories { get; set; } = default!;
         public virtual ICollection<Gender> CreatedGenders { get; set; } = default!;
         public virtual ICollection<Product> CreatedProducts { get; set; } = default!;
         public virtual ICollection<ProductCategory> CreatedProductCategories { get; set; } = default!;
@@ -39,7 +39,7 @@ namespace SmellIt.Domain.Entities
 
         public virtual ICollection<Address>? ModifiedAddresses { get; set; } = default!;
         public virtual ICollection<Brand>? ModifiedBrands { get; set; } = default!;
-        public virtual ICollection<FragranceGroup>? ModifiedFragranceGroups { get; set; } = default!;
+        public virtual ICollection<FragranceCategory>? ModifiedFragranceCategories { get; set; } = default!;
         public virtual ICollection<Gender>? ModifiedGenders { get; set; } = default!;
         public virtual ICollection<Product> ModifiedProducts { get; set; } = default!;
         public virtual ICollection<ProductCategory>? ModifiedProductCategories { get; set; } = default!;
@@ -50,7 +50,7 @@ namespace SmellIt.Domain.Entities
 
         public virtual ICollection<Address>? DeletedAddresses { get; set; } = default!;
         public virtual ICollection<Brand>? DeletedBrands { get; set; } = default!;
-        public virtual ICollection<FragranceGroup>? DeletedFragranceGroups { get; set; } = default!;
+        public virtual ICollection<FragranceCategory>? DeletedFragranceCategories { get; set; } = default!;
         public virtual ICollection<Gender>? DeletedGenders { get; set; } = default!;
         public virtual ICollection<Product> DeletedProducts { get; set; } = default!;
         public virtual ICollection<ProductCategory>? DeletedProductCategories { get; set; } = default!;

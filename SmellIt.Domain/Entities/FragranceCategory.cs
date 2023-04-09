@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmellIt.Domain.Entities
 {
-    public class FragranceGroup : DictionaryEntity
+    public class FragranceCategory : DictionaryEntity
     {
         public virtual ICollection<Product>? Products { get; set; }
 
