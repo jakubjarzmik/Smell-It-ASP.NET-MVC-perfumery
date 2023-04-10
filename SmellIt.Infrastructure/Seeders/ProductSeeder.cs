@@ -21,79 +21,79 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Products.Any())
             {
-                List<Product> products = new List<Product>
+                List<Product> products = new()
                 {
                     new Product
                     {
                         NameKey = "SmellItDiffuser",
                         DescriptionKey = "SmellItDiffuserDesc", 
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Diffusers")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("SmellIt")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c=>c.NameKey.Equals("Diffusers")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("SmellIt")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new Product
                     {
                         NameKey = "GoodGirl",
                         DescriptionKey = "GoodGirlDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("CarolinaHerrera")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Oriental")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Women")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("CarolinaHerrera")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Oriental")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Women")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new Product { 
                         NameKey = "Sauvage", 
                         DescriptionKey = "SauvageDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("Dior")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Aromatic")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Men")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("Dior")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Aromatic")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Men")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault()!.Id
                     },
                     new Product
                     {
                         NameKey = "Si", 
                         DescriptionKey = "SiDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("GiorgioArmani")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Fruity")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Women")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("GiorgioArmani")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Fruity")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Women")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new Product
                     {
                         NameKey = "1Million",
                         DescriptionKey = "1MillionDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("PacoRabanne")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Spicy")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Men")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("PacoRabanne")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Spicy")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Men")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new Product
                     {
                         NameKey = "Eros",
                         DescriptionKey = "ErosDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("Versace")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Aromatic")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Men")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("Versace")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Aromatic")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Men")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new Product
                     {
                         NameKey = "BlackOpium",
                         DescriptionKey = "BlackOpiumDesc",
-                        CategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Fragrance")).Single().Id,
-                        BrandId = _dbContext.Brands.Where(c=>c.NameKey.Equals("YvesSaintLaurent")).Single().Id,
-                        FragranceGroupId = _dbContext.FragranceCategories.Where(c=>c.NameKey.Equals("Oriental")).Single().Id,
-                        GenderId = _dbContext.Genders.Where(c=>c.NameKey.Equals("Women")).Single().Id,
+                        CategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Fragrance")).Id,
+                        BrandId = _dbContext.Brands.Single(c => c.NameKey.Equals("YvesSaintLaurent")).Id,
+                        FragranceGroupId = _dbContext.FragranceCategories.Single(c => c.NameKey.Equals("Oriental")).Id,
+                        GenderId = _dbContext.Genders.Single(c => c.NameKey.Equals("Women")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     }
                 };
                 await _dbContext.Products.AddRangeAsync(products);
 
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new ()
                 {
                     new TranslationEngb{Key="SmellItDiffuser", Value = "Smell It Diffuser", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="GoodGirl", Value = "Good Girl", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -113,7 +113,7 @@ namespace SmellIt.Infrastructure.Seeders
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
 
-                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls = new ()
                 {
                     new TranslationPlpl{Key="SmellItDiffuser", Value = "Dyfuzor Smell It", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="GoodGirl", Value = "Good Girl", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},

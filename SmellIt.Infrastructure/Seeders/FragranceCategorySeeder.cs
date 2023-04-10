@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.FragranceCategories.Any())
             {
-                List<FragranceCategory> fragranceGroups = new List<FragranceCategory>
+                List<FragranceCategory> fragranceGroups = new()
                 {
                     new FragranceCategory { NameKey = "Aromatic", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new FragranceCategory { NameKey = "Citrus", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -32,7 +32,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new FragranceCategory { NameKey = "Spicy", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };
                 await _dbContext.FragranceCategories.AddRangeAsync(fragranceGroups);
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new ()
                 {
                     new TranslationEngb{Key="Aromatic", Value = "Aromatic", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="Citrus", Value = "Citrus", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -43,7 +43,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new TranslationEngb{Key="Spicy", Value = "Spicy", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
-                List<TranslationPlpl> translations = new List<TranslationPlpl>()
+                List<TranslationPlpl> translations = new ()
                 {
                     new TranslationPlpl{Key="Aromatic", Value = "Aromatyczne", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="Citrus", Value = "Cytrusowe", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},

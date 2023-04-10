@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Addresses.Any())
             {
-                List<Address> data = new List<Address>
+                List<Address> data = new()
                 {
                     new Address { Street = "Robotnicza 91", PostalCode = "30-545", City = "Kraków", Country = "Polska", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };

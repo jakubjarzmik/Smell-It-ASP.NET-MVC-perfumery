@@ -6171,7 +6171,7 @@ input:not([type]):not(.browser-default), input[type=text]:not(.browser-default),
         min-height: 18px;
         display: block;
         font-size: 12px;
-        color: rgba(0,0,0,.54)
+        color: rgba(255,255,255,.54)
     }
 
         .input-field .helper-text::after {

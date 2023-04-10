@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Brands.Any())
             {
-                List<Brand> brands = new List<Brand>
+                List<Brand> brands = new()
                 {
                     new Brand { NameKey = "SmellIt", DescriptionKey = "SmellItDesc", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new Brand { NameKey = "CarolinaHerrera", DescriptionKey = "CarolinaHerreraDesc", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -32,7 +32,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new Brand { NameKey = "YvesSaintLaurent", DescriptionKey = "YvesSaintLaurentDesc", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };
                 await _dbContext.Brands.AddRangeAsync(brands);
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new ()
                 {
                     new TranslationEngb{Key="SmellIt", Value = "Smell It", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="CarolinaHerrera", Value = "Carolina Herrera", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -51,7 +51,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new TranslationEngb{Key="YvesSaintLaurentDesc", Value = "Yves Saint Laurent is a luxury perfume brand for women and men that offers many different fragrances. Among the most popular scents of the brand are \"Opium,\" \"Black Opium,\" \"Y,\" \"L'Homme,\" \"La Nuit de L'Homme,\" and \"Mon Paris.\" Yves Saint Laurent perfumes stand out with elegant and sensual compositions that are composed of the highest quality ingredients. The perfume bottles are often simple, elegant, and modern, reflecting French style and classicism. Yves Saint Laurent perfumes are valued for their uniqueness, quality, and longevity.", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
-                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls = new ()
                 {
                     new TranslationPlpl{Key="SmellIt", Value = "Smell It", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="CarolinaHerrera", Value = "Carolina Herrera", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},

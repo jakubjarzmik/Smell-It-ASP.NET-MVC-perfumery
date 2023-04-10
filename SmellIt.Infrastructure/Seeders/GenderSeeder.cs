@@ -21,21 +21,21 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Genders.Any())
             {
-                List<Gender> genders = new List<Gender>
+                List<Gender> genders = new()
                 {
                     new Gender { NameKey = "Women", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new Gender { NameKey = "Men", CreatedById = _dbContext.Users.FirstOrDefault()!.Id },
                     new Gender { NameKey = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id }
                 };
                 await _dbContext.Genders.AddRangeAsync(genders);
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new()
                 {
                     new TranslationEngb{Key="Women", Value = "Women", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="Men", Value = "Men", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="Unisex", Value = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
-                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls = new()
                 {
                     new TranslationPlpl{Key="Women", Value = "Damskie", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="Men", Value = "Męskie", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},

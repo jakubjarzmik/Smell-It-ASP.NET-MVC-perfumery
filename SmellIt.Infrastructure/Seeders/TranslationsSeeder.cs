@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.TranslationEngbs.Any())
             {
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new()
                 {
                     
                 };
@@ -30,7 +30,7 @@ namespace SmellIt.Infrastructure.Seeders
 
             if (!_dbContext.TranslationPlpls.Any())
             {
-                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls = new()
                 {
                     
                 };

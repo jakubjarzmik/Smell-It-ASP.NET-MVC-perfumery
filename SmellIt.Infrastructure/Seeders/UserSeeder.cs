@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Users.Any())
             {
-                List<User> data = new List<User>
+                List<User> data = new()
                 {
                     new User { FirstName = "John", LastName = "Doe", Email = "jdoe@email.com", Password = "qwe", IsAdmin = true}
                 };

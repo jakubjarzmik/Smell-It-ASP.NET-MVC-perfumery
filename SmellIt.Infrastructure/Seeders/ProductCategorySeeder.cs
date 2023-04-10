@@ -21,7 +21,7 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.ProductCategories.Any())
             {
-                List<ProductCategory> productCategories = new List<ProductCategory>
+                List<ProductCategory> productCategories = new()
                 {
                     new ProductCategory { NameKey = "Devices", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new ProductCategory { NameKey = "Fragrance", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -30,7 +30,7 @@ namespace SmellIt.Infrastructure.Seeders
                 };
                 await _dbContext.ProductCategories.AddRangeAsync(productCategories);
 
-                List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs = new()
                 {
                     new TranslationEngb{Key="Devices", Value = "Devices", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="Fragrance", Value = "Fragrance", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -38,7 +38,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new TranslationEngb{Key="Others", Value = "Others", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
-                List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls = new()
                 {
                     new TranslationPlpl{Key="Devices", Value = "Urządzenia", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="Fragrance", Value = "Perfumy", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -48,44 +48,44 @@ namespace SmellIt.Infrastructure.Seeders
                 await _dbContext.TranslationPlpls.AddRangeAsync(translationPlpls);
                 await _dbContext.SaveChangesAsync();
 
-                List<ProductCategory> productCategories2 = new List<ProductCategory>
+                List<ProductCategory> productCategories2 = new()
                 {
                     new ProductCategory
                     {
-                        NameKey = "Diffusers", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Devices")).Single()!.Id, 
+                        NameKey = "Diffusers",
+                        ParentCategoryId = _dbContext.ProductCategories.Single(c=>c.NameKey.Equals("Devices")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductCategory
                     {
-                        NameKey = "Fresheners", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Devices")).Single()!.Id, 
-                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
-                    },
-
-                    new ProductCategory
-                    {
-                        NameKey = "ScentedCandles", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("HomeFragrance")).Single()!.Id, 
-                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
-                    },
-                    new ProductCategory
-                    {
-                        NameKey = "EssentialOils", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("HomeFragrance")).Single()!.Id, 
+                        NameKey = "Fresheners",
+                        ParentCategoryId = _dbContext.ProductCategories.Single(c=>c.NameKey.Equals("Devices")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
 
                     new ProductCategory
                     {
-                        NameKey = "CarFresheners", 
-                        ParentCategoryId = _dbContext.ProductCategories.Where(c=>c.NameKey.Equals("Others")).Single()!.Id, 
+                        NameKey = "ScentedCandles",
+                        ParentCategoryId = _dbContext.ProductCategories.Single(c=>c.NameKey.Equals("HomeFragrance")).Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
+                    },
+                    new ProductCategory
+                    {
+                        NameKey = "EssentialOils",
+                        ParentCategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("HomeFragrance")).Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
+                    },
+
+                    new ProductCategory
+                    {
+                        NameKey = "CarFresheners",
+                        ParentCategoryId = _dbContext.ProductCategories.Single(c => c.NameKey.Equals("Others")).Id,
                         CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                 };
                 await _dbContext.ProductCategories.AddRangeAsync(productCategories2);
 
-                List<TranslationEngb> translationEngbs2 = new List<TranslationEngb>()
+                List<TranslationEngb> translationEngbs2 = new()
                 {
                     new TranslationEngb{Key="Diffusers", Value = "Diffusers", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationEngb{Key="Fresheners", Value = "Fresheners", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
@@ -94,7 +94,7 @@ namespace SmellIt.Infrastructure.Seeders
                     new TranslationEngb{Key="CarFresheners", Value = "Car fresheners", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs2);
-                List<TranslationPlpl> translationPlpls2 = new List<TranslationPlpl>()
+                List<TranslationPlpl> translationPlpls2 = new()
                 {
                     new TranslationPlpl{Key="Diffusers", Value = "Dyfuzory", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                     new TranslationPlpl{Key="Fresheners", Value = "Odświeżacze", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},

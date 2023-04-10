@@ -6757,7 +6757,7 @@ textarea.materialize-textarea {
         min-height: 18px;
         display: block;
         font-size: 12px;
-        color: rgba(0, 0, 0, 0.54);
+        color: rgba(255, 255, 255, 0.54);
     }
 
         .input-field .helper-text::after {

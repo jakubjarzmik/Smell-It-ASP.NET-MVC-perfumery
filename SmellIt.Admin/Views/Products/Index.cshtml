@@ -15,8 +15,8 @@
                             <tr>
                                 <th></th>
                                 <th>@language.GetValue("Name")</th>
-                                <th><a class="btn" href="/Products/Brands">@language.GetValue("Brand")</a></th>
-                                <th><a class="btn" href="/Products/Categories">@language.GetValue("Category")</a></th>
+                                <th><a class="btn" href="@Url.Action("Index", "Brands")">@language.GetValue("Brand")</a></th>
+                                <th><a class="btn" href="@Url.Action("Index", "Categories")">@language.GetValue("Category")</a></th>
                                 <th><a class="btn" href="/Products/FragranceCategory">@language.GetValue("FragranceCategory")</a></th>
                                 <th><a class="btn" href="/Products/Gender">@language.GetValue("Gender")</a></th>
                                 <th>@language.GetValue("Price")</th>

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using SmellIt.Application.Dtos
+
+@model BrandDto
+@{
     ViewData["Title"] = language.GetValue("Brands");
 }
 <div class="container">
@@ -95,24 +98,36 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>@language.GetValue("AddNewBrand")</h4>
-        <form action="/Products/Brands" method="post">
+        <form action="/Brands" method="post">
             <div class="input-field">
-                <label for="NamePL">(PL) @language.GetValue("Name")</label>
-                <input type="text" id="NamePL" name="NamePL" />
+                <label asp-for="NamePL">(PL) @language.GetValue("Name")</label>
+                <input type="text" asp-for="NamePL" />
+                <span asp-validation-for="NamePL" class="helper-text"></span>
             </div>
             <div class="input-field">
-                <label for="NameEN">(EN) @language.GetValue("Name")</label>
-                <input type="text" id="NameEN" name="NameEN" />
+                <label asp-for="NameEN">(EN) @language.GetValue("Name")</label>
+                <input type="text" asp-for="NameEN" />
+                <span asp-validation-for="NameEN" class="helper-text"></span>
+
             </div>
             <div class="input-field">
-                <label for="DescriptionPL">(PL) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" id="DescriptionPL" name="DescriptionPL"></textarea>
+                <label asp-for="DescriptionPL">(PL) @language.GetValue("Description")</label>
+                <textarea class="materialize-textarea" asp-for="DescriptionPL"></textarea>
+                <span asp-validation-for="DescriptionPL" class="helper-text"></span>
             </div>
             <div class="input-field">
-                <label for="DescriptionEN">(EN) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" id="DescriptionEN" name="DescriptionEN"></textarea>
+                <label asp-for="DescriptionEN">(EN) @language.GetValue("Description")</label>
+                <textarea class="materialize-textarea" asp-for="DescriptionEN"></textarea>
+                <span asp-validation-for="DescriptionEN" class="helper-text"></span>
             </div>
-            <input type="submit" value="@language.GetValue("Add")" class="modal-close btn right"/>
+            <input type="submit" value="@language.GetValue("Add")" class="modal-close btn right" />
         </form>
     </div>
+
 </div>
+
+@section Scripts{
+    @{
+        Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
