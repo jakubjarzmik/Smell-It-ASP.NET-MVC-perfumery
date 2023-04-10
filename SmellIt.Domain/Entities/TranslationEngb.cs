@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using SmellIt.Domain.Entities.Abstract;
 
-namespace SmellIt.Domain.Entities
+namespace SmellIt.Domain.Entities;
+public class TranslationEngb : BaseEntity
 {
-    public class TranslationEngb : BaseEntity
-    {
-        [MaxLength(50)]
-        public string Key { get; set; } = default!;
-        public string Value { get; set; } = default!;
-    }
+    [MaxLength(50)]
+    public string Key { get; set; } = default!;
+    public string Value { get; set; } = default!;
 }

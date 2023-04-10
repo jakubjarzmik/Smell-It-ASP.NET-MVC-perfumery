@@ -27,44 +27,50 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         ImagePath = "~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
                         ImageAlt = "Smell It Diffuser",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("SmellItDiffuser")).Single().Id
-                        
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("SmellItDiffuser")).Single().Id, 
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
                         ImageAlt = "Si",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Si")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Si")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                         ImageAlt = "Sauvage",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Sauvage")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Sauvage")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
                         ImageAlt = "Black Opium",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("BlackOpium")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("BlackOpium")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                         ImageAlt = "Good Girl",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("GoodGirl")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("GoodGirl")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
                         ImageAlt = "1 Million",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("1Million")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("1Million")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                     new ProductImage()
                     {
                         ImagePath = "~/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
                         ImageAlt = "Eros",
-                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Eros")).Single().Id
+                        ProductId = _dbContext.Products.Where(p=>p.NameKey.Equals("Eros")).Single().Id,
+                        CreatedById = _dbContext.Users.FirstOrDefault() !.Id
                     },
                 };
                 await _dbContext.ProductImages.AddRangeAsync(productImages);

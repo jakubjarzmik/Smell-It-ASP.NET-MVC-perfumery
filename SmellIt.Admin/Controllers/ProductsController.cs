@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.Services;
-using SmellIt.Domain.Entities;
+using SmellIt.Application.Dtos;
+using SmellIt.Application.Services.Interfaces;
 
 namespace SmellIt.Admin.Controllers;
 public class ProductsController : Controller
@@ -35,9 +35,9 @@ public class ProductsController : Controller
     }
 
     [HttpPost("/Products/Brands")]
-    public async Task<IActionResult> Create(Brand brand)
+    public async Task<IActionResult> Create(BrandDto brand)
     {
         await _brandService.Create(brand);
-        return RedirectToAction(nameof(Create)); // to do 
+        return RedirectToAction(nameof(Create));
     }
 }

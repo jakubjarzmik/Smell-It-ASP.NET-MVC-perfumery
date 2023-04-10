@@ -25,6 +25,8 @@ namespace SmellIt.Infrastructure.Extensions
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ITranslationEngbRepository, TranslationEngbRepository>();
+            services.AddScoped<ITranslationPlplRepository, TranslationPlplRepository>();
         }
     }
 }

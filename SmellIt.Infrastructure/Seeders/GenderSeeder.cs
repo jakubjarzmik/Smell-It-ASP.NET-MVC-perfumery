@@ -30,16 +30,16 @@ namespace SmellIt.Infrastructure.Seeders
                 await _dbContext.Genders.AddRangeAsync(genders);
                 List<TranslationEngb> translationEngbs = new List<TranslationEngb>()
                 {
-                    new TranslationEngb{Key="Women", Value = "Women"},
-                    new TranslationEngb{Key="Men", Value = "Men"},
-                    new TranslationEngb{Key="Unisex", Value = "Unisex"},
+                    new TranslationEngb{Key="Women", Value = "Women", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new TranslationEngb{Key="Men", Value = "Men", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new TranslationEngb{Key="Unisex", Value = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationEngbs.AddRangeAsync(translationEngbs);
                 List<TranslationPlpl> translationPlpls = new List<TranslationPlpl>()
                 {
-                    new TranslationPlpl{Key="Women", Value = "Damskie"},
-                    new TranslationPlpl{Key="Men", Value = "Męskie"},
-                    new TranslationPlpl{Key="Unisex", Value = "Unisex"},
+                    new TranslationPlpl{Key="Women", Value = "Damskie", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new TranslationPlpl{Key="Men", Value = "Męskie", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
+                    new TranslationPlpl{Key="Unisex", Value = "Unisex", CreatedById = _dbContext.Users.FirstOrDefault() !.Id},
                 };
                 await _dbContext.TranslationPlpls.AddRangeAsync(translationPlpls);
             }

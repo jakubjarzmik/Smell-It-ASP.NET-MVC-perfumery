@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmellIt.Application.Services
+namespace SmellIt.Application.Services.Interfaces
 {
-    public interface IBrandService
+    public interface IProductService
     {
-        Task Create(Brand brand);
+        Task Create(Product product);
     }
 }
