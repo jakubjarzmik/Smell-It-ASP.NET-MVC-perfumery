@@ -2,7 +2,6 @@
 using SmellIt.Application.Dtos;
 using SmellIt.Application.Extensions;
 using SmellIt.Domain.Entities;
-using SmellIt.Application.Helpers;
 
 
 namespace SmellIt.Application.Mappings;
@@ -14,7 +13,7 @@ public class BrandMappingProfile : Profile
             .ForMember(b => b.NameKey,
                 opt => opt.MapFrom(src => src.NameEN.ConvertNameToKey()))
             .ForMember(b => b.DescriptionKey,
-                opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.DescriptionPL) ? null : src.NameEN.ConvertNameToKey() + "Desc"))
-            .AfterMap<CreateTranslations>();
+                opt => opt.MapFrom(src =>
+                    string.IsNullOrWhiteSpace(src.DescriptionPL) ? null : src.NameEN.ConvertNameToKey() + "Desc"));
     }
 }
