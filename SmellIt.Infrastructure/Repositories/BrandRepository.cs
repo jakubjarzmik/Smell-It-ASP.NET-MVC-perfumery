@@ -1,4 +1,5 @@
-﻿using SmellIt.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 
@@ -17,4 +18,7 @@ public class BrandRepository : IBrandRepository
         _dbContext.Add(brand);
         await _dbContext.SaveChangesAsync();
     }
+
+    public Task<Brand?> GetByNameKey(string nameKey)
+        => _dbContext.Brands.FirstOrDefaultAsync(b => b.NameKey.ToLower().Equals(nameKey.ToLower()));
 }

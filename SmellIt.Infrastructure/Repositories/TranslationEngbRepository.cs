@@ -1,4 +1,5 @@
-﻿using SmellIt.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 
@@ -16,4 +17,7 @@ public class TranslationEngbRepository : ITranslationEngbRepository
         _dbContext.Add(translationEngb);
         await _dbContext.SaveChangesAsync();
     }
+
+    public Task<TranslationEngb?> GetByKey(string key)
+        => _dbContext.TranslationEngbs.FirstOrDefaultAsync(t => t.Key.ToLower().Equals(key.ToLower()));
 }
