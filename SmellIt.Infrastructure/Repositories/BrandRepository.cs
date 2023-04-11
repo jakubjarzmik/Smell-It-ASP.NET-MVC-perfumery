@@ -19,6 +19,10 @@ public class BrandRepository : IBrandRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task<IEnumerable<Brand>> GetAll()
+        => await _dbContext.Brands.ToListAsync();
+
     public Task<Brand?> GetByNameKey(string nameKey)
-        => _dbContext.Brands.FirstOrDefaultAsync(b => b.NameKey.ToLower().Equals(nameKey.ToLower()));
+        => _dbContext.Brands.FirstOrDefaultAsync(b => b.NameKey.ToLower() == nameKey.ToLower());
+
 }

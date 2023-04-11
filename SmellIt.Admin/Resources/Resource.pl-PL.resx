@@ -177,6 +177,9 @@
   <data name="Clients" xml:space="preserve">
     <value>Klienci</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
   </data>
@@ -449,6 +452,9 @@
   </data>
   <data name="Send" xml:space="preserve">
     <value>Wyślij</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Pokaż</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Zarejestruj się</value>

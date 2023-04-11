@@ -16,11 +16,6 @@ public class ProductsController : Controller
         return View();
     }
 
-    public IActionResult Categories()
-    {
-        return View();
-    }
-
     public IActionResult Create()
     {
         return View();

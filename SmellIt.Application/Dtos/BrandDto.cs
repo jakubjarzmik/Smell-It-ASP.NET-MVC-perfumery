@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SmellIt.Application.Dtos;
+﻿namespace SmellIt.Application.Dtos;
 public class BrandDto
 {
     public String NamePL { get; set; } = default!;

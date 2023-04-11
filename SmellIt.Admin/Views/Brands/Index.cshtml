@@ -1,6 +1,5 @@
-﻿@using SmellIt.Application.Dtos
-
-@model BrandDto
+﻿@using SmellIt.Application.ViewModels
+@model BrandsViewModel
 @{
     ViewData["Title"] = language.GetValue("Brands");
 }
@@ -18,71 +17,61 @@
                         <thead>
                             <tr>
                                 <th>@language.GetValue("Name")</th>
-                                <th style="width: 60%;">@language.GetValue("Description")</th>
-                                <th>@language.GetValue("DateCreated")</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>@LanguageFromDb.GetValue("Dior")</td>
-                                <td>@LanguageFromDb.GetValue("DiorDesc")</td>
-                                <td>27.03.2023</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>@LanguageFromDb.GetValue("GiorgioArmani")</td>
-                                <td>@LanguageFromDb.GetValue("GiorgioArmaniDesc")</td>
-                                <td>27.03.2023</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>@LanguageFromDb.GetValue("PacoRabanne")</td>
-                                <td>@LanguageFromDb.GetValue("PacoRabanneDesc")</td>
-                                <td>27.03.2023</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
+                            @{
+                                int index = 0;
+                            }
+                            @foreach (var item in Model.Brands)
+                            {
+                                <tr>
+                                    <td>@item.NamePL (@item.NameEN)</td>
+                                    <td></td>
+                                    <td class="right">
+                                        <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
+                                        <div id="modalDescriptionPL_@index" class="modal">
+                                            <div class="modal-content">
+                                                <h4>@item.NamePL (@item.NameEN)</h4>
+                                                <h5>@language.GetValue("Description") (PL)</h5>
+                                                <p>@item.DescriptionPL</p>
+                                                <h5>@language.GetValue("Description") (EN)</h5>
+                                                <p>@item.DescriptionEN</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                        <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
                         </tbody>
                     </table>
                 </div>
                 <div class="card-action">
                     <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#" class="purple-text">
+                        <li class="@(Model.CurrentPage == 1 ? "disabled" : "waves-effect")">
+                            <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" class="purple-text" style="@(Model.CurrentPage == 1 ? "display: none;" : "")">
                                 <i class="material-icons">chevron_left</i>
                             </a>
                         </li>
-                        <li class="active purple lighten-1">
-                            <a href="#" class="white-text center">
-                                1
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                2
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                3
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                4
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
+                        @{
+                            for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                <li class="@(Model.CurrentPage == i ? "active purple lighten-1" : "waves-effect")">
+                                    <a asp-action="Index" asp-route-page="@i" class="@(Model.CurrentPage == i ? "white-text" : "purple-text")">
+                                        @i
+                                    </a>
+                                </li>
+                            }
+                        }
+                        <li class="@(Model.CurrentPage == Model.TotalPages ? "disabled" : "waves-effect")">
+                            <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" class="purple-text" style="@(Model.CurrentPage == Model.TotalPages ? "display: none;" : "")">
                                 <i class="material-icons">chevron_right</i>
                             </a>
                         </li>
@@ -92,33 +81,31 @@
         </div>
     </div>
 </div>
-
-
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>@language.GetValue("AddNewBrand")</h4>
-        <form action="/Brands" method="post">
+        <form asp-for="NewBrand" action="@Url.Action("Index", "Brands")" method="post">
             <div class="input-field">
-                <label asp-for="NamePL">(PL) @language.GetValue("Name")</label>
-                <input type="text" asp-for="NamePL" />
-                <span asp-validation-for="NamePL" class="helper-text"></span>
+                <label asp-for="NewBrand!.NamePL">(PL) @language.GetValue("Name")</label>
+                <input type="text" asp-for="NewBrand!.NamePL" />
+                <span asp-validation-for="NewBrand!.NamePL" class="helper-text"></span>
             </div>
             <div class="input-field">
-                <label asp-for="NameEN">(EN) @language.GetValue("Name")</label>
-                <input type="text" asp-for="NameEN" />
-                <span asp-validation-for="NameEN" class="helper-text"></span>
+                <label asp-for="NewBrand!.NameEN">(EN) @language.GetValue("Name")</label>
+                <input type="text" asp-for="NewBrand!.NameEN" />
+                <span asp-validation-for="NewBrand!.NameEN" class="helper-text"></span>
 
             </div>
             <div class="input-field">
-                <label asp-for="DescriptionPL">(PL) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" asp-for="DescriptionPL"></textarea>
-                <span asp-validation-for="DescriptionPL" class="helper-text"></span>
+                <label asp-for="NewBrand!.DescriptionPL">(PL) @language.GetValue("Description")</label>
+                <textarea class="materialize-textarea" asp-for="NewBrand!.DescriptionPL"></textarea>
+                <span asp-validation-for="NewBrand!.DescriptionPL" class="helper-text"></span>
             </div>
             <div class="input-field">
-                <label asp-for="DescriptionEN">(EN) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" asp-for="DescriptionEN"></textarea>
-                <span asp-validation-for="DescriptionEN" class="helper-text"></span>
+                <label asp-for="NewBrand!.DescriptionEN">(EN) @language.GetValue("Description")</label>
+                <textarea class="materialize-textarea" asp-for="NewBrand!.DescriptionEN"></textarea>
+                <span asp-validation-for="NewBrand!.DescriptionEN" class="helper-text"></span>
             </div>
             <input type="submit" value="@language.GetValue("Add")" class="modal-close btn right" />
         </form>

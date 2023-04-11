@@ -24,4 +24,7 @@ public class TranslationPlplService : ITranslationPlplService
         if (_translationPlplValidator.Validate(translationPlpl).IsValid)
             await _translationPlplRepository.Create(translationPlpl);
     }
+
+    public Task<TranslationPlpl?> GetByKey(string key)
+        => _translationPlplRepository.GetByKey(key);
 }

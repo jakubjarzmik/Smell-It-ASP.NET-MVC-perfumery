@@ -19,4 +19,7 @@ public class TranslationEngbService : ITranslationEngbService
         if (_translationEngbValidator.Validate(translationEngb).IsValid)
             await _translationEngbRepository.Create(translationEngb);
     }
+
+    public Task<TranslationEngb?> GetByKey(string key)
+        => _translationEngbRepository.GetByKey(key);
 }

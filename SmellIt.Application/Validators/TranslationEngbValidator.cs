@@ -17,7 +17,7 @@ public class TranslationEngbValidator : AbstractValidator<TranslationEngb>
             .MaximumLength(50).WithMessage("The maximum number of characters is 50")
             .Custom((value, context) =>
             {
-                var existingTranslation = _translationEngbRepository.GetKey(value);
+                var existingTranslation = _translationEngbRepository.GetByKey(value).Result;
                 if (existingTranslation != null)
                 {
                     context.AddFailure($"{value} is not unique key");
