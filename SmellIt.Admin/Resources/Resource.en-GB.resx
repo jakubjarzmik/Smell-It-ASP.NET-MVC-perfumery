@@ -201,6 +201,12 @@
   <data name="Diffusers" xml:space="preserve">
     <value>Diffusers</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditBrand" xml:space="preserve">
+    <value>Edit brand</value>
+  </data>
   <data name="EnterEmail" xml:space="preserve">
     <value>Enter your email address</value>
   </data>
@@ -437,6 +443,9 @@
   </data>
   <data name="ReedDiffusers" xml:space="preserve">
     <value>Reed Diffusers</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="ScentedCandles" xml:space="preserve">
     <value>Scented Candles</value>

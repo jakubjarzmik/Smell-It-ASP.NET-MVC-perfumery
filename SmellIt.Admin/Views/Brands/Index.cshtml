@@ -1,4 +1,5 @@
 ﻿@using SmellIt.Application.ViewModels
+@using SmellIt.Application.Extensions
 @model BrandsViewModel
 @{
     ViewData["Title"] = language.GetValue("Brands");
@@ -10,7 +11,7 @@
                 <div class="card-content">
                     <div class="card-title">
                         @language.GetValue("Brands")
-                        <a class="btn waves-effect waves-light btn modal-trigger right" href="#modal1"> <i class="material-icons">add</i></a>
+                        <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
                     </div>
 
                     <table class="striped">
@@ -44,7 +45,7 @@
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn"> <i class="material-icons">edit</i></a>
+                                        <a asp-controller="Brands" asp-action="Edit" asp-route-nameKey="@item.NameEN.ConvertNameToKey()" class="btn"> <i class="material-icons">edit</i></a>
                                         <a href="#" class="btn"> <i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
@@ -81,40 +82,3 @@
         </div>
     </div>
 </div>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>@language.GetValue("AddNewBrand")</h4>
-        <form asp-for="NewBrand" action="@Url.Action("Index", "Brands")" method="post">
-            <div class="input-field">
-                <label asp-for="NewBrand!.NamePL">(PL) @language.GetValue("Name")</label>
-                <input type="text" asp-for="NewBrand!.NamePL" />
-                <span asp-validation-for="NewBrand!.NamePL" class="helper-text"></span>
-            </div>
-            <div class="input-field">
-                <label asp-for="NewBrand!.NameEN">(EN) @language.GetValue("Name")</label>
-                <input type="text" asp-for="NewBrand!.NameEN" />
-                <span asp-validation-for="NewBrand!.NameEN" class="helper-text"></span>
-
-            </div>
-            <div class="input-field">
-                <label asp-for="NewBrand!.DescriptionPL">(PL) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" asp-for="NewBrand!.DescriptionPL"></textarea>
-                <span asp-validation-for="NewBrand!.DescriptionPL" class="helper-text"></span>
-            </div>
-            <div class="input-field">
-                <label asp-for="NewBrand!.DescriptionEN">(EN) @language.GetValue("Description")</label>
-                <textarea class="materialize-textarea" asp-for="NewBrand!.DescriptionEN"></textarea>
-                <span asp-validation-for="NewBrand!.DescriptionEN" class="helper-text"></span>
-            </div>
-            <input type="submit" value="@language.GetValue("Add")" class="modal-close btn right" />
-        </form>
-    </div>
-
-</div>
-
-@section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
-using SmellIt.Application.Dtos;
 using SmellIt.Application.Extensions;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Validators;
-public class BrandDtoValidator : AbstractValidator<BrandDto>
+namespace SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
+public class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
 {
     private readonly IBrandRepository _brandRepository;
 
-    public BrandDtoValidator(IBrandRepository brandRepository)
+    public CreateBrandCommandValidator(IBrandRepository brandRepository)
     {
         _brandRepository = brandRepository;
 

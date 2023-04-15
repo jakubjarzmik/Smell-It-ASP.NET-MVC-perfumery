@@ -20,4 +20,7 @@ public class TranslationPlplRepository : ITranslationPlplRepository
 
     public Task<TranslationPlpl?> GetByKey(string key)
         => _dbContext.TranslationPlpls.FirstOrDefaultAsync(t => t.Key.ToLower().Equals(key.ToLower()));
+
+    public Task Commit()
+        => _dbContext.SaveChangesAsync();
 }

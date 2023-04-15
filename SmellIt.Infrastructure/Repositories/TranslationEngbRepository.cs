@@ -20,4 +20,7 @@ public class TranslationEngbRepository : ITranslationEngbRepository
 
     public Task<TranslationEngb?> GetByKey(string key)
         => _dbContext.TranslationEngbs.FirstOrDefaultAsync(t => t.Key.ToLower().Equals(key.ToLower()));
+
+    public Task Commit()
+        => _dbContext.SaveChangesAsync();
 }
