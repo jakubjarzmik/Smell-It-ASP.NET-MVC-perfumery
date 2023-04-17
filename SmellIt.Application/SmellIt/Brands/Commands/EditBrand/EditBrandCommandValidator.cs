@@ -14,14 +14,10 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
 
         public EditBrandCommandValidator()
         {
-            RuleFor(b => b.NamePL)
+            RuleFor(b => b.Name)
                 .NotEmpty().WithMessage("Nazwa jest wymagana")
                 .MinimumLength(2).WithMessage("Minimalna ilość znaków wynosi 2")
                 .MaximumLength(50).WithMessage("Maksymalna ilość znaków wynosi 50");
-            RuleFor(b => b.NameEN)
-                .NotEmpty().WithMessage("Name is required")
-                .MinimumLength(2).WithMessage("The minimum number of characters is 2")
-                .MaximumLength(50).WithMessage("The maximum number of characters is 50");
         }
     }
 }

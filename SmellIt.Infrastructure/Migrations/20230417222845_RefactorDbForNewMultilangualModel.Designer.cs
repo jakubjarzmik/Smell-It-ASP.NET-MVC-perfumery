@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmellIt.Infrastructure.Persistence;
 
@@ -11,9 +12,10 @@ using SmellIt.Infrastructure.Persistence;
 namespace SmellIt.Infrastructure.Migrations
 {
     [DbContext(typeof(SmellItDbContext))]
-    partial class SmellItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230417222845_RefactorDbForNewMultilangualModel")]
+    partial class RefactorDbForNewMultilangualModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,10 +53,6 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Property<int?>("DeletedById")
                         .HasColumnType("int");
-
-                    b.Property<string>("EncodedName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmellIt.Domain.Entities
 {
-    public class Product : DictionaryEntity
+    public class Product : BaseEntity
     {
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
@@ -20,13 +20,17 @@ namespace SmellIt.Domain.Entities
         public virtual Brand Brand { get; set; } = default!;
 
         [ForeignKey("FragranceCategory")]
-        public int? FragranceGroupId { get; set; }
-        public virtual FragranceCategory? FragranceGroup { get; set; } = default!;
+        public int? FragranceCategoryId { get; set; }
+        public virtual FragranceCategory? FragranceCategory { get; set; } = default!;
 
         [ForeignKey("Gender")]
         public int? GenderId { get; set; }
         public virtual Gender? Gender { get; set; } = default!;
 
         public virtual ICollection<ProductImage>? ProductImages { get; set; }
+        public virtual ICollection<ProductTranslation>? ProductTranslations { get; set; }
+
+        public string EncodedName { get; private set; } = default!;
+        public void EncodeName() => EncodedName = ProductTranslations!.First(fct => fct.Language.Code == "en-GB").Name.ToLower().Replace(" ", "-");
     }
 }

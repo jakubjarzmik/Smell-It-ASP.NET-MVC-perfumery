@@ -60,17 +60,17 @@ public class BrandsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [Route("Brands/{nameKey}/Edit")]
-    public async Task<IActionResult> Edit(string nameKey)
+    [Route("Brands/{encodedName}/Edit")]
+    public async Task<IActionResult> Edit(string encodedName)
     {
-        var dto = await _mediator.Send(new GetBrandByNameKeyQuery(nameKey));
+        var dto = await _mediator.Send(new GetBrandByEncodedNameQuery(encodedName));
         EditBrandCommand model = _mapper.Map<EditBrandCommand>(dto);
         return View(model);
     }
 
     [HttpPost]
-    [Route("Brands/{nameKey}/Edit")]
-    public async Task<IActionResult> Edit(string nameKey, EditBrandCommand command)
+    [Route("Brands/{encodedName}/Edit")]
+    public async Task<IActionResult> Edit(string encodedName, EditBrandCommand command)
     {
         if (!ModelState.IsValid)
         {

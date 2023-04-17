@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SmellIt.Domain.Entities
 {
@@ -13,11 +14,14 @@ namespace SmellIt.Domain.Entities
     {
         [MaxLength(255)]
         public string ImagePath { get; set; } = default!;
-        [MaxLength(20)]
-        public string? ImageAlt { get; set; }
+
+        [MaxLength(20)] public string ImageAlt { get; set; } = default!;
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public virtual Product Product { get; set; } = default!;
+
+        public string EncodedName { get; private set; } = default!;
+        public void EncodeName() => EncodedName = ImageAlt.ToLower().Replace(" ", "-");
     }
 }

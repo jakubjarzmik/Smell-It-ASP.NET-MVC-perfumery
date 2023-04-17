@@ -1,5 +1,4 @@
 ﻿@using SmellIt.Application.ViewModels
-@using SmellIt.Application.Extensions
 @model BrandsViewModel
 @{
     ViewData["Title"] = language.GetValue("Brands");
@@ -29,13 +28,13 @@
                             @foreach (var item in Model.Brands)
                             {
                                 <tr>
-                                    <td>@item.NamePL (@item.NameEN)</td>
+                                    <td>@item.Name</td>
                                     <td></td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">
                                             <div class="modal-content">
-                                                <h4>@item.NamePL (@item.NameEN)</h4>
+                                                <h4>@item.Name</h4>
                                                 <h5>@language.GetValue("Description") (PL)</h5>
                                                 <p>@item.DescriptionPL</p>
                                                 <h5>@language.GetValue("Description") (EN)</h5>
@@ -45,7 +44,7 @@
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
                                             </div>
                                         </div>
-                                        <a asp-controller="Brands" asp-action="Edit" asp-route-nameKey="@item.NameEN.ConvertNameToKey()" class="btn"> <i class="material-icons">edit</i></a>
+                                        <a asp-controller="Brands" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
                                         <a href="#" class="btn"> <i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>

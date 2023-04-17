@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.Services.Interfaces;
 
 namespace SmellIt.Admin.Controllers;
 public class ProductsController : Controller
 {
-    private readonly IProductService _productService;
 
-    public ProductsController(IProductService productService)
+    public ProductsController()
     {
-        _productService = productService;
     }
 
     public IActionResult Index()

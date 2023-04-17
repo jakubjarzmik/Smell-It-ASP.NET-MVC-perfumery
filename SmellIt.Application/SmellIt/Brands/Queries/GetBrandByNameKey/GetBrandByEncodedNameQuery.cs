@@ -7,13 +7,13 @@ using MediatR;
 
 namespace SmellIt.Application.SmellIt.Brands.Queries.GetBrandByNameKey
 {
-    public class GetBrandByNameKeyQuery : IRequest<BrandDto>
+    public class GetBrandByEncodedNameQuery : IRequest<BrandDto>
     {
-        public string NameKey { get; set; }
+        public string EncodedName { get; set; }
 
-        public GetBrandByNameKeyQuery(string nameKey)
+        public GetBrandByEncodedNameQuery(string encodedName)
         {
-            NameKey = nameKey;
+            EncodedName = encodedName;
         }
     }
 }

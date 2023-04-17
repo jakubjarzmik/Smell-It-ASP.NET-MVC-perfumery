@@ -18,9 +18,10 @@ public class LanguageFromDbService
 
     public string GetValue(string key)
     {
-        if (CurrentCulture.Equals("pl-PL"))
-            return _dbContext.TranslationPlpls.Where(t => t.Key.Equals(key)).Select(t=>t.Value).FirstOrDefault()!;
-        return _dbContext.TranslationEngbs.Where(t => t.Key.Equals(key)).Select(t=>t.Value).FirstOrDefault()!;
+        return "";
+        //if (CurrentCulture.Equals("pl-PL"))
+        //    return _dbContext.TranslationPlpls.Where(t => t.Key.Equals(key)).Select(t=>t.Value).FirstOrDefault()!;
+        //return _dbContext.TranslationEngbs.Where(t => t.Key.Equals(key)).Select(t=>t.Value).FirstOrDefault()!;
     }
 
     private string CheckCulture()

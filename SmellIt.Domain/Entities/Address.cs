@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SmellIt.Domain.Entities
 {
@@ -20,5 +21,12 @@ namespace SmellIt.Domain.Entities
         public string Country { get; set; } = default!;
 
         public virtual ICollection<User>? Users { get; set; }
+
+        public string EncodedName { get; private set; } = default!;
+
+        public void EncodeName() =>
+            EncodedName = Street.ToLower().Replace(" ", "-")
+                          + "-" + PostalCode.ToLower().Replace(" ", "-")
+                          + "-" + City.ToLower().Replace(" ", "-");
     }
 }

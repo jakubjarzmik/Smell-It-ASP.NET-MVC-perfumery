@@ -17,9 +17,4 @@
     <ProjectReference Include="..\SmellIt.Domain\SmellIt.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SmellIt\TranslationsEngb\Queries\" />
-    <Folder Include="SmellIt\TranslationsPlpl\Queries\" />
-  </ItemGroup>
-
 </Project>

@@ -21,11 +21,28 @@ namespace SmellIt.Infrastructure.Seeders
         {
             if (!_dbContext.Users.Any())
             {
-                List<User> data = new()
+                var address = new Address
                 {
-                    new User { FirstName = "John", LastName = "Doe", Email = "jdoe@email.com", Password = "qwe", IsAdmin = true}
+                    Street = "Robotnicza 91",
+                    PostalCode = "30-545",
+                    City = "Kraków",
+                    Country = "Polska",
+                    CreatedById = null,
                 };
-                await _dbContext.Users.AddRangeAsync(data);
+                address.EncodeName();
+                _dbContext.Addresses.Add(address);
+                var user = new User
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "jdoe@email.com",
+                    Login = "jdoe",
+                    Password = "qwe",
+                    Address = address,
+                    IsAdmin = true
+                };
+                user.EncodeName();
+                await _dbContext.Users.AddAsync(user);
             }
         }
     }

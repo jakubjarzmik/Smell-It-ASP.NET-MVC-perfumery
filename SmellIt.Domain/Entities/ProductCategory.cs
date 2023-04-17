@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmellIt.Domain.Entities
 {
-    public class ProductCategory : DictionaryEntity
+    public class ProductCategory : BaseEntity
     {
         [ForeignKey("ParentCategory")]
         public int? ParentCategoryId { get; set; }
@@ -16,5 +16,9 @@ namespace SmellIt.Domain.Entities
 
         public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
         public virtual ICollection<Product>? Products { get; set; }
+        public virtual ICollection<ProductCategoryTranslation>? ProductCategoryTranslations { get; set; }
+
+        public string EncodedName { get; private set; } = default!;
+        public void EncodeName() => EncodedName = ProductCategoryTranslations!.First(fct => fct.Language.Code == "en-GB").Name.ToLower().Replace(" ", "-");
     }
 }

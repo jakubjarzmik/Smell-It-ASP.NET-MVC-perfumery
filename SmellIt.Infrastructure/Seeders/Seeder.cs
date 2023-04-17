@@ -18,13 +18,7 @@ namespace SmellIt.Infrastructure.Seeders
             _seeders = new List<ISeeder>()
             {
                 new UserSeeder(dbContext),
-                new AddressSeeder(dbContext),
-                new GenderSeeder(dbContext),
-                new BrandSeeder(dbContext),
-                new FragranceCategorySeeder(dbContext),
-                new ProductCategorySeeder(dbContext),
                 new ProductSeeder(dbContext),
-                new ProductImageSeeder(dbContext)
             };
         }
 

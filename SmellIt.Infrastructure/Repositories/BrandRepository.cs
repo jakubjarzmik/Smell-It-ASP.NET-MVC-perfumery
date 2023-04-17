@@ -22,7 +22,7 @@ public class BrandRepository : IBrandRepository
     public async Task<IEnumerable<Brand>> GetAll()
         => await _dbContext.Brands.ToListAsync();
 
-    public Task<Brand?> GetByNameKey(string nameKey)
-        => _dbContext.Brands.FirstOrDefaultAsync(b => b.NameKey.ToLower() == nameKey.ToLower());
+    public Task<Brand?> GetByEncodedName(string encodedName)
+        => _dbContext.Brands.FirstOrDefaultAsync(b => b.EncodedName == encodedName.ToLower());
 
 }
