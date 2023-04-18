@@ -7,14 +7,17 @@ namespace SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
 public class GetAllBrandsQueryHandler : IRequestHandler<GetAllBrandsQuery, IEnumerable<BrandDto>>
 {
     private readonly IBrandRepository _brandRepository;
+    private readonly IMapper _mapper;
 
-    public GetAllBrandsQueryHandler(IBrandRepository brandRepository)
+    public GetAllBrandsQueryHandler(IBrandRepository brandRepository, IMapper mapper)
     {
         _brandRepository = brandRepository;
+        _mapper = mapper;
     }
     public async Task<IEnumerable<BrandDto>> Handle(GetAllBrandsQuery request, CancellationToken cancellationToken)
     {
-        
-        return new List<BrandDto>();
+        var brands = await _brandRepository.GetAll();
+        var dtos = _mapper.Map<IEnumerable<BrandDto>>(brands);
+        return dtos;
     }
 }

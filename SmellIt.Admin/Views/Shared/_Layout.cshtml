@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var action = ViewContext.RouteData.Values["Action"]!.ToString();
+    var controller = ViewContext.RouteData.Values["Controller"]!.ToString();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -25,10 +29,10 @@
                     </div>
                 </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
-                    <li><a href="">@language.GetValue("Orders")</a></li>
-                    <li><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
-                    <li><a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a></li>
+                    <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
+                    <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@language.GetValue("Orders")</a></li>
+                    <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
+                    <li class="@(controller == "Categories" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a></li>
                     <li><a href="">@language.GetValue("Users")</a></li>
                     <li>
                         <a class="dropdown-trigger" href="#" data-target="dropdown1">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>

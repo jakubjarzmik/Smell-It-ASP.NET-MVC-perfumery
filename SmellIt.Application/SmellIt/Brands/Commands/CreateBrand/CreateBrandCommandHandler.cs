@@ -22,6 +22,7 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.CreateBrand
             foreach (var translation in brand.BrandTranslations!)
             {
                 translation.Brand = brand;
+                translation.EncodeName();
             }
 
             await _brandRepository.Create(brand);

@@ -21,7 +21,7 @@ public class BrandsController : Controller
     public async Task<IActionResult> Index(int? page)
     {
         int pageNumber = page ?? 1;
-        int pageSize = 6;
+        int pageSize = 7;
 
         var brands = await _mediator.Send(new GetAllBrandsQuery());
 
@@ -38,12 +38,11 @@ public class BrandsController : Controller
             CurrentPage = pageNumber,
             TotalPages = totalPages,
             PageSize = pageSize
-
         };
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return View();
     }
@@ -72,6 +71,7 @@ public class BrandsController : Controller
     [Route("Brands/{encodedName}/Edit")]
     public async Task<IActionResult> Edit(string encodedName, EditBrandCommand command)
     {
+        command.EncodedName = encodedName;
         if (!ModelState.IsValid)
         {
             return View(command);

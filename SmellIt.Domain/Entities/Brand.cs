@@ -1,12 +1,14 @@
-﻿using SmellIt.Domain.Entities.Abstract;
+﻿using System.ComponentModel.DataAnnotations;
+using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities;
 public class Brand : BaseEntity
 {
+    [MaxLength(50)]
     public string Name { get; set; } = default!;
     public virtual ICollection<Product>? Products { get; set; }
     public virtual ICollection<BrandTranslation>? BrandTranslations { get; set; }
-
-    public string EncodedName { get; private set; } = default!;
-    public void EncodeName() => EncodedName = Name.ToLower().Replace(" ","-");
+    
+    public override void EncodeName() => EncodedName = Name.ConvertToEncodedName();
 }

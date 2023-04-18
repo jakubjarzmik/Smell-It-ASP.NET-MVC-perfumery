@@ -5,15 +5,19 @@ using SmellIt.Domain.Interfaces;
 namespace SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
 public class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
 {
-    private readonly IBrandRepository _brandRepository;
-
     public CreateBrandCommandValidator(IBrandRepository brandRepository)
     {
-        _brandRepository = brandRepository;
-
         RuleFor(b => b.Name)
-            .NotEmpty().WithMessage("Nazwa jest wymagana")
-            .MinimumLength(2).WithMessage("Minimalna ilość znaków wynosi 2")
-            .MaximumLength(50).WithMessage("Maksymalna ilość znaków wynosi 50");
+            .NotEmpty().WithMessage("Name is required")
+            .MinimumLength(2).WithMessage("Name should have at least 2 characters")
+            .MaximumLength(50).WithMessage("Name should have maximum of 50 characters")
+            .Custom((value, context) =>
+            {
+                var existingBrand = brandRepository.GetByName(value).Result;
+                if (existingBrand != null)
+                {
+                    context.AddFailure($"{value} is not unique name for brand");
+                }
+            });
     }
 }

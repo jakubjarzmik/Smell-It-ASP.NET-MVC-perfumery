@@ -2,8 +2,9 @@
 using SmellIt.Application.SmellIt.Brands;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Mappings;
+namespace SmellIt.Application.Mappings.BrandMapping;
 public class BrandMappingProfile : Profile
 {
     public BrandMappingProfile()
@@ -15,14 +16,10 @@ public class BrandMappingProfile : Profile
         CreateMap<Brand, BrandDto>()
             .ForMember(dto => dto.DescriptionPL,
                 opt =>
-                    opt.MapFrom(src =>
-                        src.BrandTranslations!.First(bt =>
-                            bt.Language.Code == "pl-PL" && bt.BrandId == src.Id).Description))
+                    opt.MapFrom<DescriptionPlResolver>())
             .ForMember(dto => dto.DescriptionEN,
                 opt =>
-                    opt.MapFrom(src =>
-                        src.BrandTranslations!.First(bt =>
-                            bt.Language.Code == "en-GB" && bt.BrandId == src.Id).Description));
+                    opt.MapFrom<DescriptionEnResolver>());
 
         CreateMap<BrandDto, EditBrandCommand>();
     }

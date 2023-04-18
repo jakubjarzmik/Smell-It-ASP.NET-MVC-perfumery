@@ -83,6 +83,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .WithMany(u => u.BrandTranslations)
                 .HasForeignKey(u => u.BrandId)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<BrandTranslation>()
+                .HasOne(u => u.Language)
+                .WithMany(u => u.BrandTranslations)
+                .HasForeignKey(u => u.LanguageId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<FragranceCategory>()
                 .HasOne(u => u.CreatedBy)
@@ -120,6 +125,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .WithMany(u => u.FragranceCategoryTranslations)
                 .HasForeignKey(u => u.FragranceCategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<FragranceCategoryTranslation>()
+                .HasOne(u => u.Language)
+                .WithMany(u => u.FragranceCategoryTranslations)
+                .HasForeignKey(u => u.LanguageId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Gender>()
                 .HasOne(u => u.CreatedBy)
@@ -156,6 +166,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasOne(u => u.Gender)
                 .WithMany(u => u.GenderTranslations)
                 .HasForeignKey(u => u.GenderId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<GenderTranslation>()
+                .HasOne(u => u.Language)
+                .WithMany(u => u.GenderTranslations)
+                .HasForeignKey(u => u.LanguageId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Language>()
@@ -230,6 +245,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .WithMany(u => u.ProductTranslations)
                 .HasForeignKey(u => u.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<ProductTranslation>()
+                .HasOne(u => u.Language)
+                .WithMany(u => u.ProductTranslations)
+                .HasForeignKey(u => u.LanguageId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(u => u.CreatedBy)
@@ -271,6 +291,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasOne(u => u.ProductCategory)
                 .WithMany(u => u.ProductCategoryTranslations)
                 .HasForeignKey(u => u.ProductCategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<ProductCategoryTranslation>()
+                .HasOne(u => u.Language)
+                .WithMany(u => u.ProductCategoryTranslations)
+                .HasForeignKey(u => u.LanguageId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<ProductImage>()

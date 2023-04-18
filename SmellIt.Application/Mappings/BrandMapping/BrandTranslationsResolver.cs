@@ -4,7 +4,7 @@ using SmellIt.Domain.Interfaces;
 using System.Collections.Generic;
 using SmellIt.Application.SmellIt.Brands;
 
-namespace SmellIt.Application.Mappings;
+namespace SmellIt.Application.Mappings.BrandMapping;
 public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollection<BrandTranslation>?>
 {
     private readonly ILanguageRepository _languageRepository;

@@ -14,8 +14,7 @@ public class BrandTranslation : BaseEntity
     [ForeignKey("Language")]
     public int LanguageId { get; set; }
     public Language Language { get; set; } = default!;
-
-    public string EncodedName { get; private set; } = default!;
-    public void EncodeName() => EncodedName = Brand.EncodedName + "-translation";
+    
+    public override void EncodeName() => EncodedName = Brand.EncodedName + "-translation";
 
 }

@@ -11,15 +11,10 @@
                     <div class="row">
                         <div class="card-title col s12">
                             <a class="btn left" asp-controller="Brands" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("EditBrand")</p>
+                            <p class="right">@language.GetValue("EditBrand") @Model.Name</p>
                         </div>
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
-                            <div class="input-field col s12">
-                                <label asp-for="Name">(PL) @language.GetValue("Name")</label>
-                                <input type="text" asp-for="Name" />
-                                <span asp-validation-for="Name" class="helper-text"></span>
-                            </div>
                             <div class="input-field col s12">
                                 <label asp-for="DescriptionPL">(PL) @language.GetValue("Description")</label>
                                 <textarea class="materialize-textarea" asp-for="DescriptionPL"></textarea>

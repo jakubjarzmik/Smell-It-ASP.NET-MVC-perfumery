@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities
 {
@@ -22,11 +23,8 @@ namespace SmellIt.Domain.Entities
 
         public virtual ICollection<User>? Users { get; set; }
 
-        public string EncodedName { get; private set; } = default!;
 
-        public void EncodeName() =>
-            EncodedName = Street.ToLower().Replace(" ", "-")
-                          + "-" + PostalCode.ToLower().Replace(" ", "-")
-                          + "-" + City.ToLower().Replace(" ", "-");
+        public override void EncodeName() =>
+            EncodedName = (Street + " " + PostalCode + " " + City).ConvertToEncodedName();
     }
 }

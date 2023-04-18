@@ -1,4 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,13 +16,14 @@ namespace SmellIt.Domain.Entities
         [MaxLength(255)]
         public string ImagePath { get; set; } = default!;
 
-        [MaxLength(20)] public string ImageAlt { get; set; } = default!;
+        [MaxLength(50)] 
+        public string ImageAlt { get; set; } = default!;
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public virtual Product Product { get; set; } = default!;
-
-        public string EncodedName { get; private set; } = default!;
-        public void EncodeName() => EncodedName = ImageAlt.ToLower().Replace(" ", "-");
+        
+        public override void EncodeName() => 
+            EncodedName = ImageAlt.ConvertToEncodedName();
     }
 }

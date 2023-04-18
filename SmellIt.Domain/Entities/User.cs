@@ -73,9 +73,7 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductCategoryTranslation>? DeletedProductCategoryTranslations { get; set; } = default!;
         public virtual ICollection<ProductImage>? DeletedProductImages { get; set; } = default!;
         public virtual ICollection<User>? DeletedUsers { get; set; } = default!;
-
-        public string EncodedName { get; private set; } = default!;
-        public void EncodeName() => EncodedName = Login;
-
+        
+        public override void EncodeName() => EncodedName = Login;
     }
 }

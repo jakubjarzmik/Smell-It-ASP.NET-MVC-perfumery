@@ -11,13 +11,9 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
 {
     public class EditBrandCommandValidator : AbstractValidator<EditBrandCommand>
     {
-
         public EditBrandCommandValidator()
         {
-            RuleFor(b => b.Name)
-                .NotEmpty().WithMessage("Nazwa jest wymagana")
-                .MinimumLength(2).WithMessage("Minimalna ilość znaków wynosi 2")
-                .MaximumLength(50).WithMessage("Maksymalna ilość znaków wynosi 50");
+            
         }
     }
 }

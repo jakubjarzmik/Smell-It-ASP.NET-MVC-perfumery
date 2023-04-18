@@ -1,4 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,8 +18,9 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
         public virtual ICollection<Product>? Products { get; set; }
         public virtual ICollection<ProductCategoryTranslation>? ProductCategoryTranslations { get; set; }
-
-        public string EncodedName { get; private set; } = default!;
-        public void EncodeName() => EncodedName = ProductCategoryTranslations!.First(fct => fct.Language.Code == "en-GB").Name.ToLower().Replace(" ", "-");
+        
+        public override void EncodeName() => 
+            EncodedName = ProductCategoryTranslations!.First(fct => 
+                fct.Language.Code == "en-GB").Name.ConvertToEncodedName();
     }
 }

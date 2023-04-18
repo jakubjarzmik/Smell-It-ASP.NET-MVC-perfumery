@@ -19,4 +19,8 @@ public abstract class BaseEntity
     public virtual User? DeletedBy { get; set; }
     public DateTime? DeletedAt { get; set; }
     public bool IsActive { get; set; } = true;
+
+    [MaxLength(50)]
+    public string EncodedName { get; internal set; } = default!;
+    public abstract void EncodeName();
 }

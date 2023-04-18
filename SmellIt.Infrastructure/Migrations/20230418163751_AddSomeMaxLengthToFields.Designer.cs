@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmellIt.Infrastructure.Persistence;
 
@@ -11,9 +12,10 @@ using SmellIt.Infrastructure.Persistence;
 namespace SmellIt.Infrastructure.Migrations
 {
     [DbContext(typeof(SmellItDbContext))]
-    partial class SmellItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230418163751_AddSomeMaxLengthToFields")]
+    partial class AddSomeMaxLengthToFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -914,7 +916,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.Language", "Language")
                         .WithMany("BrandTranslations")
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
@@ -978,7 +980,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.Language", "Language")
                         .WithMany("FragranceCategoryTranslations")
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
@@ -1042,7 +1044,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.Language", "Language")
                         .WithMany("GenderTranslations")
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
@@ -1185,7 +1187,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.Language", "Language")
                         .WithMany("ProductCategoryTranslations")
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
@@ -1257,7 +1259,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasOne("SmellIt.Domain.Entities.Language", "Language")
                         .WithMany("ProductTranslations")
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.User", "ModifiedBy")
