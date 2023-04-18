@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         <a asp-controller="Brands" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
-                                        <a href="#" class="btn"> <i class="material-icons">delete</i></a>
+                                        <a asp-controller="Brands" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                                 index++;

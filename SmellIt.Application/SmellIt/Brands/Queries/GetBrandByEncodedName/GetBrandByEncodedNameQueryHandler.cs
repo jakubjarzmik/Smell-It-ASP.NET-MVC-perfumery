@@ -3,7 +3,7 @@ using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.SmellIt.Brands.Queries.GetBrandByNameKey
+namespace SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName
 {
     public class GetBrandByEncodedNameQueryHandler : IRequestHandler<GetBrandByEncodedNameQuery, BrandDto>
     {

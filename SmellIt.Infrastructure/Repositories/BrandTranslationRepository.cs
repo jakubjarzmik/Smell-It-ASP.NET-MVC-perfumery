@@ -21,13 +21,13 @@ public class BrandTranslationRepository : IBrandTranslationRepository
     }
 
     public async Task<IEnumerable<BrandTranslation>> GetAll()
-        => await _dbContext.BrandTranslations.ToListAsync();
+        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive).ToListAsync();
 
     public async Task<IEnumerable<BrandTranslation>> GetByBrandId(int id)
-        => await _dbContext.BrandTranslations.Where(b => b.BrandId == id).ToListAsync();
+        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive && bt.BrandId == id).ToListAsync();
 
     public async Task<BrandTranslation?> GetByEncodedName(string encodedName)
-        => await _dbContext.BrandTranslations.FirstOrDefaultAsync(b => b.EncodedName == encodedName.ToLower());
+        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive).FirstOrDefaultAsync(bt => bt.EncodedName == encodedName.ToLower());
 
     public Task Commit()
         => _dbContext.SaveChangesAsync();

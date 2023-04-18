@@ -20,12 +20,12 @@ public class BrandRepository : IBrandRepository
     }
 
     public async Task<IEnumerable<Brand>> GetAll()
-        => await _dbContext.Brands.OrderByDescending(b=>b.CreatedAt).ToListAsync();
+        => await _dbContext.Brands.Where(b => b.IsActive).OrderByDescending(b=>b.CreatedAt).ToListAsync();
 
     public async Task<Brand?> GetByName(string name)
-        => await _dbContext.Brands.FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
+        => await _dbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
     public async Task<Brand?> GetByEncodedName(string encodedName)
-        => await _dbContext.Brands.FirstOrDefaultAsync(b => b.EncodedName == encodedName);
+        => await _dbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
 
     public Task Commit()
         => _dbContext.SaveChangesAsync();

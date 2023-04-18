@@ -3,8 +3,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
+using SmellIt.Application.SmellIt.Brands.Queries.DeleteBrandByEncodedName;
 using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
-using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByNameKey;
+using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName;
 using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
@@ -65,6 +66,12 @@ public class BrandsController : Controller
         var dto = await _mediator.Send(new GetBrandByEncodedNameQuery(encodedName));
         EditBrandCommand model = _mapper.Map<EditBrandCommand>(dto);
         return View(model);
+    }
+    
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await _mediator.Send(new DeleteBrandByEncodedNameQuery(encodedName));
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
