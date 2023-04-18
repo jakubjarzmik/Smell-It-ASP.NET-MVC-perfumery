@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace SmellIt.Application.SmellIt.Brands.Queries.DeleteBrandByEncodedName
+namespace SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName
 {
-    public class DeleteBrandByEncodedNameQuery : IRequest
+    public class DeleteBrandByEncodedNameCommand : IRequest
     {
         public string EncodedName { get; set; }
 
-        public DeleteBrandByEncodedNameQuery(string encodedName)
+        public DeleteBrandByEncodedNameCommand(string encodedName)
         {
             EncodedName = encodedName;
         }
