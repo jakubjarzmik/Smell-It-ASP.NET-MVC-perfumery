@@ -1,12 +1,6 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
 using SmellIt.Domain.Extensions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmellIt.Domain.Entities
 {
@@ -28,8 +22,8 @@ namespace SmellIt.Domain.Entities
         public int? GenderId { get; set; }
         public virtual Gender? Gender { get; set; } = default!;
 
-        public virtual ICollection<ProductImage>? ProductImages { get; set; }
-        public virtual ICollection<ProductTranslation>? ProductTranslations { get; set; }
+        public virtual List<ProductImage> ProductImages { get; set; } = new();
+        public virtual List<ProductTranslation> ProductTranslations { get; set; } = new();
         
         public override void EncodeName() => 
             EncodedName = ProductTranslations!.First(fct => 

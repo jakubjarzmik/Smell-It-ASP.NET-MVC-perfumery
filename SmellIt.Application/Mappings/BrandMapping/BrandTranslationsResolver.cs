@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using System.Collections.Generic;
 using SmellIt.Application.SmellIt.Brands;
 
 namespace SmellIt.Application.Mappings.BrandMapping;
-public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollection<BrandTranslation>?>
+public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, List<BrandTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;
 
@@ -14,7 +13,7 @@ public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollec
         _languageRepository = languageRepository;
     }
 
-    public ICollection<BrandTranslation>? Resolve(BrandDto source, Brand destination, ICollection<BrandTranslation>? destMember, ResolutionContext context)
+    public List<BrandTranslation> Resolve(BrandDto source, Brand destination, List<BrandTranslation> destMember, ResolutionContext context)
     {
         var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
         var enLanguage = _languageRepository.GetByCode("en-GB").Result;
@@ -28,6 +27,6 @@ public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollec
             };
         }
 
-        return null;
+        return new();
     }
 }

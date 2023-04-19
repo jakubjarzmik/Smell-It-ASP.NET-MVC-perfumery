@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
@@ -23,7 +22,7 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
 
             var brand = (await _brandRepository.GetByEncodedName(request.EncodedName))!;
 
-            var brandTranslations = await _brandTranslationRepository.GetByBrandId(brand.Id);
+            var brandTranslations = (await _brandTranslationRepository.GetByBrandId(brand.Id)).ToList();
 
             var plTranslation = brandTranslations.FirstOrDefault(bt => bt.LanguageId == polishId)!;
             plTranslation.Description = request.DescriptionPL;

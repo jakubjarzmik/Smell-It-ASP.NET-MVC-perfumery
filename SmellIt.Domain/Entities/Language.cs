@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using SmellIt.Domain.Entities.Abstract;
 using SmellIt.Domain.Extensions;
 
@@ -16,11 +11,11 @@ namespace SmellIt.Domain.Entities
         [MaxLength(10)]
         public string Code { get; set; } = default!;
 
-        public virtual ICollection<BrandTranslation>? BrandTranslations { get; set; }
-        public virtual ICollection<FragranceCategoryTranslation>? FragranceCategoryTranslations { get; set; }
-        public virtual ICollection<GenderTranslation>? GenderTranslations { get; set; }
-        public virtual ICollection<ProductTranslation>? ProductTranslations { get; set; }
-        public virtual ICollection<ProductCategoryTranslation>? ProductCategoryTranslations { get; set; }
+        public virtual List<BrandTranslation> BrandTranslations { get; set; } = new();
+        public virtual List<FragranceCategoryTranslation> FragranceCategoryTranslations { get; set; } = new();
+        public virtual List<GenderTranslation> GenderTranslations { get; set; } = new();
+        public virtual List<ProductTranslation> ProductTranslations { get; set; } = new();
+        public virtual List<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = new();
         
         public override void EncodeName() => 
             EncodedName = Name.ConvertToEncodedName();

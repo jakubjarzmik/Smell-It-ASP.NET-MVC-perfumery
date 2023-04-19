@@ -1,5 +1,4 @@
 ﻿using SmellIt.Application.SmellIt.Brands;
-using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.ViewModels
 {

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using SmellIt.Application.Extensions;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;

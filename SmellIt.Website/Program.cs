@@ -1,12 +1,9 @@
 using System.Globalization;
 using System.Reflection;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.WebSockets;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SmellIt.Application.Extensions;
 using SmellIt.Infrastructure.Extensions;
-using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Seeders;
 using SmellIt.Website.Models;
 

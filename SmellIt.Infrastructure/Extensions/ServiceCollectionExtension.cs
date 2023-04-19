@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Domain.Interfaces;
@@ -26,6 +19,8 @@ namespace SmellIt.Infrastructure.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IBrandTranslationRepository, BrandTranslationRepository>();
+            services.AddScoped<IFragranceCategoryRepository, FragranceCategoryRepository>();
+            services.AddScoped<IFragranceCategoryTranslationRepository, FragranceCategoryTranslationRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
     }

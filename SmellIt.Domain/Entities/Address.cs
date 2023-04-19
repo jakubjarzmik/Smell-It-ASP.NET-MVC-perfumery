@@ -1,11 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities
@@ -20,8 +14,6 @@ namespace SmellIt.Domain.Entities
         public string City { get; set; } = default!;
         [MaxLength(50)]
         public string Country { get; set; } = default!;
-
-        public virtual ICollection<User>? Users { get; set; }
 
 
         public override void EncodeName() =>

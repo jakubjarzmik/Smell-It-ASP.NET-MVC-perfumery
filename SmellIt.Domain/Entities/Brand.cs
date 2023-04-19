@@ -7,8 +7,8 @@ public class Brand : BaseEntity
 {
     [MaxLength(50)]
     public string Name { get; set; } = default!;
-    public virtual ICollection<Product>? Products { get; set; }
-    public virtual ICollection<BrandTranslation>? BrandTranslations { get; set; }
+    public virtual List<Product> Products { get; set; } = new();
+    public virtual List<BrandTranslation> BrandTranslations { get; set; } = new();
     
     public override void EncodeName() => EncodedName = Name.ConvertToEncodedName();
 }

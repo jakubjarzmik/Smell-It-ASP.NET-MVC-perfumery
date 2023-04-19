@@ -1,11 +1,6 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
 using SmellIt.Domain.Extensions;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmellIt.Domain.Entities
 {
@@ -15,9 +10,9 @@ namespace SmellIt.Domain.Entities
         public int? ParentCategoryId { get; set; }
         public virtual ProductCategory? ParentCategory { get; set; }
 
-        public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
-        public virtual ICollection<Product>? Products { get; set; }
-        public virtual ICollection<ProductCategoryTranslation>? ProductCategoryTranslations { get; set; }
+        public virtual List<ProductCategory> ProductCategories { get; set; } = new();
+        public virtual List<Product> Products { get; set; } = new();
+        public virtual List<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = new();
         
         public override void EncodeName() => 
             EncodedName = ProductCategoryTranslations!.First(fct => 

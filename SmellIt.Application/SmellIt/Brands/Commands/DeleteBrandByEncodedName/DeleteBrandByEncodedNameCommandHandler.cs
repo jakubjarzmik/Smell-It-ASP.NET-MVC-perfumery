@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using SmellIt.Domain.Entities;
+﻿using MediatR;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName

@@ -129,6 +129,9 @@
   <data name="AddNewCategory" xml:space="preserve">
     <value>Add new category</value>
   </data>
+  <data name="AddNewFragranceCategory" xml:space="preserve">
+    <value>Add new fragrance category</value>
+  </data>
   <data name="AddNewProduct" xml:space="preserve">
     <value>Add new product</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="EditBrand" xml:space="preserve">
     <value>Edit brand</value>
+  </data>
+  <data name="EditFragranceCategory" xml:space="preserve">
+    <value>Edit fragrance category</value>
   </data>
   <data name="EnterEmail" xml:space="preserve">
     <value>Enter your email address</value>

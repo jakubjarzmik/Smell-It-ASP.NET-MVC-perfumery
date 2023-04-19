@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmellIt.Website.Models;
 using System.Diagnostics;
-using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Localization;
 
 namespace SmellIt.Website.Controllers

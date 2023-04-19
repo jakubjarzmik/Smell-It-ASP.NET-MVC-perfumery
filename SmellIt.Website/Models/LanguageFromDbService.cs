@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using SmellIt.Infrastructure.Persistence;
+﻿using SmellIt.Infrastructure.Persistence;
 
 namespace SmellIt.Website.Models;
 public class LanguageFromDbService

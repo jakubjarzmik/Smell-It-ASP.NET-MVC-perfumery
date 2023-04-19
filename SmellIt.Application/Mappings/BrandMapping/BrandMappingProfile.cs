@@ -2,7 +2,6 @@
 using SmellIt.Application.SmellIt.Brands;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Domain.Entities;
-using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Mappings.BrandMapping;
 public class BrandMappingProfile : Profile

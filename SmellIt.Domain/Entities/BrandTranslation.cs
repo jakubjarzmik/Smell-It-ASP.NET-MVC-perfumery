@@ -1,6 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace SmellIt.Domain.Entities;
 public class BrandTranslation : BaseEntity

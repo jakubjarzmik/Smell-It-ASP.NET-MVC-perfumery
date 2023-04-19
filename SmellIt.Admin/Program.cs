@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
 using Microsoft.Extensions.Options;
-using SmellIt.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 using SmellIt.Admin.Models;
 using SmellIt.Application.Extensions;
 using SmellIt.Infrastructure.Extensions;
