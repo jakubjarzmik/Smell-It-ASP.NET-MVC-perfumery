@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = language.GetValue("Products");
 }
-<div class="">
+<div class="container">
     <div class="row">
         <div class="col s12">
             <div class="card grey darken-3 white-text">
@@ -15,13 +15,10 @@
                             <tr>
                                 <th></th>
                                 <th>@language.GetValue("Name")</th>
-                                <th><a class="btn" href="@Url.Action("Index", "Brands")">@language.GetValue("Brand")</a></th>
-                                <th><a class="btn" href="@Url.Action("Index", "Categories")">@language.GetValue("Category")</a></th>
-                                <th><a class="btn" href="@Url.Action("Index", "FragranceCategories")">@language.GetValue("FragranceCategory")</a></th>
-                                <th>@language.GetValue("Gender")</th>
+                                <th>@language.GetValue("Brand")</th>
+                                <th>@language.GetValue("Category")</th>
                                 <th>@language.GetValue("Price")</th>
-                                <th>@language.GetValue("DateCreated")</th>
-                                <th></th>
+                                <th class="right"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,10 +27,7 @@
                                 <td>@LanguageFromDb.GetValue("SmellItDiffuser")</td>
                                 <td>@LanguageFromDb.GetValue("SmellIt")</td>
                                 <td>@LanguageFromDb.GetValue("Diffusers")</td>
-                                <td></td>
-                                <td></td>
                                 <td>899 zł</td>
-                                <td>27.03.2023 </td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
                                     <a href="#" class="btn"> <i class="material-icons">delete</i></a>
@@ -44,10 +38,7 @@
                                 <td>@LanguageFromDb.GetValue("Sauvage")</td>
                                 <td>@LanguageFromDb.GetValue("Dior")</td>
                                 <td>@LanguageFromDb.GetValue("Fragrance")</td>
-                                <td>@LanguageFromDb.GetValue("Aromatic")</td>
-                                <td>@LanguageFromDb.GetValue("Men")</td>
                                 <td>502 zł</td>
-                                <td>27.03.2023 </td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
                                     <a href="#" class="btn"> <i class="material-icons">delete</i></a>
@@ -58,10 +49,7 @@
                                 <td>@LanguageFromDb.GetValue("BlackOpium")</td>
                                 <td>@LanguageFromDb.GetValue("YvesSaintLaurent")</td>
                                 <td>@LanguageFromDb.GetValue("Fragrance")</td>
-                                <td></td>
-                                <td></td>
                                 <td>448 zł</td>
-                                <td>27.03.2023 </td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
                                     <a href="#" class="btn"> <i class="material-icons">delete</i></a>
@@ -72,10 +60,7 @@
                                 <td>@LanguageFromDb.GetValue("Si")</td>
                                 <td>@LanguageFromDb.GetValue("GiorgioArmani")</td>
                                 <td>@LanguageFromDb.GetValue("Fragrance")</td>
-                                <td></td>
-                                <td></td>
                                 <td>342 zł</td>
-                                <td>27.03.2023 </td>
                                 <td class="right">
                                     <a href="#" class="btn"> <i class="material-icons">edit</i></a>
                                     <a href="#" class="btn"> <i class="material-icons">delete</i></a>
@@ -131,7 +116,7 @@
         <form>
 
             <div class="input-field">
-                <label for="title">@language.GetValue("Name")</label>
+                <label for="title">@language.GetValue("Key")</label>
                 <input type="text" id="title" />
             </div>
             <div class="input-field">

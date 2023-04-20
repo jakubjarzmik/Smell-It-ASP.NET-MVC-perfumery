@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName
@@ -18,11 +19,13 @@ namespace SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragran
         {
             var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedName(request.EncodedName))!;
             fragranceCategory.IsActive = false;
+            fragranceCategory.DeletedAt = DateTime.UtcNow;
 
-            var fragranceCategoryTranslations = await _fragranceCategoryTranslationRepository.GetByFragranceCategoryId(fragranceCategory.Id);
+            var fragranceCategoryTranslations = await _fragranceCategoryTranslationRepository.GetFragranceCategoryTranslations(fragranceCategory.Id);
             foreach (var fragranceCategoryTranslation in fragranceCategoryTranslations)
             {
                 fragranceCategoryTranslation.IsActive = false;
+                fragranceCategoryTranslation.DeletedAt = DateTime.UtcNow;
             }
 
             await _fragranceCategoryRepository.Commit();

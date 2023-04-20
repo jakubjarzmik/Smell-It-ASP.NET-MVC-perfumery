@@ -231,8 +231,11 @@
   <data name="Fragrance" xml:space="preserve">
     <value>Perfumy</value>
   </data>
+  <data name="FragranceCategories" xml:space="preserve">
+    <value>Kategorie zapachu</value>
+  </data>
   <data name="FragranceCategory" xml:space="preserve">
-    <value>Grupa zapachu</value>
+    <value>Kategoria zapachu</value>
   </data>
   <data name="Fresheners" xml:space="preserve">
     <value>Odświeżacze</value>
@@ -308,6 +311,9 @@
   </data>
   <data name="Others" xml:space="preserve">
     <value>Inne</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Strony</value>
   </data>
   <data name="ParentCategory" xml:space="preserve">
     <value>Kategoria nadrzędna</value>

@@ -7,28 +7,24 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IBrandTranslationRepository _brandTranslationRepository;
-        private readonly ILanguageRepository _languageRepository;
 
-        public EditBrandCommandHandler(IBrandRepository brandRepository, IBrandTranslationRepository brandTranslationRepository, ILanguageRepository languageRepository)
+        public EditBrandCommandHandler(IBrandRepository brandRepository, IBrandTranslationRepository brandTranslationRepository)
         {
             _brandRepository = brandRepository;
             _brandTranslationRepository = brandTranslationRepository;
-            _languageRepository = languageRepository;
         }
         public async Task<Unit> Handle(EditBrandCommand request, CancellationToken cancellationToken)
         {
-            var polishId = _languageRepository.GetByCode("pl-PL").Result!.Id;
-            var englishId = _languageRepository.GetByCode("en-GB").Result!.Id;
-
             var brand = (await _brandRepository.GetByEncodedName(request.EncodedName))!;
+            brand.ModifiedAt = DateTime.UtcNow;
 
-            var brandTranslations = (await _brandTranslationRepository.GetByBrandId(brand.Id)).ToList();
-
-            var plTranslation = brandTranslations.FirstOrDefault(bt => bt.LanguageId == polishId)!;
+            var plTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "pl-PL"))!;
             plTranslation.Description = request.DescriptionPL;
+            plTranslation.ModifiedAt = DateTime.UtcNow;
 
-            var enTranslation = brandTranslations.FirstOrDefault(bt => bt.LanguageId == englishId)!;
+            var enTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "en-GB"))!;
             enTranslation.Description = request.DescriptionEN;
+            enTranslation.ModifiedAt = DateTime.UtcNow;
 
             await _brandRepository.Commit();
             

@@ -16,12 +16,12 @@
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
                             <div class="input-field col s12">
-                                <label asp-for="NamePL">(PL) @language.GetValue("Name")</label>
+                                <label asp-for="NamePL">(PL) @language.GetValue("Key")</label>
                                 <textarea class="materialize-textarea" asp-for="NamePL"></textarea>
                                 <span asp-validation-for="NamePL" class="helper-text"></span>
                             </div>
                             <div class="input-field col s12">
-                                <label asp-for="NameEN">(EN) @language.GetValue("Name")</label>
+                                <label asp-for="NameEN">(EN) @language.GetValue("Key")</label>
                                 <textarea class="materialize-textarea" asp-for="NameEN"></textarea>
                                 <span asp-validation-for="NameEN" class="helper-text"></span>
                             </div>

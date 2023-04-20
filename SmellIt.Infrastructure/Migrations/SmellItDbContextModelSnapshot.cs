@@ -338,6 +338,84 @@ namespace SmellIt.Infrastructure.Migrations
                     b.ToTable("Languages");
                 });
 
+            modelBuilder.Entity("SmellIt.Domain.Entities.LayoutText", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EncodedName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LayoutTexts");
+                });
+
+            modelBuilder.Entity("SmellIt.Domain.Entities.LayoutTextTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EncodedName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LayoutTextId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("LayoutTextId");
+
+                    b.ToTable("LayoutTextTranslations");
+                });
+
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -616,6 +694,25 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("SmellIt.Domain.Entities.LayoutTextTranslation", b =>
+                {
+                    b.HasOne("SmellIt.Domain.Entities.Language", "Language")
+                        .WithMany("LayoutTexts")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmellIt.Domain.Entities.LayoutText", "LayoutText")
+                        .WithMany("LayoutTextTranslations")
+                        .HasForeignKey("LayoutTextId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("LayoutText");
+                });
+
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>
                 {
                     b.HasOne("SmellIt.Domain.Entities.Brand", "Brand")
@@ -734,9 +831,16 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Navigation("GenderTranslations");
 
+                    b.Navigation("LayoutTexts");
+
                     b.Navigation("ProductCategoryTranslations");
 
                     b.Navigation("ProductTranslations");
+                });
+
+            modelBuilder.Entity("SmellIt.Domain.Entities.LayoutText", b =>
+                {
+                    b.Navigation("LayoutTextTranslations");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>

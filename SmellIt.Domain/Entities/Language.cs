@@ -16,6 +16,7 @@ namespace SmellIt.Domain.Entities
         public virtual List<GenderTranslation> GenderTranslations { get; set; } = new();
         public virtual List<ProductTranslation> ProductTranslations { get; set; } = new();
         public virtual List<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = new();
+        public virtual List<LayoutTextTranslation> LayoutTexts { get; set; } = new();
         
         public override void EncodeName() => 
             EncodedName = Name.ConvertToEncodedName();

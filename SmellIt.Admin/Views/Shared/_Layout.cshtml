@@ -32,11 +32,50 @@
                     <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
                     <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@language.GetValue("Orders")</a></li>
                     <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
-                    <li class="@(controller == "Categories" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a></li>
                     <li><a href="">@language.GetValue("Users")</a></li>
                     <li>
-                        <a class="dropdown-trigger" href="#" data-target="dropdown1">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
-                        <ul id="dropdown1" class="dropdown-content grey darken-2">
+                        <a class="dropdown-trigger" href="#" data-target="pagesDropdown">@language.GetValue("Pages")<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="pagesDropdown" class="dropdown-content grey darken-2">
+                            <li>
+                                <a href="">Layout</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("Cart")</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("Home")</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("Products")</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("Contact")</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("AboutUs")</a>
+                            </li>
+                            <li>
+                                <a href="">@language.GetValue("PrivacyPolicy")</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#" data-target="othersDropdown">@language.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="othersDropdown" class="dropdown-content grey darken-2">
+                            <li class="@(controller == "Categories" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a>
+                            </li>
+                            <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "Brands")">@language.GetValue("Brands")</a>
+                            </li>
+                            <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "FragranceCategories")">@language.GetValue("FragranceCategories")</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#" data-target="languageDropdown">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="languageDropdown" class="dropdown-content grey darken-2">
                             <li>
                                 <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
                             </li>
@@ -70,15 +109,54 @@
                 </a>
             </div>
         </li>
+        <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")" class="white-text">@language.GetValue("Dashboard")</a></li>
+        <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="" class="white-text">@language.GetValue("Orders")</a></li>
+        <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")" class="white-text">@language.GetValue("Products")</a></li>
+        <li class="@(controller == "Categories" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Categories")" class="white-text">@language.GetValue("Categories")</a></li>
+        <li><a href="" class="white-text">@language.GetValue("Users")</a></li>
         <li>
-            <a href="@Url.Action("Index", "Home")" class="white-text">@language.GetValue("Dashboard")</a>
+            <a class="dropdown-trigger white-text" href="#" data-target="pagesDropdownMobile">@language.GetValue("Pages")<i class="material-icons white-text right">arrow_drop_down</i></a>
+            <ul id="pagesDropdownMobile" class="dropdown-content grey darken-2">
+                <li>
+                    <a href="" class="white-text">Layout</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("Cart")</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("Home")</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("Products")</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("Contact")</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("AboutUs")</a>
+                </li>
+                <li>
+                    <a href="" class="white-text">@language.GetValue("PrivacyPolicy")</a>
+                </li>
+            </ul>
         </li>
-        <li><a href="@Url.Action("Index", "Products")" class="white-text">@language.GetValue("Products")</a></li>
-        <li><a href="@Url.Action("Index", "Categories")" class="white-text">@language.GetValue("Categories")</a></li>
-        <li><a href="" class="white-text">@language.GetValue("Clients")</a></li>
         <li>
-            <a class="dropdown-trigger white-text" href="#" data-target="dropdown2">@language.GetValue("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
-            <ul id="dropdown2" class="dropdown-content grey darken-2">
+            <a class="dropdown-trigger white-text" href="#" data-target="othersDropdownMobile">@language.GetValue("Others")<i class="material-icons white-text right">arrow_drop_down</i></a>
+            <ul id="othersDropdownMobile" class="dropdown-content grey darken-2">
+                <li class="@(controller == "Categories" && action == "Index" ? "active": "")">
+                    <a href="@Url.Action("Index", "Categories")" class="white-text">@language.GetValue("Categories")</a>
+                </li>
+                <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
+                    <a href="@Url.Action("Index", "Brands")" class="white-text">@language.GetValue("Brands")</a>
+                </li>
+                <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
+                    <a href="@Url.Action("Index", "FragranceCategories")" class="white-text">@language.GetValue("FragranceCategories")</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-trigger white-text" href="#" data-target="languageDropdownMobile">@language.GetValue("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
+            <ul id="languageDropdownMobile" class="dropdown-content grey darken-2">
                 <li>
                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
                 </li>
@@ -101,9 +179,30 @@
     <script type="text/javascript"
             src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="~/lib/materialize/js/materialize.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="~/js/chart.js"></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script>
+        $('.section').hide();
+        $(document).ready(function () {
+            $('.section').fadeIn();
+            $('.count').each(function () {
+                $(this)
+                    .prop('Counter', 0)
+                    .animate(
+                        {
+                            Counter: $(this).text(),
+                        },
+                        {
+                            duration: 1000,
+                            easing: 'swing',
+                            step: function (now) {
+                                $(this).text(Math.ceil(now));
+                            }
+                        }
+                    );
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required:false)
 </body>
 

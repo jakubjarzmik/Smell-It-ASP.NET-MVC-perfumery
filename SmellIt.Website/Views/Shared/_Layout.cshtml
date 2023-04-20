@@ -80,7 +80,6 @@
                                 </div>
                                 <ul class="text-center cart-buttons">
                                     <li><a href="cart.html" class="btn btn-small">@Language.GetValue("Cart")</a></li>
-                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">@Language.GetValue("Checkout")</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -127,68 +126,26 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse text-center">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown ">
+                        <li>
                             <a href="@Url.Action("Index", "Home")">@Language.GetValue("Home")</a>
                         </li>
-                        <li class="dropdown dropdown-slide">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                @Language.GetValue("Products") <span class="tf-ion-ios-arrow-down"></span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 mb-sm-3">
-                                        <ul>
-                                            <li class="dropdown-header">@Language.GetValue("Devices")</li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("SmellItDiffuser")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Diffusers")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Fresheners")</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 mb-sm-3">
-                                        <ul>
-                                            <li class="dropdown-header">@Language.GetValue("Fragrance")</li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Women")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Men")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("Unisex")</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 mb-sm-3">
-                                        <ul>
-                                            <li class="dropdown-header">@Language.GetValue("HomeFragrance")</li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("ScentedCandles")</a></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("EssentialOils")</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 mb-sm-3">
-                                        <ul>
-                                            <li class="dropdown-header">@Language.GetValue("Others")</li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="@Url.Action("Products", "Home")">@Language.GetValue("CarFresheners")</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <li>
+                            <a href="@Url.Action("Products", "Home")">@Language.GetValue("Products")</a>
                         </li>
 
-                        <li class="dropdown ">
+                        <li>
                             <a href="@Url.Action("Contact", "Home")">@Language.GetValue("Contact")</a>
                         </li>
                         
-                        <li class="dropdown ">
+                        <li>
                             <a href="#">@Language.GetValue("AboutUs")</a>
                         </li>
                         
-                        <li class="dropdown ">
+                        <li>
                             <a href="#"><b>@Language.GetValue("Login")</b></a>
                         </li>
                         
-                        <li class="dropdown ">
+                        <li>
                             <a href="#">@Language.GetValue("SignIn")</a>
                         </li>
                     </ul>

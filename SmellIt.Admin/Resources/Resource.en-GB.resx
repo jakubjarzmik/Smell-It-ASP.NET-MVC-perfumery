@@ -231,6 +231,9 @@
   <data name="Fragrance" xml:space="preserve">
     <value>Fragrance</value>
   </data>
+  <data name="FragranceCategories" xml:space="preserve">
+    <value>Fragrance categories</value>
+  </data>
   <data name="FragranceCategory" xml:space="preserve">
     <value>Fragrance category</value>
   </data>
@@ -289,7 +292,7 @@
     <value>Monthly Visitors</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Key</value>
   </data>
   <data name="Newest" xml:space="preserve">
     <value>Newest</value>
@@ -308,6 +311,9 @@
   </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
   </data>
   <data name="ParentCategory" xml:space="preserve">
     <value>Parent Category</value>

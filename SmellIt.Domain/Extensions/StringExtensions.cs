@@ -12,6 +12,8 @@ public static class StringExtensions
         
         input = input.Replace(' ', '-');
 
-        return input;
+        input = input.Length > 50 ? input.Substring(0, 50) : input;
+
+		return input;
     }
 }

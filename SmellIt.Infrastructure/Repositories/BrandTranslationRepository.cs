@@ -13,21 +13,28 @@ public class BrandTranslationRepository : IBrandTranslationRepository
         _dbContext = dbContext;
     }
 
+    public async Task<IEnumerable<BrandTranslation>> GetAll()
+        => await _dbContext.BrandTranslations.Where(bt 
+            => bt.IsActive).ToListAsync();
+
+    public async Task<IEnumerable<BrandTranslation>> GetBrandTranslations(int brandId)
+        => await _dbContext.BrandTranslations.Where(bt 
+            => bt.IsActive && bt.BrandId == brandId).ToListAsync();
+
+    public async Task<BrandTranslation?> GetTranslation(int brandId, string languageCode)
+        => await _dbContext.BrandTranslations.FirstOrDefaultAsync(bt 
+            => bt.IsActive && bt.BrandId == brandId && bt.Language.Code.ToLower() == languageCode.ToLower());
+
+    public async Task<BrandTranslation?> GetByEncodedName(string encodedName)
+        => await _dbContext.BrandTranslations.FirstOrDefaultAsync(bt 
+            => bt.IsActive && bt.EncodedName == encodedName.ToLower());
+
     public async Task Create(BrandTranslation brandTranslation)
     {
         brandTranslation.EncodeName();
         _dbContext.Add(brandTranslation);
         await _dbContext.SaveChangesAsync();
     }
-
-    public async Task<IEnumerable<BrandTranslation>> GetAll()
-        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive).ToListAsync();
-
-    public async Task<IEnumerable<BrandTranslation>> GetByBrandId(int id)
-        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive && bt.BrandId == id).ToListAsync();
-
-    public async Task<BrandTranslation?> GetByEncodedName(string encodedName)
-        => await _dbContext.BrandTranslations.Where(bt => bt.IsActive).FirstOrDefaultAsync(bt => bt.EncodedName == encodedName.ToLower());
 
     public Task Commit()
         => _dbContext.SaveChangesAsync();
