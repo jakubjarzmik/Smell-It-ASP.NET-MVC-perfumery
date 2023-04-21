@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmellIt.Website.Models;
 using System.Diagnostics;
+using MediatR;
 using Microsoft.AspNetCore.Localization;
+using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
+using SmellIt.Application.SmellIt.LayoutTexts.Queries.GetAllLayoutTexts;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace SmellIt.Website.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IMediator mediator)
         {
-            _logger = logger;
+            var layoutTexts = mediator.Send(new GetAllLayoutTextsQuery()).Result;
+            ViewData["LayoutTexts"] = layoutTexts;
         }
 
         public IActionResult Index()

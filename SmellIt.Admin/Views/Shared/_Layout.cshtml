@@ -36,8 +36,8 @@
                     <li>
                         <a class="dropdown-trigger" href="#" data-target="pagesDropdown">@language.GetValue("Pages")<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="pagesDropdown" class="dropdown-content grey darken-2">
-                            <li>
-                                <a href="">Layout</a>
+                            <li class="@(controller == "LayoutTexts" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "LayoutTexts")">Layout</a>
                             </li>
                             <li>
                                 <a href="">@language.GetValue("Cart")</a>
@@ -117,8 +117,8 @@
         <li>
             <a class="dropdown-trigger white-text" href="#" data-target="pagesDropdownMobile">@language.GetValue("Pages")<i class="material-icons white-text right">arrow_drop_down</i></a>
             <ul id="pagesDropdownMobile" class="dropdown-content grey darken-2">
-                <li>
-                    <a href="" class="white-text">Layout</a>
+                <li class="@(controller == "LayoutTexts" && action == "Index" ? "active": "") white-text">
+                    <a href="@Url.Action("Index", "LayoutTexts")">Layout</a>
                 </li>
                 <li>
                     <a href="" class="white-text">@language.GetValue("Cart")</a>

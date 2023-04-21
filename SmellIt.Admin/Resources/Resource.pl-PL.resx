@@ -132,6 +132,9 @@
   <data name="AddNewFragranceCategory" xml:space="preserve">
     <value>Dodaj nową kategorię zapachu</value>
   </data>
+  <data name="AddNewLayoutText" xml:space="preserve">
+    <value>Dodaj nowy tekst layout'u</value>
+  </data>
   <data name="AddNewProduct" xml:space="preserve">
     <value>Dodaj nowy produkt</value>
   </data>
@@ -213,6 +216,9 @@
   <data name="EditFragranceCategory" xml:space="preserve">
     <value>Edytuj kategorię zapachu</value>
   </data>
+  <data name="EditLayoutText" xml:space="preserve">
+    <value>Edytuj tekst layout'u</value>
+  </data>
   <data name="EnterEmail" xml:space="preserve">
     <value>Podaj swój adres e-mail</value>
   </data>
@@ -255,6 +261,9 @@
   <data name="HomeFragranceDesc" xml:space="preserve">
     <value>Stwórz atmosferę, jaka Ci się marzy</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Klucz</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Język</value>
   </data>
@@ -263,6 +272,9 @@
   </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Ostatni zarejestrowani użytkownicy</value>
+  </data>
+  <data name="LayoutTexts" xml:space="preserve">
+    <value>Teksty layoutu</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Zaloguj</value>
@@ -506,6 +518,9 @@
   </data>
   <data name="SubscribeToNewsletterDesc" xml:space="preserve">
     <value>Jako pierwszy dowiesz się o najnowszych promocjach i produktach</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Tekst</value>
   </data>
   <data name="ThanksForMessage" xml:space="preserve">
     <value>Dziękujemy za wiadomość :)</value>
