@@ -17,13 +17,13 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<Gender> Genders { get; set; } = default!;
         public DbSet<GenderTranslation> GenderTranslations { get; set; } = default!;
         public DbSet<Language> Languages { get; set; } = default!;
-        public DbSet<LayoutText> LayoutTexts { get; set; } = default!;
-        public DbSet<LayoutTextTranslation> LayoutTextTranslations { get; set; } = default!;
 		public DbSet<Product> Products { get; set; } = default!;
         public DbSet<ProductTranslation> ProductTranslations { get; set; } = default!;
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
         public DbSet<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = default!;
         public DbSet<ProductImage> ProductImages { get; set; } = default!;
+        public DbSet<WebsiteText> WebsiteTexts { get; set; } = default!;
+        public DbSet<WebsiteTextTranslation> WebsiteTextTranslations { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -106,20 +106,6 @@ namespace SmellIt.Infrastructure.Persistence
                 .WithOne(pct => pct.Language)
                 .HasForeignKey(pct => pct.LanguageId);
 
-            modelBuilder.Entity<LayoutText>()
-	            .HasMany(lt => lt.LayoutTextTranslations)
-	            .WithOne(ltt => ltt.LayoutText)
-	            .HasForeignKey(ltt => ltt.LayoutTextId);
-
-            modelBuilder.Entity<LayoutTextTranslation>()
-	            .HasOne(lt => lt.LayoutText)
-	            .WithMany(l => l.LayoutTextTranslations)
-	            .HasForeignKey(lt => lt.LayoutTextId);
-            modelBuilder.Entity<LayoutTextTranslation>()
-	            .HasOne(lt => lt.Language)
-	            .WithMany(l => l.LayoutTexts)
-	            .HasForeignKey(lt => lt.LanguageId);
-
             modelBuilder.Entity<Product>()
                 .HasOne(u => u.Category)
                 .WithMany(u => u.Products)
@@ -184,6 +170,20 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasOne(u => u.Product)
                 .WithMany(u => u.ProductImages)
                 .HasForeignKey(u => u.ProductId);
+
+            modelBuilder.Entity<WebsiteText>()
+                .HasMany(lt => lt.LayoutTextTranslations)
+                .WithOne(ltt => ltt.LayoutText)
+                .HasForeignKey(ltt => ltt.LayoutTextId);
+
+            modelBuilder.Entity<WebsiteTextTranslation>()
+                .HasOne(lt => lt.LayoutText)
+                .WithMany(l => l.LayoutTextTranslations)
+                .HasForeignKey(lt => lt.LayoutTextId);
+            modelBuilder.Entity<WebsiteTextTranslation>()
+                .HasOne(lt => lt.Language)
+                .WithMany(l => l.LayoutTexts)
+                .HasForeignKey(lt => lt.LanguageId);
         }
     }
 }

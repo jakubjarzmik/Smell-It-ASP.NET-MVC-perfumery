@@ -1,6 +1,6 @@
-﻿@model BrandsViewModel
+﻿@model WebsiteTextsViewModel
 @{
-    ViewData["Title"] = language.GetValue("Brands");
+    ViewData["Title"] = language.GetValue("WebsiteText");
 }
 <div class="container">
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card grey darken-3 white-text">
                 <div class="card-content">
                     <div class="card-title">
-                        @language.GetValue("Brands")
+                        @language.GetValue("WebsiteText")
                         <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
                     </div>
 
@@ -24,27 +24,27 @@
                             @{
                                 int index = 0;
                             }
-                            @foreach (var item in Model.Brands!)
+                            @foreach (var item in Model.WebsiteTexts!)
                             {
                                 <tr>
-                                    <td>@item.Name</td>
+                                    <td>@item.Key</td>
                                     <td></td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">
                                             <div class="modal-content">
-                                                <h4>@item.Name</h4>
-                                                <h5>@language.GetValue("Description") (PL)</h5>
-                                                <p>@item.DescriptionPL</p>
-                                                <h5>@language.GetValue("Description") (EN)</h5>
-                                                <p>@item.DescriptionEN</p>
+                                                <h4>@item.Key</h4>
+                                                <h5>@language.GetValue("Text") (PL)</h5>
+                                                <p>@item.TextPL</p>
+                                                <h5>@language.GetValue("Text") (EN)</h5>
+                                                <p>@item.TextEN</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
                                             </div>
                                         </div>
-                                        <a asp-controller="Brands" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
-                                        <a asp-controller="Brands" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+                                        <a asp-controller="WebsiteTexts" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
+                                        <a asp-controller="WebsiteTexts" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                                 index++;

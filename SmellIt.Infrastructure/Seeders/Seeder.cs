@@ -705,246 +705,246 @@ namespace SmellIt.Infrastructure.Seeders
 
 					#endregion
 
-					#region LayoutTexts
+					#region WebsiteText
 
-					var phoneNumber = new LayoutText { Key = "PhoneNumber" };
+					var phoneNumber = new WebsiteText { Key = "PhoneNumber" };
 					phoneNumber.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(phoneNumber);
+					await _dbContext.WebsiteTexts.AddAsync(phoneNumber);
 
-					List<LayoutTextTranslation> phoneNumberTranslations = new()
+					List<WebsiteTextTranslation> phoneNumberTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = phoneNumber, Language = polish, Text = "+48 777 321 321" },
-						new LayoutTextTranslation { LayoutText = phoneNumber, Language = english, Text = "+48 777 321 321" },
+						new WebsiteTextTranslation { LayoutText = phoneNumber, Language = polish, Text = "+48 777 321 321" },
+						new WebsiteTextTranslation { LayoutText = phoneNumber, Language = english, Text = "+48 777 321 321" },
 					};
 					foreach (var x in phoneNumberTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(phoneNumberTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(phoneNumberTranslations);
 
 
-					var total = new LayoutText { Key = "Total" };
+					var total = new WebsiteText { Key = "Total" };
 					total.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(total);
+					await _dbContext.WebsiteTexts.AddAsync(total);
 
-					List<LayoutTextTranslation> totalTranslations = new()
+					List<WebsiteTextTranslation> totalTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = total, Language = polish, Text = "Razem" },
-						new LayoutTextTranslation { LayoutText = total, Language = english, Text = "Total" },
+						new WebsiteTextTranslation { LayoutText = total, Language = polish, Text = "Razem" },
+						new WebsiteTextTranslation { LayoutText = total, Language = english, Text = "Total" },
 					};
 					foreach (var x in totalTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(totalTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(totalTranslations);
 
 
-					var cart = new LayoutText { Key = "Cart" };
+					var cart = new WebsiteText { Key = "Cart" };
 					cart.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(cart);
+					await _dbContext.WebsiteTexts.AddAsync(cart);
 
-					List<LayoutTextTranslation> cartTranslations = new()
+					List<WebsiteTextTranslation> cartTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = cart, Language = polish, Text = "Koszyk" },
-						new LayoutTextTranslation { LayoutText = cart, Language = english, Text = "Cart" },
+						new WebsiteTextTranslation { LayoutText = cart, Language = polish, Text = "Koszyk" },
+						new WebsiteTextTranslation { LayoutText = cart, Language = english, Text = "Cart" },
 					};
 					foreach (var x in cartTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(cartTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(cartTranslations);
 
 
-					var search = new LayoutText { Key = "Search" };
+					var search = new WebsiteText { Key = "Search" };
 					search.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(search);
+					await _dbContext.WebsiteTexts.AddAsync(search);
 
-					List<LayoutTextTranslation> searchTranslations = new()
+					List<WebsiteTextTranslation> searchTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = search, Language = polish, Text = "Szukaj" },
-						new LayoutTextTranslation { LayoutText = search, Language = english, Text = "Search" },
+						new WebsiteTextTranslation { LayoutText = search, Language = polish, Text = "Szukaj" },
+						new WebsiteTextTranslation { LayoutText = search, Language = english, Text = "Search" },
 					};
 					foreach (var x in searchTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(searchTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(searchTranslations);
 
 
-					var home = new LayoutText { Key = "Home" };
+					var home = new WebsiteText { Key = "Home" };
 					home.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(home);
+					await _dbContext.WebsiteTexts.AddAsync(home);
 
-					List<LayoutTextTranslation> homeTranslations = new()
+					List<WebsiteTextTranslation> homeTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = home, Language = polish, Text = "Strona główna" },
-						new LayoutTextTranslation { LayoutText = home, Language = english, Text = "Home" },
+						new WebsiteTextTranslation { LayoutText = home, Language = polish, Text = "Strona główna" },
+						new WebsiteTextTranslation { LayoutText = home, Language = english, Text = "Home" },
 					};
 					foreach (var x in homeTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(homeTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(homeTranslations);
 
 
-					var products = new LayoutText { Key = "Products" };
+					var products = new WebsiteText { Key = "Products" };
 					products.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(products);
+					await _dbContext.WebsiteTexts.AddAsync(products);
 
-					List<LayoutTextTranslation> productsTranslations = new()
+					List<WebsiteTextTranslation> productsTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = products, Language = polish, Text = "Produkty" },
-						new LayoutTextTranslation { LayoutText = products, Language = english, Text = "Products" },
+						new WebsiteTextTranslation { LayoutText = products, Language = polish, Text = "Produkty" },
+						new WebsiteTextTranslation { LayoutText = products, Language = english, Text = "Products" },
 					};
 					foreach (var x in productsTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(productsTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(productsTranslations);
 
 
-					var contact = new LayoutText { Key = "Contact" };
+					var contact = new WebsiteText { Key = "Contact" };
 					contact.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(contact);
+					await _dbContext.WebsiteTexts.AddAsync(contact);
 
-					List<LayoutTextTranslation> contactTranslations = new()
+					List<WebsiteTextTranslation> contactTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = contact, Language = polish, Text = "Kontakt" },
-						new LayoutTextTranslation { LayoutText = contact, Language = english, Text = "Contact" },
+						new WebsiteTextTranslation { LayoutText = contact, Language = polish, Text = "Kontakt" },
+						new WebsiteTextTranslation { LayoutText = contact, Language = english, Text = "Contact" },
 					};
 					foreach (var x in contactTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(contactTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(contactTranslations);
 
 
-					var aboutUs = new LayoutText { Key = "AboutUs" };
+					var aboutUs = new WebsiteText { Key = "AboutUs" };
 					aboutUs.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(aboutUs);
+					await _dbContext.WebsiteTexts.AddAsync(aboutUs);
 
-					List<LayoutTextTranslation> aboutUsTranslations = new()
+					List<WebsiteTextTranslation> aboutUsTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = aboutUs, Language = polish, Text = "O nas" },
-						new LayoutTextTranslation { LayoutText = aboutUs, Language = english, Text = "About Us" },
+						new WebsiteTextTranslation { LayoutText = aboutUs, Language = polish, Text = "O nas" },
+						new WebsiteTextTranslation { LayoutText = aboutUs, Language = english, Text = "About Us" },
 					};
 					foreach (var x in aboutUsTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(aboutUsTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(aboutUsTranslations);
 
 
-					var signIn = new LayoutText { Key = "SignIn" };
+					var signIn = new WebsiteText { Key = "SignIn" };
 					signIn.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(signIn);
+					await _dbContext.WebsiteTexts.AddAsync(signIn);
 
-					List<LayoutTextTranslation> signInTranslations = new()
+					List<WebsiteTextTranslation> signInTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = signIn, Language = polish, Text = "Zaloguj się" },
-						new LayoutTextTranslation { LayoutText = signIn, Language = english, Text = "Sign in" },
+						new WebsiteTextTranslation { LayoutText = signIn, Language = polish, Text = "Zaloguj się" },
+						new WebsiteTextTranslation { LayoutText = signIn, Language = english, Text = "Sign in" },
 					};
 					foreach (var x in signInTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(signInTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(signInTranslations);
 
 
-					var register = new LayoutText { Key = "Register" };
+					var register = new WebsiteText { Key = "Register" };
 					register.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(register);
+					await _dbContext.WebsiteTexts.AddAsync(register);
 
-					List<LayoutTextTranslation> registerTranslations = new()
+					List<WebsiteTextTranslation> registerTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = register, Language = polish, Text = "Zarejestruj się" },
-						new LayoutTextTranslation { LayoutText = register, Language = english, Text = "Register" },
+						new WebsiteTextTranslation { LayoutText = register, Language = polish, Text = "Zarejestruj się" },
+						new WebsiteTextTranslation { LayoutText = register, Language = english, Text = "Register" },
 					};
 					foreach (var x in registerTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(registerTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(registerTranslations);
 
 
-					var subscribeToNewsletter = new LayoutText { Key = "SubscribeToNewsletter" };
+					var subscribeToNewsletter = new WebsiteText { Key = "SubscribeToNewsletter" };
 					subscribeToNewsletter.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(subscribeToNewsletter);
+					await _dbContext.WebsiteTexts.AddAsync(subscribeToNewsletter);
 
-					List<LayoutTextTranslation> subscribeToNewsletterTranslations = new()
+					List<WebsiteTextTranslation> subscribeToNewsletterTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = subscribeToNewsletter, Language = polish, Text = "Zapisz się do newsletter'a" },
-						new LayoutTextTranslation { LayoutText = subscribeToNewsletter, Language = english, Text = "Subscribe to Newsletter" },
+						new WebsiteTextTranslation { LayoutText = subscribeToNewsletter, Language = polish, Text = "Zapisz się do newsletter'a" },
+						new WebsiteTextTranslation { LayoutText = subscribeToNewsletter, Language = english, Text = "Subscribe to Newsletter" },
 					};
 					foreach (var x in subscribeToNewsletterTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(subscribeToNewsletterTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(subscribeToNewsletterTranslations);
 
 
-					var subscribeToNewsletterDesc= new LayoutText { Key = "SubscribeToNewsletterDesc" };
+					var subscribeToNewsletterDesc= new WebsiteText { Key = "SubscribeToNewsletterDesc" };
 					subscribeToNewsletterDesc.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(subscribeToNewsletterDesc);
+					await _dbContext.WebsiteTexts.AddAsync(subscribeToNewsletterDesc);
 
-					List<LayoutTextTranslation> subscribeToNewsletterDescTranslations = new()
+					List<WebsiteTextTranslation> subscribeToNewsletterDescTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = polish, Text = "Jako pierwszy dowiesz się o najnowszych promocjach i produktach" },
-						new LayoutTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = english, Text = "Be the first to find out about the latest promotions and products" },
+						new WebsiteTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = polish, Text = "Jako pierwszy dowiesz się o najnowszych promocjach i produktach" },
+						new WebsiteTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = english, Text = "Be the first to find out about the latest promotions and products" },
 					};
 					foreach (var x in subscribeToNewsletterDescTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(subscribeToNewsletterDescTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(subscribeToNewsletterDescTranslations);
 
 
-					var enterYourEmail = new LayoutText { Key = "EnterYourEmail" };
+					var enterYourEmail = new WebsiteText { Key = "EnterYourEmail" };
 					enterYourEmail.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(enterYourEmail);
+					await _dbContext.WebsiteTexts.AddAsync(enterYourEmail);
 
-					List<LayoutTextTranslation> enterYourEmailTranslations = new()
+					List<WebsiteTextTranslation> enterYourEmailTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = enterYourEmail, Language = polish, Text = "Podaj swój adres e-mail" },
-						new LayoutTextTranslation { LayoutText = enterYourEmail, Language = english, Text = "Enter your e-mail" },
+						new WebsiteTextTranslation { LayoutText = enterYourEmail, Language = polish, Text = "Podaj swój adres e-mail" },
+						new WebsiteTextTranslation { LayoutText = enterYourEmail, Language = english, Text = "Enter your e-mail" },
 					};
 					foreach (var x in enterYourEmailTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(enterYourEmailTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(enterYourEmailTranslations);
 
 
-					var subscribeNow = new LayoutText { Key = "SubscribeNow" };
+					var subscribeNow = new WebsiteText { Key = "SubscribeNow" };
 					subscribeNow.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(subscribeNow);
+					await _dbContext.WebsiteTexts.AddAsync(subscribeNow);
 
-					List<LayoutTextTranslation> subscribeNowTranslations = new()
+					List<WebsiteTextTranslation> subscribeNowTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = subscribeNow, Language = polish, Text = "Subskrybuj!" },
-						new LayoutTextTranslation { LayoutText = subscribeNow, Language = english, Text = "Subscribe Now!" },
+						new WebsiteTextTranslation { LayoutText = subscribeNow, Language = polish, Text = "Subskrybuj!" },
+						new WebsiteTextTranslation { LayoutText = subscribeNow, Language = english, Text = "Subscribe Now!" },
 					};
 					foreach (var x in subscribeNowTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(subscribeNowTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(subscribeNowTranslations);
 
 
-					var privacyPolicy = new LayoutText { Key = "PrivacyPolicy" };
+					var privacyPolicy = new WebsiteText { Key = "PrivacyPolicy" };
 					privacyPolicy.EncodeName();
-					await _dbContext.LayoutTexts.AddAsync(privacyPolicy);
+					await _dbContext.WebsiteTexts.AddAsync(privacyPolicy);
 
-					List<LayoutTextTranslation> privacyPolicyTranslations = new()
+					List<WebsiteTextTranslation> privacyPolicyTranslations = new()
 					{
-						new LayoutTextTranslation { LayoutText = privacyPolicy, Language = polish, Text = "Polityka prywatności" },
-						new LayoutTextTranslation { LayoutText = privacyPolicy, Language = english, Text = "Privacy Policy" },
+						new WebsiteTextTranslation { LayoutText = privacyPolicy, Language = polish, Text = "Polityka prywatności" },
+						new WebsiteTextTranslation { LayoutText = privacyPolicy, Language = english, Text = "Privacy Policy" },
 					};
 					foreach (var x in privacyPolicyTranslations)
 					{
 						x.EncodeName();
 					}
-					await _dbContext.LayoutTextTranslations.AddRangeAsync(privacyPolicyTranslations);
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(privacyPolicyTranslations);
 
 					#endregion
 

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName

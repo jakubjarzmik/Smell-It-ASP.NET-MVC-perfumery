@@ -552,6 +552,9 @@
   <data name="ViewProductDetails" xml:space="preserve">
     <value>Zobacz szczegóły produktu</value>
   </data>
+  <data name="WebsiteTexts" xml:space="preserve">
+    <value>Teksty na stronie</value>
+  </data>
   <data name="Women" xml:space="preserve">
     <value>Damskie</value>
   </data>

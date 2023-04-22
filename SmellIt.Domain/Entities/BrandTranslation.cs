@@ -14,6 +14,6 @@ public class BrandTranslation : BaseEntity
     public int LanguageId { get; set; }
     public Language Language { get; set; } = default!;
     
-    public override void EncodeName() => EncodedName = Brand.EncodedName + "-translation";
+    public override void EncodeName() => EncodedName = Brand.EncodedName + "-" + Language.Code + "-translation";
 
 }

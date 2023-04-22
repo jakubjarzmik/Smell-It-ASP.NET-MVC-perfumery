@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.SmellIt.Brands;
 using SmellIt.Application.SmellIt.FragranceCategories;
 
 namespace SmellIt.Application.Mappings.FragranceCategoryMapping;

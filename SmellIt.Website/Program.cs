@@ -19,7 +19,7 @@ builder.Services.AddApplication();
 
 // Add multi languages
 builder.Services.AddSingleton<LanguageService>();
-builder.Services.AddScoped<LayoutTextsService>();
+builder.Services.AddScoped<WebsiteTextsService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc()
     .AddViewLocalization()

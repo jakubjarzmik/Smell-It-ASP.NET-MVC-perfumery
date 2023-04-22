@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.Brands;
-using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Application.SmellIt.FragranceCategories;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Domain.Entities;

@@ -28,7 +28,7 @@
                 <div class="col-md-4 col-xs-12 col-sm-4">
                     <div class="contact-number">
                         <i class="tf-ion-ios-telephone"></i>
-                        <span>+48 777 321 321</span>
+                        <span>@WebsiteTexts.GetValue("PhoneNumber")</span>
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12 col-sm-4">
@@ -42,7 +42,7 @@
                     <ul class="top-menu text-right list-inline">
                         <li class="dropdown cart-nav dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-android-cart"></i>@LayoutTexts.GetValue("Cart")
+                                <i class="tf-ion-android-cart"></i>@WebsiteTexts.GetValue("Cart")
                             </a>
                             <div class="dropdown-menu cart-dropdown">
                                 <div class="media">
@@ -75,21 +75,21 @@
                                 </div>
 
                                 <div class="cart-summary">
-                                    <span>@LayoutTexts.GetValue("Total")</span>
+                                    <span>@WebsiteTexts.GetValue("Total")</span>
                                     <span class="total-price">1301.00 zł</span>
                                 </div>
                                 <ul class="text-center cart-buttons">
-                                    <li><a href="cart.html" class="btn btn-small">@LayoutTexts.GetValue("Cart")</a></li>
+                                    <li><a href="cart.html" class="btn btn-small">@WebsiteTexts.GetValue("Cart")</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="dropdown search dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-ios-search-strong"></i> @LayoutTexts.GetValue("Search")
+                                <i class="tf-ion-ios-search-strong"></i> @WebsiteTexts.GetValue("Search")
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <form action="post"><input type="search" class="form-control" placeholder="@LayoutTexts.GetValue("Search")..."></form>
+                                    <form action="post"><input type="search" class="form-control" placeholder="@WebsiteTexts.GetValue("Search")..."></form>
                                 </li>
                             </ul>
                         </li>
@@ -127,26 +127,26 @@
                 <div id="navbar" class="navbar-collapse collapse text-center">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="@Url.Action("Index", "Home")">@LayoutTexts.GetValue("Home")</a>
+                            <a href="@Url.Action("Index", "Home")">@WebsiteTexts.GetValue("Home")</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Products", "Home")">@LayoutTexts.GetValue("Products")</a>
+                            <a href="@Url.Action("Products", "Home")">@WebsiteTexts.GetValue("Products")</a>
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Contact", "Home")">@LayoutTexts.GetValue("Contact")</a>
+                            <a href="@Url.Action("Contact", "Home")">@WebsiteTexts.GetValue("Contact")</a>
                         </li>
                         
                         <li>
-                            <a href="#">@LayoutTexts.GetValue("AboutUs")</a>
+                            <a href="#">@WebsiteTexts.GetValue("AboutUs")</a>
                         </li>
                         
                         <li>
-                            <a href="#"><b>@LayoutTexts.GetValue("SignIn")</b></a>
+                            <a href="#"><b>@WebsiteTexts.GetValue("SignIn")</b></a>
                         </li>
                         
                         <li>
-                            <a href="#">@LayoutTexts.GetValue("Register")</a>
+                            <a href="#">@WebsiteTexts.GetValue("Register")</a>
                         </li>
                     </ul>
                 </div>
@@ -161,14 +161,14 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="title">
-                        <h2>@LayoutTexts.GetValue("SubscribeToNewsletter")</h2>
-                        <p>@LayoutTexts.GetValue("SubscribeToNewsletterDesc")</p>
+                        <h2>@WebsiteTexts.GetValue("SubscribeToNewsletter")</h2>
+                        <p>@WebsiteTexts.GetValue("SubscribeToNewsletterDesc")</p>
                     </div>
                     <div class="col-lg-6 col-md-offset-3">
                         <div class="input-group subscription-form">
-                            <input type="text" class="form-control" placeholder="@LayoutTexts.GetValue("EnterYourEmail")">
+                            <input type="text" class="form-control" placeholder="@WebsiteTexts.GetValue("EnterYourEmail")">
                             <span class="input-group-btn">
-                                <button class="btn btn-main" type="button">@LayoutTexts.GetValue("SubscribeNow")</button>
+                                <button class="btn btn-main" type="button">@WebsiteTexts.GetValue("SubscribeNow")</button>
                             </span>
                         </div>
                     </div>
@@ -206,13 +206,13 @@
                     </ul>
                     <ul class="footer-menu text-uppercase">
                         <li>
-                            <a href="@Url.Action("Contact", "Home")">@LayoutTexts.GetValue("Contact")</a>
+                            <a href="@Url.Action("Contact", "Home")">@WebsiteTexts.GetValue("Contact")</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Products", "Home")">@LayoutTexts.GetValue("Products")</a>
+                            <a href="@Url.Action("Products", "Home")">@WebsiteTexts.GetValue("Products")</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Privacy", "Home")">@LayoutTexts.GetValue("PrivacyPolicy")</a>
+                            <a href="@Url.Action("Privacy", "Home")">@WebsiteTexts.GetValue("PrivacyPolicy")</a>
                         </li>
                     </ul>
                     <p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by <a href="https://www.linkedin.com/in/jakub-jarzmik">Jakub Jarzmik</a></p>
