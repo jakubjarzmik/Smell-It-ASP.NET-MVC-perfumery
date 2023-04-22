@@ -15,8 +15,8 @@
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>@language.GetValue("Text") (PL)</th>
+                                <th>@language.GetValue("Text") (EN)</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -27,8 +27,8 @@
                             @foreach (var item in Model.WebsiteTexts!)
                             {
                                 <tr>
-                                    <td>@item.Key</td>
-                                    <td></td>
+                                    <td>@(item.TextPL.Length > 20 ? item.TextPL.Substring(0,20) + "..." : item.TextPL)</td>
+                                    <td>@(item.TextEN.Length > 20 ? item.TextEN.Substring(0,20) + "..." : item.TextEN)</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">
