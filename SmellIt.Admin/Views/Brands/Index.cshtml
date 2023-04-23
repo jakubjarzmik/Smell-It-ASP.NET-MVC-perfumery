@@ -1,6 +1,8 @@
 ﻿@model BrandsViewModel
 @{
     ViewData["Title"] = language.GetValue("Brands");
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 <div class="container">
     <div class="row">
@@ -15,8 +17,8 @@
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>@language.GetValue("Name")</th>
+                                <th>@language.GetValue("Description")</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -26,9 +28,14 @@
                             }
                             @foreach (var item in Model.Brands!)
                             {
+                                var description = "";
+                                if (currentCulture == "pl-PL")
+                                    description = item.DescriptionPL.Length > 80 ? item.DescriptionPL.Substring(0,80) + "..." : item.DescriptionPL;
+                                else
+                                    description = item.DescriptionEN.Length > 80 ? item.DescriptionEN.Substring(0, 80) + "..." : item.DescriptionEN;
                                 <tr>
                                     <td>@item.Name</td>
-                                    <td></td>
+                                    <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">

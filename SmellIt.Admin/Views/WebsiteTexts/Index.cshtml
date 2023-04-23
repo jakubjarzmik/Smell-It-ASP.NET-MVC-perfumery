@@ -1,6 +1,6 @@
 ﻿@model WebsiteTextsViewModel
 @{
-    ViewData["Title"] = language.GetValue("WebsiteText");
+    ViewData["Title"] = language.GetValue("WebsiteTexts");
 }
 <div class="container">
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card grey darken-3 white-text">
                 <div class="card-content">
                     <div class="card-title">
-                        @language.GetValue("WebsiteText")
+                        @language.GetValue("WebsiteTexts")
                         <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
                     </div>
 
@@ -27,8 +27,8 @@
                             @foreach (var item in Model.WebsiteTexts!)
                             {
                                 <tr>
-                                    <td>@(item.TextPL.Length > 20 ? item.TextPL.Substring(0,20) + "..." : item.TextPL)</td>
-                                    <td>@(item.TextEN.Length > 20 ? item.TextEN.Substring(0,20) + "..." : item.TextEN)</td>
+                                    <td>@(item.TextPL.Length > 50 ? item.TextPL.Substring(0,50) + "..." : item.TextPL)</td>
+                                    <td>@(item.TextEN.Length > 50 ? item.TextEN.Substring(0,50) + "..." : item.TextEN)</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">

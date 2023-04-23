@@ -18,16 +18,20 @@ namespace SmellIt.Infrastructure.Seeders
 			{
 				if (!_dbContext.Products.Any())
 				{
-					var polish = new Language { Code = "pl-PL", Name = "Polski" };
-					var english = new Language { Code = "en-GB", Name = "English (GB)" };
-					polish.EncodeName();
-					english.EncodeName();
-					await _dbContext.Languages.AddAsync(polish);
-					await _dbContext.Languages.AddAsync(english);
+                    #region Languages
 
-					#region Addresses
+                    var polish = new Language { Code = "pl-PL", Name = "Polski" };
+                    var english = new Language { Code = "en-GB", Name = "English (GB)" };
+                    polish.EncodeName();
+                    english.EncodeName();
+                    await _dbContext.Languages.AddAsync(polish);
+                    await _dbContext.Languages.AddAsync(english);
 
-					var address = new Address
+                    #endregion
+
+                    #region Addresses
+
+                    var address = new Address
 					{
 						Street = "Robotnicza 91",
 						PostalCode = "30-545",
@@ -713,8 +717,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> phoneNumberTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = phoneNumber, Language = polish, Text = "+48 777 321 321" },
-						new WebsiteTextTranslation { LayoutText = phoneNumber, Language = english, Text = "+48 777 321 321" },
+						new WebsiteTextTranslation { WebsiteText = phoneNumber, Language = polish, Text = "+48 777 321 321" },
+						new WebsiteTextTranslation { WebsiteText = phoneNumber, Language = english, Text = "+48 777 321 321" },
 					};
 					foreach (var x in phoneNumberTranslations)
 					{
@@ -729,8 +733,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> totalTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = total, Language = polish, Text = "Razem" },
-						new WebsiteTextTranslation { LayoutText = total, Language = english, Text = "Total" },
+						new WebsiteTextTranslation { WebsiteText = total, Language = polish, Text = "Razem" },
+						new WebsiteTextTranslation { WebsiteText = total, Language = english, Text = "Total" },
 					};
 					foreach (var x in totalTranslations)
 					{
@@ -745,8 +749,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> cartTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = cart, Language = polish, Text = "Koszyk" },
-						new WebsiteTextTranslation { LayoutText = cart, Language = english, Text = "Cart" },
+						new WebsiteTextTranslation { WebsiteText = cart, Language = polish, Text = "Koszyk" },
+						new WebsiteTextTranslation { WebsiteText = cart, Language = english, Text = "Cart" },
 					};
 					foreach (var x in cartTranslations)
 					{
@@ -761,8 +765,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> searchTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = search, Language = polish, Text = "Szukaj" },
-						new WebsiteTextTranslation { LayoutText = search, Language = english, Text = "Search" },
+						new WebsiteTextTranslation { WebsiteText = search, Language = polish, Text = "Szukaj" },
+						new WebsiteTextTranslation { WebsiteText = search, Language = english, Text = "Search" },
 					};
 					foreach (var x in searchTranslations)
 					{
@@ -777,8 +781,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> homeTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = home, Language = polish, Text = "Strona główna" },
-						new WebsiteTextTranslation { LayoutText = home, Language = english, Text = "Home" },
+						new WebsiteTextTranslation { WebsiteText = home, Language = polish, Text = "Strona główna" },
+						new WebsiteTextTranslation { WebsiteText = home, Language = english, Text = "Home" },
 					};
 					foreach (var x in homeTranslations)
 					{
@@ -793,8 +797,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> productsTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = products, Language = polish, Text = "Produkty" },
-						new WebsiteTextTranslation { LayoutText = products, Language = english, Text = "Products" },
+						new WebsiteTextTranslation { WebsiteText = products, Language = polish, Text = "Produkty" },
+						new WebsiteTextTranslation { WebsiteText = products, Language = english, Text = "Products" },
 					};
 					foreach (var x in productsTranslations)
 					{
@@ -809,8 +813,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> contactTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = contact, Language = polish, Text = "Kontakt" },
-						new WebsiteTextTranslation { LayoutText = contact, Language = english, Text = "Contact" },
+						new WebsiteTextTranslation { WebsiteText = contact, Language = polish, Text = "Kontakt" },
+						new WebsiteTextTranslation { WebsiteText = contact, Language = english, Text = "Contact" },
 					};
 					foreach (var x in contactTranslations)
 					{
@@ -825,8 +829,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> aboutUsTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = aboutUs, Language = polish, Text = "O nas" },
-						new WebsiteTextTranslation { LayoutText = aboutUs, Language = english, Text = "About Us" },
+						new WebsiteTextTranslation { WebsiteText = aboutUs, Language = polish, Text = "O nas" },
+						new WebsiteTextTranslation { WebsiteText = aboutUs, Language = english, Text = "About Us" },
 					};
 					foreach (var x in aboutUsTranslations)
 					{
@@ -841,8 +845,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> signInTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = signIn, Language = polish, Text = "Zaloguj się" },
-						new WebsiteTextTranslation { LayoutText = signIn, Language = english, Text = "Sign in" },
+						new WebsiteTextTranslation { WebsiteText = signIn, Language = polish, Text = "Zaloguj się" },
+						new WebsiteTextTranslation { WebsiteText = signIn, Language = english, Text = "Sign in" },
 					};
 					foreach (var x in signInTranslations)
 					{
@@ -857,8 +861,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> registerTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = register, Language = polish, Text = "Zarejestruj się" },
-						new WebsiteTextTranslation { LayoutText = register, Language = english, Text = "Register" },
+						new WebsiteTextTranslation { WebsiteText = register, Language = polish, Text = "Zarejestruj się" },
+						new WebsiteTextTranslation { WebsiteText = register, Language = english, Text = "Register" },
 					};
 					foreach (var x in registerTranslations)
 					{
@@ -873,8 +877,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> subscribeToNewsletterTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = subscribeToNewsletter, Language = polish, Text = "Zapisz się do newsletter'a" },
-						new WebsiteTextTranslation { LayoutText = subscribeToNewsletter, Language = english, Text = "Subscribe to Newsletter" },
+						new WebsiteTextTranslation { WebsiteText = subscribeToNewsletter, Language = polish, Text = "Zapisz się do newsletter'a" },
+						new WebsiteTextTranslation { WebsiteText = subscribeToNewsletter, Language = english, Text = "Subscribe to Newsletter" },
 					};
 					foreach (var x in subscribeToNewsletterTranslations)
 					{
@@ -889,8 +893,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> subscribeToNewsletterDescTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = polish, Text = "Jako pierwszy dowiesz się o najnowszych promocjach i produktach" },
-						new WebsiteTextTranslation { LayoutText = subscribeToNewsletterDesc, Language = english, Text = "Be the first to find out about the latest promotions and products" },
+						new WebsiteTextTranslation { WebsiteText = subscribeToNewsletterDesc, Language = polish, Text = "Jako pierwszy dowiesz się o najnowszych promocjach i produktach" },
+						new WebsiteTextTranslation { WebsiteText = subscribeToNewsletterDesc, Language = english, Text = "Be the first to find out about the latest promotions and products" },
 					};
 					foreach (var x in subscribeToNewsletterDescTranslations)
 					{
@@ -905,8 +909,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> enterYourEmailTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = enterYourEmail, Language = polish, Text = "Podaj swój adres e-mail" },
-						new WebsiteTextTranslation { LayoutText = enterYourEmail, Language = english, Text = "Enter your e-mail" },
+						new WebsiteTextTranslation { WebsiteText = enterYourEmail, Language = polish, Text = "Podaj swój adres e-mail" },
+						new WebsiteTextTranslation { WebsiteText = enterYourEmail, Language = english, Text = "Enter your e-mail" },
 					};
 					foreach (var x in enterYourEmailTranslations)
 					{
@@ -921,8 +925,8 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> subscribeNowTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = subscribeNow, Language = polish, Text = "Subskrybuj!" },
-						new WebsiteTextTranslation { LayoutText = subscribeNow, Language = english, Text = "Subscribe Now!" },
+						new WebsiteTextTranslation { WebsiteText = subscribeNow, Language = polish, Text = "Subskrybuj!" },
+						new WebsiteTextTranslation { WebsiteText = subscribeNow, Language = english, Text = "Subscribe Now!" },
 					};
 					foreach (var x in subscribeNowTranslations)
 					{
@@ -937,14 +941,254 @@ namespace SmellIt.Infrastructure.Seeders
 
 					List<WebsiteTextTranslation> privacyPolicyTranslations = new()
 					{
-						new WebsiteTextTranslation { LayoutText = privacyPolicy, Language = polish, Text = "Polityka prywatności" },
-						new WebsiteTextTranslation { LayoutText = privacyPolicy, Language = english, Text = "Privacy Policy" },
+						new WebsiteTextTranslation { WebsiteText = privacyPolicy, Language = polish, Text = "Polityka prywatności" },
+						new WebsiteTextTranslation { WebsiteText = privacyPolicy, Language = english, Text = "Privacy Policy" },
 					};
 					foreach (var x in privacyPolicyTranslations)
 					{
 						x.EncodeName();
 					}
 					await _dbContext.WebsiteTextTranslations.AddRangeAsync(privacyPolicyTranslations);
+
+
+					var sortBy = new WebsiteText { Key = "SortBy" };
+                    sortBy.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(sortBy);
+
+					List<WebsiteTextTranslation> sortByTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = sortBy, Language = polish, Text = "Sortuj według" },
+						new WebsiteTextTranslation { WebsiteText = sortBy, Language = english, Text = "Sort by" },
+					};
+					foreach (var x in sortByTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(sortByTranslations);
+
+
+					var newest = new WebsiteText { Key = "Newest" };
+                    newest.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(newest);
+
+					List<WebsiteTextTranslation> newestTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = newest, Language = polish, Text = "Najnowsze" },
+						new WebsiteTextTranslation { WebsiteText = newest, Language = english, Text = "Newest" },
+					};
+					foreach (var x in newestTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(newestTranslations);
+
+
+					var oldest = new WebsiteText { Key = "Oldest" };
+                    oldest.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(oldest);
+
+					List<WebsiteTextTranslation> oldestTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = oldest, Language = polish, Text = "Najstarsze" },
+						new WebsiteTextTranslation { WebsiteText = oldest, Language = english, Text = "Oldest" },
+					};
+					foreach (var x in oldestTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(oldestTranslations);
+
+
+					var priceAscending = new WebsiteText { Key = "PriceAscending" };
+                    priceAscending.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(priceAscending);
+
+					List<WebsiteTextTranslation> priceAscendingTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = priceAscending, Language = polish, Text = "Cena rosnąco" },
+						new WebsiteTextTranslation { WebsiteText = priceAscending, Language = english, Text = "Price ascending" },
+					};
+					foreach (var x in priceAscendingTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(priceAscendingTranslations);
+
+
+                    var priceDescending = new WebsiteText { Key = "PriceDescending" };
+                    priceDescending.EncodeName();
+                    await _dbContext.WebsiteTexts.AddAsync(priceDescending);
+
+                    List<WebsiteTextTranslation> priceDescendingTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = priceDescending, Language = polish, Text = "Cena malejąco" },
+                        new WebsiteTextTranslation { WebsiteText = priceDescending, Language = english, Text = "Price descending" },
+                    };
+                    foreach (var x in priceDescendingTranslations)
+                    {
+                        x.EncodeName();
+                    }
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(priceDescendingTranslations);
+
+
+                    var filters = new WebsiteText { Key = "Filters" };
+                    filters.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(filters);
+
+					List<WebsiteTextTranslation> filtersTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = filters, Language = polish, Text = "Filtry" },
+						new WebsiteTextTranslation { WebsiteText = filters, Language = english, Text = "Filters" },
+					};
+					foreach (var x in filtersTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(filtersTranslations);
+
+
+					var category = new WebsiteText { Key = "Category" };
+                    category.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(category);
+
+					List<WebsiteTextTranslation> categoryTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = category, Language = polish, Text = "Kategoria" },
+						new WebsiteTextTranslation { WebsiteText = category, Language = english, Text = "Category" },
+					};
+					foreach (var x in categoryTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(categoryTranslations);
+
+
+					var gender = new WebsiteText { Key = "Gender" };
+                    gender.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(gender);
+
+					List<WebsiteTextTranslation> genderTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = gender, Language = polish, Text = "Płeć" },
+						new WebsiteTextTranslation { WebsiteText = gender, Language = english, Text = "Gender" },
+					};
+					foreach (var x in genderTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(genderTranslations);
+
+
+                    var brand = new WebsiteText { Key = "Brand" };
+                    brand.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(brand);
+
+					List<WebsiteTextTranslation> brandTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = brand, Language = polish, Text = "Marka" },
+						new WebsiteTextTranslation { WebsiteText = brand, Language = english, Text = "Brand" },
+					};
+					foreach (var x in brandTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(brandTranslations);
+
+
+                    var fragranceCategory = new WebsiteText { Key = "FragranceCategory" };
+                    fragranceCategory.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(fragranceCategory);
+
+					List<WebsiteTextTranslation> fragranceCategoryTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = fragranceCategory, Language = polish, Text = "Kategoria zapachu" },
+						new WebsiteTextTranslation { WebsiteText = fragranceCategory, Language = english, Text = "Fragrance category" },
+					};
+					foreach (var x in fragranceCategoryTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(fragranceCategoryTranslations);
+
+
+					var yourName = new WebsiteText { Key = "YourName" };
+                    yourName.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(yourName);
+
+					List<WebsiteTextTranslation> yourNameTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = yourName, Language = polish, Text = "Twoje imię" },
+						new WebsiteTextTranslation { WebsiteText = yourName, Language = english, Text = "Your name" },
+					};
+					foreach (var x in yourNameTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(yourNameTranslations);
+
+
+					var subject = new WebsiteText { Key = "Subject" };
+                    subject.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(subject);
+
+					List<WebsiteTextTranslation> subjectTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = subject, Language = polish, Text = "Temat" },
+						new WebsiteTextTranslation { WebsiteText = subject, Language = english, Text = "Subject" },
+					};
+					foreach (var x in subjectTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(subjectTranslations);
+
+
+					var message = new WebsiteText { Key = "Message" };
+                    message.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(message);
+
+					List<WebsiteTextTranslation> messageTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = message, Language = polish, Text = "Wiadomość" },
+						new WebsiteTextTranslation { WebsiteText = message, Language = english, Text = "Message" },
+					};
+					foreach (var x in messageTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(messageTranslations);
+
+
+					var send = new WebsiteText { Key = "Send" };
+                    send.EncodeName();
+					await _dbContext.WebsiteTexts.AddAsync(send);
+
+					List<WebsiteTextTranslation> sendTranslations = new()
+					{
+						new WebsiteTextTranslation { WebsiteText = send, Language = polish, Text = "Wyślij" },
+						new WebsiteTextTranslation { WebsiteText = send, Language = english, Text = "Send" },
+					};
+					foreach (var x in sendTranslations)
+					{
+						x.EncodeName();
+					}
+					await _dbContext.WebsiteTextTranslations.AddRangeAsync(sendTranslations);
+
+
+					//var  = new WebsiteText { Key = "" };
+					//.EncodeName();
+					//await _dbContext.WebsiteTexts.AddAsync();
+
+					//List<WebsiteTextTranslation> Translations = new()
+					//{
+					//	new WebsiteTextTranslation { WebsiteText = , Language = polish, Text = "" },
+					//	new WebsiteTextTranslation { WebsiteText = , Language = english, Text = "" },
+					//};
+					//foreach (var x in Translations)
+					//{
+					//	x.EncodeName();
+					//}
+					//await _dbContext.WebsiteTextTranslations.AddRangeAsync(Translations);
 
 					#endregion
 

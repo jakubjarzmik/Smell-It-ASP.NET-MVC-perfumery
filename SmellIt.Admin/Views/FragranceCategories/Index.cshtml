@@ -17,8 +17,8 @@
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>@language.GetValue("Name")</th>
+                                <th>@language.GetValue("Description")</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -28,9 +28,14 @@
                             }
                             @foreach (var item in Model.FragranceCategories!)
                             {
+                                var description = "";
+                                if (currentCulture == "pl-PL" && item.DescriptionPL != null)
+                                    description = item.DescriptionPL.Length > 80 ? item.DescriptionPL.Substring(0, 80) + "..." : item.DescriptionPL;
+                                else if (currentCulture == "en-GB" && item.DescriptionEN != null)
+                                    description = item.DescriptionEN.Length > 80 ? item.DescriptionEN.Substring(0, 80) + "..." : item.DescriptionEN;
                                 <tr>
                                     <td>@(currentCulture == "pl-PL" ? item.NamePL : item.NameEN)</td>
-                                    <td></td>
+                                    <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">

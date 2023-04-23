@@ -8,24 +8,30 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText
     public class CreateWebsiteTextCommandHandler : IRequestHandler<CreateWebsiteTextCommand>
     {
         private readonly IWebsiteTextRepository _websiteTextRepository;
+        private readonly ILanguageRepository _languageRepository;
         private readonly IMapper _mapper;
-        public CreateWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository, IMapper mapper)
+        public CreateWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository,ILanguageRepository languageRepository, IMapper mapper)
         {
             _websiteTextRepository = websiteTextRepository;
+            _languageRepository = languageRepository;
             _mapper = mapper;
         }
         public async Task<Unit> Handle(CreateWebsiteTextCommand request, CancellationToken cancellationToken)
         {
-            var websiteTexts = _mapper.Map<WebsiteText>(request);
-            websiteTexts.EncodeName();
+            var websiteText = _mapper.Map<WebsiteText>(request);
+            websiteText.EncodeName();
 
-            foreach (var translation in websiteTexts.LayoutTextTranslations!)
+            foreach (var translation in websiteText.LayoutTextTranslations!)
             {
-                translation.LayoutText = websiteTexts;
+                translation.WebsiteText = websiteText;
+                if (translation.Text == request.TextPL)
+                    translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
+                else if (translation.Text == request.TextEN)
+                    translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
                 translation.EncodeName();
             }
 
-            await _websiteTextRepository.Create(websiteTexts);
+            await _websiteTextRepository.Create(websiteText);
 
             return Unit.Value;
         }

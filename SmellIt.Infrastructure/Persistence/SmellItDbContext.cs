@@ -173,11 +173,11 @@ namespace SmellIt.Infrastructure.Persistence
 
             modelBuilder.Entity<WebsiteText>()
                 .HasMany(lt => lt.LayoutTextTranslations)
-                .WithOne(ltt => ltt.LayoutText)
+                .WithOne(ltt => ltt.WebsiteText)
                 .HasForeignKey(ltt => ltt.LayoutTextId);
 
             modelBuilder.Entity<WebsiteTextTranslation>()
-                .HasOne(lt => lt.LayoutText)
+                .HasOne(lt => lt.WebsiteText)
                 .WithMany(l => l.LayoutTextTranslations)
                 .HasForeignKey(lt => lt.LayoutTextId);
             modelBuilder.Entity<WebsiteTextTranslation>()
