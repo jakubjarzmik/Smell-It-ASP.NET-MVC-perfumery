@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.HomeBanners;
-using SmellIt.Application.SmellIt.HomeBanners.Commands.EditWebsiteText;
+using SmellIt.Application.SmellIt.WebsiteTexts;
+using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
 using SmellIt.Domain.Entities;
 
-namespace SmellIt.Application.Mappings.HomeBannerMapping;
+namespace SmellIt.Application.Mappings.WebsiteTextMapping;
 public class WebsiteTextMappingProfile : Profile
 {
     public WebsiteTextMappingProfile()

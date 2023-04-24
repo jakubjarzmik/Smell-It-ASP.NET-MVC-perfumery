@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.HomeBanners;
+using SmellIt.Application.SmellIt.WebsiteTexts;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 

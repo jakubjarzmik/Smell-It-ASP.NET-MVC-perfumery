@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using MediatR;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetWebsiteTextByEncodedName;
+using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
 
 namespace SmellIt.Application.Services;
 public class WebsiteTextsService

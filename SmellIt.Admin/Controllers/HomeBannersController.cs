@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncodedName;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
@@ -59,6 +60,7 @@ public class HomeBannersController : Controller
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
+
 
     [Route("HomeBanner/{encodedName}/Edit")]
     public async Task<IActionResult> Edit(string encodedName)

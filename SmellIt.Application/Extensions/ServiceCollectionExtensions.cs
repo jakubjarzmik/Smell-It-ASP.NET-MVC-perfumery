@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Application.Mappings.BrandMapping;
 using SmellIt.Application.Mappings.FragranceCategoryMapping;
 using SmellIt.Application.Mappings.HomeBannerMapping;
+using SmellIt.Application.Mappings.WebsiteTextMapping;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCategory;
