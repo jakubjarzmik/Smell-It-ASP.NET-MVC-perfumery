@@ -13,9 +13,9 @@ public class WebsiteTextRepository : IWebsiteTextRepository
         _dbContext = dbContext;
     }
 
-    public async Task Create(WebsiteText layoutText)
+    public async Task Create(WebsiteText websiteText)
     {
-        _dbContext.Add(layoutText);
+        _dbContext.Add(websiteText);
         await _dbContext.SaveChangesAsync();
     }
 

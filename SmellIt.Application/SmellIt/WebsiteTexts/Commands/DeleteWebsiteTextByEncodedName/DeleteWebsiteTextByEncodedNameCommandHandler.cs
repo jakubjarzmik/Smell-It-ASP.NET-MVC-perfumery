@@ -20,7 +20,7 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByE
             layoutText.IsActive = false;
             layoutText.DeletedAt = DateTime.UtcNow;
 
-            var layoutTextTranslations = await _websiteTextTranslationRepository.GetLayoutTextTranslations(layoutText.Id);
+            var layoutTextTranslations = await _websiteTextTranslationRepository.GetWebsiteTextTranslations(layoutText.Id);
             foreach (var brandTranslation in layoutTextTranslations)
             {
                 brandTranslation.IsActive = false;

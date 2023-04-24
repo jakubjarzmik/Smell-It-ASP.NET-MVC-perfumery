@@ -17,13 +17,13 @@ public class WebsiteTextTranslationRepository : IWebsiteTextTranslationRepositor
         => await _dbContext.WebsiteTextTranslations.Where(ltt 
             => ltt.IsActive).ToListAsync();
 
-    public async Task<IEnumerable<WebsiteTextTranslation>> GetLayoutTextTranslations(int layoutTextId)
+    public async Task<IEnumerable<WebsiteTextTranslation>> GetWebsiteTextTranslations(int websiteTextId)
         => await _dbContext.WebsiteTextTranslations.Where(ltt 
-            => ltt.IsActive && ltt.LayoutTextId == layoutTextId).ToListAsync();
+            => ltt.IsActive && ltt.LayoutTextId == websiteTextId).ToListAsync();
 
-    public async Task<WebsiteTextTranslation?> GetTranslation(int layoutTextId, string languageCode)
+    public async Task<WebsiteTextTranslation?> GetTranslation(int websiteTextId, string languageCode)
         => await _dbContext.WebsiteTextTranslations.FirstOrDefaultAsync(ltt 
-            => ltt.IsActive && ltt.LayoutTextId == layoutTextId && ltt.Language.Code.ToLower() == languageCode.ToLower());
+            => ltt.IsActive && ltt.LayoutTextId == websiteTextId && ltt.Language.Code.ToLower() == languageCode.ToLower());
 
     public async Task<WebsiteTextTranslation?> GetByEncodedName(string encodedName)
         => await _dbContext.WebsiteTextTranslations.FirstOrDefaultAsync(ltt 

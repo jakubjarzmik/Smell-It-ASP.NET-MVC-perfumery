@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using MediatR;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetWebsiteTextByEncodedName;
 
-namespace SmellIt.Website.Models;
+namespace SmellIt.Application.Services;
 public class WebsiteTextsService
 {
     private readonly IMediator _mediator;
@@ -15,6 +15,8 @@ public class WebsiteTextsService
     public string GetValue(string key)
     {
         var layoutText = _mediator.Send(new GetWebsiteTextByEncodedNameQuery(key.ToLower())).Result;
+        if (layoutText == null)
+            return key;
         if (CultureInfo.CurrentCulture.ToString().Equals("pl-PL"))
             return layoutText.TextPL;
         return layoutText.TextEN;

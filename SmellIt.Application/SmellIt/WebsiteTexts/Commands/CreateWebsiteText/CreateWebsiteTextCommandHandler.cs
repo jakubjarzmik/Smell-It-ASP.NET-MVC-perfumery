@@ -21,7 +21,7 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText
             var websiteText = _mapper.Map<WebsiteText>(request);
             websiteText.EncodeName();
 
-            foreach (var translation in websiteText.LayoutTextTranslations!)
+            foreach (var translation in websiteText.WebsiteTextTranslations!)
             {
                 translation.WebsiteText = websiteText;
                 if (translation.Text == request.TextPL)

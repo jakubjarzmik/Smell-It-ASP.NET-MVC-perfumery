@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetAllWebsiteTexts;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
+using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
+using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteWebsiteTextByEncodedName;
+using SmellIt.Application.SmellIt.HomeBanners.Commands.EditWebsiteText;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllWebsiteTexts;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetWebsiteTextByEncodedName;
 using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;

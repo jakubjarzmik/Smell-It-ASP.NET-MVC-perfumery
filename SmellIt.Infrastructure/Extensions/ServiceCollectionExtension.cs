@@ -23,6 +23,8 @@ namespace SmellIt.Infrastructure.Extensions
             services.AddScoped<IFragranceCategoryTranslationRepository, FragranceCategoryTranslationRepository>();
             services.AddScoped<IWebsiteTextRepository, WebsiteTextRepository>();
             services.AddScoped<IWebsiteTextTranslationRepository, WebsiteTextTranslationRepository>();
+            services.AddScoped<IHomeBannerRepository, HomeBannerRepository>();
+            services.AddScoped<IHomeBannerTranslationRepository, HomeBannerTranslationRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
     }

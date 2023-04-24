@@ -1,6 +1,6 @@
 ﻿@inject LanguageService language
 @{
-    ViewData["Title"] = @language.GetValue("Contact");
+    ViewData["Title"] = @WebsiteTexts.GetValue("Contact");
 }
 
 
@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content">
-                    <h1 class="page-name">@language.GetValue("Contact")</h1>
+                    <h1 class="page-name">@WebsiteTexts.GetValue("Contact")</h1>
                     <ol class="breadcrumb">
                         <li><a href="index.html">Home</a></li>
-                        <li class="active">@language.GetValue("Contact")</li>
+                        <li class="active">@WebsiteTexts.GetValue("Contact")</li>
                     </ol>
                 </div>
             </div>
@@ -32,31 +32,31 @@
                     <form id="contact-form" method="post" action="" role="form">
 
                         <div class="form-group">
-                            <input type="text" placeholder="@language.GetValue("YourName")" class="form-control" name="name" id="name">
+                            <input type="text" placeholder="@WebsiteTexts.GetValue("YourName")" class="form-control" name="name" id="name">
                         </div>
 
                         <div class="form-group">
-                            <input type="email" placeholder="@language.GetValue("YourEmail")" class="form-control" name="email" id="email">
+                            <input type="email" placeholder="@WebsiteTexts.GetValue("YourEmail")" class="form-control" name="email" id="email">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" placeholder="@language.GetValue("Subject")" class="form-control" name="subject" id="subject">
+                            <input type="text" placeholder="@WebsiteTexts.GetValue("Subject")" class="form-control" name="subject" id="subject">
                         </div>
 
                         <div class="form-group">
-                            <textarea rows="6" placeholder="@language.GetValue("Message")" class="form-control" name="message" id="message"></textarea>
+                            <textarea rows="6" placeholder="@WebsiteTexts.GetValue("Message")" class="form-control" name="message" id="message"></textarea>
                         </div>
 
                         <div id="mail-success" class="success">
-                            @language.GetValue("ThanksForMessage")
+                            @WebsiteTexts.GetValue("ThanksForMessage")
                         </div>
 
                         <div id="mail-fail" class="error">
-                            @language.GetValue("SomethingWentWrong")
+                            @WebsiteTexts.GetValue("SomethingWentWrong")
                         </div>
 
                         <div id="cf-submit">
-                            <input type="submit" id="contact-submit" class="btn btn-transparent" value="@language.GetValue("Send")">
+                            <input type="submit" id="contact-submit" class="btn btn-transparent" value="@WebsiteTexts.GetValue("Send")">
                         </div>
 
                     </form>
@@ -75,15 +75,11 @@
                         </li>
                         <li>
                             <i class="tf-ion-android-phone-portrait"></i>
-                            <span>@language.GetValue("Phone"): +48 777 321 321</span>
-                        </li>
-                        <li>
-                            <i class="tf-ion-android-globe"></i>
-                            <span>Fax: +48 777 321 321</span>
+                            <span>@WebsiteTexts.GetValue("PhoneNumber")</span>
                         </li>
                         <li>
                             <i class="tf-ion-android-mail"></i>
-                            <span>Email: info@smellit.com</span>
+                            <span>@WebsiteTexts.GetValue("EmailSmellIt")</span>
                         </li>
                     </ul>
                     <!-- Footer Social Links -->

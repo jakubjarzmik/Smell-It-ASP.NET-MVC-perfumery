@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.SmellIt.WebsiteTexts;
+using SmellIt.Application.SmellIt.HomeBanners;
 
-namespace SmellIt.Application.Mappings.WebsiteTextMapping;
+namespace SmellIt.Application.Mappings.HomeBannerMapping;
 public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, WebsiteText, List<WebsiteTextTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;

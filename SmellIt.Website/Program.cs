@@ -3,6 +3,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using SmellIt.Application.Extensions;
+using SmellIt.Application.Services;
 using SmellIt.Infrastructure.Extensions;
 using SmellIt.Infrastructure.Seeders;
 using SmellIt.Website.Models;
