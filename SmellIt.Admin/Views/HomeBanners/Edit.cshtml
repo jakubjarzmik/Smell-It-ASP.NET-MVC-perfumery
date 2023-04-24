@@ -1,7 +1,7 @@
 ﻿@model SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner.EditHomeBannerCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditLayoutText");
+    ViewData["Title"] = language.GetValue("EditHomeBanner");
 }
 <div class="container">
     <div class="row">
@@ -10,11 +10,12 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="card-title col s12">
-                            <a class="btn left" asp-controller="WebsiteTexts" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("EditLayoutText") @Model.Key</p>
+                            <a class="btn left" asp-controller="HomeBanners" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
+                            <p class="right">@language.GetValue("EditHomeBanner") @Model.Key</p>
                         </div>
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
+                            <img class="image-in-modal" src="@Model.ImagePath" />
                             <div class="input-field col s12">
                                 <label asp-for="TextPL">(PL) @language.GetValue("Text")</label>
                                 <textarea class="materialize-textarea" asp-for="TextPL"></textarea>

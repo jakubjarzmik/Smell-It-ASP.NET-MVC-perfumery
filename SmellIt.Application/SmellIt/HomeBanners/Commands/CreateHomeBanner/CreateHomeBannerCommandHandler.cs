@@ -44,12 +44,12 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
             return Unit.Value;
         }
 
-        public async Task<string> UploadImageAsync(IFormFile file, string key)
+        public static async Task<string> UploadImageAsync(IFormFile file, string key)
         {
             using var httpClient = new HttpClient();
             using var content = new MultipartFormDataContent();
-            using var fileStream = file.OpenReadStream();
-            string extension = "." + file.FileName.Substring(file.FileName.LastIndexOf('.') + 1);
+            await using var fileStream = file.OpenReadStream();
+            var extension = "." + file.FileName[(file.FileName.LastIndexOf('.') + 1)..];
 
 
             content.Add(new StreamContent(fileStream), "file", key+extension);

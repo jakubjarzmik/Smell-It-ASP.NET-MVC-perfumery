@@ -132,11 +132,14 @@
   <data name="AddNewFragranceCategory" xml:space="preserve">
     <value>Add new fragrance category</value>
   </data>
-  <data name="AddNewLayoutText" xml:space="preserve">
-    <value>Add new layout text</value>
+  <data name="AddNewHomeBanner" xml:space="preserve">
+    <value>Add new home banner</value>
   </data>
   <data name="AddNewProduct" xml:space="preserve">
     <value>Add new product</value>
+  </data>
+  <data name="AddNewWebsiteText" xml:space="preserve">
+    <value>Add new website text</value>
   </data>
   <data name="AddToCart" xml:space="preserve">
     <value>Add to cart</value>
@@ -216,8 +219,14 @@
   <data name="EditFragranceCategory" xml:space="preserve">
     <value>Edit fragrance category</value>
   </data>
+  <data name="EditHomeBanner" xml:space="preserve">
+    <value>Edit home banner</value>
+  </data>
   <data name="EditLayoutText" xml:space="preserve">
     <value>Edit layout text</value>
+  </data>
+  <data name="EditWebsiteText" xml:space="preserve">
+    <value>Edit website text</value>
   </data>
   <data name="EnterEmail" xml:space="preserve">
     <value>Enter your email address</value>
@@ -255,6 +264,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="HomeBanners" xml:space="preserve">
+    <value>Home banners</value>
+  </data>
   <data name="HomeFragrance" xml:space="preserve">
     <value>Home Fragrance</value>
   </data>
@@ -272,9 +284,6 @@
   </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Latest registered users</value>
-  </data>
-  <data name="LayoutTexts" xml:space="preserve">
-    <value>Layout texts</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>

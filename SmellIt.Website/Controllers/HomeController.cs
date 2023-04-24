@@ -1,19 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmellIt.Website.Models;
 using System.Diagnostics;
+using MediatR;
 using Microsoft.AspNetCore.Localization;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 
 namespace SmellIt.Website.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IMediator _mediator;
+        private readonly IWebHostEnvironment _env;
+
+        public HomeController(IMediator mediator, IWebHostEnvironment env)
         {
-            
+            _mediator = mediator;
+            _env = env;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var banners = (await _mediator.Send(new GetAllHomeBannersQuery()));
+            var bannerKeys = banners.Select(b => b.Key);
+
+            var imagesFolderPath = Path.Combine(_env.WebRootPath, "images/banners");
+            
+            var filesInFolder = Directory.GetFiles(imagesFolderPath);
+            
+            foreach (var filePath in filesInFolder)
+            {
+                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                if (!bannerKeys.Contains(fileName))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            ViewBag.Banners = banners;
             return View();
         }
         public IActionResult Products()

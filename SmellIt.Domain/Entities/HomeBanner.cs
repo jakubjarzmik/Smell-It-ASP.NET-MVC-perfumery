@@ -9,8 +9,6 @@ public class HomeBanner : BaseEntity
     public string Key { get; set; } = default!;
     [MaxLength(255)]
     public string ImagePath { get; set; } = default!;
-    [MaxLength(50)]
-    public string? ImageAlt { get; set; }
     public virtual List<HomeBannerTranslation> HomeBannerTranslations { get; set; } = new();
 
     public override void EncodeName() => EncodedName = Key.ConvertToEncodedName();

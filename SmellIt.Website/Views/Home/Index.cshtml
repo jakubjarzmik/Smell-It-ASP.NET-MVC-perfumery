@@ -4,52 +4,7 @@
 }
 
 <div class="hero-slider">
-	<div class="slider-item th-fullpage hero-area" style="background-image: url(/images/banners/banner1.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 text-center">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
-                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetValue("BannerText1")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="slider-item th-fullpage hero-area" style="background-image: url(/images/banners/banner2.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 text-center">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
-                    <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Dior - SAVUAGE<br/>
-						@Language.GetValue("BannerText2")
-					</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="slider-item th-fullpage hero-area" style="background-image: url(images/banners/banner4.png);">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 text-right">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Armani Sì<br>@Language.GetValue("BannerText3")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="slider-item th-fullpage hero-area" style="background-image: url(images/banners/banner3.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 text-left">
-					<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@Language.GetValue("Products")</p>
-					<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Language.GetValue("BannerText4")</h1>
-					<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@Language.GetValue("SeeNow")</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	@await Html.PartialAsync("Banners", (IEnumerable<SmellIt.Application.SmellIt.HomeBanners.HomeBannerDto>)ViewBag.Banners)
 </div>
 
 @*<section class="product-category section">

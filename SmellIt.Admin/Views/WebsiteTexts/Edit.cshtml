@@ -1,7 +1,7 @@
 ﻿@model SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText.EditWebsiteTextCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditLayoutText");
+    ViewData["Title"] = language.GetValue("EditWebsiteText");
 }
 <div class="container">
     <div class="row">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="card-title col s12">
                             <a class="btn left" asp-controller="WebsiteTexts" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("EditLayoutText") @Model.Key</p>
+                            <p class="right">@language.GetValue("EditWebsiteText") @Model.Key</p>
                         </div>
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>

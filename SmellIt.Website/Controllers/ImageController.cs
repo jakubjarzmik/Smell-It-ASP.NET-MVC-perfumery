@@ -9,11 +9,11 @@ namespace SmellIt.Website.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
-            string fileName = file.FileName;
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "banners");
-            string filePath = Path.Combine(folderPath, fileName);
+            var fileName = file.FileName;
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "banners");
+            var filePath = Path.Combine(folderPath, fileName);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            await using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }

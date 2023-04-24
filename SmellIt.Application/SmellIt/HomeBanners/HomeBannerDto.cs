@@ -6,5 +6,4 @@ public class HomeBannerDto
     public string TextPL { get; set; } = default!;
     public string TextEN { get; set; } = default!;
     public string ImagePath { get; set; } = default!;
-    public string? ImageAlt { get; set; } = default!;
 }

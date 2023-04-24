@@ -20,7 +20,6 @@ builder.Services.AddApplication();
 // Add multi languages
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<LanguageService>();
-builder.Services.AddScoped<LanguageFromDbService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc()
 	.AddViewLocalization()

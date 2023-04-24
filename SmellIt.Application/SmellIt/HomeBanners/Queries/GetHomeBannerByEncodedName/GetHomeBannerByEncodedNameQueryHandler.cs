@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName

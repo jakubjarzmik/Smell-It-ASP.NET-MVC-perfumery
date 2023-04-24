@@ -48,6 +48,9 @@
                             <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
                             </li>
+                            <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "HomeBanners")">@language.GetValue("HomeBanners")</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

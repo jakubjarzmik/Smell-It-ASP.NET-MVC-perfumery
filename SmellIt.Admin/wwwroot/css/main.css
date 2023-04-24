@@ -23,3 +23,9 @@
       height: 40px;
       width: 40px;
   }
+
+.image-in-modal {
+    height: auto;
+    width: 100%;
+    object-fit: scale-down;
+}
