@@ -421,6 +421,44 @@ namespace SmellIt.Infrastructure.Migrations
                     b.ToTable("Languages");
                 });
 
+            modelBuilder.Entity("SmellIt.Domain.Entities.PrivacyPolicy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EncodedName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("PrivacyPolicies");
+                });
+
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -700,9 +738,6 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LayoutTextId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -711,11 +746,14 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("WebsiteTextId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("LayoutTextId");
+                    b.HasIndex("WebsiteTextId");
 
                     b.ToTable("WebsiteTextTranslations");
                 });
@@ -792,6 +830,17 @@ namespace SmellIt.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("HomeBanner");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("SmellIt.Domain.Entities.PrivacyPolicy", b =>
+                {
+                    b.HasOne("SmellIt.Domain.Entities.Language", "Language")
+                        .WithMany("PrivacyPolicies")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Language");
                 });
@@ -895,7 +944,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasOne("SmellIt.Domain.Entities.WebsiteText", "WebsiteText")
                         .WithMany("WebsiteTextTranslations")
-                        .HasForeignKey("LayoutTextId")
+                        .HasForeignKey("WebsiteTextId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -939,6 +988,8 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Navigation("GenderTranslations");
 
                     b.Navigation("HomeBannerTranslations");
+
+                    b.Navigation("PrivacyPolicies");
 
                     b.Navigation("ProductCategoryTranslations");
 

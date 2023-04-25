@@ -135,6 +135,9 @@
   <data name="AddNewHomeBanner" xml:space="preserve">
     <value>Add new home banner</value>
   </data>
+  <data name="AddNewPrivacyPolicy" xml:space="preserve">
+    <value>Add new privacy policy</value>
+  </data>
   <data name="AddNewProduct" xml:space="preserve">
     <value>Add new product</value>
   </data>
@@ -224,6 +227,9 @@
   </data>
   <data name="EditLayoutText" xml:space="preserve">
     <value>Edit layout text</value>
+  </data>
+  <data name="EditPrivacyPolicy" xml:space="preserve">
+    <value>Edit privacy policy</value>
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edit website text</value>
@@ -458,6 +464,9 @@
   </data>
   <data name="PrivacyDesc" xml:space="preserve">
     <value>This Privacy Policy sets out the rules for processing personal data by the online store "Smell it" operated by Smell it Sp. z o.o. with its registered office in Cracow</value>
+  </data>
+  <data name="PrivacyPolicies" xml:space="preserve">
+    <value>Privacy policies</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>

@@ -22,24 +22,30 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
         {
             var homeBanner = _mapper.Map<HomeBanner>(request);
             homeBanner.EncodeName();
-
-            if (request.ImageFile != null)
+            try
             {
-                string imagePath = await UploadImageAsync(request.ImageFile, homeBanner.Key);
-                homeBanner.ImagePath = imagePath;
-            }
+                if (request.ImageFile != null)
+                {
+                    string imagePath = await UploadImageAsync(request.ImageFile, homeBanner.Key);
+                    homeBanner.ImagePath = imagePath;
+                }
 
-            foreach (var translation in homeBanner.HomeBannerTranslations!)
+                foreach (var translation in homeBanner.HomeBannerTranslations!)
+                {
+                    translation.HomeBanner = homeBanner;
+                    if (translation.Text == request.TextPL)
+                        translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
+                    else if (translation.Text == request.TextEN)
+                        translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
+                    translation.EncodeName();
+                }
+
+                await _homeBannerRepository.Create(homeBanner);
+            }
+            catch (Exception ex)
             {
-                translation.HomeBanner = homeBanner;
-                if (translation.Text == request.TextPL)
-                    translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
-                else if (translation.Text == request.TextEN)
-                    translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
-                translation.EncodeName();
+                
             }
-
-            await _homeBannerRepository.Create(homeBanner);
 
             return Unit.Value;
         }

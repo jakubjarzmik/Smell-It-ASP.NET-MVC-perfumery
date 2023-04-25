@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Application.Mappings.BrandMapping;
 using SmellIt.Application.Mappings.FragranceCategoryMapping;
 using SmellIt.Application.Mappings.HomeBannerMapping;
+using SmellIt.Application.Mappings.PrivacyPolicyMapping;
 using SmellIt.Application.Mappings.WebsiteTextMapping;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
@@ -12,6 +13,7 @@ using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCa
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
+using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.CreatePrivacyPolicy;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
 
@@ -24,11 +26,13 @@ public static class ServiceCollectionExtension
         services.AddMediatR(typeof(CreateFragranceCategoryCommand));
         services.AddMediatR(typeof(CreateWebsiteTextCommand));
         services.AddMediatR(typeof(CreateHomeBannerCommand));
+        services.AddMediatR(typeof(CreatePrivacyPolicyCommand));
 
         services.AddAutoMapper(typeof(BrandMappingProfile));
         services.AddAutoMapper(typeof(FragranceCategoryMappingProfile));
         services.AddAutoMapper(typeof(WebsiteTextMappingProfile));
         services.AddAutoMapper(typeof(HomeBannerMappingProfile));
+        services.AddAutoMapper(typeof(PrivacyPolicyMappingProfile));
 
         services.AddValidatorsFromAssemblyContaining<CreateBrandCommandValidator>()
             .AddValidatorsFromAssemblyContaining<EditBrandCommandValidator>()

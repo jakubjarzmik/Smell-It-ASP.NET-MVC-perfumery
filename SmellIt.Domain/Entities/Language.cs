@@ -15,6 +15,7 @@ namespace SmellIt.Domain.Entities
         public virtual List<FragranceCategoryTranslation> FragranceCategoryTranslations { get; set; } = new();
         public virtual List<GenderTranslation> GenderTranslations { get; set; } = new();
         public virtual List<HomeBannerTranslation> HomeBannerTranslations { get; set; } = new();
+        public virtual List<PrivacyPolicy> PrivacyPolicies { get; set; } = new();
         public virtual List<ProductTranslation> ProductTranslations { get; set; } = new();
         public virtual List<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = new();
         public virtual List<WebsiteTextTranslation> WebsiteTexts { get; set; } = new();

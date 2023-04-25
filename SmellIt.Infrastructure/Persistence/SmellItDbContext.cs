@@ -19,6 +19,7 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<HomeBanner> HomeBanners { get; set; } = default!;
         public DbSet<HomeBannerTranslation> HomeBannerTranslations { get; set; } = default!;
         public DbSet<Language> Languages { get; set; } = default!;
+		public DbSet<PrivacyPolicy> PrivacyPolicies { get; set; } = default!;
 		public DbSet<Product> Products { get; set; } = default!;
         public DbSet<ProductTranslation> ProductTranslations { get; set; } = default!;
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
@@ -110,6 +111,10 @@ namespace SmellIt.Infrastructure.Persistence
                 .WithOne(gt => gt.Language)
                 .HasForeignKey(gt => gt.LanguageId);
             modelBuilder.Entity<Language>()
+                .HasMany(l => l.PrivacyPolicies)
+                .WithOne(pp => pp.Language)
+                .HasForeignKey(pp => pp.LanguageId);
+            modelBuilder.Entity<Language>()
                 .HasMany(l => l.ProductTranslations)
                 .WithOne(pt => pt.Language)
                 .HasForeignKey(pt => pt.LanguageId);
@@ -121,6 +126,11 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasMany(l => l.WebsiteTexts)
                 .WithOne(pct => pct.Language)
                 .HasForeignKey(pct => pct.LanguageId);
+
+            modelBuilder.Entity<PrivacyPolicy>()
+                .HasOne(pp => pp.Language)
+                .WithMany(l => l.PrivacyPolicies)
+                .HasForeignKey(pp => pp.LanguageId);
 
             modelBuilder.Entity<Product>()
                 .HasOne(u => u.Category)
@@ -190,12 +200,12 @@ namespace SmellIt.Infrastructure.Persistence
             modelBuilder.Entity<WebsiteText>()
                 .HasMany(lt => lt.WebsiteTextTranslations)
                 .WithOne(ltt => ltt.WebsiteText)
-                .HasForeignKey(ltt => ltt.LayoutTextId);
+                .HasForeignKey(ltt => ltt.WebsiteTextId);
 
             modelBuilder.Entity<WebsiteTextTranslation>()
                 .HasOne(lt => lt.WebsiteText)
                 .WithMany(l => l.WebsiteTextTranslations)
-                .HasForeignKey(lt => lt.LayoutTextId);
+                .HasForeignKey(lt => lt.WebsiteTextId);
             modelBuilder.Entity<WebsiteTextTranslation>()
                 .HasOne(lt => lt.Language)
                 .WithMany(l => l.WebsiteTexts)

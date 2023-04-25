@@ -48,8 +48,11 @@
                             <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
                             </li>
-                            <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
+                            <li class="@(controller == "HomeBanners" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "HomeBanners")">@language.GetValue("HomeBanners")</a>
+                            </li>
+                            <li class="@(controller == "PrivacyPolicies" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "PrivacyPolicies")">@language.GetValue("PrivacyPolicies")</a>
                             </li>
                         </ul>
                     </li>
@@ -147,8 +150,7 @@
             src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="~/lib/materialize/js/materialize.min.js"></script>
     <script src="~/js/chart.js"></script>
-    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-    <script>
+<script>
         $('.section').hide();
         $(document).ready(function () {
             $('.section').fadeIn();
