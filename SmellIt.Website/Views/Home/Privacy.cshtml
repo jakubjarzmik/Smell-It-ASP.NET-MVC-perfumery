@@ -1,74 +1,25 @@
 ﻿@inject LanguageService Language
+@model SmellIt.Application.SmellIt.PrivacyPolicies.PrivacyPolicyDto
 @{
-    ViewData["Title"] = @Language.GetValue("PrivacyPolicy");
+    ViewData["Title"] = @WebsiteTexts.GetValue("PrivacyPolicy");
 }
 <style>
-    .dot:before {
+    .dots li:before {
         content: "\2022";
+        margin-left: 10px;
         margin-right: 10px;
+    }
+    .dots li {
+        font-family: "Poppins", sans-serif;
+        color: #757575;
+        font-size: 15px;
     }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <h2 class="text-center">@Language.GetValue("PrivacyTitle")</h2>
-
-            <p>@Language.GetValue("PrivacyDesc")</p>
-
-            <h3>@Language.GetValue("Privacy1Heading")</h3>
-            <p>@Language.GetValue("Privacy1Paragraph")</p>
-
-            <h3>@Language.GetValue("Privacy2Heading")</h3>
-            <p>@Language.GetValue("Privacy2Paragraph")</p>
-            <p>
-                @Language.GetValue("Privacy2ParagraphListBeginning")
-                <ul>
-                    <li class="dot">@Language.GetValue("Privacy2ParagraphList1")</li>
-                    <li class="dot">@Language.GetValue("Privacy2ParagraphList2")</li>
-                    <li class="dot">@Language.GetValue("Privacy2ParagraphList3")</li>
-                </ul>
-            </p>
-
-            <h3>@Language.GetValue("Privacy3Heading")</h3>
-            <p>
-                @Language.GetValue("Privacy3ParagraphListBeginning")
-                <ul>
-                    <li class="dot">@Language.GetValue("Privacy3ParagraphList1")</li>
-                    <li class="dot">@Language.GetValue("Privacy3ParagraphList2")</li>
-                    <li class="dot">@Language.GetValue("Privacy3ParagraphList3")</li>
-                    <li class="dot">@Language.GetValue("Privacy3ParagraphList4")</li>
-                    <li class="dot">@Language.GetValue("Privacy3ParagraphList5")</li>
-                </ul>
-            </p>
-
-            <h3>@Language.GetValue("Privacy4Heading")</h3>
-            <p>@Language.GetValue("Privacy4Paragraph")</p>
-
-            <h3>@Language.GetValue("Privacy5Heading")</h3>
-            <p>@Language.GetValue("Privacy5Paragraph")</p>
-
-            <h3>@Language.GetValue("Privacy6Heading")</h3>
-            <p>
-                @Language.GetValue("Privacy6ParagraphListBeginning")
-                <ul class="list-group">
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList1")</li>
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList2")</li>
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList3")</li>
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList4")</li>
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList5")</li>
-                    <li class="dot">@Language.GetValue("Privacy6ParagraphList6")</li>
-                </ul>
-            </p>
-
-            <h3>@Language.GetValue("Privacy7Heading")</h3>
-            <p>@Language.GetValue("Privacy7Paragraph1")</p>
-            <p>@Language.GetValue("Privacy7Paragraph2")</p>
-
-            <h3>@Language.GetValue("Privacy8Heading")</h3>
-            <p>@Language.GetValue("Privacy8Paragraph")</p>
-
-            <h3>@Language.GetValue("Privacy9Heading")</h3>
-            <p>@Language.GetValue("Privacy9Paragraph")</p>
+        <div class="dots col-sm-12">
+            <h2 class="text-center">@WebsiteTexts.GetValue("PrivacyTitle")</h2>
+            @Html.Raw(Model.Text)
         </div>
     </div>
 </div>

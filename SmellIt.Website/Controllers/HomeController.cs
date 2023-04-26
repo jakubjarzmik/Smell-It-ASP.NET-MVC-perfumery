@@ -4,6 +4,8 @@ using System.Diagnostics;
 using MediatR;
 using Microsoft.AspNetCore.Localization;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
+using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
+using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
 
 namespace SmellIt.Website.Controllers
 {
@@ -49,9 +51,11 @@ namespace SmellIt.Website.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var currentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()!.RequestCulture.Culture.ToString();
+            var privacyPolicy = await _mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(currentCulture));
+            return View(privacyPolicy);
         }
 
         public IActionResult ChangeLanguage(string culture)

@@ -25,6 +25,10 @@ public class PrivacyPolicyRepository : IPrivacyPolicyRepository
         => await _dbContext.PrivacyPolicies.FirstOrDefaultAsync(pp 
             => pp.IsActive && pp.EncodedName == encodedName.ToLower());
 
+    public async Task<PrivacyPolicy?> GetByLanguageCode(string languageCode)
+        => await _dbContext.PrivacyPolicies.FirstOrDefaultAsync(pp 
+            => pp.IsActive && pp.Language.Code == languageCode.ToLower());
+
     public async Task Create(PrivacyPolicy privacyPolicy)
     {
         privacyPolicy.EncodeName();

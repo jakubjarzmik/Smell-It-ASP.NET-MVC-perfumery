@@ -1255,6 +1255,22 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(seeNowTranslations);
 
 
+                    var privacyTitle = new WebsiteText { Key = "PrivacyTitle" };
+                    privacyTitle.EncodeName();
+                    await _dbContext.WebsiteTexts.AddAsync(privacyTitle);
+
+                    List<WebsiteTextTranslation> privacyTitleTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = privacyTitle, Language = polish, Text = "Polityka prywatności sklepu internetowego \"Smell it\"" },
+                        new WebsiteTextTranslation { WebsiteText = privacyTitle, Language = english, Text = "Privacy Policy of the online store \"Smell it\"" },
+                    };
+                    foreach (var x in privacyTitleTranslations)
+                    {
+                        x.EncodeName();
+                    }
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(privacyTitleTranslations);
+
+
                     //var = new WebsiteText { Key = "" };
                     //.EncodeName();
                     //await _dbContext.WebsiteTexts.AddAsync();

@@ -7,5 +7,6 @@ public interface IPrivacyPolicyRepository
     Task<IEnumerable<PrivacyPolicy>> GetAll();
     Task<PrivacyPolicy?> GetTranslation(string languageCode);
     Task<PrivacyPolicy?> GetByEncodedName(string encodedName);
+    Task<PrivacyPolicy?> GetByLanguageCode(string languageCode);
     Task Commit();
 }
