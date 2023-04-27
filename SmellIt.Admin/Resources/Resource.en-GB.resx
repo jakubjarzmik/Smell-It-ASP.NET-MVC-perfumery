@@ -141,6 +141,9 @@
   <data name="AddNewProduct" xml:space="preserve">
     <value>Add new product</value>
   </data>
+  <data name="AddNewSocialSite" xml:space="preserve">
+    <value>Add new social site</value>
+  </data>
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Add new website text</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="EditPrivacyPolicy" xml:space="preserve">
     <value>Edit privacy policy</value>
+  </data>
+  <data name="EditSocialSite" xml:space="preserve">
+    <value>Edit socia site</value>
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edit website text</value>
@@ -519,6 +525,9 @@
   <data name="SmellItDiffuserDesc" xml:space="preserve">
     <value>The modern scent diffuser, which, thanks to advanced technology, is able to replicate 99% of scents perceived by humans. This device connects wirelessly to a computer or phone via Bluetooth. With Smell it, you can test a perfume's scent without leaving your home and also experience incredible sensory experiences while watching movies</value>
   </data>
+  <data name="SocialSites" xml:space="preserve">
+    <value>Social Sites</value>
+  </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Something went wrong :( Try again later</value>
   </data>
@@ -551,6 +560,9 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Unisex" xml:space="preserve">
     <value>Unisex</value>

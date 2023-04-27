@@ -4,7 +4,7 @@
 }
 
 <div class="hero-slider">
-	@await Html.PartialAsync("Banners", (IEnumerable<SmellIt.Application.SmellIt.HomeBanners.HomeBannerDto>)ViewBag.Banners)
+    @await Component.InvokeAsync("Banners")
 </div>
 
 @*<section class="product-category section">

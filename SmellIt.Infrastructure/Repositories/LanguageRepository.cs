@@ -20,7 +20,7 @@ public class LanguageRepository : ILanguageRepository
     }
 
     public async Task<IEnumerable<Language>> GetAll()
-        => await _dbContext.Languages.Where(bt => bt.IsActive).ToListAsync();
+        => await _dbContext.Languages.Where(bt => bt.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public Task<Language?> GetByCode(string code)
         => _dbContext.Languages.Where(bt => bt.IsActive).FirstOrDefaultAsync(b => b.Code == code);

@@ -15,7 +15,7 @@ public class PrivacyPolicyRepository : IPrivacyPolicyRepository
 
     public async Task<IEnumerable<PrivacyPolicy>> GetAll()
         => await _dbContext.PrivacyPolicies.Where(pp 
-            => pp.IsActive).ToListAsync();
+            => pp.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<PrivacyPolicy?> GetTranslation(string languageCode)
         => await _dbContext.PrivacyPolicies.FirstOrDefaultAsync(pp 

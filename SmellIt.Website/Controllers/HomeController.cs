@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
+using SmellIt.Application.SmellIt.SocialSites.Queries.GetAllSocialSites;
 using SmellIt.Website.Helpers;
 
 namespace SmellIt.Website.Controllers
@@ -19,6 +20,7 @@ namespace SmellIt.Website.Controllers
         {
             _mediator = mediator;
             _env = env;
+            ;
         }
 
         public async Task<IActionResult> Index()

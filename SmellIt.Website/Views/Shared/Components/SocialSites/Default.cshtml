@@ -1,0 +1,10 @@
+﻿@model IEnumerable<SmellIt.Application.SmellIt.SocialSites.SocialSiteDto>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@item.Link">
+            <i class="tf-ion-social-@item.Type"></i>
+        </a>
+    </li>
+}

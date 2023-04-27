@@ -15,11 +15,11 @@ public class BrandTranslationRepository : IBrandTranslationRepository
 
     public async Task<IEnumerable<BrandTranslation>> GetAll()
         => await _dbContext.BrandTranslations.Where(bt 
-            => bt.IsActive).ToListAsync();
+            => bt.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<IEnumerable<BrandTranslation>> GetBrandTranslations(int brandId)
         => await _dbContext.BrandTranslations.Where(bt 
-            => bt.IsActive && bt.BrandId == brandId).ToListAsync();
+            => bt.IsActive && bt.BrandId == brandId).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<BrandTranslation?> GetTranslation(int brandId, string languageCode)
         => await _dbContext.BrandTranslations.FirstOrDefaultAsync(bt 

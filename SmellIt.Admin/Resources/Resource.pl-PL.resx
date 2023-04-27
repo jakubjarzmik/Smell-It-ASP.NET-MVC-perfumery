@@ -141,6 +141,9 @@
   <data name="AddNewProduct" xml:space="preserve">
     <value>Dodaj nowy produkt</value>
   </data>
+  <data name="AddNewSocialSite" xml:space="preserve">
+    <value>Dodaj nową stronę społeczności</value>
+  </data>
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Dodaj nowy tekst strony</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="EditPrivacyPolicy" xml:space="preserve">
     <value>Edytuj politykę prywatności</value>
+  </data>
+  <data name="EditSocialSite" xml:space="preserve">
+    <value>Edytuj stronę społeczności</value>
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edytuj tekst na stronie</value>
@@ -519,6 +525,9 @@
   <data name="SmellItDiffuserDesc" xml:space="preserve">
     <value>Nowoczesny dyfuzor zapachów, który dzięki zaawansowanej technologii jest w stanie odwzorować 99% zapachów dostrzeganych przez człowieka. Urządzenie to łączy się bezprzewodowo z komputerem lub telefonem za pomocą Bluetooth. Dzięki Smell it sprawdzisz zapach perfum bez wychodzenia z domu, a także doświadczysz niesamowitych wrażeń sensorycznych podczas oglądania filmów</value>
   </data>
+  <data name="SocialSites" xml:space="preserve">
+    <value>Strony społeczności</value>
+  </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Coś poszło nie tak :( Spróbuj ponownie później</value>
   </data>
@@ -551,6 +560,9 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Razem</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Typ</value>
   </data>
   <data name="Unisex" xml:space="preserve">
     <value>Unisex</value>

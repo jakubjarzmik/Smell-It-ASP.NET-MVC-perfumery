@@ -26,6 +26,7 @@ namespace SmellIt.Infrastructure.Extensions
             services.AddScoped<IHomeBannerRepository, HomeBannerRepository>();
             services.AddScoped<IHomeBannerTranslationRepository, HomeBannerTranslationRepository>();
             services.AddScoped<IPrivacyPolicyRepository, PrivacyPolicyRepository>();
+            services.AddScoped<ISocialSiteRepository, SocialSiteRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
     }

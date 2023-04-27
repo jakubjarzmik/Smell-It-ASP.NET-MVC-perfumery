@@ -11,6 +11,6 @@ public abstract class BaseEntity
     public bool IsActive { get; set; } = true;
 
     [MaxLength(50)]
-    public string? EncodedName { get; internal set; }
+    public string? EncodedName { get; set; }
     public abstract void EncodeName();
 }

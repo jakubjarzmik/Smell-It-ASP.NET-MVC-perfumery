@@ -15,11 +15,11 @@ public class HomeBannerTranslationRepository : IHomeBannerTranslationRepository
 
     public async Task<IEnumerable<HomeBannerTranslation>> GetAll()
         => await _dbContext.HomeBannerTranslations.Where(hbt 
-            => hbt.IsActive).ToListAsync();
+            => hbt.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<IEnumerable<HomeBannerTranslation>> GetHomeBannerTranslations(int homeBannerId)
         => await _dbContext.HomeBannerTranslations.Where(htt 
-            => htt.IsActive && htt.HomeBannerId == homeBannerId).ToListAsync();
+            => htt.IsActive && htt.HomeBannerId == homeBannerId).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<HomeBannerTranslation?> GetTranslation(int homeBannerId, string languageCode)
         => await _dbContext.HomeBannerTranslations.FirstOrDefaultAsync(hbt 

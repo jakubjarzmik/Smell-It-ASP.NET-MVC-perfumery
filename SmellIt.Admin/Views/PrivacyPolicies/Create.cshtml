@@ -28,13 +28,12 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
                             <div class="input-field col s12">
-                                <input type="text" list="languages" asp-for="LanguageCode"/>
-                                <datalist id="languages">
+                                <select id="languages" asp-for="LanguageCode">
                                     @foreach (var language in ViewData["Languages"] as IEnumerable<LanguageDto>)
                                     {
                                         <option value="@language.Code">@language.Name</option>
                                     }
-                                </datalist>
+                                </select>
                             </div>
                             <div class="input-field col s12">
                                 <textarea id="privacy-policy" class="materialize-textarea" asp-for="Text"></textarea>

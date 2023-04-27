@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Website", "SmellIt.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Admin", "SmellIt.Admin\SmellIt.Admin.csproj", "{24403B49-C050-4E93-835F-693A7FB0B6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Domain", "SmellIt.Domain\SmellIt.Domain.csproj", "{0CA745FF-B3D5-43BA-91C4-01B2AB597062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Domain", "SmellIt.Domain\SmellIt.Domain.csproj", "{0CA745FF-B3D5-43BA-91C4-01B2AB597062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Application", "SmellIt.Application\SmellIt.Application.csproj", "{13B636A3-AF05-46BB-984F-03DAB947F66A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Application", "SmellIt.Application\SmellIt.Application.csproj", "{13B636A3-AF05-46BB-984F-03DAB947F66A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Infrastructure", "SmellIt.Infrastructure\SmellIt.Infrastructure.csproj", "{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Infrastructure", "SmellIt.Infrastructure\SmellIt.Infrastructure.csproj", "{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

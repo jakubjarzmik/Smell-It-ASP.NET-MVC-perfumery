@@ -8,12 +8,10 @@ namespace SmellIt.Application.SmellIt.PrivacyPolicies.Commands.CreatePrivacyPoli
     public class CreatePrivacyPolicyCommandHandler : IRequestHandler<CreatePrivacyPolicyCommand>
     {
         private readonly IPrivacyPolicyRepository _privacyPolicyRepository;
-        private readonly ILanguageRepository _languageRepository;
         private readonly IMapper _mapper;
-        public CreatePrivacyPolicyCommandHandler(IPrivacyPolicyRepository privacyPolicyRepository, ILanguageRepository languageRepository , IMapper mapper)
+        public CreatePrivacyPolicyCommandHandler(IPrivacyPolicyRepository privacyPolicyRepository, IMapper mapper)
         {
             _privacyPolicyRepository = privacyPolicyRepository;
-            _languageRepository = languageRepository;
             _mapper = mapper;
         }
         public async Task<Unit> Handle(CreatePrivacyPolicyCommand request, CancellationToken cancellationToken)

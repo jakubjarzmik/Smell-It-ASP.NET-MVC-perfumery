@@ -15,11 +15,11 @@ public class FragranceCategoryTranslationRepository : IFragranceCategoryTranslat
 
     public async Task<IEnumerable<FragranceCategoryTranslation>> GetAll()
         => await _dbContext.FragranceCategoryTranslations.Where(bt 
-            => bt.IsActive).ToListAsync();
+            => bt.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<IEnumerable<FragranceCategoryTranslation>> GetFragranceCategoryTranslations(int fragranceCategoryId)
         => await _dbContext.FragranceCategoryTranslations.Where(bt 
-            => bt.IsActive && bt.FragranceCategoryId == fragranceCategoryId).ToListAsync();
+            => bt.IsActive && bt.FragranceCategoryId == fragranceCategoryId).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<FragranceCategoryTranslation?> GetTranslation(int fragranceCategoryId, string languageCode)
         => await _dbContext.FragranceCategoryTranslations.FirstOrDefaultAsync(bt

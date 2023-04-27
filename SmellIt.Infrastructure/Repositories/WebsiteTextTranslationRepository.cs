@@ -15,11 +15,11 @@ public class WebsiteTextTranslationRepository : IWebsiteTextTranslationRepositor
 
     public async Task<IEnumerable<WebsiteTextTranslation>> GetAll()
         => await _dbContext.WebsiteTextTranslations.Where(ltt 
-            => ltt.IsActive).ToListAsync();
+            => ltt.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<IEnumerable<WebsiteTextTranslation>> GetWebsiteTextTranslations(int websiteTextId)
         => await _dbContext.WebsiteTextTranslations.Where(ltt 
-            => ltt.IsActive && ltt.WebsiteTextId == websiteTextId).ToListAsync();
+            => ltt.IsActive && ltt.WebsiteTextId == websiteTextId).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
     public async Task<WebsiteTextTranslation?> GetTranslation(int websiteTextId, string languageCode)
         => await _dbContext.WebsiteTextTranslations.FirstOrDefaultAsync(ltt 

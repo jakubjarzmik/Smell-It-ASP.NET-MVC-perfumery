@@ -25,6 +25,7 @@ namespace SmellIt.Infrastructure.Persistence
         public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
         public DbSet<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = default!;
         public DbSet<ProductImage> ProductImages { get; set; } = default!;
+        public DbSet<SocialSite> SocialSites { get; set; } = default!;
         public DbSet<WebsiteText> WebsiteTexts { get; set; } = default!;
         public DbSet<WebsiteTextTranslation> WebsiteTextTranslations { get; set; } = default!;
 

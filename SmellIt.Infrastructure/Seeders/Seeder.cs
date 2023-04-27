@@ -1294,7 +1294,7 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         Key = "HomeBanner1",
                         ImagePath = "/images/banners/HomeBanner1.jpg"
-					};
+                    };
                     homeBanner1.EncodeName();
                     await _dbContext.HomeBanners.AddAsync(homeBanner1);
 
@@ -1314,7 +1314,7 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         Key = "HomeBanner2",
                         ImagePath = "/images/banners/HomeBanner2.jpg"
-					};
+                    };
                     homeBanner2.EncodeName();
                     await _dbContext.HomeBanners.AddAsync(homeBanner2);
 
@@ -1334,7 +1334,7 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         Key = "HomeBanner3",
                         ImagePath = "/images/banners/HomeBanner3.jpg"
-					};
+                    };
                     homeBanner3.EncodeName();
                     await _dbContext.HomeBanners.AddAsync(homeBanner3);
 
@@ -1354,7 +1354,7 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         Key = "HomeBanner4",
                         ImagePath = "/images/banners/HomeBanner4.jpg"
-					};
+                    };
                     homeBanner4.EncodeName();
                     await _dbContext.HomeBanners.AddAsync(homeBanner4);
 
@@ -1389,6 +1389,42 @@ namespace SmellIt.Infrastructure.Seeders
                     };
                     privacyPolicyTextPl.EncodeName();
                     await _dbContext.PrivacyPolicies.AddAsync(privacyPolicyTextPl);
+
+                    #endregion
+
+                    #region SocialSite
+
+                    var facebookSite = new SocialSite
+                    {
+                        Type = "facebook",
+                        Link = "https://www.facebook.com/jakubjarzmik00"
+                    };
+                    facebookSite.EncodeName();
+                    await _dbContext.SocialSites.AddAsync(facebookSite);
+
+                    var instagramSite = new SocialSite
+                    {
+                        Type = "instagram",
+                        Link = "https://www.instagram.com/jjerzu"
+                    };
+                    instagramSite.EncodeName();
+                    await _dbContext.SocialSites.AddAsync(instagramSite);
+
+                    var linkedinSite = new SocialSite
+                    {
+                        Type = "linkedin",
+                        Link = "https://www.linkedin.com/in/jakub-jarzmik"
+                    };
+                    linkedinSite.EncodeName();
+                    await _dbContext.SocialSites.AddAsync(linkedinSite);
+
+                    var githubSite = new SocialSite
+                    {
+                        Type = "github",
+                        Link = "https://github.com/jakubjarzmik"
+                    };
+                    githubSite.EncodeName();
+                    await _dbContext.SocialSites.AddAsync(githubSite);
 
                     #endregion
 
