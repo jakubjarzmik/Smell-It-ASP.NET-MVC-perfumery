@@ -6,6 +6,7 @@ using SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCa
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
+using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetPaginatedFragranceCategories;
 using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
@@ -21,25 +22,7 @@ public class FragranceCategoriesController : Controller
     }
     public async Task<IActionResult> Index(int? page)
     {
-        int pageNumber = page ?? 1;
-        int pageSize = 7;
-
-        var fragranceCategories = await _mediator.Send(new GetAllFragranceCategoriesQuery());
-
-        var paginatedFragranceCategories = fragranceCategories
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        int totalPages = (int)Math.Ceiling((double)fragranceCategories.Count() / pageSize);
-
-        var viewModel = new FragranceCategoriesViewModel
-        {
-            FragranceCategories = paginatedFragranceCategories,
-            CurrentPage = pageNumber,
-            TotalPages = totalPages,
-            PageSize = pageSize
-        };
+        var viewModel = await _mediator.Send(new GetPaginatedFragranceCategoriesQuery(page, 7));
         return View(viewModel);
     }
 

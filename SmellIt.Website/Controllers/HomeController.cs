@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
+using SmellIt.Website.Helpers;
 
 namespace SmellIt.Website.Controllers
 {
@@ -23,20 +24,8 @@ namespace SmellIt.Website.Controllers
         public async Task<IActionResult> Index()
         {
             var banners = (await _mediator.Send(new GetAllHomeBannersQuery()));
-            var bannerKeys = banners.Select(b => b.Key);
 
-            var imagesFolderPath = Path.Combine(_env.WebRootPath, "images/banners");
-            
-            var filesInFolder = Directory.GetFiles(imagesFolderPath);
-            
-            foreach (var filePath in filesInFolder)
-            {
-                var fileName = Path.GetFileNameWithoutExtension(filePath);
-                if (!bannerKeys.Contains(fileName))
-                {
-                    System.IO.File.Delete(filePath);
-                }
-            }
+            BannerImageManager.DeleteNonExistentBanners(banners, _env);
 
             ViewBag.Banners = banners;
             return View();

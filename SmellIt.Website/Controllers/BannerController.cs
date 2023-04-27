@@ -4,7 +4,7 @@ namespace SmellIt.Website.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ImageController : ControllerBase
+    public class BannerController : ControllerBase
     {
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)

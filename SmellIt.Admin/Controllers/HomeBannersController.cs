@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.SmellIt.HomeBanners;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncodedName;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
@@ -8,6 +7,8 @@ using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
 using SmellIt.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Helpers;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;
 
 namespace SmellIt.Admin.Controllers;
 public class HomeBannersController : Controller
@@ -23,58 +24,11 @@ public class HomeBannersController : Controller
         _env = env;
     }
 
-    private void CheckBannersExist(IEnumerable<HomeBannerDto> banners)
-    {
-        var bannerKeys = banners.Select(b => b.Key);
-
-        var imagesFolderPath = Path.Combine(_env.WebRootPath, "images/banners");
-
-        var filesInFolder = Directory.GetFiles(imagesFolderPath);
-
-        foreach (var filePath in filesInFolder)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(filePath);
-            if (!bannerKeys.Contains(fileName))
-            {
-                System.IO.File.Delete(filePath);
-            }
-        }
-    }
-
-    private static async Task AddFileAsync(IFormFile file)
-    {
-        var fileName = file.FileName;
-        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "banners");
-        var filePath = Path.Combine(folderPath, fileName);
-
-        await using var stream = new FileStream(filePath, FileMode.Create);
-        await file.CopyToAsync(stream);
-    }
-
     public async Task<IActionResult> Index(int? page)
     {
-        var pageNumber = page ?? 1;
-        var pageSize = 7;
+        BannerImageManager.DeleteNonExistentBanners(await _mediator.Send(new GetAllHomeBannersQuery()), _env);
 
-        var homeBanners = await _mediator.Send(new GetAllHomeBannersQuery());
-
-        CheckBannersExist(homeBanners);
-
-        var paginatedHomeBanners = homeBanners
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        var totalPages = (int)Math.Ceiling((double)homeBanners.Count() / pageSize);
-
-        var viewModel = new HomeBannersViewModel
-        {
-            HomeBanners = paginatedHomeBanners,
-            CurrentPage = pageNumber,
-            TotalPages = totalPages,
-            PageSize = pageSize
-        };
-        return View(viewModel);
+        return View(await _mediator.Send(new GetPaginatedHomeBannersQuery(page,7)));
     }
 
     public IActionResult Create()
@@ -91,7 +45,7 @@ public class HomeBannersController : Controller
         }
 
         if (command.ImageFile != null)
-            await AddFileAsync(command.ImageFile);
+            await BannerImageManager.AddBannerImageAsync(command.ImageFile);
 
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));

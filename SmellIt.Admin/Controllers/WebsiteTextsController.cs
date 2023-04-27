@@ -5,6 +5,7 @@ using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
 using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetAllWebsiteTexts;
+using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
 using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
 using SmellIt.Application.ViewModels;
 
@@ -21,25 +22,7 @@ public class WebsiteTextsController : Controller
     }
     public async Task<IActionResult> Index(int? page)
     {
-        int pageNumber = page ?? 1;
-        int pageSize = 7;
-
-        var layoutTexts = await _mediator.Send(new GetAllWebsiteTextsQuery());
-
-        var paginatedLayoutTexts = layoutTexts
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        int totalPages = (int)Math.Ceiling((double)layoutTexts.Count() / pageSize);
-
-        var viewModel = new WebsiteTextsViewModel
-        {
-            WebsiteTexts = paginatedLayoutTexts,
-            CurrentPage = pageNumber,
-            TotalPages = totalPages,
-            PageSize = pageSize
-        };
+        var viewModel = await _mediator.Send(new GetPaginatedWebsiteTextsQuery(page, 7));
         return View(viewModel);
     }
 

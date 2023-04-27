@@ -1,4 +1,4 @@
-﻿@model PrivacyPoliciesViewModel
+﻿@model IEnumerable<SmellIt.Application.SmellIt.PrivacyPolicies.PrivacyPolicyDto>
 @{
     ViewData["Title"] = language.GetValue("PrivacyPolicies");
 }
@@ -15,8 +15,8 @@
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th>@language.GetValue("Text") (PL)</th>
-                                <th>@language.GetValue("Text") (EN)</th>
+                                <th>@language.GetValue("Text")</th>
+                                <th>@language.GetValue("Language")</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -24,10 +24,11 @@
                             @{
                                 int index = 0;
                             }
-                            @foreach (var item in Model.PrivacyPolicies!)
+                            @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@(item.Text.Length > 50 ? item.Text.Substring(0,50) + "..." : item.Text)</td>
+                                    <td>@(item.Text.Length > 80 ? item.Text.Substring(0,80) + "..." : item.Text)</td>
+                                    <td>@item.LanguageCode</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">

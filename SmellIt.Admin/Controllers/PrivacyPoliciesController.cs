@@ -24,13 +24,8 @@ public class PrivacyPoliciesController : Controller
     public async Task<IActionResult> Index(int? page)
     {
         var privacyPolicies = await _mediator.Send(new GetAllPrivacyPoliciesQuery());
-        var languages = await _mediator.Send(new GetAllLanguagesQuery());
-        var viewModel = new PrivacyPoliciesViewModel
-        {
-            PrivacyPolicies = privacyPolicies,
-            Languages = languages
-        };
-        return View(viewModel);
+
+        return View(privacyPolicies);
     }
 
     public async Task<IActionResult> Create()
