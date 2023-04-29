@@ -7,9 +7,9 @@ public class PrivacyPolicy : BaseEntity
 {
     public string Text { get; set; } = default!;
 
-    [ForeignKey("Language")]
 	public int LanguageId { get; set; }
+    [ForeignKey("LanguageId")]
 	public Language Language { get; set; } = default!;
 
-	public override void EncodeName() => EncodedName = Language.Code + "-privacypolicy";
+    public override void EncodeName() => EncodedName = Language.Code + "-privacypolicy";
 }

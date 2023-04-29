@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SmellIt.Domain.Entities;
 public class GenderTranslation : BaseTranslation
 {
-    [ForeignKey("Gender")]
     public int GenderId { get; set; }
+    [ForeignKey("GenderId")]
     public Gender Gender { get; set; } = default!;
-    
+
     public override void EncodeName() => 
         EncodedName = Name.ConvertToEncodedName() + "-translation";
 }

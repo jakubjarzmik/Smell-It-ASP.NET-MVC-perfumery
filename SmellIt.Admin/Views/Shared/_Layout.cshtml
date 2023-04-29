@@ -34,25 +34,28 @@
                     <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
                     <li><a href="">@language.GetValue("Users")</a></li>
                     <li>
-                        <a class="dropdown-trigger" href="#" data-target="othersDropdown">@language.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
+                        <a class="dropdown-trigger" href="#" data-target="othersDropdown" style="padding: 0 25px">@language.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="othersDropdown" class="dropdown-content grey darken-2">
-                            <li class="@(controller == "Categories" && action == "Index" ? "active": "")">
-                                <a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a>
-                            </li>
                             <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "Brands")">@language.GetValue("Brands")</a>
                             </li>
+                            @*<li class="@(controller == "Categories" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "Categories")">@language.GetValue("Categories")</a>
+                            </li>*@
                             <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "FragranceCategories")">@language.GetValue("FragranceCategories")</a>
-                            </li>
-                            <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
-                                <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
                             </li>
                             <li class="@(controller == "HomeBanners" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "HomeBanners")">@language.GetValue("HomeBanners")</a>
                             </li>
                             <li class="@(controller == "PrivacyPolicies" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "PrivacyPolicies")">@language.GetValue("PrivacyPolicies")</a>
+                            </li>
+                            <li class="@(controller == "SocialSites" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "SocialSites")">@language.GetValue("SocialSites")</a>
+                            </li>
+                            <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
                             </li>
                         </ul>
                     </li>
@@ -159,7 +162,7 @@
                     .prop('Counter', 0)
                     .animate(
                         {
-                            Counter: $(this).text(),
+                            Counter: $(this).text()
                         },
                         {
                             duration: 1000,

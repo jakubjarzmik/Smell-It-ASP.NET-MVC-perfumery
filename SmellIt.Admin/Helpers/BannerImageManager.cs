@@ -5,11 +5,11 @@ namespace SmellIt.Admin.Helpers
 {
     public static class BannerImageManager
     {
-        public static async Task AddBannerImageAsync(IFormFile file)
+        public static async Task AddBannerImageAsync(IFormFile file, string fileName)
         {
-            var fileName = file.FileName;
+            var extension = "." + file.FileName[(file.FileName.LastIndexOf('.') + 1)..];
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "banners");
-            var filePath = Path.Combine(folderPath, fileName);
+            var filePath = Path.Combine(folderPath, fileName+extension);
 
             await using var stream = new FileStream(filePath, FileMode.Create);
             await file.CopyToAsync(stream);

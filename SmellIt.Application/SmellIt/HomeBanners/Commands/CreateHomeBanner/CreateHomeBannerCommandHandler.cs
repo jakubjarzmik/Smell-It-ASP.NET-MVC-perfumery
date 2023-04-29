@@ -59,7 +59,7 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
 
 
             content.Add(new StreamContent(fileStream), "file", key+extension);
-            var response = await httpClient.PostAsync("https://localhost:7282/Image/upload", content);
+            var response = await httpClient.PostAsync("https://localhost:7282/Banner/upload", content);
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();

@@ -8,13 +8,13 @@ public class WebsiteTextTranslation : BaseEntity
 	[MaxLength(255)]
 	public string Text { get; set; } = default!;
 
-	[ForeignKey("WebsiteText")]
 	public int WebsiteTextId { get; set; }
+	[ForeignKey("WebsiteTextId")]
 	public WebsiteText WebsiteText { get; set; } = default!;
 
-	[ForeignKey("Language")]
 	public int LanguageId { get; set; }
+    [ForeignKey("LanguageId")]
 	public Language Language { get; set; } = default!;
 
-	public override void EncodeName() => EncodedName = WebsiteText.EncodedName + "-" + Language.Code + "-translation";
+    public override void EncodeName() => EncodedName = WebsiteText.EncodedName + "-" + Language.Code + "-translation";
 }

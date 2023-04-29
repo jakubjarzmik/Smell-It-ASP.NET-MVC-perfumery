@@ -16,7 +16,6 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner
         public async Task<Unit> Handle(EditHomeBannerCommand request, CancellationToken cancellationToken)
         {
             var homeBanner = (await _homeBannerRepository.GetByEncodedName(request.EncodedName))!;
-            homeBanner.ImagePath = request.ImagePath;
             homeBanner.ModifiedAt = DateTime.UtcNow;
 
             var plTranslation = (await _homeBannerTranslationRepository.GetTranslation(homeBanner.Id, "pl-PL"))!;

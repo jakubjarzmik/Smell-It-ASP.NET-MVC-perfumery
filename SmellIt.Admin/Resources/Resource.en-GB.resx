@@ -118,52 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutUs" xml:space="preserve">
-    <value>About us</value>
+    <value>About Us</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="AddNewBrand" xml:space="preserve">
-    <value>Add new brand</value>
+    <value>Add New Brand</value>
   </data>
   <data name="AddNewCategory" xml:space="preserve">
-    <value>Add new category</value>
+    <value>Add New Category</value>
   </data>
   <data name="AddNewFragranceCategory" xml:space="preserve">
-    <value>Add new fragrance category</value>
+    <value>Add New Fragrance Category</value>
   </data>
   <data name="AddNewHomeBanner" xml:space="preserve">
-    <value>Add new home banner</value>
+    <value>Add New Home Banner</value>
   </data>
   <data name="AddNewPrivacyPolicy" xml:space="preserve">
-    <value>Add new privacy policy</value>
+    <value>Add New Privacy Policy</value>
   </data>
   <data name="AddNewProduct" xml:space="preserve">
-    <value>Add new product</value>
+    <value>Add New Product</value>
   </data>
   <data name="AddNewSocialSite" xml:space="preserve">
-    <value>Add new social site</value>
+    <value>Add New Social Site</value>
   </data>
   <data name="AddNewWebsiteText" xml:space="preserve">
-    <value>Add new website text</value>
-  </data>
-  <data name="AddToCart" xml:space="preserve">
-    <value>Add to cart</value>
-  </data>
-  <data name="Aromatic" xml:space="preserve">
-    <value>Aromatic</value>
-  </data>
-  <data name="BannerText1" xml:space="preserve">
-    <value>Experience every scent without leaving your home</value>
-  </data>
-  <data name="BannerText2" xml:space="preserve">
-    <value>will captivate you from the moment you open the bottle</value>
-  </data>
-  <data name="BannerText3" xml:space="preserve">
-    <value>women's perfume, unforgettable</value>
-  </data>
-  <data name="BannerText4" xml:space="preserve">
-    <value>Home fragrances that will create a cozy atmosphere</value>
+    <value>Add New Website Text</value>
   </data>
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
@@ -220,28 +202,25 @@
     <value>Edit</value>
   </data>
   <data name="EditBrand" xml:space="preserve">
-    <value>Edit brand</value>
+    <value>Edit Brand</value>
   </data>
   <data name="EditFragranceCategory" xml:space="preserve">
-    <value>Edit fragrance category</value>
+    <value>Edit Fragrance Category</value>
   </data>
   <data name="EditHomeBanner" xml:space="preserve">
-    <value>Edit home banner</value>
+    <value>Edit Home Banner</value>
   </data>
   <data name="EditLayoutText" xml:space="preserve">
-    <value>Edit layout text</value>
+    <value>Edit Layout Text</value>
   </data>
   <data name="EditPrivacyPolicy" xml:space="preserve">
-    <value>Edit privacy policy</value>
+    <value>Edit Privacy Policy</value>
   </data>
   <data name="EditSocialSite" xml:space="preserve">
-    <value>Edit socia site</value>
+    <value>Edit Social Site</value>
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
-    <value>Edit website text</value>
-  </data>
-  <data name="EnterEmail" xml:space="preserve">
-    <value>Enter your email address</value>
+    <value>Edit Website Text</value>
   </data>
   <data name="EssentialOils" xml:space="preserve">
     <value>Essential Oils</value>
@@ -259,10 +238,10 @@
     <value>Fragrance</value>
   </data>
   <data name="FragranceCategories" xml:space="preserve">
-    <value>Fragrance categories</value>
+    <value>Fragrance Categories</value>
   </data>
   <data name="FragranceCategory" xml:space="preserve">
-    <value>Fragrance category</value>
+    <value>Fragrance Category</value>
   </data>
   <data name="Fresheners" xml:space="preserve">
     <value>Fresheners</value>
@@ -277,13 +256,10 @@
     <value>Home</value>
   </data>
   <data name="HomeBanners" xml:space="preserve">
-    <value>Home banners</value>
+    <value>Home Banners</value>
   </data>
   <data name="HomeFragrance" xml:space="preserve">
     <value>Home Fragrance</value>
-  </data>
-  <data name="HomeFragranceDesc" xml:space="preserve">
-    <value>Create the atmosphere of your dreams</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>Key</value>
@@ -291,11 +267,8 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="LanguageForIcon" xml:space="preserve">
-    <value>gb</value>
-  </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
-    <value>Latest registered users</value>
+    <value>Latest Registered Users</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -307,7 +280,7 @@
     <value>Men</value>
   </data>
   <data name="MensAftershave" xml:space="preserve">
-    <value>Men's aftershave</value>
+    <value>Men's Aftershave</value>
   </data>
   <data name="MensAftershaveDesc" xml:space="preserve">
     <value>Discover your unique scent of masculinity</value>
@@ -355,133 +328,25 @@
     <value>Phone</value>
   </data>
   <data name="PopularProducts" xml:space="preserve">
-    <value>Popular products</value>
+    <value>Popular Products</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
   <data name="PriceAsc" xml:space="preserve">
-    <value>Price ascending</value>
+    <value>Price Ascending</value>
   </data>
   <data name="PriceDesc" xml:space="preserve">
-    <value>Price descending</value>
-  </data>
-  <data name="Privacy1Heading" xml:space="preserve">
-    <value>1. Personal data controller</value>
-  </data>
-  <data name="Privacy1Paragraph" xml:space="preserve">
-    <value>The personal data controller is Smell it Sp. z o.o. with its registered office in Cracow</value>
-  </data>
-  <data name="Privacy2Heading" xml:space="preserve">
-    <value>2. Purposes and legal basis for processing personal data</value>
-  </data>
-  <data name="Privacy2Paragraph" xml:space="preserve">
-    <value>The "Smell it" online store processes personal data for the purpose of fulfilling orders, including payment processing and delivery of ordered products, as well as enabling the use of other store functionalities, such as a newsletter and a customer account.</value>
-  </data>
-  <data name="Privacy2ParagraphList1" xml:space="preserve">
-    <value>the conclusion and performance of a sales contract (Art. 6(1)(b) of the GDPR)</value>
-  </data>
-  <data name="Privacy2ParagraphList2" xml:space="preserve">
-    <value>the legitimate interests of the data controller, consisting in fulfilling orders and enabling the use of store functionalities (Art. 6(1)(f) of the GDPR)</value>
-  </data>
-  <data name="Privacy2ParagraphList3" xml:space="preserve">
-    <value>the customer's consent to the processing of personal data for the purpose of receiving a newsletter and using a customer account (Art. 6(1)(a) of the GDPR)</value>
-  </data>
-  <data name="Privacy2ParagraphListBeginning" xml:space="preserve">
-    <value>The legal basis for processing personal data is:</value>
-  </data>
-  <data name="Privacy3Heading" xml:space="preserve">
-    <value>3. Types of personal data processed</value>
-  </data>
-  <data name="Privacy3ParagraphList1" xml:space="preserve">
-    <value>first and last name</value>
-  </data>
-  <data name="Privacy3ParagraphList2" xml:space="preserve">
-    <value>email address</value>
-  </data>
-  <data name="Privacy3ParagraphList3" xml:space="preserve">
-    <value>telephone number</value>
-  </data>
-  <data name="Privacy3ParagraphList4" xml:space="preserve">
-    <value>delivery address</value>
-  </data>
-  <data name="Privacy3ParagraphList5" xml:space="preserve">
-    <value>bank account number or credit card information (in case of payment processing)</value>
-  </data>
-  <data name="Privacy3ParagraphListBeginning" xml:space="preserve">
-    <value>The "Smell it" online store processes the following personal data:</value>
-  </data>
-  <data name="Privacy4Heading" xml:space="preserve">
-    <value>4. Recipients of personal data</value>
-  </data>
-  <data name="Privacy4Paragraph" xml:space="preserve">
-    <value>Personal data processed by the "Smell it" online store may be disclosed to entities responsible for payment processing and delivery of ordered products. Additionally, the controller may disclose personal data to authorities authorized by law and to entities processing data on behalf of the controller (e.g. IT service providers).</value>
-  </data>
-  <data name="Privacy5Heading" xml:space="preserve">
-    <value>5. Retention period for personal data</value>
-  </data>
-  <data name="Privacy5Paragraph" xml:space="preserve">
-    <value>Personal data processed by the "Smell it" online store will be stored for the period necessary to fulfill an order and to enable the use of store functionalities. Personal data processed for the purpose of receiving a newsletter and using a customer account will be stored until consent is withdrawn.</value>
-  </data>
-  <data name="Privacy6Heading" xml:space="preserve">
-    <value>6. Rights of data subjects</value>
-  </data>
-  <data name="Privacy6ParagraphList1" xml:space="preserve">
-    <value>access their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphList2" xml:space="preserve">
-    <value>rectify their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphList3" xml:space="preserve">
-    <value>erase their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphList4" xml:space="preserve">
-    <value>restrict the processing of their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphList5" xml:space="preserve">
-    <value>transfer their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphList6" xml:space="preserve">
-    <value>object to the processing of their personal data</value>
-  </data>
-  <data name="Privacy6ParagraphListBeginning" xml:space="preserve">
-    <value>Each person whose personal data is processed by the "Smell it" online store has the right to:</value>
-  </data>
-  <data name="Privacy7Heading" xml:space="preserve">
-    <value>7. Cookies</value>
-  </data>
-  <data name="Privacy7Paragraph1" xml:space="preserve">
-    <value>The "Smell it" online store uses cookies to enable the use of store functionalities and to improve the quality of provided services. Cookies are small text files stored on the user's device.</value>
-  </data>
-  <data name="Privacy7Paragraph2" xml:space="preserve">
-    <value>The user can block or delete cookies at any time by using the appropriate settings in their web browser.</value>
-  </data>
-  <data name="Privacy8Heading" xml:space="preserve">
-    <value>8. Changes to the Privacy Policy</value>
-  </data>
-  <data name="Privacy8Paragraph" xml:space="preserve">
-    <value>The controller reserves the right to make changes to the Privacy Policy at any time. These changes will be published on the store's website.</value>
-  </data>
-  <data name="Privacy9Heading" xml:space="preserve">
-    <value>9. Contact with the Administrator</value>
-  </data>
-  <data name="Privacy9Paragraph" xml:space="preserve">
-    <value>For issues related to the processing of personal data by the "Smell it" online store, please contact the personal data Administrator via email at info@smellit.com or in writing at the registered office address.</value>
-  </data>
-  <data name="PrivacyDesc" xml:space="preserve">
-    <value>This Privacy Policy sets out the rules for processing personal data by the online store "Smell it" operated by Smell it Sp. z o.o. with its registered office in Cracow</value>
+    <value>Price Descending</value>
   </data>
   <data name="PrivacyPolicies" xml:space="preserve">
-    <value>Privacy policies</value>
+    <value>Privacy Policies</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
-  </data>
-  <data name="PrivacyTitle" xml:space="preserve">
-    <value>Privacy Policy of the online store "Smell it"</value>
+    <value>Privacy Policy</value>
   </data>
   <data name="ProductCategories" xml:space="preserve">
-    <value>Product categories</value>
+    <value>Product Categories</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
@@ -498,12 +363,6 @@
   <data name="ScentedCandles" xml:space="preserve">
     <value>Scented Candles</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="SeeNow" xml:space="preserve">
-    <value>SeeNow</value>
-  </data>
   <data name="SelectCategory" xml:space="preserve">
     <value>Select category</value>
   </data>
@@ -516,11 +375,8 @@
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
   </data>
-  <data name="SmellItAddress" xml:space="preserve">
-    <value>Floriańska 1, 31-019 Cracow, Poland</value>
-  </data>
   <data name="SmellItDiffuser" xml:space="preserve">
-    <value>Smell it diffuser</value>
+    <value>Smell It Diffuser</value>
   </data>
   <data name="SmellItDiffuserDesc" xml:space="preserve">
     <value>The modern scent diffuser, which, thanks to advanced technology, is able to replicate 99% of scents perceived by humans. This device connects wirelessly to a computer or phone via Bluetooth. With Smell it, you can test a perfume's scent without leaving your home and also experience incredible sensory experiences while watching movies</value>
@@ -533,18 +389,6 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort by</value>
-  </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Subject</value>
-  </data>
-  <data name="SubscribeNow" xml:space="preserve">
-    <value>SUBSCRIBE NOW!</value>
-  </data>
-  <data name="SubscribeToNewsletter" xml:space="preserve">
-    <value>SUBSCRIBE TO NEWSLETTER</value>
-  </data>
-  <data name="SubscribeToNewsletterDesc" xml:space="preserve">
-    <value>Be the first to find out about the latest promotions and products</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
@@ -568,7 +412,7 @@
     <value>Unisex</value>
   </data>
   <data name="UploadPhotos" xml:space="preserve">
-    <value>Upload photos</value>
+    <value>Upload Photos</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
@@ -580,7 +424,7 @@
     <value>Value</value>
   </data>
   <data name="ViewProductDetails" xml:space="preserve">
-    <value>View product details</value>
+    <value>View Product Details</value>
   </data>
   <data name="WebsiteTexts" xml:space="preserve">
     <value>Website Texts</value>

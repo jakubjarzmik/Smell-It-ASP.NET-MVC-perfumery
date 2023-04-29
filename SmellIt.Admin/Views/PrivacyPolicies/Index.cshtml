@@ -34,7 +34,7 @@
                                         <div id="modalDescriptionPL_@index" class="modal">
                                             <div class="modal-content">
                                                 <h5>@language.GetValue("Text")</h5>
-                                                <p>@item.Text</p>
+                                                <p>@Html.Raw(item.Text)</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>

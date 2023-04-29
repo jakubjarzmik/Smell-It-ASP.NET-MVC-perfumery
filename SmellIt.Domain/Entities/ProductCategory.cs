@@ -6,8 +6,8 @@ namespace SmellIt.Domain.Entities
 {
     public class ProductCategory : BaseEntity
     {
-        [ForeignKey("ParentCategory")]
         public int? ParentCategoryId { get; set; }
+        [ForeignKey("ParentCategoryId")]
         public virtual ProductCategory? ParentCategory { get; set; }
 
         public virtual List<ProductCategory> ProductCategories { get; set; } = new();

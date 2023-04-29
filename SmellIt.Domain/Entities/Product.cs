@@ -6,20 +6,20 @@ namespace SmellIt.Domain.Entities
 {
     public class Product : BaseEntity
     {
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual ProductCategory Category { get; set; } = default!;
 
-        [ForeignKey("Brand")]
         public int BrandId { get; set; }
+        [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; } = default!;
 
-        [ForeignKey("FragranceCategory")]
         public int? FragranceCategoryId { get; set; }
+        [ForeignKey("FragranceCategoryId")]
         public virtual FragranceCategory? FragranceCategory { get; set; } = default!;
 
-        [ForeignKey("Gender")]
         public int? GenderId { get; set; }
+        [ForeignKey("GenderId")]
         public virtual Gender? Gender { get; set; } = default!;
 
         public virtual List<ProductImage> ProductImages { get; set; } = new();

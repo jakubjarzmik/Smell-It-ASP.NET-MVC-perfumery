@@ -8,13 +8,13 @@ public class HomeBannerTranslation : BaseEntity
 	[MaxLength(255)]
 	public string Text { get; set; } = default!;
 
-	[ForeignKey("HomeBanner")]
 	public int HomeBannerId { get; set; }
+	[ForeignKey("HomeBannerId")]
 	public HomeBanner HomeBanner { get; set; } = default!;
 
-	[ForeignKey("Language")]
 	public int LanguageId { get; set; }
+    [ForeignKey("LanguageId")]
 	public Language Language { get; set; } = default!;
 
-	public override void EncodeName() => EncodedName = HomeBanner.EncodedName + "-" + Language.Code + "-translation";
+    public override void EncodeName() => EncodedName = HomeBanner.EncodedName + "-" + Language.Code + "-translation";
 }

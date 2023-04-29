@@ -147,24 +147,6 @@
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Dodaj nowy tekst strony</value>
   </data>
-  <data name="AddToCart" xml:space="preserve">
-    <value>Dodaj do koszyka</value>
-  </data>
-  <data name="Aromatic" xml:space="preserve">
-    <value>Aromatyczne</value>
-  </data>
-  <data name="BannerText1" xml:space="preserve">
-    <value>Poczuj każdy zapach niewychodząc z domu</value>
-  </data>
-  <data name="BannerText2" xml:space="preserve">
-    <value>oczaruje Cię już w chwili, gdy otworzysz flakon</value>
-  </data>
-  <data name="BannerText3" xml:space="preserve">
-    <value>perfumy damskie, których nie zapomnisz</value>
-  </data>
-  <data name="BannerText4" xml:space="preserve">
-    <value>Zapachy do domu, które wytworzą przytulną atmosferę</value>
-  </data>
   <data name="Brand" xml:space="preserve">
     <value>Marka</value>
   </data>
@@ -240,9 +222,6 @@
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edytuj tekst na stronie</value>
   </data>
-  <data name="EnterEmail" xml:space="preserve">
-    <value>Podaj swój adres e-mail</value>
-  </data>
   <data name="EssentialOils" xml:space="preserve">
     <value>Olejki zapachowe</value>
   </data>
@@ -282,17 +261,11 @@
   <data name="HomeFragrance" xml:space="preserve">
     <value>Zapachy do domu</value>
   </data>
-  <data name="HomeFragranceDesc" xml:space="preserve">
-    <value>Stwórz atmosferę, jaka Ci się marzy</value>
-  </data>
   <data name="Key" xml:space="preserve">
     <value>Klucz</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Język</value>
-  </data>
-  <data name="LanguageForIcon" xml:space="preserve">
-    <value>pl</value>
   </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Ostatni zarejestrowani użytkownicy</value>
@@ -366,119 +339,11 @@
   <data name="PriceDesc" xml:space="preserve">
     <value>Cena malejąco</value>
   </data>
-  <data name="Privacy1Heading" xml:space="preserve">
-    <value>1. Administrator danych osobowych</value>
-  </data>
-  <data name="Privacy1Paragraph" xml:space="preserve">
-    <value>Administratorem danych osobowych jest Smell it sp. z o.o., z siedzibą w Krakowie.</value>
-  </data>
-  <data name="Privacy2Heading" xml:space="preserve">
-    <value>2. Cele i podstawy przetwarzania danych osobowych</value>
-  </data>
-  <data name="Privacy2Paragraph" xml:space="preserve">
-    <value>Sklep internetowy "Smell it" przetwarza dane osobowe w celu realizacji zamówień, w tym dokonywania płatności oraz dostawy zamówionych produktów, oraz w celu umożliwienia korzystania z pozostałych funkcjonalności sklepu, w tym newslettera oraz konta klienta.</value>
-  </data>
-  <data name="Privacy2ParagraphList1" xml:space="preserve">
-    <value>zawarcie i wykonanie umowy sprzedaży (art. 6 ust. 1 lit. b RODO)</value>
-  </data>
-  <data name="Privacy2ParagraphList2" xml:space="preserve">
-    <value>prawnie uzasadniony interes Administratora polegający na realizacji zamówień oraz umożliwieniu korzystania z funkcjonalności sklepu (art. 6 ust. 1 lit. f RODO)</value>
-  </data>
-  <data name="Privacy2ParagraphList3" xml:space="preserve">
-    <value>zgoda klienta na przetwarzanie danych osobowych w celu otrzymywania newslettera oraz korzystania z konta klienta (art. 6 ust. 1 lit. a RODO)</value>
-  </data>
-  <data name="Privacy2ParagraphListBeginning" xml:space="preserve">
-    <value>Podstawą przetwarzania danych osobowych jest:</value>
-  </data>
-  <data name="Privacy3Heading" xml:space="preserve">
-    <value>3. Rodzaje przetwarzanych danych osobowych</value>
-  </data>
-  <data name="Privacy3ParagraphList1" xml:space="preserve">
-    <value>imię i nazwisko</value>
-  </data>
-  <data name="Privacy3ParagraphList2" xml:space="preserve">
-    <value>adres e-mail</value>
-  </data>
-  <data name="Privacy3ParagraphList3" xml:space="preserve">
-    <value>numer telefonu</value>
-  </data>
-  <data name="Privacy3ParagraphList4" xml:space="preserve">
-    <value>adres dostawy</value>
-  </data>
-  <data name="Privacy3ParagraphList5" xml:space="preserve">
-    <value>numer rachunku bankowego lub karty płatniczej (w przypadku dokonywania płatności)</value>
-  </data>
-  <data name="Privacy3ParagraphListBeginning" xml:space="preserve">
-    <value>Sklep internetowy "Smell it" przetwarza następujące dane osobowe:</value>
-  </data>
-  <data name="Privacy4Heading" xml:space="preserve">
-    <value>4. Odbiorcy danych osobowych</value>
-  </data>
-  <data name="Privacy4Paragraph" xml:space="preserve">
-    <value>Dane osobowe przetwarzane przez sklep internetowy "Smell it" mogą być przekazywane podmiotom zajmującym się obsługą płatności oraz dostawą zamówionych produktów. Ponadto, Administrator może przekazywać dane osobowe organom uprawnionym na mocy prawa oraz podmiotom przetwarzającym dane na zlecenie Administratora (np. dostawcom usług IT).</value>
-  </data>
-  <data name="Privacy5Heading" xml:space="preserve">
-    <value>5. Okres przechowywania danych osobowych</value>
-  </data>
-  <data name="Privacy5Paragraph" xml:space="preserve">
-    <value>Dane osobowe przetwarzane przez sklep internetowy "Smell it" będą przechowywane przez okres niezbędny do realizacji zamówienia oraz w celu umożliwienia korzystania z funkcjonalności sklepu. Dane osobowe przetwarzane w celu otrzymywania newslettera oraz korzystania z konta klienta będą przechowywane do czasu wycofania zgody na ich przetwarzanie.</value>
-  </data>
-  <data name="Privacy6Heading" xml:space="preserve">
-    <value>6. Prawa osoby, której dane dotyczą</value>
-  </data>
-  <data name="Privacy6ParagraphList1" xml:space="preserve">
-    <value>dostępu do swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphList2" xml:space="preserve">
-    <value>sprostowania swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphList3" xml:space="preserve">
-    <value>usunięcia swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphList4" xml:space="preserve">
-    <value>ograniczenia przetwarzania swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphList5" xml:space="preserve">
-    <value>przenoszenia swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphList6" xml:space="preserve">
-    <value>wniesienia sprzeciwu wobec przetwarzania swoich danych osobowych</value>
-  </data>
-  <data name="Privacy6ParagraphListBeginning" xml:space="preserve">
-    <value>Każda osoba, której dane osobowe są przetwarzane przez sklep internetowy "Smell it", ma prawo do:</value>
-  </data>
-  <data name="Privacy7Heading" xml:space="preserve">
-    <value>7. Pliki cookies</value>
-  </data>
-  <data name="Privacy7Paragraph1" xml:space="preserve">
-    <value>Sklep internetowy "Smell it" korzysta z plików cookies w celu umożliwienia korzystania z funkcjonalności sklepu oraz poprawy jakości świadczonych usług. Pliki cookies są małymi plikami tekstowymi przechowywanymi na urządzeniu końcowym użytkownika sklepu.</value>
-  </data>
-  <data name="Privacy7Paragraph2" xml:space="preserve">
-    <value>Użytkownik może w każdej chwili zablokować lub usunąć pliki cookies za pomocą odpowiednich ustawień w przeglądarce internetowej.</value>
-  </data>
-  <data name="Privacy8Heading" xml:space="preserve">
-    <value>8. Zmiany w Polityce Prywatności</value>
-  </data>
-  <data name="Privacy8Paragraph" xml:space="preserve">
-    <value>Administrator zastrzega sobie prawo do dokonywania zmian w Polityce Prywatności w dowolnym czasie. Zmiany te będą publikowane na stronie internetowej sklepu.</value>
-  </data>
-  <data name="Privacy9Heading" xml:space="preserve">
-    <value>9. Kontakt z Administratorem</value>
-  </data>
-  <data name="Privacy9Paragraph" xml:space="preserve">
-    <value>W sprawach związanych z przetwarzaniem danych osobowych przez sklep internetowy "Smell it" należy skontaktować się z Administratorem danych osobowych za pomocą adresu e-mail info@smellit.com lub pisemnie na adres siedziby firmy.</value>
-  </data>
-  <data name="PrivacyDesc" xml:space="preserve">
-    <value>Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych przez sklep internetowy "Smell it" prowadzony przez Smell it sp. z o.o., z siedzibą w Krakowie.</value>
-  </data>
   <data name="PrivacyPolicies" xml:space="preserve">
     <value>Polityki prywatności</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Polityka prywatności</value>
-  </data>
-  <data name="PrivacyTitle" xml:space="preserve">
-    <value>Polityka prywatności sklepu internetowego "Smell it"</value>
   </data>
   <data name="ProductCategories" xml:space="preserve">
     <value>Kategorie produktów</value>
@@ -498,12 +363,6 @@
   <data name="ScentedCandles" xml:space="preserve">
     <value>Świece zapachowe</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Szukaj</value>
-  </data>
-  <data name="SeeNow" xml:space="preserve">
-    <value>Zobacz teraz</value>
-  </data>
   <data name="SelectCategory" xml:space="preserve">
     <value>Wybierz kategorię</value>
   </data>
@@ -516,11 +375,8 @@
   <data name="SignIn" xml:space="preserve">
     <value>Zarejestruj się</value>
   </data>
-  <data name="SmellItAddress" xml:space="preserve">
-    <value>Floriańska 1, 31-019 Kraków, Polska</value>
-  </data>
   <data name="SmellItDiffuser" xml:space="preserve">
-    <value>Dyfuzor Smell it</value>
+    <value>Dyfuzor Smell It</value>
   </data>
   <data name="SmellItDiffuserDesc" xml:space="preserve">
     <value>Nowoczesny dyfuzor zapachów, który dzięki zaawansowanej technologii jest w stanie odwzorować 99% zapachów dostrzeganych przez człowieka. Urządzenie to łączy się bezprzewodowo z komputerem lub telefonem za pomocą Bluetooth. Dzięki Smell it sprawdzisz zapach perfum bez wychodzenia z domu, a także doświadczysz niesamowitych wrażeń sensorycznych podczas oglądania filmów</value>
@@ -533,18 +389,6 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sortuj wedug</value>
-  </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Temat</value>
-  </data>
-  <data name="SubscribeNow" xml:space="preserve">
-    <value>SUBSKRYBUJ!</value>
-  </data>
-  <data name="SubscribeToNewsletter" xml:space="preserve">
-    <value>ZAPISZ SIĘ DO NEWSLETTER'A</value>
-  </data>
-  <data name="SubscribeToNewsletterDesc" xml:space="preserve">
-    <value>Jako pierwszy dowiesz się o najnowszych promocjach i produktach</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Tekst</value>

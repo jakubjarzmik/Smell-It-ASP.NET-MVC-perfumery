@@ -20,8 +20,11 @@
                                 <span asp-validation-for="Link" class="helper-text"></span>
                             </div>
                             <div class="input-field col s12">
+                            <label asp-for="Type">Typ</label>
+                            </div>
+                            <div class="input-field col s12">
                                 <select id="types" asp-for="Type">
-                                    <option value="@null" selected disabled>@language.GetValue("Type")</option>
+                                    <option value="@null" selected disabled></option>
                                     @foreach (var type in ViewData["SocialTypes"] as IEnumerable<string>)
                                     {
                                         <option value="@type">@type</option>

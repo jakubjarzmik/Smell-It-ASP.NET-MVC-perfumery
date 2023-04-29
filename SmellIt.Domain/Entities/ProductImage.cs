@@ -13,10 +13,10 @@ namespace SmellIt.Domain.Entities
         [MaxLength(50)] 
         public string ImageAlt { get; set; } = default!;
 
-        [ForeignKey("Product")]
         public int ProductId { get; set; }
+        [ForeignKey("ProductId")]
         public virtual Product Product { get; set; } = default!;
-        
+
         public override void EncodeName() => 
             EncodedName = ImageAlt.ConvertToEncodedName();
     }

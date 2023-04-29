@@ -6,12 +6,12 @@ public class BrandTranslation : BaseEntity
 {
     public virtual string? Description { get; set; }
 
-    [ForeignKey("Brand")]
     public int BrandId { get; set; }
+    [ForeignKey("BrandId")]
     public Brand Brand { get; set; } = default!;
 
-    [ForeignKey("Language")]
     public int LanguageId { get; set; }
+    [ForeignKey("LanguageId")]
     public Language Language { get; set; } = default!;
     
     public override void EncodeName() => EncodedName = Brand.EncodedName + "-" + Language.Code + "-translation";

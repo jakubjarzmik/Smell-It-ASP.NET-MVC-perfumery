@@ -15,7 +15,6 @@ namespace SmellIt.Application.SmellIt.SocialSites.Commands.EditSocialSite
         {
             var socialSite = (await _socialSiteRepository.GetByEncodedName(request.EncodedName))!;
             socialSite.ModifiedAt = DateTime.UtcNow;
-            socialSite.Type = request.Type;
             socialSite.Link = request.Link;
 
             await _socialSiteRepository.Commit();

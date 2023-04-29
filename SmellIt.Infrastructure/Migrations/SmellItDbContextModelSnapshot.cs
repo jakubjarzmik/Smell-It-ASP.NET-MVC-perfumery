@@ -68,7 +68,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Brand", b =>
@@ -102,7 +102,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.BrandTranslation", b =>
@@ -144,7 +144,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("BrandTranslations");
+                    b.ToTable("BrandTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.FragranceCategory", b =>
@@ -173,7 +173,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FragranceCategories");
+                    b.ToTable("FragranceCategories", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.FragranceCategoryTranslation", b =>
@@ -220,7 +220,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("FragranceCategoryTranslations");
+                    b.ToTable("FragranceCategoryTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Gender", b =>
@@ -249,7 +249,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genders");
+                    b.ToTable("Genders", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.GenderTranslation", b =>
@@ -296,7 +296,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("GenderTranslations");
+                    b.ToTable("GenderTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.HomeBanner", b =>
@@ -335,7 +335,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HomeBanners");
+                    b.ToTable("HomeBanners", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.HomeBannerTranslation", b =>
@@ -379,7 +379,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("HomeBannerTranslations");
+                    b.ToTable("HomeBannerTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Language", b =>
@@ -418,7 +418,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages");
+                    b.ToTable("Languages", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.PrivacyPolicy", b =>
@@ -456,7 +456,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("PrivacyPolicies");
+                    b.ToTable("PrivacyPolicies", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>
@@ -505,7 +505,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("GenderId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.ProductCategory", b =>
@@ -539,7 +539,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.ProductCategoryTranslation", b =>
@@ -586,7 +586,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("ProductCategoryTranslations");
+                    b.ToTable("ProductCategoryTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.ProductImage", b =>
@@ -630,7 +630,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.ProductTranslation", b =>
@@ -677,7 +677,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductTranslations");
+                    b.ToTable("ProductTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.SocialSite", b =>
@@ -716,7 +716,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SocialSites");
+                    b.ToTable("SocialSites", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.WebsiteText", b =>
@@ -750,7 +750,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WebsiteTexts");
+                    b.ToTable("WebsiteTexts", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.WebsiteTextTranslation", b =>
@@ -794,7 +794,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.HasIndex("WebsiteTextId");
 
-                    b.ToTable("WebsiteTextTranslations");
+                    b.ToTable("WebsiteTextTranslations", (string)null);
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.BrandTranslation", b =>

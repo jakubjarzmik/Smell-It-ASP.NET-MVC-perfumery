@@ -45,7 +45,7 @@ public class HomeBannersController : Controller
         }
 
         if (command.ImageFile != null)
-            await BannerImageManager.AddBannerImageAsync(command.ImageFile);
+            await BannerImageManager.AddBannerImageAsync(command.ImageFile, command.Key);
 
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));

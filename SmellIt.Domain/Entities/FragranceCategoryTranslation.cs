@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SmellIt.Domain.Entities;
 public class FragranceCategoryTranslation : BaseTranslation
 {
-    [ForeignKey("FragranceCategory")]
     public int FragranceCategoryId { get; set; }
+    [ForeignKey("FragranceCategoryId")]
     public FragranceCategory FragranceCategory { get; set; } = default!;
-    
+
     public override void EncodeName() => 
         EncodedName = Name.ConvertToEncodedName() + "-translation";
 }

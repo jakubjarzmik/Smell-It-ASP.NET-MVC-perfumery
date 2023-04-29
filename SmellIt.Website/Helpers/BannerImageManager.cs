@@ -5,6 +5,15 @@ namespace SmellIt.Website.Helpers
 {
     public static class BannerImageManager
     {
+        public static async Task AddBannerImageAsync(IFormFile file)
+        {
+            var fileName = file.FileName;
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "banners");
+            var filePath = Path.Combine(folderPath, fileName);
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+        }
         public static void DeleteNonExistentBanners(IEnumerable<HomeBannerDto>? banners, IWebHostEnvironment env)
         {
             if (banners == null)
