@@ -967,6 +967,22 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(privacyPolicyTranslations);
 
 
+                    var popularProducts = new WebsiteText { Key = "PopularProducts" };
+                    popularProducts.EncodeName();
+                    await _dbContext.WebsiteTexts.AddAsync(popularProducts);
+
+                    List<WebsiteTextTranslation> popularProductsTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = popularProducts, Language = polish, Text = "Popularne produkty" },
+                        new WebsiteTextTranslation { WebsiteText = popularProducts, Language = english, Text = "Popular Products" },
+                    };
+                    foreach (var x in popularProductsTranslations)
+                    {
+                        x.EncodeName();
+                    }
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(popularProductsTranslations);
+
+
                     var sortBy = new WebsiteText { Key = "SortBy" };
                     sortBy.EncodeName();
                     await _dbContext.WebsiteTexts.AddAsync(sortBy);

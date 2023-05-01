@@ -18,39 +18,8 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
             _languageRepository = languageRepository;
             _mapper = mapper;
         }
-        public async Task<Unit> Handle(CreateHomeBannerCommand request, CancellationToken cancellationToken)
-        {
-            var homeBanner = _mapper.Map<HomeBanner>(request);
-            homeBanner.EncodeName();
-            try
-            {
-                if (request.ImageFile != null)
-                {
-                    string imagePath = await UploadImageAsync(request.ImageFile, homeBanner.Key);
-                    homeBanner.ImagePath = imagePath;
-                }
 
-                foreach (var translation in homeBanner.HomeBannerTranslations!)
-                {
-                    translation.HomeBanner = homeBanner;
-                    if (translation.Text == request.TextPL)
-                        translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
-                    else if (translation.Text == request.TextEN)
-                        translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
-                    translation.EncodeName();
-                }
-
-                await _homeBannerRepository.Create(homeBanner);
-            }
-            catch (Exception ex)
-            {
-                
-            }
-
-            return Unit.Value;
-        }
-
-        public static async Task<string> UploadImageAsync(IFormFile file, string key)
+        private async Task<string> UploadImageAsync(IFormFile file, string key)
         {
             using var httpClient = new HttpClient();
             using var content = new MultipartFormDataContent();
@@ -58,7 +27,7 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
             var extension = "." + file.FileName[(file.FileName.LastIndexOf('.') + 1)..];
 
 
-            content.Add(new StreamContent(fileStream), "file", key+extension);
+            content.Add(new StreamContent(fileStream), "file", key + extension);
             var response = await httpClient.PostAsync("https://localhost:7282/Banner/upload", content);
             if (response.IsSuccessStatusCode)
             {
@@ -75,6 +44,48 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
         private class UploadResponse
         {
             public string FilePath { get; set; } = default!;
+        }
+
+        private async Task CompleteTranslationFields(CreateHomeBannerCommand request, HomeBanner homeBanner)
+        {
+            bool isPlTranslationAdded = false;
+            foreach (var translation in homeBanner.HomeBannerTranslations!)
+            {
+                translation.HomeBanner = homeBanner;
+
+                if (translation.Text == request.TextPL && !isPlTranslationAdded)
+                {
+                    translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
+                    isPlTranslationAdded = true;
+                }
+                else if (translation.Text == request.TextEN)
+                    translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
+                translation.EncodeName();
+            }
+        }
+
+        public async Task<Unit> Handle(CreateHomeBannerCommand request, CancellationToken cancellationToken)
+        {
+            var homeBanner = _mapper.Map<HomeBanner>(request);
+            homeBanner.EncodeName();
+            try
+            {
+                if (request.ImageFile != null)
+                {
+                    string imagePath = await UploadImageAsync(request.ImageFile, homeBanner.Key);
+                    homeBanner.ImagePath = imagePath;
+                }
+
+                await CompleteTranslationFields(request, homeBanner);
+
+                await _homeBannerRepository.Create(homeBanner);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return Unit.Value;
         }
     }
 }
