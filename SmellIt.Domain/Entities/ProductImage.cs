@@ -1,5 +1,4 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
-using SmellIt.Domain.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

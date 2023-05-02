@@ -21,8 +21,8 @@ public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, We
 
         return new List<WebsiteTextTranslation>
         {
-            new WebsiteTextTranslation { Language = plLanguage, LanguageId = plLanguage.Id, Text = source.TextPl, WebsiteText = destination, WebsiteTextId = destination.Id},
-            new WebsiteTextTranslation { Language = enLanguage, LanguageId = enLanguage.Id, Text = source.TextEn, WebsiteText = destination, WebsiteTextId = destination.Id }
+            new WebsiteTextTranslation { Language = plLanguage, Text = source.TextPl, WebsiteText = destination },
+            new WebsiteTextTranslation { Language = enLanguage, Text = source.TextEn, WebsiteText = destination }
         };
 
     }

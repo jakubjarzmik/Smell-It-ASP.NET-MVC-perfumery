@@ -5,7 +5,6 @@ using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncoded
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
-using SmellIt.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Helpers;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;

@@ -6,7 +6,6 @@ using SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName;
 using SmellIt.Application.SmellIt.Brands.Queries.GetPaginatedBrands;
-using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
 public class BrandsController : Controller

@@ -10,5 +10,5 @@ public abstract class BaseTranslation : BaseEntity
 
     [ForeignKey("Language")]
     public int LanguageId { get; set; }
-    public Language Language { get; set; } = default!;
+    public virtual Language Language { get; set; } = default!;
 }

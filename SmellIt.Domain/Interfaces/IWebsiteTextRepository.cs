@@ -1,11 +1,8 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IWebsiteTextRepository
+public interface IWebsiteTextRepository : IBaseRepository<WebsiteText>
 {
-    Task Create(WebsiteText websiteText);
     Task<WebsiteText?> GetByKey(string key);
-    Task<WebsiteText?> GetByEncodedName(string encodedName);
-    Task<IEnumerable<WebsiteText>> GetAll();
-    Task Commit();
 }

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.Languages;
 using SmellIt.Application.SmellIt.PrivacyPolicies;
-using SmellIt.Application.SmellIt.WebsiteTexts;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 

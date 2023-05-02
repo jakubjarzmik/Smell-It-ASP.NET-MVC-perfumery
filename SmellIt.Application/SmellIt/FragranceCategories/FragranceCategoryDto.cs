@@ -2,8 +2,8 @@
 public class FragranceCategoryDto
 {
     public string EncodedName { get; set; } = default!;
-    public string NamePL { get; set; } = default!;
-    public string NameEN { get; set; } = default!;
-    public string? DescriptionPL { get; set; }
-    public string? DescriptionEN { get; set; }
+    public string NamePl { get; set; } = default!;
+    public string NameEn { get; set; } = default!;
+    public string? DescriptionPl { get; set; }
+    public string? DescriptionEn { get; set; }
 }

@@ -9,7 +9,6 @@ using SmellIt.Application.Mappings.PrivacyPolicyMapping;
 using SmellIt.Application.Mappings.SocialSiteMapping;
 using SmellIt.Application.Mappings.WebsiteTextMapping;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
-using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCategory;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;

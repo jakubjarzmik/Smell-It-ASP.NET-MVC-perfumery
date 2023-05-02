@@ -22,8 +22,8 @@ public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, Home
         {
             return new List<HomeBannerTranslation>
             {
-                new HomeBannerTranslation { Language = plLanguage, Text = source.TextPL },
-                new HomeBannerTranslation { Language = enLanguage, Text = source.TextEN }
+                new HomeBannerTranslation { Language = plLanguage, Text = source.TextPl, HomeBanner = destination },
+                new HomeBannerTranslation { Language = enLanguage, Text = source.TextEn, HomeBanner = destination }
             };
         }
 

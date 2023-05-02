@@ -1,5 +1,4 @@
 ﻿using SmellIt.Application.SmellIt.HomeBanners;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 
 namespace SmellIt.Admin.Helpers
 {

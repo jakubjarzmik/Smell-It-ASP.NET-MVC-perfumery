@@ -14,11 +14,9 @@ public class BrandMappingProfile : Profile
 
         CreateMap<Brand, BrandDto>()
             .ForMember(dto => dto.DescriptionPl,
-                opt =>
-                    opt.MapFrom<DescriptionPlResolver>())
-            .ForMember(dto => dto.DescriptionEn,
-                opt =>
-                    opt.MapFrom<DescriptionEnResolver>());
+                opt => opt.MapFrom(src => src.BrandTranslations.First(bt => bt.Language.Code == "pl-PL").Description))
+            .ForMember(dto => dto.DescriptionEn, 
+                opt => opt.MapFrom(src => src.BrandTranslations.First(bt => bt.Language.Code == "en-GB").Description));
 
         CreateMap<BrandDto, EditBrandCommand>();
     }

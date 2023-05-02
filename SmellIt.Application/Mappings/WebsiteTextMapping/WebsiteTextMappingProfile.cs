@@ -14,11 +14,9 @@ public class WebsiteTextMappingProfile : Profile
 
         CreateMap<WebsiteText, WebsiteTextDto>()
             .ForMember(dto => dto.TextPl,
-                opt =>
-                    opt.MapFrom<TextPlResolver>())
+                opt => opt.MapFrom(src=>src.WebsiteTextTranslations.First(wtt=>wtt.Language.Code == "pl-PL").Text))
             .ForMember(dto => dto.TextEn,
-                opt =>
-                    opt.MapFrom<TextEnResolver>());
+                opt => opt.MapFrom(src => src.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "en-GB").Text));
 
         CreateMap<WebsiteTextDto, EditWebsiteTextCommand>();
     }

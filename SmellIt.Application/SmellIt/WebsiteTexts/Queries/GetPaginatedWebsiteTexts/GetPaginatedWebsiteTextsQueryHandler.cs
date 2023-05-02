@@ -28,7 +28,7 @@ public class GetPaginatedWebsiteTextsQueryHandler : IRequestHandler<GetPaginated
         
         var viewModel = new WebsiteTextsViewModel
         {
-            WebsiteTexts = paginatedWebsiteTexts,
+            Items = paginatedWebsiteTexts,
             CurrentPage = request.PageNumber,
             TotalPages = totalPages,
             PageSize = request.PageSize

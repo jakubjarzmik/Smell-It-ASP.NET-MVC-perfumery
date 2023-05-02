@@ -9,8 +9,8 @@ public class HomeBannerTranslation : BaseEntity
 	public string Text { get; set; } = default!;
     public int HomeBannerId { get; set; }
 	[ForeignKey("HomeBannerId")]
-	public HomeBanner HomeBanner { get; set; } = default!;
+    public virtual HomeBanner HomeBanner { get; set; } = default!;
     public int LanguageId { get; set; }
     [ForeignKey("LanguageId")]
-	public Language Language { get; set; } = default!;
+    public virtual Language Language { get; set; } = default!;
 }

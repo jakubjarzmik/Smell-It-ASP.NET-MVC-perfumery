@@ -6,25 +6,22 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByE
     public class DeleteWebsiteTextByEncodedNameCommandHandler : IRequestHandler<DeleteWebsiteTextByEncodedNameCommand>
     {
         private readonly IWebsiteTextRepository _websiteTextRepository;
-        private readonly IWebsiteTextTranslationRepository _websiteTextTranslationRepository;
 
-        public DeleteWebsiteTextByEncodedNameCommandHandler(IWebsiteTextRepository websiteTextRepository, IWebsiteTextTranslationRepository websiteTextTranslationRepository)
+        public DeleteWebsiteTextByEncodedNameCommandHandler(IWebsiteTextRepository websiteTextRepository)
         {
             _websiteTextRepository = websiteTextRepository;
-            _websiteTextTranslationRepository = websiteTextTranslationRepository;
         }
 
         public async Task<Unit> Handle(DeleteWebsiteTextByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            var layoutText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
-            layoutText.IsActive = false;
-            layoutText.DeletedAt = DateTime.UtcNow;
+            var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
+            websiteText.IsActive = false;
+            websiteText.DeletedAt = DateTime.UtcNow;
 
-            var layoutTextTranslations = await _websiteTextTranslationRepository.GetWebsiteTextTranslations(layoutText.Id);
-            foreach (var brandTranslation in layoutTextTranslations)
+            foreach (var websiteTextTranslation in websiteText.WebsiteTextTranslations)
             {
-                brandTranslation.IsActive = false;
-                brandTranslation.DeletedAt = DateTime.UtcNow;
+                websiteTextTranslation.IsActive = false;
+                websiteTextTranslation.DeletedAt = DateTime.UtcNow;
             }
 
             await _websiteTextRepository.Commit();

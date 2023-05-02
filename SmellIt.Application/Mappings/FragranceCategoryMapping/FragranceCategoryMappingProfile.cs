@@ -13,14 +13,14 @@ public class FragranceCategoryMappingProfile : Profile
                 opt => opt.MapFrom<FragranceCategoryTranslationsResolver>());
 
         CreateMap<FragranceCategory, FragranceCategoryDto>()
-            .ForMember(dto => dto.NamePL,
-                opt => opt.MapFrom<NamePlResolver>())
-            .ForMember(dto => dto.NameEN,
-                opt => opt.MapFrom<NameEnResolver>())
-            .ForMember(dto => dto.DescriptionPL,
-                opt => opt.MapFrom<DescriptionPlResolver>())
-            .ForMember(dto => dto.DescriptionEN,
-                opt => opt.MapFrom<DescriptionEnResolver>());
+            .ForMember(dto => dto.NamePl,
+                opt => opt.MapFrom(src=>src.FragranceCategoryTranslations.First(fct=>fct.Language.Code == "pl-PL").Name))
+            .ForMember(dto => dto.NameEn,
+                opt => opt.MapFrom(src => src.FragranceCategoryTranslations.First(fct => fct.Language.Code == "en-GB").Name))
+            .ForMember(dto => dto.DescriptionPl,
+                opt => opt.MapFrom(src => src.FragranceCategoryTranslations.First(fct => fct.Language.Code == "pl-PL").Description))
+            .ForMember(dto => dto.DescriptionEn,
+                opt => opt.MapFrom(src => src.FragranceCategoryTranslations.First(fct => fct.Language.Code == "en-GB").Description));
 
         CreateMap<FragranceCategoryDto, EditFragranceCategoryCommand>();
     }

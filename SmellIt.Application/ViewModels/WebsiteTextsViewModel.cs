@@ -1,12 +1,9 @@
 ﻿using SmellIt.Application.SmellIt.WebsiteTexts;
+using SmellIt.Application.ViewModels.Abstract;
 
 namespace SmellIt.Application.ViewModels
 {
-    public class WebsiteTextsViewModel
+    public class WebsiteTextsViewModel : PaginatedViewModel<WebsiteTextDto>
     {
-        public IEnumerable<WebsiteTextDto>? WebsiteTexts { get; set; }
-        public int CurrentPage { get; set; }
-        public int TotalPages { get; set; }
-        public int PageSize { get; set; }
     }
 }

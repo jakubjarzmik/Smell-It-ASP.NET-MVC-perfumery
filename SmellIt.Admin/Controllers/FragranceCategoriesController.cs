@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCategory;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
-using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetPaginatedFragranceCategories;
-using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
 public class FragranceCategoriesController : Controller

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite;
 public class CreateSocialSiteCommandValidator : AbstractValidator<CreateSocialSiteCommand>

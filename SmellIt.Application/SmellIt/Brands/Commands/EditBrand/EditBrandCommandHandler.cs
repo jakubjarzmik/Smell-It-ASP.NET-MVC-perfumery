@@ -6,12 +6,10 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
     public class EditBrandCommandHandler : IRequestHandler<EditBrandCommand>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IBrandTranslationRepository _brandTranslationRepository;
 
-        public EditBrandCommandHandler(IBrandRepository brandRepository, IBrandTranslationRepository brandTranslationRepository)
+        public EditBrandCommandHandler(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
-            _brandTranslationRepository = brandTranslationRepository;
         }
         public async Task<Unit> Handle(EditBrandCommand request, CancellationToken cancellationToken)
         {

@@ -12,19 +12,15 @@ namespace SmellIt.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")));
+            services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")).UseLazyLoadingProxies());
 
             services.AddScoped<Seeder>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
-            services.AddScoped<IBrandTranslationRepository, BrandTranslationRepository>();
             services.AddScoped<IFragranceCategoryRepository, FragranceCategoryRepository>();
-            services.AddScoped<IFragranceCategoryTranslationRepository, FragranceCategoryTranslationRepository>();
             services.AddScoped<IWebsiteTextRepository, WebsiteTextRepository>();
-            services.AddScoped<IWebsiteTextTranslationRepository, WebsiteTextTranslationRepository>();
             services.AddScoped<IHomeBannerRepository, HomeBannerRepository>();
-            services.AddScoped<IHomeBannerTranslationRepository, HomeBannerTranslationRepository>();
             services.AddScoped<IPrivacyPolicyRepository, PrivacyPolicyRepository>();
             services.AddScoped<ISocialSiteRepository, SocialSiteRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();

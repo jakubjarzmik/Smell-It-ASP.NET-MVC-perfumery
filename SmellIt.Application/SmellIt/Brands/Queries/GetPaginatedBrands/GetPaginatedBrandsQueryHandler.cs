@@ -28,7 +28,7 @@ public class GetPaginatedBrandsQueryHandler : IRequestHandler<GetPaginatedBrands
         
         var viewModel = new BrandsViewModel
         {
-            Brands = paginatedBrands,
+            Items = paginatedBrands,
             CurrentPage = request.PageNumber,
             TotalPages = totalPages,
             PageSize = request.PageSize

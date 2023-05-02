@@ -10,9 +10,9 @@ public class WebsiteTextTranslation : BaseEntity
 
 	public int WebsiteTextId { get; set; }
 	[ForeignKey("WebsiteTextId")]
-	public WebsiteText WebsiteText { get; set; } = default!;
+    public virtual WebsiteText WebsiteText { get; set; } = default!;
 
 	public int LanguageId { get; set; }
     [ForeignKey("LanguageId")]
-	public Language Language { get; set; } = default!;
+    public virtual Language Language { get; set; } = default!;
 }

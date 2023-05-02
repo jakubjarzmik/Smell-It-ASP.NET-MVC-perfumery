@@ -24,7 +24,7 @@
                             @{
                                 int index = 0;
                             }
-                            @foreach (var item in Model.WebsiteTexts!)
+                            @foreach (var item in Model.Items!)
                             {
                                 <tr>
                                     <td>@(item.TextPl.Length > 50 ? item.TextPl.Substring(0,50) + "..." : item.TextPl)</td>

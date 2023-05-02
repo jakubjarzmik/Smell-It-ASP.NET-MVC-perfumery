@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetAllWebsiteTexts;
 using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
 using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
-using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
 public class WebsiteTextsController : Controller

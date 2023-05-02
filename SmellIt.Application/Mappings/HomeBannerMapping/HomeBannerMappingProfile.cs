@@ -13,12 +13,10 @@ public class HomeBannerMappingProfile : Profile
                 opt => opt.MapFrom<HomeBannerTranslationsResolver>());
 
         CreateMap<HomeBanner, HomeBannerDto>()
-            .ForMember(dto => dto.TextPL,
-                opt =>
-                    opt.MapFrom<TextPlResolver>())
-            .ForMember(dto => dto.TextEN,
-                opt =>
-                    opt.MapFrom<TextEnResolver>());
+            .ForMember(dto => dto.TextPl,
+                opt => opt.MapFrom(src=>src.HomeBannerTranslations.First(hbt=>hbt.Language.Code == "pl-PL").Text))
+            .ForMember(dto => dto.TextEn,
+                opt => opt.MapFrom(src => src.HomeBannerTranslations.First(hbt => hbt.Language.Code == "en-GB").Text));
 
         CreateMap<HomeBannerDto, EditHomeBannerCommand>();
     }

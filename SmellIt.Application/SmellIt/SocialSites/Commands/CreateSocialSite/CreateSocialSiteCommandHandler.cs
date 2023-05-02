@@ -17,9 +17,7 @@ namespace SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite
         public async Task<Unit> Handle(CreateSocialSiteCommand request, CancellationToken cancellationToken)
         {
             var socialSite = _mapper.Map<SocialSite>(request);
-            socialSite.EncodeName();
             await _socialSiteRepository.Create(socialSite);
-
             return Unit.Value;
         }
     }

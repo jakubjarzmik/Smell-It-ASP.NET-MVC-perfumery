@@ -26,25 +26,25 @@
                             @{
                                 int index = 0;
                             }
-                            @foreach (var item in Model.FragranceCategories!)
+                            @foreach (var item in Model.Items!)
                             {
                                 var description = "";
-                                if (currentCulture == "pl-PL" && item.DescriptionPL != null)
-                                    description = item.DescriptionPL.Length > 80 ? item.DescriptionPL.Substring(0, 80) + "..." : item.DescriptionPL;
-                                else if (currentCulture == "en-GB" && item.DescriptionEN != null)
-                                    description = item.DescriptionEN.Length > 80 ? item.DescriptionEN.Substring(0, 80) + "..." : item.DescriptionEN;
+                                if (currentCulture == "pl-PL" && item.DescriptionPl != null)
+                                    description = item.DescriptionPl.Length > 80 ? item.DescriptionPl.Substring(0, 80) + "..." : item.DescriptionPl;
+                                else if (currentCulture == "en-GB" && item.DescriptionEn != null)
+                                    description = item.DescriptionEn.Length > 80 ? item.DescriptionEn.Substring(0, 80) + "..." : item.DescriptionEn;
                                 <tr>
-                                    <td>@(currentCulture == "pl-PL" ? item.NamePL : item.NameEN)</td>
+                                    <td>@(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)</td>
                                     <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">
                                             <div class="modal-content">
-                                                <h4>@item.NamePL (@item.NameEN)</h4>
+                                                <h4>@item.NamePl (@item.NameEn)</h4>
                                                 <h5>@language.GetValue("Description") (PL)</h5>
-                                                <p>@item.DescriptionPL</p>
+                                                <p>@item.DescriptionPl</p>
                                                 <h5>@language.GetValue("Description") (EN)</h5>
-                                                <p>@item.DescriptionEN</p>
+                                                <p>@item.DescriptionEn</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>

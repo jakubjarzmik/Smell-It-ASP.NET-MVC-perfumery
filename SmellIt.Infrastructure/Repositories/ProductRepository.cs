@@ -1,19 +1,12 @@
 ﻿using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
+using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class ProductRepository : IProductRepository
+public class ProductRepository : BaseRepository<Product>, IProductRepository
 {
-    private readonly SmellItDbContext _dbContext;
-
-    public ProductRepository(SmellItDbContext dbContext)
+    public ProductRepository(SmellItDbContext dbContext):base(dbContext)
     {
-        _dbContext = dbContext;
-    }
-    public async Task Create(Product product)
-    {
-        _dbContext.Add(product);
-        await _dbContext.SaveChangesAsync();
     }
 }

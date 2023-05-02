@@ -24,7 +24,7 @@
                             @{
                                 int index = 0;
                             }
-                            @foreach (var item in Model.SocialSites!)
+                            @foreach (var item in Model.Items!)
                             {
                                 var link = "";
                                 link = item.Link.Length > 80 ? item.Link.Substring(0, 80) + "..." : item.Link;

@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
-using SmellIt.Application.SmellIt.SocialSites.Queries.GetAllSocialSites;
-using SmellIt.Domain.Entities;
 
 namespace SmellIt.Website.ViewComponents
 {

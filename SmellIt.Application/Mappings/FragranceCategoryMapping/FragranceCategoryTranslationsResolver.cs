@@ -22,8 +22,8 @@ public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCat
         {
             return new List<FragranceCategoryTranslation>
             {
-                new FragranceCategoryTranslation { Language = plLanguage, Name = source.NamePL, Description = source.DescriptionPL },
-                new FragranceCategoryTranslation { Language = enLanguage, Name = source.NameEN, Description = source.DescriptionEN }
+                new FragranceCategoryTranslation { Language = plLanguage, Name = source.NamePl, Description = source.DescriptionPl },
+                new FragranceCategoryTranslation { Language = enLanguage, Name = source.NameEn, Description = source.DescriptionEn }
             };
         }
 

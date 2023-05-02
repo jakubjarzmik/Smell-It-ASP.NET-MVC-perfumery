@@ -6,12 +6,10 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName
     public class DeleteBrandByEncodedNameCommandHandler : IRequestHandler<DeleteBrandByEncodedNameCommand>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IBrandTranslationRepository _brandTranslationRepository;
 
-        public DeleteBrandByEncodedNameCommandHandler(IBrandRepository brandRepository, IBrandTranslationRepository brandTranslationRepository)
+        public DeleteBrandByEncodedNameCommandHandler(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
-            _brandTranslationRepository = brandTranslationRepository;
         }
 
         public async Task<Unit> Handle(DeleteBrandByEncodedNameCommand request, CancellationToken cancellationToken)
@@ -20,8 +18,7 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName
             brand.IsActive = false;
             brand.DeletedAt = DateTime.UtcNow;
 
-            var brandTranslations = await _brandTranslationRepository.GetBrandTranslations(brand.Id);
-            foreach (var brandTranslation in brandTranslations)
+            foreach (var brandTranslation in brand.BrandTranslations)
             {
                 brandTranslation.IsActive = false;
                 brandTranslation.DeletedAt = DateTime.UtcNow;

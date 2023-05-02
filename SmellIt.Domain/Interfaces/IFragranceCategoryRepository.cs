@@ -1,10 +1,7 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IFragranceCategoryRepository
+public interface IFragranceCategoryRepository : IBaseRepository<FragranceCategory>
 {
-    Task Create(FragranceCategory fragranceCategory);
-    Task<FragranceCategory?> GetByEncodedName(string encodedName);
-    Task<IEnumerable<FragranceCategory>> GetAll();
-    Task Commit();
 }

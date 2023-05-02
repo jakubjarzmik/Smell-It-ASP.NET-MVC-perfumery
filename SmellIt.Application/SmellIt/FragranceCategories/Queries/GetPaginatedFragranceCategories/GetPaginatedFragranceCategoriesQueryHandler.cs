@@ -28,7 +28,7 @@ public class GetPaginatedFragranceCategoriesQueryHandler : IRequestHandler<GetPa
         
         var viewModel = new FragranceCategoriesViewModel
         {
-            FragranceCategories = paginatedFragranceCategories,
+            Items = paginatedFragranceCategories,
             CurrentPage = request.PageNumber,
             TotalPages = totalPages,
             PageSize = request.PageSize

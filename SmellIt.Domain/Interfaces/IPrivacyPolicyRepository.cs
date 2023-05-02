@@ -1,12 +1,9 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IPrivacyPolicyRepository
+public interface IPrivacyPolicyRepository : IBaseRepository<PrivacyPolicy>
 {
-    Task Create(PrivacyPolicy privacyPolicy);
-    Task<IEnumerable<PrivacyPolicy>> GetAll();
     Task<PrivacyPolicy?> GetTranslation(string languageCode);
-    Task<PrivacyPolicy?> GetByEncodedName(string encodedName);
     Task<PrivacyPolicy?> GetByLanguageCode(string languageCode);
-    Task Commit();
 }

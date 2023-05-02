@@ -6,23 +6,21 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText
     public class EditWebsiteTextCommandHandler : IRequestHandler<EditWebsiteTextCommand>
     {
         private readonly IWebsiteTextRepository _websiteTextRepository;
-        private readonly IWebsiteTextTranslationRepository _websiteTextTranslationRepository;
 
-        public EditWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository, IWebsiteTextTranslationRepository websiteTextTranslationRepository)
+        public EditWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository)
         {
             _websiteTextRepository = websiteTextRepository;
-            _websiteTextTranslationRepository = websiteTextTranslationRepository;
         }
         public async Task<Unit> Handle(EditWebsiteTextCommand request, CancellationToken cancellationToken)
         {
             var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
             websiteText.ModifiedAt = DateTime.UtcNow;
 
-            var plTranslation = (await _websiteTextTranslationRepository.GetTranslation(websiteText.Id, "pl-PL"))!;
+            var plTranslation = websiteText.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "pl-PL");
             plTranslation.Text = request.TextPl;
             plTranslation.ModifiedAt = DateTime.UtcNow;
 
-            var enTranslation = (await _websiteTextTranslationRepository.GetTranslation(websiteText.Id, "en-GB"))!;
+            var enTranslation = websiteText.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "en-GB");
             enTranslation.Text = request.TextEn;
             enTranslation.ModifiedAt = DateTime.UtcNow;
 

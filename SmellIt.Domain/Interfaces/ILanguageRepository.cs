@@ -1,9 +1,8 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface ILanguageRepository
+public interface ILanguageRepository : IBaseRepository<Language>
 {
-    Task Create(Language language);
     Task<Language?> GetByCode(string code);
-    Task<IEnumerable<Language>> GetAll();
 }

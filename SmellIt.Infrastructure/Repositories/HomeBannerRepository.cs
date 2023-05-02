@@ -2,31 +2,13 @@
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
+using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class HomeBannerRepository : IHomeBannerRepository
+public class HomeBannerRepository : BaseRepository<HomeBanner>, IHomeBannerRepository
 {
-    private readonly SmellItDbContext _dbContext;
-
-    public HomeBannerRepository(SmellItDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
-    public async Task Create(HomeBanner homeBanner)
-    {
-        _dbContext.Add(homeBanner);
-        await _dbContext.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<HomeBanner>> GetAll()
-        => await _dbContext.HomeBanners.Where(b => b.IsActive).OrderByDescending(b=>b.CreatedAt).ToListAsync();
+    public HomeBannerRepository(SmellItDbContext dbContext) : base(dbContext) { }
 
     public async Task<HomeBanner?> GetByKey(string key)
-        => await _dbContext.HomeBanners.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Key.ToLower() == key.ToLower());
-    public async Task<HomeBanner?> GetByEncodedName(string encodedName)
-        => await _dbContext.HomeBanners.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
-
-    public Task Commit()
-        => _dbContext.SaveChangesAsync();
+        => await DbContext.HomeBanners.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Key.ToLower() == key.ToLower());
 }

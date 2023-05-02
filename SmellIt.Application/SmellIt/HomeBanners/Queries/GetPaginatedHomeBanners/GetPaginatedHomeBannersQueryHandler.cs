@@ -28,7 +28,7 @@ public class GetPaginatedHomeBannersQueryHandler : IRequestHandler<GetPaginatedH
         
         var viewModel = new HomeBannersViewModel
         {
-            HomeBanners = paginatedHomeBanners,
+            Items = paginatedHomeBanners,
             CurrentPage = request.PageNumber,
             TotalPages = totalPages,
             PageSize = request.PageSize

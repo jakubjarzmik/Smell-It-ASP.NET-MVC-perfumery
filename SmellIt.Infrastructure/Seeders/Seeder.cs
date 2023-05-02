@@ -1036,7 +1036,7 @@ namespace SmellIt.Infrastructure.Seeders
 
                     List<HomeBannerTranslation> homeBanner3Translations = new()
                     {
-                        new HomeBannerTranslation { HomeBanner = homeBanner3, Language = polish, Text = "Armani Si\nperfumt damskie, których nie zapomnisz" },
+                        new HomeBannerTranslation { HomeBanner = homeBanner3, Language = polish, Text = "Armani Si\nperfumy damskie, których nie zapomnisz" },
                         new HomeBannerTranslation { HomeBanner = homeBanner3, Language = english, Text = "Armani Si\nwomen's perfume, unforgettable" },
                     };
                     homeBanner3.HomeBannerTranslations = homeBanner3Translations;
@@ -1052,7 +1052,7 @@ namespace SmellIt.Infrastructure.Seeders
 
                     List<HomeBannerTranslation> homeBanner4Translations = new()
                     {
-                        new HomeBannerTranslation { HomeBanner = homeBanner4, Language = polish, Text = "Poczuj każdy zapach niewychodząc z domu" },
+                        new HomeBannerTranslation { HomeBanner = homeBanner4, Language = polish, Text = "Poczuj każdy zapach nie wychodząc z domu" },
                         new HomeBannerTranslation { HomeBanner = homeBanner4, Language = english, Text = "Experience every scent without leaving your home" },
                     };
                     homeBanner4.HomeBannerTranslations = homeBanner4Translations;

@@ -6,8 +6,6 @@ using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.DeletePrivacyPolicyBy
 using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.EditPrivacyPolicy;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByEncodedName;
-using SmellIt.Application.ViewModels;
-using System.Drawing.Printing;
 using SmellIt.Application.SmellIt.Languages.Queries.GetAllLanguages;
 
 namespace SmellIt.Admin.Controllers;

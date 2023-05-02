@@ -1,11 +1,8 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IHomeBannerRepository
+public interface IHomeBannerRepository : IBaseRepository<HomeBanner>
 {
-    Task Create(HomeBanner homeBanner);
     Task<HomeBanner?> GetByKey(string key);
-    Task<HomeBanner?> GetByEncodedName(string encodedName);
-    Task<IEnumerable<HomeBanner>> GetAll();
-    Task Commit();
 }

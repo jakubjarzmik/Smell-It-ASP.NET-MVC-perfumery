@@ -1,12 +1,9 @@
 ﻿using SmellIt.Application.SmellIt.Brands;
+using SmellIt.Application.ViewModels.Abstract;
 
 namespace SmellIt.Application.ViewModels
 {
-    public class BrandsViewModel
+    public class BrandsViewModel : PaginatedViewModel<BrandDto>
     {
-        public IEnumerable<BrandDto>? Brands { get; set; }
-        public int CurrentPage { get; set; }
-        public int TotalPages { get; set; }
-        public int PageSize { get; set; }
     }
 }

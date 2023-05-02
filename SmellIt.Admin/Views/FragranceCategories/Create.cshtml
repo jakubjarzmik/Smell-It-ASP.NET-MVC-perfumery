@@ -15,24 +15,24 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
                             <div class="input-field col s12">
-                                <label asp-for="NamePL">(PL) @language.GetValue("Name")</label>
-                                <textarea class="materialize-textarea" asp-for="NamePL"></textarea>
-                                <span asp-validation-for="NamePL" class="helper-text"></span>
+                                <label asp-for="NamePl">(PL) @language.GetValue("Name")</label>
+                                <textarea class="materialize-textarea" asp-for="NamePl"></textarea>
+                                <span asp-validation-for="NamePl" class="helper-text"></span>
                             </div>
                             <div class="input-field col s12">
-                                <label asp-for="NameEN">(EN) @language.GetValue("Name")</label>
-                                <textarea class="materialize-textarea" asp-for="NameEN"></textarea>
-                                <span asp-validation-for="NameEN" class="helper-text"></span>
+                                <label asp-for="NameEn">(EN) @language.GetValue("Name")</label>
+                                <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
+                                <span asp-validation-for="NameEn" class="helper-text"></span>
                             </div>
                             <div class="input-field col s12">
-                                <label asp-for="DescriptionPL">(PL) @language.GetValue("Description")</label>
-                                <textarea class="materialize-textarea" asp-for="DescriptionPL"></textarea>
-                                <span asp-validation-for="DescriptionPL" class="helper-text"></span>
+                                <label asp-for="DescriptionPl">(PL) @language.GetValue("Description")</label>
+                                <textarea class="materialize-textarea" asp-for="DescriptionPl"></textarea>
+                                <span asp-validation-for="DescriptionPl" class="helper-text"></span>
                             </div>
                             <div class="input-field col s12">
-                                <label asp-for="DescriptionEN">(EN) @language.GetValue("Description")</label>
-                                <textarea class="materialize-textarea" asp-for="DescriptionEN"></textarea>
-                                <span asp-validation-for="DescriptionEN" class="helper-text"></span>
+                                <label asp-for="DescriptionEn">(EN) @language.GetValue("Description")</label>
+                                <textarea class="materialize-textarea" asp-for="DescriptionEn"></textarea>
+                                <span asp-validation-for="DescriptionEn" class="helper-text"></span>
                             </div>
                             <input type="submit" value="@language.GetValue("Save")" class="btn right" />
                         </form>

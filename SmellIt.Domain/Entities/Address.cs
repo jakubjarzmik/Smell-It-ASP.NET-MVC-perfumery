@@ -1,6 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
 using System.ComponentModel.DataAnnotations;
-using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities
 {

@@ -8,10 +8,10 @@ public class BrandTranslation : BaseEntity
 
     public int BrandId { get; set; }
     [ForeignKey("BrandId")]
-    public Brand Brand { get; set; } = default!;
+    public virtual Brand Brand { get; set; } = default!;
 
     public int LanguageId { get; set; }
     [ForeignKey("LanguageId")]
-    public Language Language { get; set; } = default!;
+    public virtual Language Language { get; set; } = default!;
 
 }

@@ -28,7 +28,7 @@ public class GetPaginatedSocialSitesQueryHandler : IRequestHandler<GetPaginatedS
         
         var viewModel = new SocialSitesViewModel
         {
-            SocialSites = paginatedSocialSites,
+            Items = paginatedSocialSites,
             CurrentPage = request.PageNumber,
             TotalPages = totalPages,
             PageSize = request.PageSize

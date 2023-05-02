@@ -2,34 +2,15 @@
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
+using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class BrandRepository : IBrandRepository
+public class BrandRepository : BaseRepository<Brand>, IBrandRepository
 {
-    private readonly SmellItDbContext _dbContext;
-
-    public BrandRepository(SmellItDbContext dbContext)
+    public BrandRepository(SmellItDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
     }
-
-    public async Task Create(Brand brand)
-    {
-        _dbContext.Add(brand);
-        await _dbContext.SaveChangesAsync();
-        brand.EncodeName();
-        await _dbContext.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<Brand>> GetAll()
-        => await _dbContext.Brands.Where(b => b.IsActive).OrderByDescending(b=>b.CreatedAt).ToListAsync();
 
     public async Task<Brand?> GetByName(string name)
-        => await _dbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
-    public async Task<Brand?> GetByEncodedName(string encodedName)
-        => await _dbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
-
-    public Task Commit()
-        => _dbContext.SaveChangesAsync();
-
+        => await DbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
 }

@@ -1,11 +1,8 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface ISocialSiteRepository
+public interface ISocialSiteRepository : IBaseRepository<SocialSite>
 {
-    Task Create(SocialSite socialSite);
     Task<SocialSite?> GetByType(string type);
-    Task<SocialSite?> GetByEncodedName(string encodedName);
-    Task<IEnumerable<SocialSite>> GetAll();
-    Task Commit();
 }

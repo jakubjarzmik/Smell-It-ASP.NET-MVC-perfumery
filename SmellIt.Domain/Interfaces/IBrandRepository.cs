@@ -1,11 +1,8 @@
 ﻿using SmellIt.Domain.Entities;
+using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IBrandRepository
+public interface IBrandRepository : IBaseRepository<Brand>
 {
-    Task Create(Brand brand);
     Task<Brand?> GetByName(string name);
-    Task<Brand?> GetByEncodedName(string encodedName);
-    Task<IEnumerable<Brand>> GetAll();
-    Task Commit();
 }

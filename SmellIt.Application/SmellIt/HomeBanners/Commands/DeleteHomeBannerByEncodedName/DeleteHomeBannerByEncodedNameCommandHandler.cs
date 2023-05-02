@@ -6,12 +6,10 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEnc
     public class DeleteHomeBannerByEncodedNameCommandHandler : IRequestHandler<DeleteHomeBannerByEncodedNameCommand>
     {
 	    private readonly IHomeBannerRepository _homeBannerRepository;
-	    private readonly IHomeBannerTranslationRepository _homeBannerTranslationRepository;
 
-	    public DeleteHomeBannerByEncodedNameCommandHandler(IHomeBannerRepository homeBannerRepository, IHomeBannerTranslationRepository homeBannerTranslationRepository)
+	    public DeleteHomeBannerByEncodedNameCommandHandler(IHomeBannerRepository homeBannerRepository)
 	    {
 		    _homeBannerRepository = homeBannerRepository;
-		    _homeBannerTranslationRepository = homeBannerTranslationRepository;
 	    }
 
         public async Task<Unit> Handle(DeleteHomeBannerByEncodedNameCommand request, CancellationToken cancellationToken)
@@ -20,8 +18,7 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEnc
             homeBanner.IsActive = false;
             homeBanner.DeletedAt = DateTime.UtcNow;
 
-            var homeBannerTranslations = await _homeBannerTranslationRepository.GetHomeBannerTranslations(homeBanner.Id);
-            foreach (var homeBannerTranslation in homeBannerTranslations)
+            foreach (var homeBannerTranslation in homeBanner.HomeBannerTranslations)
             {
                 homeBannerTranslation.IsActive = false;
                 homeBannerTranslation.DeletedAt = DateTime.UtcNow;

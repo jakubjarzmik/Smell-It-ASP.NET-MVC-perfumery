@@ -4,7 +4,7 @@ using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities
 {
-    public class Language : BaseEntity
+    public class Language : BaseEntityWithEncodedName
     {
         [MaxLength(50)]
         public string Name { get; set; } = default!;
@@ -19,5 +19,8 @@ namespace SmellIt.Domain.Entities
         public virtual ICollection<ProductTranslation> ProductTranslations { get; set; } = default!;
         public virtual ICollection<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = default!;
         public virtual ICollection<WebsiteTextTranslation> WebsiteTexts { get; set; } = default!;
+
+        public override void EncodeName() =>
+            EncodedName = (Id + "-" + Name).ConvertToEncodedName();
     }
 }
