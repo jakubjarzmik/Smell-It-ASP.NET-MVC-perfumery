@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
 using SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName;
 using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
-using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
 using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName;
 using SmellIt.Application.SmellIt.Brands.Queries.GetPaginatedBrands;
 using SmellIt.Application.ViewModels;

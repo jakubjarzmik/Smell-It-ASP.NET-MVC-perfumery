@@ -8,7 +8,4 @@ public class FragranceCategoryTranslation : BaseTranslation
     public int FragranceCategoryId { get; set; }
     [ForeignKey("FragranceCategoryId")]
     public FragranceCategory FragranceCategory { get; set; } = default!;
-
-    public override void EncodeName() => 
-        EncodedName = Name.ConvertToEncodedName() + "-translation";
 }

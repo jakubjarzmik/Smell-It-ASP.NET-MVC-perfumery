@@ -15,18 +15,15 @@ public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, We
 
     public List<WebsiteTextTranslation> Resolve(WebsiteTextDto source, WebsiteText destination, List<WebsiteTextTranslation> destMember, ResolutionContext context)
     {
-        var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
-        var enLanguage = _languageRepository.GetByCode("en-GB").Result;
+        var plLanguage = _languageRepository.GetByCode("pl-PL").Result!;
+        var enLanguage = _languageRepository.GetByCode("en-GB").Result!;
 
-        if (plLanguage != null && enLanguage != null)
+
+        return new List<WebsiteTextTranslation>
         {
-            return new List<WebsiteTextTranslation>
-            {
-                new WebsiteTextTranslation { Language = plLanguage, Text = source.TextPL },
-                new WebsiteTextTranslation { Language = enLanguage, Text = source.TextEN }
-            };
-        }
+            new WebsiteTextTranslation { Language = plLanguage, LanguageId = plLanguage.Id, Text = source.TextPl, WebsiteText = destination, WebsiteTextId = destination.Id},
+            new WebsiteTextTranslation { Language = enLanguage, LanguageId = enLanguage.Id, Text = source.TextEn, WebsiteText = destination, WebsiteTextId = destination.Id }
+        };
 
-        return new();
     }
 }

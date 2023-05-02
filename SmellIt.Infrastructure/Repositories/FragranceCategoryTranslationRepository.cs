@@ -25,13 +25,8 @@ public class FragranceCategoryTranslationRepository : IFragranceCategoryTranslat
         => await _dbContext.FragranceCategoryTranslations.FirstOrDefaultAsync(bt
             => bt.IsActive && bt.FragranceCategoryId == fragranceCategoryId && bt.Language.Code.ToLower() == languageCode.ToLower());
 
-    public async Task<FragranceCategoryTranslation?> GetByEncodedName(string encodedName)
-          => await _dbContext.FragranceCategoryTranslations.FirstOrDefaultAsync(bt 
-              => bt.IsActive && bt.EncodedName == encodedName.ToLower());
-
     public async Task Create(FragranceCategoryTranslation fragranceCategoryTranslation)
     {
-        fragranceCategoryTranslation.EncodeName();
         _dbContext.Add(fragranceCategoryTranslation);
         await _dbContext.SaveChangesAsync();
     }

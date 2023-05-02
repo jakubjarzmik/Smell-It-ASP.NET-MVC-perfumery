@@ -134,9 +134,9 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasForeignKey(pp => pp.LanguageId);
 
             modelBuilder.Entity<Product>()
-                .HasOne(u => u.Category)
+                .HasOne(u => u.ProductCategory)
                 .WithMany(u => u.Products)
-                .HasForeignKey(u => u.CategoryId);
+                .HasForeignKey(u => u.ProductCategoryId);
             modelBuilder.Entity<Product>()
                 .HasOne(u => u.Brand)
                 .WithMany(u => u.Products)
@@ -177,8 +177,8 @@ namespace SmellIt.Infrastructure.Persistence
                 .HasForeignKey(pc => pc.ParentCategoryId);
             modelBuilder.Entity<ProductCategory>()
                 .HasMany(pc => pc.Products)
-                .WithOne(p => p.Category)
-                .HasForeignKey(p => p.CategoryId);
+                .WithOne(p => p.ProductCategory)
+                .HasForeignKey(p => p.ProductCategoryId);
             modelBuilder.Entity<ProductCategory>()
                 .HasMany(pc => pc.ProductCategoryTranslations)
                 .WithOne(pct => pct.ProductCategory)

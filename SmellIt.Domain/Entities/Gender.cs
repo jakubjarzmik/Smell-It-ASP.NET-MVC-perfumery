@@ -7,9 +7,5 @@ namespace SmellIt.Domain.Entities
     {
         public virtual List<Product> Products { get; set; } = new();
         public virtual List<GenderTranslation> GenderTranslations { get; set; } = new();
-        
-        public override void EncodeName() => 
-            EncodedName = GenderTranslations!.First(fct => 
-                fct.Language.Code == "en-GB").Name.ConvertToEncodedName();
     }
 }

@@ -27,17 +27,17 @@
                             @foreach (var item in Model.WebsiteTexts!)
                             {
                                 <tr>
-                                    <td>@(item.TextPL.Length > 50 ? item.TextPL.Substring(0,50) + "..." : item.TextPL)</td>
-                                    <td>@(item.TextEN.Length > 50 ? item.TextEN.Substring(0,50) + "..." : item.TextEN)</td>
+                                    <td>@(item.TextPl.Length > 50 ? item.TextPl.Substring(0,50) + "..." : item.TextPl)</td>
+                                    <td>@(item.TextEn.Length > 50 ? item.TextEn.Substring(0,50) + "..." : item.TextEn)</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">
                                             <div class="modal-content">
                                                 <h4>@item.Key</h4>
                                                 <h5>@language.GetValue("Text") (PL)</h5>
-                                                <p>@item.TextPL</p>
+                                                <p>@item.TextPl</p>
                                                 <h5>@language.GetValue("Text") (EN)</h5>
-                                                <p>@item.TextEN</p>
+                                                <p>@item.TextEn</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>

@@ -8,7 +8,4 @@ public class GenderTranslation : BaseTranslation
     public int GenderId { get; set; }
     [ForeignKey("GenderId")]
     public Gender Gender { get; set; } = default!;
-
-    public override void EncodeName() => 
-        EncodedName = Name.ConvertToEncodedName() + "-translation";
 }

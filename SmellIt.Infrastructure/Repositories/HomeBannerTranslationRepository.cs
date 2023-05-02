@@ -25,13 +25,8 @@ public class HomeBannerTranslationRepository : IHomeBannerTranslationRepository
         => await _dbContext.HomeBannerTranslations.FirstOrDefaultAsync(hbt 
             => hbt.IsActive && hbt.HomeBannerId == homeBannerId && hbt.Language.Code.ToLower() == languageCode.ToLower());
 
-    public async Task<HomeBannerTranslation?> GetByEncodedName(string encodedName)
-        => await _dbContext.HomeBannerTranslations.FirstOrDefaultAsync(hbt 
-            => hbt.IsActive && hbt.EncodedName == encodedName.ToLower());
-
     public async Task Create(HomeBannerTranslation homeBannerTranslation)
     {
-        homeBannerTranslation.EncodeName();
         _dbContext.Add(homeBannerTranslation);
         await _dbContext.SaveChangesAsync();
     }

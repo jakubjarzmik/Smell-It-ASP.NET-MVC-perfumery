@@ -22,8 +22,8 @@ public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, List<Br
         {
             return new List<BrandTranslation>
             {
-                new BrandTranslation { LanguageId = plLanguage.Id, Description = source.DescriptionPL },
-                new BrandTranslation { LanguageId = enLanguage.Id, Description = source.DescriptionEN }
+                new BrandTranslation { Language = plLanguage, LanguageId = plLanguage.Id, Description = source.DescriptionPl, Brand = destination, BrandId = destination.Id},
+                new BrandTranslation { Language = enLanguage, LanguageId = enLanguage.Id, Description = source.DescriptionEn, Brand = destination, BrandId = destination.Id }
             };
         }
 

@@ -25,13 +25,8 @@ public class BrandTranslationRepository : IBrandTranslationRepository
         => await _dbContext.BrandTranslations.FirstOrDefaultAsync(bt 
             => bt.IsActive && bt.BrandId == brandId && bt.Language.Code.ToLower() == languageCode.ToLower());
 
-    public async Task<BrandTranslation?> GetByEncodedName(string encodedName)
-        => await _dbContext.BrandTranslations.FirstOrDefaultAsync(bt 
-            => bt.IsActive && bt.EncodedName == encodedName.ToLower());
-
     public async Task Create(BrandTranslation brandTranslation)
     {
-        brandTranslation.EncodeName();
         _dbContext.Add(brandTranslation);
         await _dbContext.SaveChangesAsync();
     }

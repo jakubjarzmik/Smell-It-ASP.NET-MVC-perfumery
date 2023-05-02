@@ -40,7 +40,6 @@ public static class ServiceCollectionExtension
         services.AddAutoMapper(typeof(SocialSiteMappingProfile));
 
         services.AddValidatorsFromAssemblyContaining<CreateBrandCommandValidator>()
-            .AddValidatorsFromAssemblyContaining<EditBrandCommandValidator>()
             .AddValidatorsFromAssemblyContaining<CreateFragranceCategoryCommandValidator>()
             .AddValidatorsFromAssemblyContaining<EditFragranceCategoryCommandValidator>()
             .AddValidatorsFromAssemblyContaining<CreateWebsiteTextCommandValidator>()

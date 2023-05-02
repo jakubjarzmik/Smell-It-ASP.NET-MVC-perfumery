@@ -13,10 +13,10 @@ public class BrandMappingProfile : Profile
                 opt => opt.MapFrom<BrandTranslationsResolver>());
 
         CreateMap<Brand, BrandDto>()
-            .ForMember(dto => dto.DescriptionPL,
+            .ForMember(dto => dto.DescriptionPl,
                 opt =>
                     opt.MapFrom<DescriptionPlResolver>())
-            .ForMember(dto => dto.DescriptionEN,
+            .ForMember(dto => dto.DescriptionEn,
                 opt =>
                     opt.MapFrom<DescriptionEnResolver>());
 

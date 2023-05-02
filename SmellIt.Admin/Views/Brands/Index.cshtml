@@ -30,9 +30,9 @@
                             {
                                 var description = "";
                                 if (currentCulture == "pl-PL")
-                                    description = item.DescriptionPL.Length > 80 ? item.DescriptionPL.Substring(0,80) + "..." : item.DescriptionPL;
+                                    description = item.DescriptionPl?.Length > 80 ? item.DescriptionPl.Substring(0,80) + "..." : item.DescriptionPl;
                                 else
-                                    description = item.DescriptionEN.Length > 80 ? item.DescriptionEN.Substring(0, 80) + "..." : item.DescriptionEN;
+                                    description = item.DescriptionEn?.Length > 80 ? item.DescriptionEn.Substring(0, 80) + "..." : item.DescriptionEn;
                                 <tr>
                                     <td>@item.Name</td>
                                     <td>@description</td>
@@ -42,9 +42,9 @@
                                             <div class="modal-content">
                                                 <h4>@item.Name</h4>
                                                 <h5>@language.GetValue("Description") (PL)</h5>
-                                                <p>@item.DescriptionPL</p>
+                                                <p>@item.DescriptionPl</p>
                                                 <h5>@language.GetValue("Description") (EN)</h5>
-                                                <p>@item.DescriptionEN</p>
+                                                <p>@item.DescriptionEn</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>

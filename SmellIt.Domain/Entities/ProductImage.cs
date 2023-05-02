@@ -16,8 +16,5 @@ namespace SmellIt.Domain.Entities
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; } = default!;
-
-        public override void EncodeName() => 
-            EncodedName = ImageAlt.ConvertToEncodedName();
     }
 }

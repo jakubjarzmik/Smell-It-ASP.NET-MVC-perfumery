@@ -18,7 +18,7 @@ public class WebsiteTextsService
         if (layoutText == null)
             return key;
         if (CultureInfo.CurrentCulture.ToString().Equals("pl-PL"))
-            return layoutText.TextPL;
-        return layoutText.TextEN;
+            return layoutText.TextPl;
+        return layoutText.TextEn;
     }
 }

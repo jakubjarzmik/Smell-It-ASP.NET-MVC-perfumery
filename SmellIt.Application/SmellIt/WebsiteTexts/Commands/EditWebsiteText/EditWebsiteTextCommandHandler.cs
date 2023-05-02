@@ -19,11 +19,11 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText
             websiteText.ModifiedAt = DateTime.UtcNow;
 
             var plTranslation = (await _websiteTextTranslationRepository.GetTranslation(websiteText.Id, "pl-PL"))!;
-            plTranslation.Text = request.TextPL;
+            plTranslation.Text = request.TextPl;
             plTranslation.ModifiedAt = DateTime.UtcNow;
 
             var enTranslation = (await _websiteTextTranslationRepository.GetTranslation(websiteText.Id, "en-GB"))!;
-            enTranslation.Text = request.TextEN;
+            enTranslation.Text = request.TextEn;
             enTranslation.ModifiedAt = DateTime.UtcNow;
 
             await _websiteTextRepository.Commit();

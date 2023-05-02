@@ -22,10 +22,11 @@ public class SocialSiteRepository : ISocialSiteRepository
     public async Task<IEnumerable<SocialSite>> GetAll()
         => await _dbContext.SocialSites.Where(b => b.IsActive).OrderByDescending(b=>b.CreatedAt).ToListAsync();
 
+    public async Task<SocialSite?> GetByEncodedName(string encodedName)
+        => await _dbContext.SocialSites.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName!.ToLower() == encodedName.ToLower());
+
     public async Task<SocialSite?> GetByType(string type)
         => await _dbContext.SocialSites.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Type.ToLower() == type.ToLower());
-    public async Task<SocialSite?> GetByEncodedName(string encodedName)
-        => await _dbContext.SocialSites.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
 
     public Task Commit()
         => _dbContext.SaveChangesAsync();

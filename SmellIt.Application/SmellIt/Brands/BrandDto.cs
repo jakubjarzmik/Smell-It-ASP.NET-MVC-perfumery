@@ -3,6 +3,6 @@ public class BrandDto
 {
     public string EncodedName { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string? DescriptionPL { get; set; }
-    public string? DescriptionEN { get; set; }
+    public string? DescriptionPl { get; set; }
+    public string? DescriptionEn { get; set; }
 }

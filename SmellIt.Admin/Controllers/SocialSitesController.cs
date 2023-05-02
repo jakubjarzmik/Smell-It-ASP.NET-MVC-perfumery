@@ -1,18 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
-using SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName;
-using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
-using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
-using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName;
-using SmellIt.Application.SmellIt.Brands.Queries.GetPaginatedBrands;
 using SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite;
 using SmellIt.Application.SmellIt.SocialSites.Commands.DeleteSocialSiteByEncodedName;
 using SmellIt.Application.SmellIt.SocialSites.Commands.EditSocialSite;
 using SmellIt.Application.SmellIt.SocialSites.Queries.GetPaginatedSocialSites;
 using SmellIt.Application.SmellIt.SocialSites.Queries.GetSocialSiteByEncodedName;
-using SmellIt.Application.ViewModels;
 
 namespace SmellIt.Admin.Controllers;
 public class SocialSitesController : Controller

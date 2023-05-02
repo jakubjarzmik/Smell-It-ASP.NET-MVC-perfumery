@@ -8,7 +8,4 @@ public class ProductCategoryTranslation : BaseTranslation
     public int ProductCategoryId { get; set; }
     [ForeignKey("ProductCategoryId")]
     public ProductCategory ProductCategory { get; set; } = default!;
-
-    public override void EncodeName() => 
-        EncodedName = Name.ConvertToEncodedName() + "-translation";
 }

@@ -15,6 +15,4 @@ public class WebsiteTextTranslation : BaseEntity
 	public int LanguageId { get; set; }
     [ForeignKey("LanguageId")]
 	public Language Language { get; set; } = default!;
-
-    public override void EncodeName() => EncodedName = WebsiteText.EncodedName + "-" + Language.Code + "-translation";
 }

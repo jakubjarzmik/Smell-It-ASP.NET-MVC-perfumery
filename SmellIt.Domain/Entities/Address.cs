@@ -14,9 +14,5 @@ namespace SmellIt.Domain.Entities
         public string City { get; set; } = default!;
         [MaxLength(50)]
         public string Country { get; set; } = default!;
-
-
-        public override void EncodeName() =>
-            EncodedName = (Street + " " + PostalCode + " " + City).ConvertToEncodedName();
     }
 }

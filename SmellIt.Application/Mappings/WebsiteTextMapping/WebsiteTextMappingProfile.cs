@@ -13,10 +13,10 @@ public class WebsiteTextMappingProfile : Profile
                 opt => opt.MapFrom<WebsiteTextTranslationsResolver>());
 
         CreateMap<WebsiteText, WebsiteTextDto>()
-            .ForMember(dto => dto.TextPL,
+            .ForMember(dto => dto.TextPl,
                 opt =>
                     opt.MapFrom<TextPlResolver>())
-            .ForMember(dto => dto.TextEN,
+            .ForMember(dto => dto.TextEn,
                 opt =>
                     opt.MapFrom<TextEnResolver>());
 

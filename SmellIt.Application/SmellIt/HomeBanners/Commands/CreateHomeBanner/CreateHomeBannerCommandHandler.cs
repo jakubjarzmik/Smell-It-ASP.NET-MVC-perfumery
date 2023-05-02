@@ -10,16 +10,14 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
     public class CreateHomeBannerCommandHandler : IRequestHandler<CreateHomeBannerCommand>
     {
 	    private readonly IHomeBannerRepository _homeBannerRepository;
-	    private readonly ILanguageRepository _languageRepository;
         private readonly IMapper _mapper;
-        public CreateHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository,ILanguageRepository languageRepository, IMapper mapper)
+        public CreateHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository, IMapper mapper)
         {
             _homeBannerRepository = homeBannerRepository;
-            _languageRepository = languageRepository;
             _mapper = mapper;
         }
 
-        private async Task<string> UploadImageAsync(IFormFile file, string key)
+        private static async Task<string> UploadImageAsync(IFormFile file, string key)
         {
             using var httpClient = new HttpClient();
             using var content = new MultipartFormDataContent();
@@ -46,23 +44,6 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
             public string FilePath { get; set; } = default!;
         }
 
-        private async Task CompleteTranslationFields(CreateHomeBannerCommand request, HomeBanner homeBanner)
-        {
-            bool isPlTranslationAdded = false;
-            foreach (var translation in homeBanner.HomeBannerTranslations!)
-            {
-                translation.HomeBanner = homeBanner;
-
-                if (translation.Text == request.TextPL && !isPlTranslationAdded)
-                {
-                    translation.Language = (await _languageRepository.GetByCode("pl-PL"))!;
-                    isPlTranslationAdded = true;
-                }
-                else if (translation.Text == request.TextEN)
-                    translation.Language = (await _languageRepository.GetByCode("en-GB"))!;
-                translation.EncodeName();
-            }
-        }
 
         public async Task<Unit> Handle(CreateHomeBannerCommand request, CancellationToken cancellationToken)
         {
@@ -75,12 +56,9 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
                     string imagePath = await UploadImageAsync(request.ImageFile, homeBanner.Key);
                     homeBanner.ImagePath = imagePath;
                 }
-
-                await CompleteTranslationFields(request, homeBanner);
-
                 await _homeBannerRepository.Create(homeBanner);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }

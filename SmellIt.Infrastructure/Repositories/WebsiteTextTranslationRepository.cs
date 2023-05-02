@@ -25,13 +25,8 @@ public class WebsiteTextTranslationRepository : IWebsiteTextTranslationRepositor
         => await _dbContext.WebsiteTextTranslations.FirstOrDefaultAsync(ltt 
             => ltt.IsActive && ltt.WebsiteTextId == websiteTextId && ltt.Language.Code.ToLower() == languageCode.ToLower());
 
-    public async Task<WebsiteTextTranslation?> GetByEncodedName(string encodedName)
-        => await _dbContext.WebsiteTextTranslations.FirstOrDefaultAsync(ltt 
-            => ltt.IsActive && ltt.EncodedName == encodedName.ToLower());
-
     public async Task Create(WebsiteTextTranslation websiteTextTranslation)
     {
-        websiteTextTranslation.EncodeName();
         _dbContext.Add(websiteTextTranslation);
         await _dbContext.SaveChangesAsync();
     }

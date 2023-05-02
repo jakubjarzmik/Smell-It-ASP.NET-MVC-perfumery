@@ -19,11 +19,11 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
             brand.ModifiedAt = DateTime.UtcNow;
 
             var plTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "pl-PL"))!;
-            plTranslation.Description = request.DescriptionPL;
+            plTranslation.Description = request.DescriptionPl;
             plTranslation.ModifiedAt = DateTime.UtcNow;
 
             var enTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "en-GB"))!;
-            enTranslation.Description = request.DescriptionEN;
+            enTranslation.Description = request.DescriptionEn;
             enTranslation.ModifiedAt = DateTime.UtcNow;
 
             await _brandRepository.Commit();
