@@ -4,7 +4,7 @@ using SmellIt.Domain.Interfaces;
 using SmellIt.Application.SmellIt.WebsiteTexts;
 
 namespace SmellIt.Application.Mappings.WebsiteTextMapping;
-public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, WebsiteText, List<WebsiteTextTranslation>>
+public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, WebsiteText, ICollection<WebsiteTextTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;
 
@@ -13,7 +13,7 @@ public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextDto, We
         _languageRepository = languageRepository;
     }
 
-    public List<WebsiteTextTranslation> Resolve(WebsiteTextDto source, WebsiteText destination, List<WebsiteTextTranslation> destMember, ResolutionContext context)
+    public ICollection<WebsiteTextTranslation> Resolve(WebsiteTextDto source, WebsiteText destination, ICollection<WebsiteTextTranslation> destMember, ResolutionContext context)
     {
         var plLanguage = _languageRepository.GetByCode("pl-PL").Result!;
         var enLanguage = _languageRepository.GetByCode("en-GB").Result!;

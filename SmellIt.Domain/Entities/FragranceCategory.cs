@@ -5,8 +5,8 @@ namespace SmellIt.Domain.Entities
 {
     public class FragranceCategory : BaseEntityWithEncodedName
     {
-        public virtual List<Product> Products { get; set; } = new();
-        public virtual List<FragranceCategoryTranslation> FragranceCategoryTranslations { get; set; } = new();
+        public virtual ICollection<Product> Products { get; set; } = default!;
+        public virtual ICollection<FragranceCategoryTranslation> FragranceCategoryTranslations { get; set; } = default!;
         public override void EncodeName() =>
             EncodedName = (Id + "-" + FragranceCategoryTranslations.First(fct => fct.Language.Code == "en-GB").Name)
                                 .ConvertToEncodedName();

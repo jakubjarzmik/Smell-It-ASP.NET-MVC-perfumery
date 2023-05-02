@@ -4,7 +4,7 @@ using SmellIt.Domain.Interfaces;
 using SmellIt.Application.SmellIt.HomeBanners;
 
 namespace SmellIt.Application.Mappings.HomeBannerMapping;
-public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, HomeBanner, List<HomeBannerTranslation>>
+public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, HomeBanner, ICollection<HomeBannerTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;
 
@@ -13,7 +13,7 @@ public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, Home
         _languageRepository = languageRepository;
     }
 
-    public List<HomeBannerTranslation> Resolve(HomeBannerDto source, HomeBanner destination, List<HomeBannerTranslation> destMember, ResolutionContext context)
+    public ICollection<HomeBannerTranslation> Resolve(HomeBannerDto source, HomeBanner destination, ICollection<HomeBannerTranslation> destMember, ResolutionContext context)
     {
         var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
         var enLanguage = _languageRepository.GetByCode("en-GB").Result;
@@ -27,6 +27,6 @@ public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, Home
             };
         }
 
-        return new();
+        return default!;
     }
 }

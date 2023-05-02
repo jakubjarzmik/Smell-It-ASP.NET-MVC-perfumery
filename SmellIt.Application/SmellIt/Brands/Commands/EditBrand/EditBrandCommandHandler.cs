@@ -18,11 +18,11 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
             var brand = (await _brandRepository.GetByEncodedName(request.EncodedName))!;
             brand.ModifiedAt = DateTime.UtcNow;
 
-            var plTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "pl-PL"))!;
+            var plTranslation = brand.BrandTranslations.First(bt=>bt.Language.Code == "pl-PL");
             plTranslation.Description = request.DescriptionPl;
             plTranslation.ModifiedAt = DateTime.UtcNow;
 
-            var enTranslation = (await _brandTranslationRepository.GetTranslation(brand.Id, "en-GB"))!;
+            var enTranslation = brand.BrandTranslations.First(bt => bt.Language.Code == "en-GB");
             enTranslation.Description = request.DescriptionEn;
             enTranslation.ModifiedAt = DateTime.UtcNow;
 

@@ -9,7 +9,7 @@ public class HomeBanner : BaseEntityWithEncodedName
     public string Key { get; set; } = default!;
     [MaxLength(255)]
     public string ImagePath { get; set; } = default!;
-    public virtual List<HomeBannerTranslation> HomeBannerTranslations { get; set; } = new();
+    public virtual ICollection<HomeBannerTranslation> HomeBannerTranslations { get; set; } = default!;
     public override void EncodeName() =>
             EncodedName = (Id + "-" + Key).ConvertToEncodedName();
 }

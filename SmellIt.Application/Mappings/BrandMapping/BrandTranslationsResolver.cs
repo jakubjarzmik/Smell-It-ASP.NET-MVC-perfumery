@@ -4,7 +4,7 @@ using SmellIt.Domain.Interfaces;
 using SmellIt.Application.SmellIt.Brands;
 
 namespace SmellIt.Application.Mappings.BrandMapping;
-public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, List<BrandTranslation>>
+public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollection<BrandTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;
 
@@ -13,7 +13,7 @@ public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, List<Br
         _languageRepository = languageRepository;
     }
 
-    public List<BrandTranslation> Resolve(BrandDto source, Brand destination, List<BrandTranslation> destMember, ResolutionContext context)
+    public ICollection<BrandTranslation> Resolve(BrandDto source, Brand destination, ICollection<BrandTranslation> destMember, ResolutionContext context)
     {
         var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
         var enLanguage = _languageRepository.GetByCode("en-GB").Result;
@@ -27,6 +27,6 @@ public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, List<Br
             };
         }
 
-        return new();
+        return default!;
     }
 }

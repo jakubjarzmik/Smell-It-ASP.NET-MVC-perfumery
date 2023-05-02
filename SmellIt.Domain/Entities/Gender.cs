@@ -5,7 +5,7 @@ namespace SmellIt.Domain.Entities
 {
     public class Gender : BaseEntity
     {
-        public virtual List<Product> Products { get; set; } = new();
-        public virtual List<GenderTranslation> GenderTranslations { get; set; } = new();
+        public virtual ICollection<Product> Products { get; set; } = default!;
+        public virtual ICollection<GenderTranslation> GenderTranslations { get; set; } = default!;
     }
 }

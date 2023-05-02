@@ -4,7 +4,7 @@ using SmellIt.Domain.Interfaces;
 using SmellIt.Application.SmellIt.FragranceCategories;
 
 namespace SmellIt.Application.Mappings.FragranceCategoryMapping;
-public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCategoryDto, FragranceCategory, List<FragranceCategoryTranslation>>
+public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCategoryDto, FragranceCategory, ICollection<FragranceCategoryTranslation>>
 {
     private readonly ILanguageRepository _languageRepository;
 
@@ -13,7 +13,7 @@ public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCat
         _languageRepository = languageRepository;
     }
 
-    public List<FragranceCategoryTranslation> Resolve(FragranceCategoryDto source, FragranceCategory destination, List<FragranceCategoryTranslation> destMember, ResolutionContext context)
+    public ICollection<FragranceCategoryTranslation> Resolve(FragranceCategoryDto source, FragranceCategory destination, ICollection<FragranceCategoryTranslation> destMember, ResolutionContext context)
     {
         var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
         var enLanguage = _languageRepository.GetByCode("en-GB").Result;
@@ -27,6 +27,6 @@ public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCat
             };
         }
 
-        return new();
+        return default!;
     }
 }

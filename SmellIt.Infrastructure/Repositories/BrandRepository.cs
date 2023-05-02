@@ -17,6 +17,8 @@ public class BrandRepository : IBrandRepository
     {
         _dbContext.Add(brand);
         await _dbContext.SaveChangesAsync();
+        brand.EncodeName();
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<Brand>> GetAll()

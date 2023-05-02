@@ -23,8 +23,8 @@ namespace SmellIt.Domain.Entities
         [ForeignKey("GenderId")]
         public virtual Gender? Gender { get; set; } = default!;
 
-        public virtual List<ProductImage> ProductImages { get; set; } = new();
-        public virtual List<ProductTranslation> ProductTranslations { get; set; } = new();
+        public virtual ICollection<ProductImage> ProductImages { get; set; } = default!;
+        public virtual ICollection<ProductTranslation> ProductTranslations { get; set; } = default!;
         
         public override void EncodeName() => 
             EncodedName = (Id + "-" + ProductTranslations.First(fct => fct.Language.Code == "en-GB").Name)
