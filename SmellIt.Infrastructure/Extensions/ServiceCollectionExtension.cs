@@ -16,14 +16,15 @@ namespace SmellIt.Infrastructure.Extensions
 
             services.AddScoped<Seeder>();
 
-            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IFragranceCategoryRepository, FragranceCategoryRepository>();
-            services.AddScoped<IWebsiteTextRepository, WebsiteTextRepository>();
             services.AddScoped<IHomeBannerRepository, HomeBannerRepository>();
-            services.AddScoped<IPrivacyPolicyRepository, PrivacyPolicyRepository>();
-            services.AddScoped<ISocialSiteRepository, SocialSiteRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<IPrivacyPolicyRepository, PrivacyPolicyRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ISocialSiteRepository, SocialSiteRepository>();
+            services.AddScoped<IWebsiteTextRepository, WebsiteTextRepository>();
         }
     }
 }
