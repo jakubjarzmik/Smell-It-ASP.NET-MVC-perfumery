@@ -141,6 +141,9 @@
   <data name="AddNewProduct" xml:space="preserve">
     <value>Dodaj nowy produkt</value>
   </data>
+  <data name="AddNewProductCategory" xml:space="preserve">
+    <value>Dodaj nową kategorię produktu</value>
+  </data>
   <data name="AddNewSocialSite" xml:space="preserve">
     <value>Dodaj nową stronę społeczności</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="EditPrivacyPolicy" xml:space="preserve">
     <value>Edytuj politykę prywatności</value>
+  </data>
+  <data name="EditProductCategory" xml:space="preserve">
+    <value>Edytuj kategorię produktu</value>
   </data>
   <data name="EditSocialSite" xml:space="preserve">
     <value>Edytuj stronę społeczności</value>

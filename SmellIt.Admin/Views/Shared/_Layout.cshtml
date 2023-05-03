@@ -51,6 +51,9 @@
                             <li class="@(controller == "PrivacyPolicies" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "PrivacyPolicies")">@language.GetValue("PrivacyPolicies")</a>
                             </li>
+                            <li class="@(controller == "ProductCategories" && action == "Index" ? "active": "")">
+                                <a href="@Url.Action("Index", "ProductCategories")">@language.GetValue("ProductCategories")</a>
+                            </li>
                             <li class="@(controller == "SocialSites" && action == "Index" ? "active": "")">
                                 <a href="@Url.Action("Index", "SocialSites")">@language.GetValue("SocialSites")</a>
                             </li>

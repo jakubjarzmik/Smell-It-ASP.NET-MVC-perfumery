@@ -12,5 +12,9 @@ public class ProductCategoryRepository : BaseRepository<ProductCategory>, IProdu
     }
 
     public async Task<IEnumerable<ProductCategory>> GetProductCategoriesByParentCategory(ProductCategory parentCategory)
-        => await DbContext.ProductCategories.Where(pc => pc.IsActive && pc.ParentCategory == parentCategory).ToListAsync();
+        => await DbContext.ProductCategories.Where(pc => pc.IsActive && pc.ParentCategory == parentCategory).OrderByDescending(b => b.CreatedAt).ToListAsync();
+
+    public async Task<ProductCategory?> GetByNameEn(string nameEn)
+        => await DbContext.ProductCategories.Where(pc => pc.IsActive).OrderByDescending(pc => pc.CreatedAt)
+            .FirstOrDefaultAsync(pc => pc.ProductCategoryTranslations.FirstOrDefault(pct=>pct.Language.Code == "en-GB")!.Name == nameEn);
 }

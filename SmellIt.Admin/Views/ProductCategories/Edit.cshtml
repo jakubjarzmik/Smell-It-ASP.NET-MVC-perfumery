@@ -1,0 +1,69 @@
+﻿@using SmellIt.Application.SmellIt.ProductCategories
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory.EditProductCategoryCommand
+
+@{
+    ViewData["Title"] = language.GetValue("EditProductCategory");
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div class="card grey darken-3 white-text">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="card-title col s12">
+                            <a class="btn left" asp-controller="ProductCategories" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
+                            <p class="right">@language.GetValue("EditProductCategory")</p>
+                        </div>
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="helper-text"></div>
+                            <div class="input-field col s12">
+                                <label asp-for="ParentCategoryEncodedName">@language.GetValue("ParentCategory")</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select id="parentCategories" asp-for="ParentCategoryEncodedName">
+                                    <option value="@null" selected></option>
+                                    @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
+                                    {
+                                        <option value="@category.EncodedName">
+                                            @(currentCulture == "pl-PL" ? category.NamePl : category.NameEn)
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="NamePl">(PL) @language.GetValue("Name")</label>
+                                <textarea class="materialize-textarea" asp-for="NamePl"></textarea>
+                                <span asp-validation-for="NamePl" class="helper-text"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="NameEn">(EN) @language.GetValue("Name")</label>
+                                <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
+                                <span asp-validation-for="NameEn" class="helper-text"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="DescriptionPl">(PL) @language.GetValue("Description")</label>
+                                <textarea class="materialize-textarea" asp-for="DescriptionPl"></textarea>
+                                <span asp-validation-for="DescriptionPl" class="helper-text"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="DescriptionEn">(EN) @language.GetValue("Description")</label>
+                                <textarea class="materialize-textarea" asp-for="DescriptionEn"></textarea>
+                                <span asp-validation-for="DescriptionEn" class="helper-text"></span>
+                            </div>
+                            <input type="submit" value="@language.GetValue("Save")" class="btn right" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

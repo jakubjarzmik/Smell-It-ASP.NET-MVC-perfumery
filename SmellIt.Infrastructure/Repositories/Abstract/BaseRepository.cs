@@ -21,14 +21,14 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
             await DbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
             => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
         public virtual async Task<T?> GetByEncodedName(string encodedName)
             => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
 
-        public Task Commit()
-            => DbContext.SaveChangesAsync();
+        public async Task Commit()
+            => await DbContext.SaveChangesAsync();
     }
 
 }

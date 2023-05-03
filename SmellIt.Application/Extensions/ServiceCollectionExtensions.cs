@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Application.Mappings.BrandMapping;
 using SmellIt.Application.Mappings.FragranceCategoryMapping;
 using SmellIt.Application.Mappings.HomeBannerMapping;
+using SmellIt.Application.Mappings.LanguageMapping;
 using SmellIt.Application.Mappings.PrivacyPolicyMapping;
+using SmellIt.Application.Mappings.ProductCategoryMapping;
 using SmellIt.Application.Mappings.SocialSiteMapping;
 using SmellIt.Application.Mappings.WebsiteTextMapping;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
@@ -14,6 +16,8 @@ using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCate
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.CreatePrivacyPolicy;
+using SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory;
+using SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory;
 using SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite;
 using SmellIt.Application.SmellIt.SocialSites.Commands.EditSocialSite;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
@@ -29,24 +33,29 @@ public static class ServiceCollectionExtension
         services.AddMediatR(typeof(CreateWebsiteTextCommand));
         services.AddMediatR(typeof(CreateHomeBannerCommand));
         services.AddMediatR(typeof(CreatePrivacyPolicyCommand));
+        services.AddMediatR(typeof(CreateProductCategoryCommand));
         services.AddMediatR(typeof(CreateSocialSiteCommand));
 
         services.AddAutoMapper(typeof(BrandMappingProfile));
         services.AddAutoMapper(typeof(FragranceCategoryMappingProfile));
-        services.AddAutoMapper(typeof(WebsiteTextMappingProfile));
         services.AddAutoMapper(typeof(HomeBannerMappingProfile));
+        services.AddAutoMapper(typeof(LanguageMappingProfile));
         services.AddAutoMapper(typeof(PrivacyPolicyMappingProfile));
+        services.AddAutoMapper(typeof(ProductCategoryMappingProfile));
         services.AddAutoMapper(typeof(SocialSiteMappingProfile));
+        services.AddAutoMapper(typeof(WebsiteTextMappingProfile));
 
         services.AddValidatorsFromAssemblyContaining<CreateBrandCommandValidator>()
             .AddValidatorsFromAssemblyContaining<CreateFragranceCategoryCommandValidator>()
             .AddValidatorsFromAssemblyContaining<EditFragranceCategoryCommandValidator>()
-            .AddValidatorsFromAssemblyContaining<CreateWebsiteTextCommandValidator>()
-            .AddValidatorsFromAssemblyContaining<EditWebsiteTextCommandValidator>()
             .AddValidatorsFromAssemblyContaining<CreateHomeBannerCommandValidator>()
             .AddValidatorsFromAssemblyContaining<EditHomeBannerCommandValidator>()
             .AddValidatorsFromAssemblyContaining<CreateSocialSiteCommandValidator>()
             .AddValidatorsFromAssemblyContaining<EditSocialSiteCommandValidator>()
+            .AddValidatorsFromAssemblyContaining<CreateProductCategoryCommandValidator>()
+            .AddValidatorsFromAssemblyContaining<EditProductCategoryCommandValidator>()
+            .AddValidatorsFromAssemblyContaining<CreateWebsiteTextCommandValidator>()
+            .AddValidatorsFromAssemblyContaining<EditWebsiteTextCommandValidator>()
             .AddFluentValidationAutoValidation()
             .AddFluentValidationClientsideAdapters();
     }
