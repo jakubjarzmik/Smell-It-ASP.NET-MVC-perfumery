@@ -1,5 +1,6 @@
 ﻿@using SmellIt.Application.SmellIt.ProductCategories
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SmellIt.Application.Helpers
 @model SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory.EditProductCategoryCommand
 
 @{
@@ -28,6 +29,7 @@
                                     @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
                                     {
                                         <option value="@category.EncodedName">
+                                            @ProductCategoryManager.GeneratePrefix(category)
                                             @(currentCulture == "pl-PL" ? category.NamePl : category.NameEn)
                                         </option>
                                     }

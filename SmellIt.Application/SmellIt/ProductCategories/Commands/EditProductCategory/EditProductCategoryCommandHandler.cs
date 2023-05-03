@@ -18,8 +18,8 @@ namespace SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCate
         {
             var productCategory = (await _productCategoryRepository.GetByEncodedName(request.EncodedName))!;
 
-            if(request.ParentCategoryEncodedName !=null)
-                productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName);
+            if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
+                productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName!);
             productCategory.ModifiedAt = DateTime.UtcNow;
 
             var plTranslation = productCategory.ProductCategoryTranslations.First(fct => fct.Language.Code == "pl-PL");

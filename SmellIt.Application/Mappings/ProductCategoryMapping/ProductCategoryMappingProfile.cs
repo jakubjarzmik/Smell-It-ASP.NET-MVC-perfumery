@@ -15,8 +15,8 @@ public class ProductCategoryMappingProfile : Profile
                 opt => opt.MapFrom<ParentCategoryResolver>());
 
         CreateMap<ProductCategory, ProductCategoryDto>()
-            .ForMember(dto => dto.ParentCategoryEncodedName,
-                opt => opt.MapFrom(src => src.ParentCategory != null ? src.ParentCategory.EncodedName : null))
+            .ForMember(dto => dto.ParentCategory,
+                opt => opt.MapFrom(src => src.ParentCategory))
             .ForMember(dto => dto.NamePl,
                 opt => opt.MapFrom(src => src.ProductCategoryTranslations.First(fct => fct.Language.Code == "pl-PL").Name))
             .ForMember(dto => dto.NameEn,

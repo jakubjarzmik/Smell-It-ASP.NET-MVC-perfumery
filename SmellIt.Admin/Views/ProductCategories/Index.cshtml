@@ -1,4 +1,5 @@
 ﻿@using SmellIt.Application.SmellIt.ProductCategories
+@using SmellIt.Application.Helpers
 @model ProductCategoriesViewModel
 @{
     ViewData["Title"] = language.GetValue("ProductCategories");
@@ -29,14 +30,16 @@
                             }
                             @foreach (var item in Model.Items!)
                             {
-                                var parentCategory = ((List<ProductCategoryDto>)ViewData["ProductCategories"]).FirstOrDefault(pc => pc.EncodedName == item.ParentCategoryEncodedName);
                                 var description = "";
                                 if (currentCulture == "pl-PL" && item.DescriptionPl != null)
                                     description = item.DescriptionPl.Length > 80 ? item.DescriptionPl.Substring(0, 80) + "..." : item.DescriptionPl;
                                 else if (currentCulture == "en-GB" && item.DescriptionEn != null)
                                     description = item.DescriptionEn.Length > 80 ? item.DescriptionEn.Substring(0, 80) + "..." : item.DescriptionEn;
                                 <tr>
-                                    <td>@(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)</td>
+                                    <td>
+                                        @ProductCategoryManager.GeneratePrefix(item)
+                                        @(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)
+                                    </td>
                                     <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
@@ -44,10 +47,10 @@
                                             <div class="modal-content">
                                                 <h4>@item.NamePl (@item.NameEn)</h4>
                                                 <h6>
-                                                    @if (parentCategory != null)
+                                                    @if (item.ParentCategory != null)
                                                     {
                                                         @language.GetValue("ParentCategory")
-                                                        @(currentCulture == "pl-PL" ? ": " + parentCategory.NamePl : ": " + parentCategory.NameEn)
+                                                        @(currentCulture == "pl-PL" ? ": " + item.ParentCategory.NamePl : ": " + item.ParentCategory.NameEn)
                                                     }
                                                 </h6>
                                                 <h5>@language.GetValue("Description") (PL)</h5>

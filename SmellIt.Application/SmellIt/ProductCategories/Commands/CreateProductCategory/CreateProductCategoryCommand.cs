@@ -4,6 +4,6 @@ namespace SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCa
 {
     public class CreateProductCategoryCommand : ProductCategoryDto, IRequest
     {
-
+        public string? ParentCategoryEncodedName { get; set; }
     }
 }

@@ -15,8 +15,8 @@ public class ParentCategoryResolver : IValueResolver<ProductCategoryDto, Product
 
     public ProductCategory? Resolve(ProductCategoryDto source, ProductCategory destination, ProductCategory? destMember, ResolutionContext context)
     {
-        if(source.ParentCategoryEncodedName != null)
-            return _productCategoryRepository.GetByEncodedName(source.ParentCategoryEncodedName).Result;
+        if(source.ParentCategory != null)
+            return _productCategoryRepository.GetByEncodedName(source.ParentCategory.EncodedName!).Result;
         return null;
     }
 }
