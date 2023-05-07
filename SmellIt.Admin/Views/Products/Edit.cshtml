@@ -5,9 +5,10 @@
 @using SmellIt.Application.SmellIt.FragranceCategories
 @using SmellIt.Application.SmellIt.Genders
 @using SmellIt.Application.SmellIt.ProductCategories
-@model SmellIt.Application.SmellIt.Products.Commands.CreateProduct.CreateProductCommand
+@model SmellIt.Application.SmellIt.Products.Commands.EditProduct.EditProductCommand
+
 @{
-    ViewData["Title"] = language.GetValue("AddNewProduct");
+    ViewData["Title"] = language.GetValue("EditProduct");
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
@@ -19,9 +20,9 @@
                     <div class="row">
                         <div class="card-title col s12">
                             <a class="btn left" asp-controller="Products" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("AddNewProduct")</p>
+                            <p class="right">@language.GetValue("EditProduct")</p>
                         </div>
-                        <form asp-action="Create">
+                        <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
                             <div class="input-field col s12">
                                 <label asp-for="NamePl">(PL) @language.GetValue("Name")</label>

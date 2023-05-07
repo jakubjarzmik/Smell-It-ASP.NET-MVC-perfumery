@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.Helpers;
-using SmellIt.Application.SmellIt.ProductCategories;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.DeleteProductCategoryByEncodedName;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory;

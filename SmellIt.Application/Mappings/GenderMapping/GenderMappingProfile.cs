@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.FragranceCategories;
+using SmellIt.Application.SmellIt.Genders;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.GenderMapping;
@@ -8,7 +8,7 @@ public class GenderMappingProfile : Profile
     public GenderMappingProfile()
     {
         CreateMap<GenderDto, Gender>()
-            .ForMember(brand => brand.GenderTranslations,
+            .ForMember(gender => gender.GenderTranslations,
                 opt => opt.MapFrom<GenderTranslationsResolver>());
 
         CreateMap<Gender, GenderDto>()

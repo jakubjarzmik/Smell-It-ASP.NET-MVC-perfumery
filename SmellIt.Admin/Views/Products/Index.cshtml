@@ -1,5 +1,9 @@
-﻿@{
+﻿@using SmellIt.Application.Helpers
+@model ProductsViewModel
+@{
     ViewData["Title"] = language.GetValue("Products");
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 <div class="container">
     <div class="row">
@@ -8,96 +12,82 @@
                 <div class="card-content">
                     <div class="card-title">
                         @language.GetValue("Products")
-                        <a class="btn waves-effect waves-light btn modal-trigger right" href="#modal1"><i class="material-icons">add</i></a>
+                        <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
                     </div>
+
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>@language.GetValue("Name")</th>
                                 <th>@language.GetValue("Brand")</th>
-                                <th>@language.GetValue("Category")</th>
-                                <th>@language.GetValue("Price")</th>
-                                <th class="right"></th>
+                                <th>@language.GetValue("Name")</th>
+                                <th>@language.GetValue("Description")</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><img class="small-img" src="~/images/products/smell-it/dyfuzor-smell-it1.jpg"></td>
-                                <td>@language.GetValue("SmellItDiffuser")</td>
-                                <td>@language.GetValue("SmellIt")</td>
-                                <td>@language.GetValue("Diffusers")</td>
-                                <td>899 zł</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img class="small-img" src="~/images/products/perfumes/men/Dior Savuage/dior-savuage1.png"></td>
-                                <td>@language.GetValue("Sauvage")</td>
-                                <td>@language.GetValue("Dior")</td>
-                                <td>@language.GetValue("Fragrance")</td>
-                                <td>502 zł</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img class="small-img" src="~/images/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png"></td>
-                                <td>@language.GetValue("BlackOpium")</td>
-                                <td>@language.GetValue("YvesSaintLaurent")</td>
-                                <td>@language.GetValue("Fragrance")</td>
-                                <td>448 zł</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img class="small-img" src="~/images/products/perfumes/women/Giorgio Armani Si/armani-si1.png"></td>
-                                <td>@language.GetValue("Si")</td>
-                                <td>@language.GetValue("GiorgioArmani")</td>
-                                <td>@language.GetValue("Fragrance")</td>
-                                <td>342 zł</td>
-                                <td class="right">
-                                    <a href="#" class="btn"> <i class="material-icons">edit</i></a>
-                                    <a href="#" class="btn"> <i class="material-icons">delete</i></a>
-                                </td>
-                            </tr>
+                            @{
+                                int index = 0;
+                            }
+                            @foreach (var item in Model.Items!)
+                            {
+                                var description = "";
+                                if (currentCulture == "pl-PL" && item.DescriptionPl != null)
+                                    description = item.DescriptionPl.Length > 80 ? item.DescriptionPl.Substring(0, 80) + "..." : item.DescriptionPl;
+                                else if (currentCulture == "en-GB" && item.DescriptionEn != null)
+                                    description = item.DescriptionEn.Length > 80 ? item.DescriptionEn.Substring(0, 80) + "..." : item.DescriptionEn;
+                                <tr>
+                                    <td>
+                                        @item.Brand?.Name
+                                    </td><td>
+                                        @(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)
+                                    </td>
+                                    <td>@description</td>
+                                    <td class="right">
+                                        <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
+                                        <div id="modalDescriptionPL_@index" class="modal">
+                                            <div class="modal-content">
+                                                <h4>@item.Brand?.Name - @(currentCulture == "pl-PL" ? item.NamePl : @item.NameEn)</h4>
+                                                <p>@(currentCulture == "pl-PL" ? item.ProductCategory?.NamePl : item.ProductCategory?.NameEn) 
+                                                    @((currentCulture == "pl-PL" ? item.Gender?.NamePl : item.Gender?.NameEn)?.ToLower())
+                                                    @((currentCulture == "pl-PL" ? item.FragranceCategory?.NamePl : item.FragranceCategory?.NameEn)?.ToLower())
+                                                </p>
+                                                <h5>@language.GetValue("Description") (PL)</h5>
+                                                <p>@item.DescriptionPl</p>
+                                                <h5>@language.GetValue("Description") (EN)</h5>
+                                                <p>@item.DescriptionEn</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
+                                            </div>
+                                        </div>
+                                        <a asp-controller="Products" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
+                                        <a asp-controller="Products" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
                         </tbody>
                     </table>
                 </div>
                 <div class="card-action">
                     <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#" class="purple-text">
+                        <li class="@(Model.CurrentPage == 1 ? "disabled" : "waves-effect")">
+                            <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" class="purple-text" style="@(Model.CurrentPage == 1 ? "display: none;" : "")">
                                 <i class="material-icons">chevron_left</i>
                             </a>
                         </li>
-                        <li class="active purple lighten-1">
-                            <a href="#" class="white-text center">
-                                1
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                2
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                3
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
-                                4
-                            </a>
-                        </li>
-                        <li class="waves-effect">
-                            <a href="#" class="purple-text">
+                        @{
+                            for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                <li class="@(Model.CurrentPage == i ? "active purple lighten-1" : "waves-effect")">
+                                    <a asp-action="Index" asp-route-page="@i" class="@(Model.CurrentPage == i ? "white-text" : "purple-text")">
+                                        @i
+                                    </a>
+                                </li>
+                            }
+                        }
+                        <li class="@(Model.CurrentPage == Model.TotalPages ? "disabled" : "waves-effect")">
+                            <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" class="purple-text" style="@(Model.CurrentPage == Model.TotalPages ? "display: none;" : "")">
                                 <i class="material-icons">chevron_right</i>
                             </a>
                         </li>
@@ -105,49 +95,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content" style="height: 100%;">
-        <h4>@language.GetValue("AddNewProduct")</h4>
-        <form>
-
-            <div class="input-field">
-                <label for="title">@language.GetValue("Key")</label>
-                <input type="text" id="title" />
-            </div>
-            <div class="input-field">
-                <input type="text" list="categories" />
-                <datalist id="categories">
-                    <option value="@language.GetValue("Devices")" />
-                    <option value="@language.GetValue("Fragrance")" />
-                    <option value="@language.GetValue("HomeFragrance")" />
-                    <option value="@language.GetValue("Others")" />
-                </datalist>
-            </div>
-            <div class="input-field">
-                <label for="category">@language.GetValue("Price") (zł)</label>
-                <input type="number" id="price" />
-            </div>
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span>@language.GetValue("Files")</span>
-                    <input type="file" multiple accept="image/png, image/jpeg">
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="@language.GetValue("UploadPhotos")">
-                </div>
-            </div>
-            <div class="input-field">
-                <textarea id="description" class="materialize-textarea"></textarea>
-                <label for="description">@language.GetValue("Description")</label>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer grey darken-2">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">@language.GetValue("Add")</a>
     </div>
 </div>

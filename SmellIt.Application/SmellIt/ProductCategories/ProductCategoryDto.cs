@@ -1,6 +1,4 @@
-﻿using SmellIt.Domain.Entities;
-
-namespace SmellIt.Application.SmellIt.ProductCategories;
+﻿namespace SmellIt.Application.SmellIt.ProductCategories;
 public class ProductCategoryDto
 {
     public string EncodedName { get; set; } = default!;

@@ -20,5 +20,4 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
         public virtual async Task<T?> GetByEncodedName(string encodedName)
             => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
     }
-
 }

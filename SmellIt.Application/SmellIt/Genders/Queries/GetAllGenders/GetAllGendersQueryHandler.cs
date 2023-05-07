@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.SmellIt.FragranceCategories;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;

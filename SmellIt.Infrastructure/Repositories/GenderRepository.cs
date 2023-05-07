@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SmellIt.Domain.Entities;
+﻿using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;

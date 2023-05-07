@@ -6,6 +6,7 @@ namespace SmellIt.Domain.Interfaces.Abstract
     {
         Task Create(T entity);
         Task<IEnumerable<T>> GetAll();
+        Task<T?> GetById(int id);
         Task Commit();
     }
 }

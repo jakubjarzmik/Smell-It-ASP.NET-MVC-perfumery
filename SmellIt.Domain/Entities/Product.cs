@@ -8,21 +8,21 @@ namespace SmellIt.Domain.Entities
     {
         public int ProductCategoryId { get; set; }
         [ForeignKey("ProductCategoryId")]
-        public virtual ProductCategory ProductCategory { get; set; } = default!;
+        public virtual ProductCategory? ProductCategory { get; set; }
 
         public int BrandId { get; set; }
         [ForeignKey("BrandId")]
-        public virtual Brand Brand { get; set; } = default!;
+        public virtual Brand Brand { get; set; }
 
         public int? FragranceCategoryId { get; set; }
         [ForeignKey("FragranceCategoryId")]
-        public virtual FragranceCategory? FragranceCategory { get; set; } = default!;
+        public virtual FragranceCategory? FragranceCategory { get; set; }
 
         public int? GenderId { get; set; }
         [ForeignKey("GenderId")]
-        public virtual Gender? Gender { get; set; } = default!;
+        public virtual Gender? Gender { get; set; }
 
-        public virtual ICollection<ProductImage> ProductImages { get; set; } = default!;
+        public virtual ICollection<ProductImage>? ProductImages { get; set; }
         public virtual ICollection<ProductTranslation> ProductTranslations { get; set; } = default!;
         
         public override void EncodeName() => 

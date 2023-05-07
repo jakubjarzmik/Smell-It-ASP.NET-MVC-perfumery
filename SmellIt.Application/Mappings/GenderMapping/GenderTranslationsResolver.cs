@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using SmellIt.Application.SmellIt.Genders;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.SmellIt.FragranceCategories;
 
 namespace SmellIt.Application.Mappings.GenderMapping;
 public class GenderTranslationsResolver : IValueResolver<GenderDto, Gender, ICollection<GenderTranslation>>

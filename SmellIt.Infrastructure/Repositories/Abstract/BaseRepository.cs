@@ -22,6 +22,9 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
         public virtual async Task<IEnumerable<T>> GetAll()
             => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
+        public virtual async Task<T?> GetById(int id)
+            => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Id == id);
+
         public async Task Commit()
             => await DbContext.SaveChangesAsync();
     }
