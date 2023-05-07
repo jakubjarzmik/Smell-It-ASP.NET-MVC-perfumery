@@ -2,7 +2,7 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IWebsiteTextRepository : IBaseRepository<WebsiteText>
+public interface IWebsiteTextRepository : IBaseRepositoryWithEncodedName<WebsiteText>
 {
     Task<WebsiteText?> GetByKey(string key);
 }

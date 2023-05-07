@@ -2,7 +2,7 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IProductCategoryRepository : IBaseRepository<ProductCategory>
+public interface IProductCategoryRepository : IBaseRepositoryWithEncodedName<ProductCategory>
 {
     Task<IEnumerable<ProductCategory>> GetProductCategoriesByParentCategory(ProductCategory parentCategory);
 }

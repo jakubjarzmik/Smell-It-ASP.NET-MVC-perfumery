@@ -18,9 +18,7 @@ namespace SmellIt.Website.Controllers
         {
             _mediator = mediator;
             _env = env;
-            ;
         }
-
         public async Task<IActionResult> Index()
         {
             var banners = await _mediator.Send(new GetAllHomeBannersQuery());
@@ -32,19 +30,16 @@ namespace SmellIt.Website.Controllers
         {
             return View();
         }
-
         public IActionResult Contact()
         {
             return View();
         }
-
         public async Task<IActionResult> Privacy()
         {
             var currentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()!.RequestCulture.Culture.ToString();
             var privacyPolicy = await _mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(currentCulture));
             return View(privacyPolicy);
         }
-
         public IActionResult ChangeLanguage(string culture)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
@@ -53,7 +48,6 @@ namespace SmellIt.Website.Controllers
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

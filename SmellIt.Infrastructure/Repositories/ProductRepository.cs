@@ -4,7 +4,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class ProductRepository : BaseRepository<Product>, IProductRepository
+public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProductRepository
 {
     public ProductRepository(SmellItDbContext dbContext):base(dbContext)
     {

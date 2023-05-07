@@ -6,7 +6,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class ProductCategoryRepository : BaseRepository<ProductCategory>, IProductCategoryRepository
+public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCategory>, IProductCategoryRepository
 {
     public ProductCategoryRepository(SmellItDbContext dbContext) : base(dbContext)
     {

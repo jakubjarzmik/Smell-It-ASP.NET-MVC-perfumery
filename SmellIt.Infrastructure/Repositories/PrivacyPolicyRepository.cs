@@ -5,7 +5,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class PrivacyPolicyRepository : BaseRepository<PrivacyPolicy>, IPrivacyPolicyRepository
+public class PrivacyPolicyRepository : BaseRepositoryWithEncodedName<PrivacyPolicy>, IPrivacyPolicyRepository
 {
     public PrivacyPolicyRepository(SmellItDbContext dbContext) : base(dbContext)
     {

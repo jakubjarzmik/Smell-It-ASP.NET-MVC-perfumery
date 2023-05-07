@@ -5,7 +5,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class SocialSiteRepository : BaseRepository<SocialSite>, ISocialSiteRepository
+public class SocialSiteRepository : BaseRepositoryWithEncodedName<SocialSite>, ISocialSiteRepository
 {
     public SocialSiteRepository(SmellItDbContext dbContext) : base(dbContext)
     {

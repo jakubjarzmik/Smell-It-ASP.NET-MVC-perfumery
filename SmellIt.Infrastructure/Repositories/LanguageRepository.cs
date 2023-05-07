@@ -5,7 +5,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class LanguageRepository : BaseRepository<Language>, ILanguageRepository
+public class LanguageRepository : BaseRepositoryWithEncodedName<Language>, ILanguageRepository
 {
     public LanguageRepository(SmellItDbContext dbContext) :base (dbContext)
     {

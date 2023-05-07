@@ -2,6 +2,6 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IFragranceCategoryRepository : IBaseRepository<FragranceCategory>
+public interface IFragranceCategoryRepository : IBaseRepositoryWithEncodedName<FragranceCategory>
 {
 }

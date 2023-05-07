@@ -2,7 +2,7 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface ISocialSiteRepository : IBaseRepository<SocialSite>
+public interface ISocialSiteRepository : IBaseRepositoryWithEncodedName<SocialSite>
 {
     Task<SocialSite?> GetByType(string type);
 }

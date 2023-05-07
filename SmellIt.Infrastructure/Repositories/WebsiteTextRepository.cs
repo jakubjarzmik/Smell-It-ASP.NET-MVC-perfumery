@@ -5,7 +5,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class WebsiteTextRepository : BaseRepository<WebsiteText>, IWebsiteTextRepository
+public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>, IWebsiteTextRepository
 {
     public WebsiteTextRepository(SmellItDbContext dbContext):base(dbContext)
     {

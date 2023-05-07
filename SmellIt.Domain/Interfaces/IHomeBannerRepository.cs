@@ -2,7 +2,7 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IHomeBannerRepository : IBaseRepository<HomeBanner>
+public interface IHomeBannerRepository : IBaseRepositoryWithEncodedName<HomeBanner>
 {
     Task<HomeBanner?> GetByKey(string key);
 }

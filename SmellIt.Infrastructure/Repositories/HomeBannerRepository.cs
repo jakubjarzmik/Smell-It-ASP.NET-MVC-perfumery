@@ -5,7 +5,7 @@ using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
 namespace SmellIt.Infrastructure.Repositories;
-public class HomeBannerRepository : BaseRepository<HomeBanner>, IHomeBannerRepository
+public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, IHomeBannerRepository
 {
     public HomeBannerRepository(SmellItDbContext dbContext) : base(dbContext) { }
 

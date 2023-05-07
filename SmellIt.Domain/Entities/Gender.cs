@@ -1,4 +1,5 @@
 ﻿using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Extensions;
 
 namespace SmellIt.Domain.Entities
 {
