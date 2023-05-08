@@ -1,0 +1,111 @@
+﻿@inject LanguageService Language
+@{
+    ViewData["Title"] = @WebsiteTexts.GetValue("Products");
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">@WebsiteTexts.GetValue("Products")</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="products section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="widget">
+                    <h4 class="widget-title">@WebsiteTexts.GetValue("SortBy")</h4>
+                    <form method="post" action="#">
+                        <select class="form-control">
+                            <option>@WebsiteTexts.GetValue("Newest")</option>
+                            <option>@WebsiteTexts.GetValue("Oldest")</option>
+                            <option>@WebsiteTexts.GetValue("PriceAscending")</option>
+                            <option>@WebsiteTexts.GetValue("PriceDescending")</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="widget product-category">
+                    <h4 class="widget-title">@Language.GetValue("Filters")</h4>
+                    <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        @Language.GetValue("Gender")
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#!">@Language.GetValue("Men")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Women")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Unisex")</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        @Language.GetValue("Brand")
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#!">Smell it</a></li>
+                                        <li><a href="#!">Dior</a></li>
+                                        <li><a href="#!">Versace</a></li>
+                                        <li><a href="#!">Armani</a></li>
+                                        <li><a href="#!">Yves Saint Laurent</a></li>
+                                        <li><a href="#!">Carolina Herrera</a></li>
+                                        <li><a href="#!">Paco Rabanne</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        @Language.GetValue("FragranceCategory")
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#!">@Language.GetValue("Oriental")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Fruity")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Citrus")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Aromatic")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Floral")</a></li>
+                                        <li><a href="#!">@Language.GetValue("Other")</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    @await Component.InvokeAsync("Products")
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

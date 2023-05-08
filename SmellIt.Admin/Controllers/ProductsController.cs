@@ -8,7 +8,6 @@ using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategor
 using SmellIt.Application.SmellIt.Products.Commands.CreateProduct;
 using SmellIt.Application.SmellIt.Products.Commands.DeleteProductByEncodedName;
 using SmellIt.Application.SmellIt.Products.Commands.EditProduct;
-using SmellIt.Application.SmellIt.Products.Queries.GetAllProducts;
 using SmellIt.Application.SmellIt.Products.Queries.GetPaginatedProducts;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
 

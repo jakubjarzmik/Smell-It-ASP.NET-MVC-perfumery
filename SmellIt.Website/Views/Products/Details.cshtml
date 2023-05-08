@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Localization
+@model SmellIt.Application.SmellIt.Products.ProductDto
+@{
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+    Random random = new Random();
+}
+<section class="single-product">
+    <div class="container">
+        <div class="row mt-20">
+            <div class="col-md-5">
+                <div class="single-product-slider">
+                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                        <div class='carousel-outer'>
+                            <div class='carousel-inner '>
+                                @foreach (var photo in Model.ProductImages!)
+                                {
+                                    <div class='item active'>
+                                        <img src='@photo.ImagePath' alt='@photo.ImageAlt' data-zoom-image="@photo.ImagePath" />
+                                    </div>
+                                }
+                            </div>
+                            <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                <i class="tf-ion-ios-arrow-left"></i>
+                            </a>
+                            <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                <i class="tf-ion-ios-arrow-right"></i>
+                            </a>
+                        </div>
+                        <ol class='carousel-indicators mCustomScrollbar meartlab'>
+                            @foreach (var photo in Model.ProductImages!)
+                            {
+                                <li data-target='#carousel-custom' data-slide-to='0' class='active'>
+                                    <img src='@photo.ImagePath' alt='@photo.ImageAlt' />
+                                </li>
+                            }
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-details">
+                    <h2>
+                        @Model.Brand?.Name - @(currentCulture == "en-GB" ? @Model.NameEn : @Model.NamePl)
+                    </h2>
+                    <p class="product-price">@random.Next(100,800) zł</p>
+                    <p class="product-description mt-20">
+                        @(currentCulture == "en-GB" ? @Model.DescriptionEn : @Model.DescriptionPl)
+                    </p>
+                    @if (Model.ProductCategory != null)
+                    {
+                        <p>
+                            <strong>@WebsiteTexts.GetValue("Category"): </strong>
+                            @(currentCulture == "en-GB" ? @Model.ProductCategory.NameEn : @Model.ProductCategory.NamePl)
+                        </p>
+                    }
+                    @if (Model.Gender != null)
+                    {
+                        <p>
+                            <strong>@WebsiteTexts.GetValue("Gender"): </strong>
+                            @(currentCulture == "en-GB" ? @Model.Gender.NameEn : @Model.Gender.NamePl)
+                        </p>
+                    }
+                    @if (Model.FragranceCategory != null)
+                    {
+                        <p>
+                            <strong>@WebsiteTexts.GetValue("FragranceCategory"): </strong>
+                            @(currentCulture == "en-GB" ? @Model.FragranceCategory.NameEn : @Model.FragranceCategory.NamePl)
+                        </p>
+                    }
+
+                    <div class="product-quantity">
+                        <span>@WebsiteTexts.GetValue("Quantity"):</span>
+                        <div class="product-quantity-slider">
+                            <input id="product-quantity" type="text" value="0" name="product-quantity">
+                        </div>
+                    </div>
+
+                    <a href="" class="btn btn-main mt-20">@WebsiteTexts.GetValue("AddToCart")</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -509,43 +509,43 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
+                            ImagePath = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
                             ImageAlt = "Smell It Diffuser",
                             Product = smellItDiffuser
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
+                            ImagePath = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
                             ImageAlt = "Si",
                             Product = si
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
+                            ImagePath = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                             ImageAlt = "Sauvage",
                             Product = savuage
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
+                            ImagePath = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
                             ImageAlt = "Black Opium",
                             Product = blackOpium
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
+                            ImagePath = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                             ImageAlt = "Good Girl",
                             Product = goodGirl
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
+                            ImagePath = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
                             ImageAlt = "1 Million",
                             Product = oneMillion
                         },
                         new ProductImage()
                         {
-                            ImagePath = "~/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
+                            ImagePath = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
                             ImageAlt = "Eros",
                             Product = eros
                         },
@@ -878,6 +878,42 @@ namespace SmellIt.Infrastructure.Seeders
                     };
                     fragranceCategory.WebsiteTextTranslations = fragranceCategoryTranslations;
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(fragranceCategoryTranslations);
+
+
+                    var addToCart = new WebsiteText { Key = "AddToCart" };
+                    await _dbContext.WebsiteTexts.AddAsync(addToCart);
+
+                    List<WebsiteTextTranslation> addToCartTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = addToCart, Language = polish, Text = "Dodaj do koszyka" },
+                        new WebsiteTextTranslation { WebsiteText = addToCart, Language = english, Text = "Add To Card" },
+                    };
+                    addToCart.WebsiteTextTranslations = addToCartTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(addToCartTranslations);
+
+
+                    var viewProductDetails = new WebsiteText { Key = "ViewProductDetails" };
+                    await _dbContext.WebsiteTexts.AddAsync(viewProductDetails);
+
+                    List<WebsiteTextTranslation> viewProductDetailsTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = viewProductDetails, Language = polish, Text = "Zobacz szczegóły produktu" },
+                        new WebsiteTextTranslation { WebsiteText = viewProductDetails, Language = english, Text = "View Product Details" },
+                    };
+                    viewProductDetails.WebsiteTextTranslations = viewProductDetailsTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(viewProductDetailsTranslations);
+
+
+                    var quantity = new WebsiteText { Key = "Quantity" };
+                    await _dbContext.WebsiteTexts.AddAsync(quantity);
+
+                    List<WebsiteTextTranslation> quantityTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = quantity, Language = polish, Text = "Ilość" },
+                        new WebsiteTextTranslation { WebsiteText = quantity, Language = english, Text = "Quantity" },
+                    };
+                    quantity.WebsiteTextTranslations = quantityTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(quantityTranslations);
 
 
                     var yourName = new WebsiteText { Key = "YourName" };
