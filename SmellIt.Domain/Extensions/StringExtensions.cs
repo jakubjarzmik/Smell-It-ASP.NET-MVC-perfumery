@@ -15,7 +15,8 @@ public static class StringExtensions
                 text.Append(c);
             }
         }
-        string encodedName = text.ToString().Replace(" ", "-");
+        
+        string encodedName = text.ToString().Trim().Replace(" ", "-");
 
         return encodedName;
     }

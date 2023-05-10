@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -31,12 +32,19 @@
     <Folder Include="Application\Services\" />
     <Folder Include="Application\SmellIt\" />
     <Folder Include="Domain\Entities\" />
-    <Folder Include="Domain\Extensions\" />
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Website\Controllers\" />
     <Folder Include="Website\Helpers\" />
     <Folder Include="Website\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmellIt.Admin\SmellIt.Admin.csproj" />
+    <ProjectReference Include="..\SmellIt.Application\SmellIt.Application.csproj" />
+    <ProjectReference Include="..\SmellIt.Domain\SmellIt.Domain.csproj" />
+    <ProjectReference Include="..\SmellIt.Infrastructure\SmellIt.Infrastructure.csproj" />
+    <ProjectReference Include="..\SmellIt.Website\SmellIt.Website.csproj" />
   </ItemGroup>
 
 </Project>
