@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+}
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
@@ -50,7 +54,7 @@
                                         <img class="media-object" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="image" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">@Language.GetValue("SmellItDiffuser")</a></h4>
+                                        <h4 class="media-heading"><a href="#!">=Smell It Diffuser=</a></h4>
                                         <div class="cart-price">
                                             <span>1 x</span>
                                             <span>799.00</span>
@@ -95,7 +99,7 @@
                         </li>
                         <li class="dropdown dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <span class="flag-icon flag-icon-@Language.GetValue("LanguageForIcon")"></span>
+                                <span class="flag-icon flag-icon-@currentCulture.Substring(3,2).ToLower()"></span>
                             </a>
                             <ul class="dropdown-menu ">
                                 <li>

@@ -1,12 +1,10 @@
 using System.Globalization;
-using System.Reflection;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using SmellIt.Application.Extensions;
 using SmellIt.Application.Services;
 using SmellIt.Infrastructure.Extensions;
 using SmellIt.Infrastructure.Seeders;
-using SmellIt.Website.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,19 +17,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 // Add multi languages
-builder.Services.AddSingleton<LanguageService>();
 builder.Services.AddScoped<WebsiteTextsService>();
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-builder.Services.AddMvc()
-    .AddViewLocalization()
-    .AddDataAnnotationsLocalization(options =>
-    {
-        options.DataAnnotationLocalizerProvider = (type, factory) =>
-        {
-            var assemblyName = new AssemblyName(typeof(Resource).GetTypeInfo().Assembly.FullName!);
-            return factory.Create("ShareResource", assemblyName.Name!);
-        };
-    });
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new List<CultureInfo>

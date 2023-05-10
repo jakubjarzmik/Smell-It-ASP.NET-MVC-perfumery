@@ -1,6 +1,5 @@
-﻿@inject LanguageService Language
-@{
-    ViewData["Title"] = @Language.GetValue("Home");
+﻿@{
+    ViewData["Title"] = @WebsiteTexts.GetValue("Home");
 }
 
 <div class="hero-slider">
@@ -54,7 +53,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>@Language.GetValue("PopularProducts")</h2>
+				<h2>@WebsiteTexts.GetValue("PopularProducts")</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -79,7 +78,7 @@
 						</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="#">@Language.GetValue("SmellItDiffuser")</a></h4>
+						<h4><a href="#">Smell It Diffuser</a></h4>
 						<p class="price">799 zł</p>
 					</div>
 				</div>
@@ -215,7 +214,7 @@
 				</div>
 			</div>
 
-			<div class="modal product-modal fade" id="product-modal">
+			@*<div class="modal product-modal fade" id="product-modal">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<i class="tf-ion-close"></i>
 				</button>
@@ -243,7 +242,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>*@
 		</div>
 	</div>
 </section>

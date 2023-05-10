@@ -20,13 +20,4 @@
 		<ProjectReference Include="..\SmellIt.Infrastructure\SmellIt.Infrastructure.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Update="Resources\Resource.en-GB.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Resource.pl-PL.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
-
 </Project>

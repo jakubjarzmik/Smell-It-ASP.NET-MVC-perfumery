@@ -1,5 +1,4 @@
-﻿@inject LanguageService Language
-@{
+﻿@{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
 }
 
@@ -33,22 +32,22 @@
                     </form>
                 </div>
                 <div class="widget product-category">
-                    <h4 class="widget-title">@Language.GetValue("Filters")</h4>
+                    <h4 class="widget-title">Filters</h4>
                     <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        @Language.GetValue("Gender")
+                                        Gender
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#!">@Language.GetValue("Men")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Women")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Unisex")</a></li>
+                                        <li><a href="#!">Men</a></li>
+                                        <li><a href="#!">Women</a></li>
+                                        <li><a href="#!">Unisex</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -57,7 +56,7 @@
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        @Language.GetValue("Brand")
+                                        Brand
                                     </a>
                                 </h4>
                             </div>
@@ -79,19 +78,19 @@
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        @Language.GetValue("FragranceCategory")
+                                        Fragrance Category
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#!">@Language.GetValue("Oriental")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Fruity")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Citrus")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Aromatic")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Floral")</a></li>
-                                        <li><a href="#!">@Language.GetValue("Other")</a></li>
+                                        <li><a href="#!">Oriental</a></li>
+                                        <li><a href="#!">Fruity</a></li>
+                                        <li><a href="#!">Citrus</a></li>
+                                        <li><a href="#!">Aromatic</a></li>
+                                        <li><a href="#!">Floral</a></li>
+                                        <li><a href="#!">Other</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -1,5 +1,4 @@
-﻿@inject LanguageService language
-@{
+﻿@{
     ViewData["Title"] = @WebsiteTexts.GetValue("Contact");
 }
 
@@ -68,7 +67,7 @@
                     <ul class="contact-short-info">
                         <li>
                             <i class="tf-ion-ios-home"></i>
-                            <span>@language.GetValue("SmellItAddress")</span>
+                            <span>@WebsiteTexts.GetValue("SmellItAddress")</span>
                         </li>
                         <li>
                             <i class="tf-ion-android-phone-portrait"></i>

@@ -2,7 +2,6 @@
 using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
-using SmellIt.Application.SmellIt.Products.Queries.GetAllProducts;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
 
 namespace SmellIt.Website.Controllers;
