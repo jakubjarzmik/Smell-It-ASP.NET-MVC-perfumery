@@ -3,6 +3,8 @@ using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
+using SmellIt.Application.SmellIt.Products.Queries.GetProductsByCategoryEncodedName;
+using SmellIt.Application.SmellIt.Products.Queries.GetAllProducts;
 
 namespace SmellIt.Website.Controllers;
 public class ProductsController : Controller
@@ -15,12 +17,22 @@ public class ProductsController : Controller
         _mediator = mediator;
         _env = env;
     }
+
     [Route("products")]
-	public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var products = await _mediator.Send(new GetAllProductsQuery()); ;
+        return View(products);
     }
+
     [Route("products/{encodedName}")]
+	public async Task<IActionResult> Index(string encodedName)
+    {
+        var products = await _mediator.Send(new GetProductsByCategoryEncodedNameQuery(encodedName));
+        return View(products);
+    }
+
+    [Route("products/details/{encodedName}")]
     public async Task<IActionResult> Details(string encodedName)
     {
 	    var product = await _mediator.Send(new GetProductByEncodedNameQuery(encodedName));

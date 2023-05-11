@@ -133,9 +133,8 @@
                         <li>
                             <a href="@Url.Action("Index", "Home")">@WebsiteTexts.GetValue("Home")</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("Index", "Products")">@WebsiteTexts.GetValue("Products")</a>
-                        </li>
+
+                        @await Component.InvokeAsync("ProductCategories")
 
                         <li>
                             <a href="@Url.Action("Contact", "Home")">@WebsiteTexts.GetValue("Contact")</a>

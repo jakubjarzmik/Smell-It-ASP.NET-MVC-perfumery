@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.ProductDto>
+@{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
 }
 
@@ -101,7 +102,8 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    @await Component.InvokeAsync("Products")
+                    @*@await Component.InvokeAsync("Products")*@
+                    @await Html.PartialAsync("Products", Model)
                 </div>
             </div>
 

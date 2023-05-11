@@ -640,6 +640,30 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(productsTranslations);
 
 
+                    var all = new WebsiteText { Key = "All" };
+                    await _dbContext.WebsiteTexts.AddAsync(all);
+
+                    List<WebsiteTextTranslation> allTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = all, Language = polish, Text = "Wszystko" },
+                        new WebsiteTextTranslation { WebsiteText = all, Language = english, Text = "All" },
+                    };
+                    all.WebsiteTextTranslations = allTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(allTranslations);
+
+
+                    var allProducts = new WebsiteText { Key = "AllProducts" };
+                    await _dbContext.WebsiteTexts.AddAsync(allProducts);
+
+                    List<WebsiteTextTranslation> allProductsTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = allProducts, Language = polish, Text = "Wszystkie produkty" },
+                        new WebsiteTextTranslation { WebsiteText = allProducts, Language = english, Text = "All Products" },
+                    };
+                    all.WebsiteTextTranslations = allProductsTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(allProductsTranslations);
+
+
                     var contact = new WebsiteText { Key = "Contact" };
                     await _dbContext.WebsiteTexts.AddAsync(contact);
 
