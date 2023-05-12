@@ -156,6 +156,9 @@
   <data name="Brands" xml:space="preserve">
     <value>Brands</value>
   </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
   <data name="CarFresheners" xml:space="preserve">
     <value>Car Fresheners</value>
   </data>
@@ -356,6 +359,9 @@
   </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
+  </data>
+  <data name="PromotionalPrice" xml:space="preserve">
+    <value>Promotional Price</value>
   </data>
   <data name="RecentOrders" xml:space="preserve">
     <value>Recent Orders</value>

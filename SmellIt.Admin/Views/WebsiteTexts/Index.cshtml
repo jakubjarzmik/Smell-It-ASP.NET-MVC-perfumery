@@ -27,8 +27,8 @@
                             @foreach (var item in Model.Items!)
                             {
                                 <tr>
-                                    <td>@(item.TextPl.Length > 50 ? item.TextPl.Substring(0,50) + "..." : item.TextPl)</td>
-                                    <td>@(item.TextEn.Length > 50 ? item.TextEn.Substring(0,50) + "..." : item.TextEn)</td>
+                                    <td>@(item.TextPl.Length > 50 ? item.TextPl.Substring(0,49) + "..." : item.TextPl)</td>
+                                    <td>@(item.TextEn.Length > 50 ? item.TextEn.Substring(0,49) + "..." : item.TextEn)</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                                         <div id="modalDescriptionPL_@index" class="modal">

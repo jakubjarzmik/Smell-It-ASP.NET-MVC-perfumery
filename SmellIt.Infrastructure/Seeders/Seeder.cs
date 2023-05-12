@@ -68,6 +68,58 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.ProductCategoryTranslations.AddRangeAsync(fragranceTranslations);
 
 
+                    var parfum = new ProductCategory { ParentCategory = fragrance};
+                    await _dbContext.ProductCategories.AddAsync(parfum);
+
+                    List<ProductCategoryTranslation> parfumTranslations = new()
+                    {
+                    new ProductCategoryTranslation { ProductCategory = parfum, Language = polish, Name = "Parfum" },
+                    new ProductCategoryTranslation { ProductCategory = parfum, Language = english, Name = "Parfum" },
+                    };
+
+                    parfum.ProductCategoryTranslations = parfumTranslations;
+                    await _dbContext.ProductCategoryTranslations.AddRangeAsync(parfumTranslations);
+
+
+                    var eauDeParfum = new ProductCategory { ParentCategory = fragrance};
+                    await _dbContext.ProductCategories.AddAsync(eauDeParfum);
+
+                    List<ProductCategoryTranslation> eauDeParfumTranslations = new()
+                    {
+                    new ProductCategoryTranslation { ProductCategory = eauDeParfum, Language = polish, Name = "Eau de Parfum" },
+                    new ProductCategoryTranslation { ProductCategory = eauDeParfum, Language = english, Name = "Eau de Parfum" },
+                    };
+
+                    eauDeParfum.ProductCategoryTranslations = eauDeParfumTranslations;
+                    await _dbContext.ProductCategoryTranslations.AddRangeAsync(eauDeParfumTranslations);
+
+
+                    var eauDeToilette = new ProductCategory { ParentCategory = fragrance};
+                    await _dbContext.ProductCategories.AddAsync(eauDeToilette);
+
+                    List<ProductCategoryTranslation> eauDeToiletteTranslations = new()
+                    {
+                    new ProductCategoryTranslation { ProductCategory = eauDeToilette, Language = polish, Name = "Eau de Toilette" },
+                    new ProductCategoryTranslation { ProductCategory = eauDeToilette, Language = english, Name = "Eau de Toilette" },
+                    };
+
+                    eauDeToilette.ProductCategoryTranslations = eauDeToiletteTranslations;
+                    await _dbContext.ProductCategoryTranslations.AddRangeAsync(eauDeToiletteTranslations);
+
+
+                    var eauDeCologne = new ProductCategory { ParentCategory = fragrance};
+                    await _dbContext.ProductCategories.AddAsync(eauDeCologne);
+
+                    List<ProductCategoryTranslation> eauDeCologneTranslations = new()
+                    {
+                    new ProductCategoryTranslation { ProductCategory = eauDeCologne, Language = polish, Name = "Eau de Cologne" },
+                    new ProductCategoryTranslation { ProductCategory = eauDeCologne, Language = english, Name = "Eau de Cologne" },
+                    };
+
+                    eauDeCologne.ProductCategoryTranslations = eauDeCologneTranslations;
+                    await _dbContext.ProductCategoryTranslations.AddRangeAsync(eauDeCologneTranslations);
+
+
                     var homeFragrance = new ProductCategory();
                     await _dbContext.ProductCategories.AddAsync(homeFragrance);
 
@@ -377,9 +429,25 @@ namespace SmellIt.Infrastructure.Seeders
                     var smellItDiffuser = new Product
                     {
                         Brand = smellIt,
-                        ProductCategory = diffusers
+                        ProductCategory = diffusers,
+                        Price = 1099,
+                        PromotionalPrice = 899
                     };
                     await _dbContext.Products.AddAsync(smellItDiffuser);
+
+                    var smellItDiffuserPriceHistory = new ProductPriceHistory
+                    {
+                        Product = smellItDiffuser,
+                        Price = 1099
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(smellItDiffuserPriceHistory);
+
+                    var smellItDiffuserPriceHistory2 = new ProductPriceHistory
+                    {
+                        Product = smellItDiffuser,
+                        Price = 899
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(smellItDiffuserPriceHistory2);
 
                     List<ProductTranslation> smellItDiffuserTranslations = new()
                     {
@@ -393,11 +461,20 @@ namespace SmellIt.Infrastructure.Seeders
                     var goodGirl = new Product
                     {
                         Brand = carolinaHerrera,
-                        ProductCategory = fragrance,
+                        ProductCategory = eauDeParfum,
                         FragranceCategory = oriental,
-                        Gender = women
+                        Gender = women,
+                        Price = 489,
+                        Capacity = 80
                     };
                     await _dbContext.Products.AddAsync(goodGirl);
+
+                    var goodGirlPriceHistory = new ProductPriceHistory
+                    {
+                        Product = goodGirl,
+                        Price = 489
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(goodGirlPriceHistory);
 
                     List<ProductTranslation> goodGirlTranslations = new()
                     {
@@ -408,32 +485,50 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.ProductTranslations.AddRangeAsync(goodGirlTranslations);
 
 
-                    var savuage = new Product
+                    var sauvage = new Product
                     {
                         Brand = dior,
-                        ProductCategory = fragrance,
+                        ProductCategory = eauDeParfum,
                         FragranceCategory = aromatic,
-                        Gender = men
+                        Gender = men,
+                        Price = 479,
+                        Capacity = 100
                     };
-                    await _dbContext.Products.AddAsync(savuage);
+                    await _dbContext.Products.AddAsync(sauvage);
+
+                    var sauvagePriceHistory = new ProductPriceHistory
+                    {
+                        Product = sauvage,
+                        Price = 479
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(sauvagePriceHistory);
 
                     List<ProductTranslation> savuageTranslations = new()
                     {
-                    new ProductTranslation { Product = savuage, Language = polish, Name = "Savuage", Description = "\"Dior Sauvage\" to luksusowy męski zapach marki Dior, który został wprowadzony na rynek w 2015 roku. Kompozycja zapachu to mieszanka zmysłowych nut bergamotki, ambrowych akordów, paczuli, jałowca i cedru wirginijskiego. Zapach jest orzeźwiający, a jednocześnie intrygujący i zmysłowy. Flakon zapachu jest prosty i elegancki, wykonany z grubego, niebieskiego szkła, nawiązujący do nieba i morza. \"Dior Sauvage\" to zapach idealny na co dzień, który wyróżnia się swoją wyjątkowością i trwałością. Jest to zapach, który pasuje do mężczyzn o silnym charakterze, którzy cenią sobie klasykę i elegancję."},
-                    new ProductTranslation { Product = savuage, Language = english, Name = "Savuage", Description = "\"Dior Sauvage\" is a luxury men's fragrance by Dior that was introduced in 2015. The fragrance composition is a mixture of sensual notes of bergamot, amber accords, patchouli, juniper, and Virginia cedar. The fragrance is refreshing, yet intriguing and sensual. The fragrance bottle is simple and elegant, made of thick blue glass, reminiscent of the sky and sea. \"Dior Sauvage\" is a perfect fragrance for everyday wear that stands out for its uniqueness and longevity. It is a fragrance that suits men with strong character who appreciate classic and elegance."},
+                    new ProductTranslation { Product = sauvage, Language = polish, Name = "Sauvage", Description = "\"Dior Sauvage\" to luksusowy męski zapach marki Dior, który został wprowadzony na rynek w 2015 roku. Kompozycja zapachu to mieszanka zmysłowych nut bergamotki, ambrowych akordów, paczuli, jałowca i cedru wirginijskiego. Zapach jest orzeźwiający, a jednocześnie intrygujący i zmysłowy. Flakon zapachu jest prosty i elegancki, wykonany z grubego, niebieskiego szkła, nawiązujący do nieba i morza. \"Dior Sauvage\" to zapach idealny na co dzień, który wyróżnia się swoją wyjątkowością i trwałością. Jest to zapach, który pasuje do mężczyzn o silnym charakterze, którzy cenią sobie klasykę i elegancję."},
+                    new ProductTranslation { Product = sauvage, Language = english, Name = "Sauvage", Description = "\"Dior Sauvage\" is a luxury men's fragrance by Dior that was introduced in 2015. The fragrance composition is a mixture of sensual notes of bergamot, amber accords, patchouli, juniper, and Virginia cedar. The fragrance is refreshing, yet intriguing and sensual. The fragrance bottle is simple and elegant, made of thick blue glass, reminiscent of the sky and sea. \"Dior Sauvage\" is a perfect fragrance for everyday wear that stands out for its uniqueness and longevity. It is a fragrance that suits men with strong character who appreciate classic and elegance."},
                     };
-                    savuage.ProductTranslations = savuageTranslations;
+                    sauvage.ProductTranslations = savuageTranslations;
                     await _dbContext.ProductTranslations.AddRangeAsync(savuageTranslations);
 
 
                     var si = new Product
                     {
                         Brand = giorgioArmani,
-                        ProductCategory = fragrance,
+                        ProductCategory = eauDeParfum,
                         FragranceCategory = fruity,
-                        Gender = women
+                        Gender = women,
+                        Price = 491,
+                        Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(si);
+
+                    var siPriceHistory = new ProductPriceHistory
+                    {
+                        Product = si,
+                        Price = 491
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(siPriceHistory);
 
                     List<ProductTranslation> siTranslations = new()
                     {
@@ -447,11 +542,20 @@ namespace SmellIt.Infrastructure.Seeders
                     var oneMillion = new Product
                     {
                         Brand = pacoRabanne,
-                        ProductCategory = fragrance,
+                        ProductCategory = eauDeToilette,
                         FragranceCategory = spicy,
-                        Gender = men
+                        Gender = men,
+                        Price = 332,
+                        Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(oneMillion);
+
+                    var oneMillionPriceHistory = new ProductPriceHistory
+                    {
+                        Product = oneMillion,
+                        Price = 332
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(oneMillionPriceHistory);
 
                     List<ProductTranslation> oneMillionTranslations = new()
                     {
@@ -465,11 +569,20 @@ namespace SmellIt.Infrastructure.Seeders
                     var eros = new Product
                     {
                         Brand = versace,
-                        ProductCategory = fragrance,
+                        ProductCategory = eauDeToilette,
                         FragranceCategory = aromatic,
-                        Gender = men
+                        Gender = men,
+                        Price = 255,
+                        Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(eros);
+
+                    var erosPriceHistory = new ProductPriceHistory
+                    {
+                        Product = eros,
+                        Price = 255
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(erosPriceHistory);
 
                     List<ProductTranslation> erosTranslations = new()
                     {
@@ -485,9 +598,18 @@ namespace SmellIt.Infrastructure.Seeders
                         Brand = yvesSaintLaurent,
                         ProductCategory = fragrance,
                         FragranceCategory = oriental,
-                        Gender = women
+                        Gender = women,
+                        Price = 459,
+                        Capacity = 90
                     };
                     await _dbContext.Products.AddAsync(blackOpium);
+
+                    var blackOpiumPriceHistory = new ProductPriceHistory
+                    {
+                        Product = blackOpium,
+                        Price = 459
+                    };
+                    await _dbContext.ProductPriceHistories.AddAsync(blackOpiumPriceHistory);
 
                     List<ProductTranslation> blackOpiumTranslations = new()
                     {
@@ -523,7 +645,7 @@ namespace SmellIt.Infrastructure.Seeders
                         {
                             ImagePath = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                             ImageAlt = "Sauvage",
-                            Product = savuage
+                            Product = sauvage
                         },
                         new ProductImage()
                         {
@@ -660,7 +782,7 @@ namespace SmellIt.Infrastructure.Seeders
                         new WebsiteTextTranslation { WebsiteText = allProducts, Language = polish, Text = "Wszystkie produkty" },
                         new WebsiteTextTranslation { WebsiteText = allProducts, Language = english, Text = "All Products" },
                     };
-                    all.WebsiteTextTranslations = allProductsTranslations;
+                    allProducts.WebsiteTextTranslations = allProductsTranslations;
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(allProductsTranslations);
 
 
@@ -938,6 +1060,18 @@ namespace SmellIt.Infrastructure.Seeders
                     };
                     quantity.WebsiteTextTranslations = quantityTranslations;
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(quantityTranslations);
+
+
+                    var capacity = new WebsiteText { Key = "Capacity" };
+                    await _dbContext.WebsiteTexts.AddAsync(capacity);
+
+                    List<WebsiteTextTranslation> capacityTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = capacity, Language = polish, Text = "Pojemność" },
+                        new WebsiteTextTranslation { WebsiteText = capacity, Language = english, Text = "Capacity" },
+                    };
+                    capacity.WebsiteTextTranslations = capacityTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(capacityTranslations);
 
 
                     var yourName = new WebsiteText { Key = "YourName" };

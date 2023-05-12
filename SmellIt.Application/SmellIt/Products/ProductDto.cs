@@ -12,6 +12,9 @@ public class ProductDto
     public string NameEn { get; set; } = default!;
     public string? DescriptionPl { get; set; }
     public string? DescriptionEn { get; set; }
+    public int? Capacity { get; set; }
+    public decimal Price { get; set; }
+    public decimal? PromotionalPrice { get; set; }
     public ProductCategoryDto? ProductCategory { get; set; }
     public BrandDto? Brand { get; set; }
     public FragranceCategoryDto? FragranceCategory { get; set; }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmellIt.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using SmellIt.Infrastructure.Persistence;
 namespace SmellIt.Infrastructure.Migrations
 {
     [DbContext(typeof(SmellItDbContext))]
-    partial class SmellItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512205123_AddProductPriceAndProductPriceHistoryTable")]
+    partial class AddProductPriceAndProductPriceHistoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -447,9 +450,6 @@ namespace SmellIt.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Capacity")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")

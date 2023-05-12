@@ -24,6 +24,7 @@ public class SmellItDbContext : DbContext
     public DbSet<ProductCategory> ProductCategories { get; set; } = default!;
     public DbSet<ProductCategoryTranslation> ProductCategoryTranslations { get; set; } = default!;
     public DbSet<ProductImage> ProductImages { get; set; } = default!;
+    public DbSet<ProductPriceHistory> ProductPriceHistories { get; set; } = default!;
     public DbSet<SocialSite> SocialSites { get; set; } = default!;
     public DbSet<WebsiteText> WebsiteTexts { get; set; } = default!;
     public DbSet<WebsiteTextTranslation> WebsiteTextTranslations { get; set; } = default!;
@@ -153,6 +154,10 @@ public class SmellItDbContext : DbContext
             .WithOne(pi => pi.Product)
             .HasForeignKey(pi => pi.ProductId);
         modelBuilder.Entity<Product>()
+            .HasMany(p => p.ProductPriceHistories)
+            .WithOne(pi => pi.Product)
+            .HasForeignKey(pi => pi.ProductId);
+        modelBuilder.Entity<Product>()
             .HasMany(p => p.ProductTranslations)
             .WithOne(pt => pt.Product)
             .HasForeignKey(pt => pt.ProductId);
@@ -195,6 +200,11 @@ public class SmellItDbContext : DbContext
         modelBuilder.Entity<ProductImage>()
             .HasOne(u => u.Product)
             .WithMany(u => u.ProductImages)
+            .HasForeignKey(u => u.ProductId);
+
+        modelBuilder.Entity<ProductPriceHistory>()
+            .HasOne(u => u.Product)
+            .WithMany(u => u.ProductPriceHistories)
             .HasForeignKey(u => u.ProductId);
 
         modelBuilder.Entity<WebsiteText>()
