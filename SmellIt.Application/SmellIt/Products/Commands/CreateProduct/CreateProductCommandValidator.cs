@@ -13,5 +13,12 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .NotEmpty().WithMessage("Name is required")
             .MinimumLength(2).WithMessage("Name should have at least 2 characters")
             .MaximumLength(50).WithMessage("Name should have maximum of 50 characters");
+        RuleFor(b => b.Price)
+            .NotEmpty().WithMessage("Price is required")
+            .GreaterThan(0).WithMessage("Price should be greater than 0")
+            .LessThan(10000000).WithMessage("Price should be less than 10,000,000");
+        RuleFor(b => b.PromotionalPrice)
+            .GreaterThan(0).WithMessage("Promotional Price should be greater than 0")
+            .LessThan(10000000).WithMessage("Promotional Price should be less than 10,000,000");
     }
 }

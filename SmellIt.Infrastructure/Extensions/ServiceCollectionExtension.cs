@@ -27,6 +27,7 @@ namespace SmellIt.Infrastructure.Extensions
             services.AddScoped<IWebsiteTextRepository, WebsiteTextRepository>();
             services.AddScoped<IGenderRepository, GenderRepository>();
             services.AddScoped<IProductImageRepository, ProductImageRepository>();
+            services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
         }
     }
 }

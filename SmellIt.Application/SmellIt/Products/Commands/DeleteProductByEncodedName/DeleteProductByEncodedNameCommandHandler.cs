@@ -24,6 +24,12 @@ namespace SmellIt.Application.SmellIt.Products.Commands.DeleteProductByEncodedNa
                 productTranslation.DeletedAt = DateTime.UtcNow;
             }
 
+            foreach (var productPrice in product.ProductPrices)
+            {
+                productPrice.IsActive = false;
+                productPrice.DeletedAt = DateTime.UtcNow;
+            }
+
             await _productRepository.Commit();
             return Unit.Value;
         }

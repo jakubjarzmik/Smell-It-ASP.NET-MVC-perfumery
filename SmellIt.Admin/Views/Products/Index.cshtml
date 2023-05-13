@@ -43,7 +43,7 @@
                                     <td>
                                         @(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)
                                     </td>
-                                    <td>@Html.Raw(item.PromotionalPrice == null ? item.Price : "<del>"+item.Price +" zł</del> " + item.PromotionalPrice ) zł</td>
+                                    <td>@Html.Raw(item.PromotionalPrice == null ? item.Price : "<del>"+item.Price +" zł</del> " + item.PromotionalPrice.Value ) zł</td>
                                     <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
@@ -62,6 +62,9 @@
                                                 {
                                                     <p>
                                                         @language.GetValue("PromotionalPrice"): @item.PromotionalPrice zł
+                                                    </p>
+                                                    <p>
+                                                        @language.GetValue("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł
                                                     </p>
                                                 }
                                                 @if (item.Capacity != null)

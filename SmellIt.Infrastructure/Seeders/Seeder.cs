@@ -429,25 +429,24 @@ namespace SmellIt.Infrastructure.Seeders
                     var smellItDiffuser = new Product
                     {
                         Brand = smellIt,
-                        ProductCategory = diffusers,
-                        Price = 1099,
-                        PromotionalPrice = 899
+                        ProductCategory = diffusers
                     };
                     await _dbContext.Products.AddAsync(smellItDiffuser);
 
-                    var smellItDiffuserPriceHistory = new ProductPriceHistory
+                    var smellItDiffuserPrice = new ProductPrice
                     {
                         Product = smellItDiffuser,
-                        Price = 1099
+                        Value = 1099
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(smellItDiffuserPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(smellItDiffuserPrice);
 
-                    var smellItDiffuserPriceHistory2 = new ProductPriceHistory
+                    var smellItDiffuserPricePromotion = new ProductPrice
                     {
                         Product = smellItDiffuser,
-                        Price = 899
+                        Value = 899,
+                        IsPromotion = true
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(smellItDiffuserPriceHistory2);
+                    await _dbContext.ProductPrices.AddAsync(smellItDiffuserPricePromotion);
 
                     List<ProductTranslation> smellItDiffuserTranslations = new()
                     {
@@ -464,17 +463,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = eauDeParfum,
                         FragranceCategory = oriental,
                         Gender = women,
-                        Price = 489,
                         Capacity = 80
                     };
                     await _dbContext.Products.AddAsync(goodGirl);
 
-                    var goodGirlPriceHistory = new ProductPriceHistory
+                    var goodGirlPriceHistory = new ProductPrice
                     {
                         Product = goodGirl,
-                        Price = 489
+                        Value = 489
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(goodGirlPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(goodGirlPriceHistory);
 
                     List<ProductTranslation> goodGirlTranslations = new()
                     {
@@ -491,17 +489,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = eauDeParfum,
                         FragranceCategory = aromatic,
                         Gender = men,
-                        Price = 479,
                         Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(sauvage);
 
-                    var sauvagePriceHistory = new ProductPriceHistory
+                    var sauvagePriceHistory = new ProductPrice
                     {
                         Product = sauvage,
-                        Price = 479
+                        Value = 479
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(sauvagePriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(sauvagePriceHistory);
 
                     List<ProductTranslation> savuageTranslations = new()
                     {
@@ -518,17 +515,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = eauDeParfum,
                         FragranceCategory = fruity,
                         Gender = women,
-                        Price = 491,
                         Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(si);
 
-                    var siPriceHistory = new ProductPriceHistory
+                    var siPriceHistory = new ProductPrice
                     {
                         Product = si,
-                        Price = 491
+                        Value = 491
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(siPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(siPriceHistory);
 
                     List<ProductTranslation> siTranslations = new()
                     {
@@ -545,17 +541,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = eauDeToilette,
                         FragranceCategory = spicy,
                         Gender = men,
-                        Price = 332,
                         Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(oneMillion);
 
-                    var oneMillionPriceHistory = new ProductPriceHistory
+                    var oneMillionPriceHistory = new ProductPrice
                     {
                         Product = oneMillion,
-                        Price = 332
+                        Value = 332
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(oneMillionPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(oneMillionPriceHistory);
 
                     List<ProductTranslation> oneMillionTranslations = new()
                     {
@@ -572,17 +567,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = eauDeToilette,
                         FragranceCategory = aromatic,
                         Gender = men,
-                        Price = 255,
                         Capacity = 100
                     };
                     await _dbContext.Products.AddAsync(eros);
 
-                    var erosPriceHistory = new ProductPriceHistory
+                    var erosPriceHistory = new ProductPrice
                     {
                         Product = eros,
-                        Price = 255
+                        Value = 255
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(erosPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(erosPriceHistory);
 
                     List<ProductTranslation> erosTranslations = new()
                     {
@@ -599,17 +593,16 @@ namespace SmellIt.Infrastructure.Seeders
                         ProductCategory = fragrance,
                         FragranceCategory = oriental,
                         Gender = women,
-                        Price = 459,
-                        Capacity = 90
+                        Capacity = 90,
                     };
                     await _dbContext.Products.AddAsync(blackOpium);
 
-                    var blackOpiumPriceHistory = new ProductPriceHistory
+                    var blackOpiumPriceHistory = new ProductPrice
                     {
                         Product = blackOpium,
-                        Price = 459
+                        Value = 459
                     };
-                    await _dbContext.ProductPriceHistories.AddAsync(blackOpiumPriceHistory);
+                    await _dbContext.ProductPrices.AddAsync(blackOpiumPriceHistory);
 
                     List<ProductTranslation> blackOpiumTranslations = new()
                     {

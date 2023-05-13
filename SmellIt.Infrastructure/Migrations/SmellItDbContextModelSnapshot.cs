@@ -446,7 +446,7 @@ namespace SmellIt.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Capacity")
@@ -474,14 +474,8 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("PromotionalPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -613,7 +607,7 @@ namespace SmellIt.Infrastructure.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("SmellIt.Domain.Entities.ProductPriceHistory", b =>
+            modelBuilder.Entity("SmellIt.Domain.Entities.ProductPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -630,20 +624,23 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsPromotion")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductPriceHistories");
+                    b.ToTable("ProductPrices");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.ProductTranslation", b =>
@@ -893,9 +890,7 @@ namespace SmellIt.Infrastructure.Migrations
                 {
                     b.HasOne("SmellIt.Domain.Entities.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BrandId");
 
                     b.HasOne("SmellIt.Domain.Entities.FragranceCategory", "FragranceCategory")
                         .WithMany("Products")
@@ -959,10 +954,10 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SmellIt.Domain.Entities.ProductPriceHistory", b =>
+            modelBuilder.Entity("SmellIt.Domain.Entities.ProductPrice", b =>
                 {
                     b.HasOne("SmellIt.Domain.Entities.Product", "Product")
-                        .WithMany("ProductPriceHistories")
+                        .WithMany("ProductPrices")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1057,7 +1052,7 @@ namespace SmellIt.Infrastructure.Migrations
                 {
                     b.Navigation("ProductImages");
 
-                    b.Navigation("ProductPriceHistories");
+                    b.Navigation("ProductPrices");
 
                     b.Navigation("ProductTranslations");
                 });

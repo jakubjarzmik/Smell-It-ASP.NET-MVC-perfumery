@@ -15,15 +15,17 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IBrandRepository _brandRepository;
     private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
     private readonly IGenderRepository _genderRepository;
+    private readonly IProductPriceRepository _productPriceRepository;
     private readonly IMapper _mapper;
     public CreateProductCommandHandler(IProductRepository productRepository,IProductCategoryRepository productCategoryRepository, IBrandRepository brandRepository, 
-        IFragranceCategoryRepository fragranceCategoryRepository, IGenderRepository genderRepository, IMapper mapper)
+        IFragranceCategoryRepository fragranceCategoryRepository, IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IMapper mapper)
     {
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
         _brandRepository = brandRepository;
         _fragranceCategoryRepository = fragranceCategoryRepository;
         _genderRepository = genderRepository;
+        _productPriceRepository = productPriceRepository;
         _mapper = mapper;
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -51,6 +53,14 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 
         var product = _mapper.Map<Product>(request);
         await _productRepository.Create(product);
+
+        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.Price });
+
+        if (request.PromotionalPrice != null)
+        {
+            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPrice, IsPromotion = true });
+        }
+
         return Unit.Value;
     }
 }

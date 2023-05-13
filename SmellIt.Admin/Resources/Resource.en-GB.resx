@@ -276,6 +276,9 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="Last30DaysLowestPrice" xml:space="preserve">
+    <value>Lowest price in the last 30 days</value>
+  </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Latest Registered Users</value>
   </data>

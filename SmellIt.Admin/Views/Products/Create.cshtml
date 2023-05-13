@@ -33,6 +33,21 @@
                                 <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
                                 <span asp-validation-for="NameEn" class="helper-text"></span>
                             </div>
+                            <div class="input-field col s12">
+                                <label asp-for="Price">@language.GetValue("Price")</label>
+                                <textarea class="materialize-textarea" asp-for="Price"></textarea>
+                                <span asp-validation-for="Price" class="helper-text"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="PromotionalPrice">@language.GetValue("PromotionalPrice")</label>
+                                <textarea class="materialize-textarea" asp-for="PromotionalPrice"></textarea>
+                                <span asp-validation-for="PromotionalPrice" class="helper-text"></span>
+                            </div>
+                            <div class="input-field col s12">
+                                <label asp-for="Capacity">@language.GetValue("Capacity")</label>
+                                <textarea class="materialize-textarea" asp-for="Capacity"></textarea>
+                                <span asp-validation-for="Capacity" class="helper-text"></span>
+                            </div>
                             <div class="input-field col l2 m3 s4">
                                 <label asp-for="ProductCategoryEncodedName">@language.GetValue("Category")</label>
                             </div>
