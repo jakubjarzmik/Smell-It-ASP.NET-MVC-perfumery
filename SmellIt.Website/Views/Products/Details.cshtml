@@ -3,7 +3,6 @@
 @{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
-    Random random = new Random();
 }
 <section class="single-product">
     <div class="container">
@@ -43,7 +42,15 @@
                     <h2>
                         @Model.Brand?.Name - @(currentCulture == "en-GB" ? @Model.NameEn : @Model.NamePl)
                     </h2>
-                    <p class="product-price">@random.Next(100,800) zł</p>
+                    @if (Model.PromotionalPrice == null)
+                    {
+                        <p class="product-price">@Model.Price zł</p>
+                    }
+                    else
+                    {
+                        <p class="product-price"><del>@Model.Price</del> @Model.PromotionalPrice zł</p>
+                        <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
+                    }
                     <p class="product-description mt-20">
                         @(currentCulture == "en-GB" ? @Model.DescriptionEn : @Model.DescriptionPl)
                     </p>
@@ -72,7 +79,7 @@
                     <div class="product-quantity">
                         <span>@WebsiteTexts.GetValue("Quantity"):</span>
                         <div class="product-quantity-slider">
-                            <input id="product-quantity" type="text" value="0" name="product-quantity">
+                            <input id="product-quantity" type="text" value="1" name="product-quantity">
                         </div>
                     </div>
 

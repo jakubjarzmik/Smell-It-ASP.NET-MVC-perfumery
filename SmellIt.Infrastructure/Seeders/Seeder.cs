@@ -1067,6 +1067,18 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(capacityTranslations);
 
 
+                    var last30DaysLowestPrice = new WebsiteText { Key = "Last30DaysLowestPrice" };
+                    await _dbContext.WebsiteTexts.AddAsync(last30DaysLowestPrice);
+
+                    List<WebsiteTextTranslation> last30DaysLowestPriceTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = last30DaysLowestPrice, Language = polish, Text = "Najniższa cena w ciągu ostatnich 30 dni" },
+                        new WebsiteTextTranslation { WebsiteText = last30DaysLowestPrice, Language = english, Text = "Lowest price in the last 30 days" },
+                    };
+                    last30DaysLowestPrice.WebsiteTextTranslations = last30DaysLowestPriceTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(last30DaysLowestPriceTranslations);
+
+
                     var yourName = new WebsiteText { Key = "YourName" };
                     await _dbContext.WebsiteTexts.AddAsync(yourName);
 
