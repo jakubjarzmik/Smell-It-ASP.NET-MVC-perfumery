@@ -43,6 +43,7 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
             if (request.GenderId != null)
                 product.Gender = (await _genderRepository.GetById(request.GenderId.Value))!;
 
+            product.Capacity = request.Capacity;
             product.ModifiedAt = DateTime.UtcNow;
 
             var plTranslation = product.ProductTranslations.First(fct => fct.Language.Code == "pl-PL");
@@ -58,25 +59,38 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
 
             var productPrices = _productPriceRepository.GetByProduct(product).Result;
             var productPrice = productPrices.First(pp => !pp.IsPromotion);
-            if (request.Price != productPrice.Value)
+            if (request.PriceValue != productPrice.Value)
             {
-                productPrice.IsActive = false;
-                productPrice.DeletedAt = DateTime.UtcNow;
-                await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.Price });
+                productPrice.EndDateTime = DateTime.UtcNow;
+                await _productPriceRepository.Create(
+                    new ProductPrice
+                    {
+                        Product = product,
+                        Value = request.PriceValue,
+                        StartDateTime = request.PriceStartDateTime,
+                        EndDateTime = request.PriceEndDateTime
+                    });
             }
 
             var promotionalPrice = productPrices.FirstOrDefault(pp => pp.IsPromotion);
-            if (request.PromotionalPrice != promotionalPrice?.Value)
+            if (request.PromotionalPriceValue != promotionalPrice?.Value)
             {
                 if (promotionalPrice != null)
                 {
-                    promotionalPrice.IsActive = false;
-                    promotionalPrice.DeletedAt = DateTime.UtcNow;
+                    promotionalPrice.EndDateTime = DateTime.UtcNow;
                 }
-                if(request.PromotionalPrice != null)
-                    await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPrice, IsPromotion = true });
-            }
 
+                if (request.PromotionalPriceValue != null)
+                    await _productPriceRepository.Create(
+                        new ProductPrice
+                        {
+                            Product = product,
+                            Value = (decimal)request.PromotionalPriceValue!,
+                            IsPromotion = true,
+                            StartDateTime = request.PromotionalPriceStartDateTime,
+                            EndDateTime = request.PromotionalPriceEndDateTime
+                        });
+            }
 
             product.EncodeName();
             await _productRepository.Commit();

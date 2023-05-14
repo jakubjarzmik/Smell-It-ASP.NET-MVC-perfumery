@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Localization
-@model SmellIt.Application.SmellIt.Products.ProductDto
+﻿@model SmellIt.Application.SmellIt.Products.ProductDto
 @{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
@@ -44,11 +43,11 @@
                     </h2>
                     @if (Model.PromotionalPrice == null)
                     {
-                        <p class="product-price">@Model.Price zł</p>
+                        <p class="product-price">@Model.Price.Value zł</p>
                     }
                     else
                     {
-                        <p class="product-price"><del>@Model.Price</del> @Model.PromotionalPrice zł</p>
+                        <p class="product-price"><del>@Model.Price.Value</del> @Model.PromotionalPrice.Value zł</p>
                         <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
                     }
                     <p class="product-description mt-20">
@@ -59,6 +58,13 @@
                         <p>
                             <strong>@WebsiteTexts.GetValue("Category"): </strong>
                             @(currentCulture == "en-GB" ? @Model.ProductCategory.NameEn : @Model.ProductCategory.NamePl)
+                        </p>
+                    }
+                    @if (Model.Capacity != null)
+                    {
+                        <p>
+                            <strong>@WebsiteTexts.GetValue("Capacity"): </strong>
+                            @Model.Capacity ml
                         </p>
                     }
                     @if (Model.Gender != null)

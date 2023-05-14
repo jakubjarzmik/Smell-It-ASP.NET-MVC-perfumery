@@ -34,7 +34,7 @@
                     </h4>
                 </a>
 
-                <p class="price">@Html.Raw(item.PromotionalPrice == null ? item.Price : "<del>"+item.Price+"</del> "+ item.PromotionalPrice) zł</p>
+                <p class="price">@Html.Raw(item.PromotionalPrice == null ? item.Price.Value : "<del>"+item.Price.Value+"</del> "+ item.PromotionalPrice.Value) zł</p>
             </div>
         </div>
     </div>
@@ -58,11 +58,11 @@
                                 <h2 class="product-title">@(item.Brand != null ? item.Brand.Name + " - " : "")@(currentCulture == "en-GB" ? @item.NameEn : @item.NamePl)</h2>
                                 @if (item.PromotionalPrice == null)
                                 {
-                                    <p class="product-price">@item.Price zł</p>
+                                    <p class="product-price">@item.Price.Value zł</p>
                                 }
                                 else
                                 {
-                                    <p class="product-price"><del>@item.Price</del> @item.PromotionalPrice zł</p>
+                                    <p class="product-price"><del>@item.Price.Value</del> @item.PromotionalPrice.Value zł</p>
                                     <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł</p>
                                 }
                                 <p class="product-short-description">

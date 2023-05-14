@@ -222,6 +222,9 @@
   <data name="EditPrivacyPolicy" xml:space="preserve">
     <value>Edit Privacy Policy</value>
   </data>
+  <data name="EditProduct" xml:space="preserve">
+    <value>Edit Product</value>
+  </data>
   <data name="EditProductCategory" xml:space="preserve">
     <value>Edit Product Category</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edit Website Text</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
   </data>
   <data name="EssentialOils" xml:space="preserve">
     <value>Essential Oils</value>
@@ -336,6 +342,9 @@
   <data name="ParentCategory" xml:space="preserve">
     <value>Parent Category</value>
   </data>
+  <data name="PeriodOfValidity" xml:space="preserve">
+    <value>Period of validity</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
@@ -404,6 +413,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort by</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>

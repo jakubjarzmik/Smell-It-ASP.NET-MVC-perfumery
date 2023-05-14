@@ -10,6 +10,7 @@ using SmellIt.Application.Mappings.LanguageMapping;
 using SmellIt.Application.Mappings.PrivacyPolicyMapping;
 using SmellIt.Application.Mappings.ProductCategoryMapping;
 using SmellIt.Application.Mappings.ProductMapping;
+using SmellIt.Application.Mappings.ProductPriceMapping;
 using SmellIt.Application.Mappings.SocialSiteMapping;
 using SmellIt.Application.Mappings.WebsiteTextMapping;
 using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
@@ -48,6 +49,7 @@ public static class ServiceCollectionExtension
         services.AddAutoMapper(typeof(PrivacyPolicyMappingProfile));
         services.AddAutoMapper(typeof(GenderMappingProfile));
         services.AddAutoMapper(typeof(ProductMappingProfile));
+        services.AddAutoMapper(typeof(ProductPriceMappingProfile));
         services.AddAutoMapper(typeof(ProductCategoryMappingProfile));
         services.AddAutoMapper(typeof(SocialSiteMappingProfile));
         services.AddAutoMapper(typeof(WebsiteTextMappingProfile));

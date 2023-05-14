@@ -222,6 +222,9 @@
   <data name="EditPrivacyPolicy" xml:space="preserve">
     <value>Edytuj politykę prywatności</value>
   </data>
+  <data name="EditProduct" xml:space="preserve">
+    <value>Edytuj produkt</value>
+  </data>
   <data name="EditProductCategory" xml:space="preserve">
     <value>Edytuj kategorię produktu</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edytuj tekst na stronie</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Data zakończenia</value>
   </data>
   <data name="EssentialOils" xml:space="preserve">
     <value>Olejki zapachowe</value>
@@ -336,6 +342,9 @@
   <data name="ParentCategory" xml:space="preserve">
     <value>Kategoria nadrzędna</value>
   </data>
+  <data name="PeriodOfValidity" xml:space="preserve">
+    <value>Okres obowiązywania</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefon</value>
   </data>
@@ -404,6 +413,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sortuj wedug</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Data rozpoczęcia</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Tekst</value>

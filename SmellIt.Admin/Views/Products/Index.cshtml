@@ -1,5 +1,4 @@
-﻿@using SmellIt.Application.Helpers
-@model ProductsViewModel
+﻿@model ProductsViewModel
 @{
     ViewData["Title"] = language.GetValue("Products");
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
@@ -43,7 +42,7 @@
                                     <td>
                                         @(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)
                                     </td>
-                                    <td>@Html.Raw(item.PromotionalPrice == null ? item.Price : "<del>"+item.Price +" zł</del> " + item.PromotionalPrice.Value ) zł</td>
+                                    <td>@Html.Raw(item.PromotionalPrice == null ? item.Price.Value : "<del>"+item.Price.Value +" zł</del> " + item.PromotionalPrice.Value ) zł</td>
                                     <td>@description</td>
                                     <td class="right">
                                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
@@ -56,12 +55,12 @@
                                                     @((currentCulture == "pl-PL" ? item.FragranceCategory?.NamePl : item.FragranceCategory?.NameEn)?.ToLower())
                                                 </p>
                                                 <p>
-                                                    @language.GetValue("Price"): @item.Price zł
+                                                    @language.GetValue("Price"): @item.Price.Value zł | @language.GetValue("PeriodOfValidity"): @item.Price.StartDateTime - @item.Price.EndDateTime
                                                 </p>
                                                 @if (item.PromotionalPrice != null)
                                                 {
                                                     <p>
-                                                        @language.GetValue("PromotionalPrice"): @item.PromotionalPrice zł
+                                                        @language.GetValue("PromotionalPrice"): @item.PromotionalPrice.Value zł | @language.GetValue("PeriodOfValidity"): @item.PromotionalPrice.StartDateTime - @item.PromotionalPrice.EndDateTime
                                                     </p>
                                                     <p>
                                                         @language.GetValue("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł

@@ -54,11 +54,11 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
         var product = _mapper.Map<Product>(request);
         await _productRepository.Create(product);
 
-        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.Price });
+        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue, StartDateTime = request.PriceStartDateTime, EndDateTime = request.PriceEndDateTime});
 
-        if (request.PromotionalPrice != null)
+        if (request.PromotionalPriceValue != null)
         {
-            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPrice, IsPromotion = true });
+            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue!, IsPromotion = true, StartDateTime = request.PromotionalPriceStartDateTime, EndDateTime = request.PromotionalPriceEndDateTime });
         }
 
         return Unit.Value;

@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Localization
-@model IEnumerable<SmellIt.Application.SmellIt.HomeBanners.HomeBannerDto>
+﻿@model IEnumerable<SmellIt.Application.SmellIt.HomeBanners.HomeBannerDto>
 @{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();

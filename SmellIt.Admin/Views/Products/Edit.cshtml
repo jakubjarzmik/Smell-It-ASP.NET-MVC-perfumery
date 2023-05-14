@@ -1,5 +1,4 @@
-﻿@using SmellIt.Application.SmellIt.Products
-@using Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SmellIt.Application.Helpers
 @using SmellIt.Application.SmellIt.Brands
 @using SmellIt.Application.SmellIt.FragranceCategories
@@ -34,19 +33,43 @@
                                 <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
                                 <span asp-validation-for="NameEn" class="helper-text"></span>
                             </div>
-                            <div class="input-field col s12">
-                                <label asp-for="Price">@language.GetValue("Price")</label>
-                                <textarea class="materialize-textarea" asp-for="Price"></textarea>
-                                <span asp-validation-for="Price" class="helper-text"></span>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <label asp-for="PriceValue">@language.GetValue("Price")</label>
+                                    <input type="number" class="number" asp-for="PriceValue"></input>
+                                    <span asp-validation-for="PriceValue" class="helper-text"></span>
+                                </div>
+                                <div class="input-field col s4">
+                                    <label asp-for="PriceStartDateTime">@language.GetValue("StartDate")</label>
+                                    <input type="datetime-local" asp-for="PriceStartDateTime"></input>
+                                    <span asp-validation-for="PriceStartDateTime" class="helper-text"></span>
+                                </div>
+                                <div class="input-field col s4">
+                                    <label asp-for="PriceEndDateTime">@language.GetValue("EndDate")</label>
+                                    <input type="datetime-local" asp-for="PriceEndDateTime"></input>
+                                    <span asp-validation-for="PriceEndDateTime" class="helper-text"></span>
+                                </div>
                             </div>
-                            <div class="input-field col s12">
-                                <label asp-for="PromotionalPrice">@language.GetValue("PromotionalPrice")</label>
-                                <textarea class="materialize-textarea" asp-for="PromotionalPrice"></textarea>
-                                <span asp-validation-for="PromotionalPrice" class="helper-text"></span>
+                            <div class="col s12">
+                                <div class="input-field col s4">
+                                    <label asp-for="PromotionalPriceValue">@language.GetValue("PromotionalPrice")</label>
+                                    <input type="number" class="number" asp-for="PromotionalPriceValue"></input>
+                                    <span asp-validation-for="PromotionalPriceValue" class="helper-text"></span>
+                                </div>
+                                <div class="input-field col s4">
+                                    <label asp-for="PromotionalPriceStartDateTime">@language.GetValue("StartDate")</label>
+                                    <input type="datetime-local" asp-for="PromotionalPriceStartDateTime"></input>
+                                    <span asp-validation-for="PromotionalPriceStartDateTime" class="helper-text"></span>
+                                </div>
+                                <div class="input-field col s4">
+                                    <label asp-for="PromotionalPriceEndDateTime">@language.GetValue("EndDate")</label>
+                                    <input type="datetime-local" asp-for="PromotionalPriceEndDateTime"></input>
+                                    <span asp-validation-for="PromotionalPriceEndDateTime" class="helper-text"></span>
+                                </div>
                             </div>
                             <div class="input-field col s12">
                                 <label asp-for="Capacity">@language.GetValue("Capacity")</label>
-                                <textarea class="materialize-textarea" asp-for="Capacity"></textarea>
+                                <input type="number" class="number" asp-for="Capacity"></input>
                                 <span asp-validation-for="Capacity" class="helper-text"></span>
                             </div>
                             <div class="input-field col l2 m3 s4">

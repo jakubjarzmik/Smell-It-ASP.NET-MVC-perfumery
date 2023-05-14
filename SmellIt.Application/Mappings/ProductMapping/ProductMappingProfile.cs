@@ -43,15 +43,24 @@ public class ProductMappingProfile : Profile
                 opt => opt.MapFrom(src => src.Gender))
             .ForMember(dto => dto.ProductImages,
                 opt => opt.MapFrom(src => src.ProductImages))
-            .ForMember(dto => dto.Price,
-                opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && !pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.UtcNow))
-                    .OrderByDescending(pp=>pp.CreatedAt).First().Value))
-            .ForMember(dto => dto.PromotionalPrice,
-                opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.UtcNow))
-                    .OrderByDescending(pp => pp.CreatedAt).FirstOrDefault().Value))
-            .ForMember(dto => dto.Last30DaysLowestPrice,
-                opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.DeletedAt >= DateTime.UtcNow.AddDays(-30) || pp.DeletedAt == null)
-                    .OrderBy(pp=>pp.Value).FirstOrDefault().Value));
+            .ForMember(dest => dest.Price,
+                opt => opt.MapFrom<ProductPriceResolver>())
+            .ForMember(dest => dest.PromotionalPrice,
+                opt => opt.MapFrom<ProductPromotionalPriceResolver>())
+            .ForMember(dest => dest.Last30DaysLowestPrice,
+                opt => opt.MapFrom(src => src.ProductPrices
+                    .Where(pp => pp.IsActive && (pp.EndDateTime == null || pp.EndDateTime > DateTime.UtcNow.AddDays(-30)) && pp.StartDateTime <= DateTime.UtcNow)
+                    .OrderBy(pp => pp.Value)
+                    .FirstOrDefault().Value));
+        //.ForMember(dto => dto.Price,
+        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && !pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.UtcNow))
+        //        .OrderByDescending(pp=>pp.CreatedAt).First().Value))
+        //.ForMember(dto => dto.PromotionalPrice,
+        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.UtcNow))
+        //        .OrderByDescending(pp => pp.CreatedAt).FirstOrDefault().Value))
+        //.ForMember(dto => dto.Last30DaysLowestPrice,
+        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.DeletedAt >= DateTime.UtcNow.AddDays(-30) || pp.DeletedAt == null)
+        //        .OrderBy(pp=>pp.Value).FirstOrDefault().Value));
 
         CreateMap<ProductDto, EditProductCommand>();
     }

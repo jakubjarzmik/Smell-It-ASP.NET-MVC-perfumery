@@ -12,5 +12,5 @@ public class ProductPriceRepository : BaseRepository<ProductPrice>, IProductPric
     }
 
     public async Task<ICollection<ProductPrice>> GetByProduct(Product product)
-        => await DbContext.ProductPrices.Where(pi => pi.IsActive && pi.Product == product).OrderByDescending(pp=>pp.CreatedAt).ToListAsync();
+        => await DbContext.ProductPrices.Where(pi => pi.IsActive && pi.Product == product).OrderByDescending(pp=>pp.StartDateTime).ToListAsync();
 }
