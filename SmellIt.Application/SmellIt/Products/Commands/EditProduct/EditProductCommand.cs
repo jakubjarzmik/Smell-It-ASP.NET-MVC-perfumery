@@ -12,7 +12,7 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
         public DateTime PriceStartDateTime { get; set; }
         public DateTime? PriceEndDateTime { get; set; }
         public decimal? PromotionalPriceValue { get; set; }
-        public DateTime PromotionalPriceStartDateTime { get; set; }
+        public DateTime? PromotionalPriceStartDateTime { get; set; }
         public DateTime? PromotionalPriceEndDateTime { get; set; }
     }
 }

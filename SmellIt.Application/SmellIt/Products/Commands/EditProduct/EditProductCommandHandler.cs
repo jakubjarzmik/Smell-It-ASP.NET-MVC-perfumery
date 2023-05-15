@@ -87,7 +87,7 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
                             Product = product,
                             Value = (decimal)request.PromotionalPriceValue!,
                             IsPromotion = true,
-                            StartDateTime = request.PromotionalPriceStartDateTime,
+                            StartDateTime = (DateTime)request.PromotionalPriceStartDateTime!,
                             EndDateTime = request.PromotionalPriceEndDateTime
                         });
             }

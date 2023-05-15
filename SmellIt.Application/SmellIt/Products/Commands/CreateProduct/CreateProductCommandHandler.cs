@@ -67,16 +67,16 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
             foreach (var file in request.ImageFiles)
             {
                 string imagePath = await _imageUploader.UploadImageAsync($"products/{product.ProductCategory!.EncodedName}/{product.EncodedName}", file, $"image{i}");
-                await _productImageRepository.Create(new ProductImage { ImageAlt = $"image{i}", ImagePath = imagePath, Product = product });
+                await _productImageRepository.Create(new ProductImage { ImageAlt = $"image{i}", ImageUrl = imagePath, Product = product });
                 i++;
             }
         }
 
-        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue, StartDateTime = request.PriceStartDateTime, EndDateTime = request.PriceEndDateTime });
+        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue});
 
         if (request.PromotionalPriceValue != null)
         {
-            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue!, IsPromotion = true, StartDateTime = request.PromotionalPriceStartDateTime, EndDateTime = request.PromotionalPriceEndDateTime });
+            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue!, IsPromotion = true});
         }
 
         return Unit.Value;

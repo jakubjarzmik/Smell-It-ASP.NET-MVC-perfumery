@@ -7,7 +7,7 @@ namespace SmellIt.Domain.Entities
     public class ProductImage : BaseEntity
     {
         [MaxLength(255)]
-        public string ImagePath { get; set; } = default!;
+        public string ImageUrl { get; set; } = default!;
 
         [MaxLength(50)] 
         public string ImageAlt { get; set; } = default!;

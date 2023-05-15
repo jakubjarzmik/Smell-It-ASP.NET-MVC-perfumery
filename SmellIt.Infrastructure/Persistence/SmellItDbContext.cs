@@ -209,6 +209,12 @@ public class SmellItDbContext : DbContext
         modelBuilder.Entity<ProductPrice>()
             .Property(p => p.Value)
             .HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<ProductPrice>()
+            .Property(p => p.StartDateTime)
+            .HasColumnType("smalldatetime");
+        modelBuilder.Entity<ProductPrice>()
+            .Property(p => p.EndDateTime)
+            .HasColumnType("smalldatetime");
 
         modelBuilder.Entity<WebsiteText>()
             .HasMany(lt => lt.WebsiteTextTranslations)

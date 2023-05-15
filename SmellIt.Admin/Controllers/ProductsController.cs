@@ -6,6 +6,7 @@ using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
 using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
 using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategories;
+using SmellIt.Application.SmellIt.ProductPrices.Queries.GetAllProductPricesByProductEncodedName;
 using SmellIt.Application.SmellIt.Products.Commands.CreateProduct;
 using SmellIt.Application.SmellIt.Products.Commands.DeleteProductByEncodedName;
 using SmellIt.Application.SmellIt.Products.Commands.EditProduct;
@@ -64,6 +65,8 @@ public class ProductsController : Controller
     public async Task<IActionResult> Edit(string encodedName)
     {
         await LoadViewData();
+
+        ViewData["ProductPrices"] = await _mediator.Send(new GetAllProductPricesByProductEncodedNameQuery(encodedName));
 
         var dto = await _mediator.Send(new GetProductByEncodedNameQuery(encodedName));
         EditProductCommand model = _mapper.Map<EditProductCommand>(dto);

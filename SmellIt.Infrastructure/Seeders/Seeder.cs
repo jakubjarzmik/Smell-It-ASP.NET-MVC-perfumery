@@ -624,43 +624,43 @@ namespace SmellIt.Infrastructure.Seeders
                     {
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
+                            ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
                             ImageAlt = "Smell It Diffuser",
                             Product = smellItDiffuser
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
+                            ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
                             ImageAlt = "Si",
                             Product = si
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
+                            ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                             ImageAlt = "Sauvage",
                             Product = sauvage
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
+                            ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
                             ImageAlt = "Black Opium",
                             Product = blackOpium
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
+                            ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                             ImageAlt = "Good Girl",
                             Product = goodGirl
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
+                            ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
                             ImageAlt = "1 Million",
                             Product = oneMillion
                         },
                         new ProductImage()
                         {
-                            ImagePath = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
+                            ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
                             ImageAlt = "Eros",
                             Product = eros
                         },
