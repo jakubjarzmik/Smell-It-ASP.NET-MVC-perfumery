@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace SmellIt.Application.SmellIt.Products.Commands.CreateProduct
 {
@@ -14,5 +15,6 @@ namespace SmellIt.Application.SmellIt.Products.Commands.CreateProduct
         public decimal? PromotionalPriceValue { get; set; }
         public DateTime PromotionalPriceStartDateTime { get; set; }
         public DateTime? PromotionalPriceEndDateTime { get; set; }
+        public List<IFormFile>? ImageFiles { get; set; }
     }
 }

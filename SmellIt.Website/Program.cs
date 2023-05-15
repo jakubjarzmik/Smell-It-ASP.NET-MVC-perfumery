@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 // Add db
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 
 // Add multi languages
 builder.Services.AddScoped<WebsiteTextsService>();

@@ -2,6 +2,7 @@
 @{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+    bool active = false;
 }
 <section class="single-product">
     <div class="container">
@@ -13,9 +14,10 @@
                             <div class='carousel-inner '>
                                 @foreach (var photo in Model.ProductImages!)
                                 {
-                                    <div class='item active'>
-                                        <img src='@photo.ImagePath' alt='@photo.ImageAlt' data-zoom-image="@photo.ImagePath" />
+                                    <div class='item @(active ? "" : "active")'>
+                                        <img src='@photo.ImagePath' alt='@photo.ImageAlt' data-zoom-image="@photo.ImagePath"/>
                                     </div>
+                                    active = true;
                                 }
                             </div>
                             <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>

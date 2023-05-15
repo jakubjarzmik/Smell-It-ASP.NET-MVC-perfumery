@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Application.Helpers;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.DeleteProductCategoryByEncodedName;
 using SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory;
@@ -13,13 +14,17 @@ public class ProductCategoriesController : Controller
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
-    public ProductCategoriesController(IMediator mediator, IMapper mapper)
+    private readonly IProductCategoryPrefixGenerator _prefixGenerator;
+
+    public ProductCategoriesController(IMediator mediator, IMapper mapper, IProductCategoryPrefixGenerator prefixGenerator)
     {
         _mediator = mediator;
         _mapper = mapper;
+        _prefixGenerator = prefixGenerator;
     }
     public async Task<IActionResult> Index(int? page)
     {
+        ViewData["PrefixGenerator"] = _prefixGenerator;
         ViewData["ProductCategories"] = await _mediator.Send(new GetAllProductCategoriesQuery());
         var viewModel = await _mediator.Send(new GetPaginatedProductCategoriesQuery(page, 7));
         return View(viewModel);
@@ -28,6 +33,7 @@ public class ProductCategoriesController : Controller
     public async Task<IActionResult> Create()
     {
         ViewData["ProductCategories"] = await _mediator.Send(new GetAllProductCategoriesQuery());
+        ViewData["PrefixGenerator"] = _prefixGenerator;
         return View();
     }
 
@@ -46,6 +52,7 @@ public class ProductCategoriesController : Controller
     [Route("ProductCategories/{encodedName}/Edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
+        ViewData["PrefixGenerator"] = _prefixGenerator;
         ViewData["ProductCategories"] = await _mediator.Send(new GetAllProductCategoriesQuery());
         var dto = await _mediator.Send(new GetProductCategoryByEncodedNameQuery(encodedName));
         EditProductCategoryCommand model = _mapper.Map<EditProductCategoryCommand>(dto);

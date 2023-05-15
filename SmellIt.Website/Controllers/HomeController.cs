@@ -3,9 +3,7 @@ using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
 using Microsoft.AspNetCore.Localization;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
-using SmellIt.Website.Helpers;
 
 namespace SmellIt.Website.Controllers
 {
@@ -19,11 +17,8 @@ namespace SmellIt.Website.Controllers
             _mediator = mediator;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var banners = await _mediator.Send(new GetAllHomeBannersQuery());
-
-            BannerImageManager.DeleteNonExistentBanners(banners, _env);
             return View();
         }
         public IActionResult Products()

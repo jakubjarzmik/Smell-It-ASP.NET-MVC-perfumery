@@ -22,7 +22,7 @@
                             <div class="file-field input-field col s12">
                                 <div class="btn">
                                     <span>@language.GetValue("Files")</span>
-                                    <input type="file" asp-for="ImageFile" accept="image/png, image/jpeg">
+                                    <input type="file" multiple asp-for="ImageFile" accept="image/png, image/jpeg">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="@language.GetValue("UploadPhotos")">

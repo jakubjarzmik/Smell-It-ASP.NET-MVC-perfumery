@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Application.Helpers;
 using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
 using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
@@ -16,13 +17,17 @@ public class ProductsController : Controller
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
-    public ProductsController(IMediator mediator, IMapper mapper)
+    private readonly IProductCategoryPrefixGenerator _prefixGenerator;
+
+    public ProductsController(IMediator mediator, IMapper mapper, IProductCategoryPrefixGenerator prefixGenerator)
     {
         _mediator = mediator;
         _mapper = mapper;
+        _prefixGenerator = prefixGenerator;
     }
     private async Task LoadViewData()
     {
+        ViewData["PrefixGenerator"] = _prefixGenerator;
         ViewData["ProductCategories"] = await _mediator.Send(new GetAllProductCategoriesQuery());
         ViewData["Brands"] = await _mediator.Send(new GetAllBrandsQuery());
         ViewData["FragranceCategories"] = await _mediator.Send(new GetAllFragranceCategoriesQuery());

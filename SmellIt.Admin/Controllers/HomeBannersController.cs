@@ -6,7 +6,6 @@ using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Admin.Helpers;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;
 
 namespace SmellIt.Admin.Controllers;
@@ -25,8 +24,6 @@ public class HomeBannersController : Controller
 
     public async Task<IActionResult> Index(int? page)
     {
-        BannerImageManager.DeleteNonExistentBanners(await _mediator.Send(new GetAllHomeBannersQuery()), _env);
-
         return View(await _mediator.Send(new GetPaginatedHomeBannersQuery(page,7)));
     }
 
@@ -42,9 +39,6 @@ public class HomeBannersController : Controller
         {
             return View(command);
         }
-
-        if (command.ImageFile != null)
-            await BannerImageManager.AddBannerImageAsync(command.ImageFile, command.Key);
 
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));

@@ -1197,7 +1197,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner1 = new HomeBanner
                     {
                         Key = "HomeBanner1",
-                        ImagePath = "/images/banners/HomeBanner1.jpg"
+                        ImagePath = "https://www.dropbox.com/s/99dba461lflqyo2/HomeBanner1.jpg?raw=1"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner1);
 
@@ -1213,7 +1213,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner2 = new HomeBanner
                     {
                         Key = "HomeBanner2",
-                        ImagePath = "/images/banners/HomeBanner2.jpg"
+                        ImagePath = "https://www.dropbox.com/s/w4ydtgiv7zhakys/HomeBanner2.jpg?raw=1"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner2);
 
@@ -1229,7 +1229,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner3 = new HomeBanner
                     {
                         Key = "HomeBanner3",
-                        ImagePath = "/images/banners/HomeBanner3.jpg"
+                        ImagePath = "https://www.dropbox.com/s/kwpvkigvye41yve/HomeBanner3.jpg?raw=1"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner3);
 
@@ -1245,7 +1245,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner4 = new HomeBanner
                     {
                         Key = "HomeBanner4",
-                        ImagePath = "/images/banners/HomeBanner4.jpg"
+                        ImagePath = "https://www.dropbox.com/s/tbhic8nyr77n8g4/HomeBanner4.jpg?raw=1"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner4);
 

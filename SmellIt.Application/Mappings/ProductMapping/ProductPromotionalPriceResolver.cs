@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using SmellIt.Application.SmellIt.Products;
 using SmellIt.Domain.Entities;
-using SmellIt.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SmellIt.Application.SmellIt.ProductPrices;
 
 namespace SmellIt.Application.Mappings.ProductMapping

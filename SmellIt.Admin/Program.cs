@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequ
 // Add db
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 
 // Add multi languages
 builder.Services.AddHttpContextAccessor();

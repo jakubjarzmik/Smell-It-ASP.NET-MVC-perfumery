@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.Helpers;
+using SmellIt.Application.Helpers.Images;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
@@ -8,31 +8,26 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner
 {
     public class CreateHomeBannerCommandHandler : IRequestHandler<CreateHomeBannerCommand>
     {
-	    private readonly IHomeBannerRepository _homeBannerRepository;
+        private readonly IHomeBannerRepository _homeBannerRepository;
         private readonly IMapper _mapper;
-        private readonly string _bannerUploadUrl = "https://localhost:7282/Banner/upload";
-        public CreateHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository, IMapper mapper)
+        private readonly IImageUploader _imageUploader;
+        public CreateHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository, IMapper mapper, IImageUploader imageUploader)
         {
             _homeBannerRepository = homeBannerRepository;
             _mapper = mapper;
+            _imageUploader = imageUploader;
         }
 
         public async Task<Unit> Handle(CreateHomeBannerCommand request, CancellationToken cancellationToken)
         {
             var homeBanner = _mapper.Map<HomeBanner>(request);
-            try
+
+            if (request.ImageFile != null)
             {
-                if (request.ImageFile != null)
-                {
-                    string imagePath = await ImageUploader.UploadImageAsync(_bannerUploadUrl, request.ImageFile, homeBanner.Key);
-                    homeBanner.ImagePath = imagePath;
-                }
-                await _homeBannerRepository.Create(homeBanner);
+                string imagePath = await _imageUploader.UploadImageAsync("HomeBanners", request.ImageFile, homeBanner.Key);
+                homeBanner.ImagePath = imagePath;
             }
-            catch (Exception)
-            {
-                
-            }
+            await _homeBannerRepository.Create(homeBanner);
 
             return Unit.Value;
         }

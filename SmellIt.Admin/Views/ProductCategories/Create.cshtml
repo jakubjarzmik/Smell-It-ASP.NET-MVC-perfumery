@@ -4,6 +4,7 @@
 @model SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory.CreateProductCategoryCommand
 @{
     ViewData["Title"] = language.GetValue("AddNewProductCategory");
+    var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
@@ -28,7 +29,7 @@
                                     @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
                                     {
                                         <option value="@category.EncodedName">
-                                            @ProductCategoryManager.GeneratePrefix(category)
+                                            @prefixGenerator.GeneratePrefix(category)
                                             @(currentCulture == "pl-PL" ? category.NamePl : category.NameEn)
                                         </option>
                                     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Helpers.Images;
 using SmellIt.Application.SmellIt.Brands;
 using SmellIt.Application.SmellIt.FragranceCategories;
 using SmellIt.Application.SmellIt.Genders;
@@ -16,9 +17,14 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
     private readonly IGenderRepository _genderRepository;
     private readonly IProductPriceRepository _productPriceRepository;
+    private readonly IProductImageRepository _productImageRepository;
     private readonly IMapper _mapper;
-    public CreateProductCommandHandler(IProductRepository productRepository,IProductCategoryRepository productCategoryRepository, IBrandRepository brandRepository, 
-        IFragranceCategoryRepository fragranceCategoryRepository, IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IMapper mapper)
+    private readonly IImageUploader _imageUploader;
+
+    public CreateProductCommandHandler(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository,
+        IBrandRepository brandRepository, IFragranceCategoryRepository fragranceCategoryRepository,
+        IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IProductImageRepository productImageRepository,
+        IMapper mapper, IImageUploader imageUploader)
     {
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
@@ -26,7 +32,9 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
         _fragranceCategoryRepository = fragranceCategoryRepository;
         _genderRepository = genderRepository;
         _productPriceRepository = productPriceRepository;
+        _productImageRepository = productImageRepository;
         _mapper = mapper;
+        _imageUploader = imageUploader;
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
@@ -50,11 +58,21 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
             var gender = await _genderRepository.GetById(request.GenderId.Value);
             request.Gender = _mapper.Map<GenderDto>(gender);
         }
-
         var product = _mapper.Map<Product>(request);
         await _productRepository.Create(product);
 
-        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue, StartDateTime = request.PriceStartDateTime, EndDateTime = request.PriceEndDateTime});
+        if (request.ImageFiles != null && request.ImageFiles.Count > 0)
+        {
+            int i = 1;
+            foreach (var file in request.ImageFiles)
+            {
+                string imagePath = await _imageUploader.UploadImageAsync($"products/{product.ProductCategory!.EncodedName}/{product.EncodedName}", file, $"image{i}");
+                await _productImageRepository.Create(new ProductImage { ImageAlt = $"image{i}", ImagePath = imagePath, Product = product });
+                i++;
+            }
+        }
+
+        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue, StartDateTime = request.PriceStartDateTime, EndDateTime = request.PriceEndDateTime });
 
         if (request.PromotionalPriceValue != null)
         {
