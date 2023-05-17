@@ -15,7 +15,7 @@
                                 @foreach (var photo in Model.ProductImages!)
                                 {
                                     <div class='item @(active ? "" : "active")'>
-                                        <img src='@photo.ImagePath' alt='@photo.ImageAlt' data-zoom-image="@photo.ImagePath"/>
+                                        <img src='@photo.ImageUrl' alt='@photo.ImageAlt' data-zoom-image="@photo.ImageUrl"/>
                                     </div>
                                     active = true;
                                 }
@@ -31,7 +31,7 @@
                             @foreach (var photo in Model.ProductImages!)
                             {
                                 <li data-target='#carousel-custom' data-slide-to='0' class='active'>
-                                    <img src='@photo.ImagePath' alt='@photo.ImageAlt' />
+                                    <img src='@photo.ImageUrl' alt='@photo.ImageAlt' />
                                 </li>
                             }
                         </ol>
