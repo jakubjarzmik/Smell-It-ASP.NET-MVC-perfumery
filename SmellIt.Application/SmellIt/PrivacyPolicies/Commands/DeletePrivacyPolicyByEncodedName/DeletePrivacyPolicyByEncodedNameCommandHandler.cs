@@ -16,7 +16,7 @@ namespace SmellIt.Application.SmellIt.PrivacyPolicies.Commands.DeletePrivacyPoli
         {
             var privacyPolicy = (await _privacyPolicyRepository.GetByEncodedName(request.EncodedName))!;
             privacyPolicy.IsActive = false;
-            privacyPolicy.DeletedAt = DateTime.UtcNow;
+            privacyPolicy.DeletedAt = DateTime.Now;
 
             await _privacyPolicyRepository.Commit();
             return Unit.Value;

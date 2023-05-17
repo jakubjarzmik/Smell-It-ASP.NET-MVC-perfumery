@@ -14,15 +14,15 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner
         public async Task<Unit> Handle(EditHomeBannerCommand request, CancellationToken cancellationToken)
         {
             var homeBanner = (await _homeBannerRepository.GetByEncodedName(request.EncodedName))!;
-            homeBanner.ModifiedAt = DateTime.UtcNow;
+            homeBanner.ModifiedAt = DateTime.Now;
 
             var plTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == "pl-PL");
             plTranslation.Text = request.TextPl;
-            plTranslation.ModifiedAt = DateTime.UtcNow;
+            plTranslation.ModifiedAt = DateTime.Now;
 
             var enTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == "en-GB");
             enTranslation.Text = request.TextEn;
-            enTranslation.ModifiedAt = DateTime.UtcNow;
+            enTranslation.ModifiedAt = DateTime.Now;
 
             await _homeBannerRepository.Commit();
             

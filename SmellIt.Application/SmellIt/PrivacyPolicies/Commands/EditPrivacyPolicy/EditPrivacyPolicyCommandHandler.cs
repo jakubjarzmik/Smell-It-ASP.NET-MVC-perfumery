@@ -14,7 +14,7 @@ namespace SmellIt.Application.SmellIt.PrivacyPolicies.Commands.EditPrivacyPolicy
         public async Task<Unit> Handle(EditPrivacyPolicyCommand request, CancellationToken cancellationToken)
         {
             var websiteText = (await _privacyPolicyRepository.GetByEncodedName(request.EncodedName))!;
-            websiteText.ModifiedAt = DateTime.UtcNow;
+            websiteText.ModifiedAt = DateTime.Now;
             websiteText.Text = request.Text;
 
             await _privacyPolicyRepository.Commit();

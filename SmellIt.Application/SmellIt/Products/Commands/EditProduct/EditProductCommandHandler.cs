@@ -44,24 +44,24 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
                 product.Gender = (await _genderRepository.GetById(request.GenderId.Value))!;
 
             product.Capacity = request.Capacity;
-            product.ModifiedAt = DateTime.UtcNow;
+            product.ModifiedAt = DateTime.Now;
 
             var plTranslation = product.ProductTranslations.First(fct => fct.Language.Code == "pl-PL");
             plTranslation.Name = request.NamePl;
             plTranslation.Description = request.DescriptionPl;
-            plTranslation.ModifiedAt = DateTime.UtcNow;
+            plTranslation.ModifiedAt = DateTime.Now;
 
             var enTranslation = product.ProductTranslations.First(fct => fct.Language.Code == "en-GB");
             enTranslation.Name = request.NameEn;
             enTranslation.Description = request.DescriptionEn;
-            enTranslation.ModifiedAt = DateTime.UtcNow;
+            enTranslation.ModifiedAt = DateTime.Now;
 
 
             var productPrices = _productPriceRepository.GetByProduct(product).Result;
             var productPrice = productPrices.First(pp => !pp.IsPromotion);
             if (request.PriceValue != productPrice.Value)
             {
-                productPrice.EndDateTime = DateTime.UtcNow;
+                productPrice.EndDateTime = DateTime.Now;
                 await _productPriceRepository.Create(
                     new ProductPrice
                     {
@@ -77,7 +77,7 @@ namespace SmellIt.Application.SmellIt.Products.Commands.EditProduct
             {
                 if (promotionalPrice != null)
                 {
-                    promotionalPrice.EndDateTime = DateTime.UtcNow;
+                    promotionalPrice.EndDateTime = DateTime.Now;
                 }
 
                 if (request.PromotionalPriceValue != null)

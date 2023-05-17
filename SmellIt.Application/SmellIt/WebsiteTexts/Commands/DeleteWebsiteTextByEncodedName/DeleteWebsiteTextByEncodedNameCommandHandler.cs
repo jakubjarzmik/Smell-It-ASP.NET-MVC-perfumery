@@ -16,12 +16,12 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByE
         {
             var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
             websiteText.IsActive = false;
-            websiteText.DeletedAt = DateTime.UtcNow;
+            websiteText.DeletedAt = DateTime.Now;
 
             foreach (var websiteTextTranslation in websiteText.WebsiteTextTranslations)
             {
                 websiteTextTranslation.IsActive = false;
-                websiteTextTranslation.DeletedAt = DateTime.UtcNow;
+                websiteTextTranslation.DeletedAt = DateTime.Now;
             }
 
             await _websiteTextRepository.Commit();

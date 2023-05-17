@@ -14,15 +14,15 @@ namespace SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText
         public async Task<Unit> Handle(EditWebsiteTextCommand request, CancellationToken cancellationToken)
         {
             var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
-            websiteText.ModifiedAt = DateTime.UtcNow;
+            websiteText.ModifiedAt = DateTime.Now;
 
             var plTranslation = websiteText.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "pl-PL");
             plTranslation.Text = request.TextPl;
-            plTranslation.ModifiedAt = DateTime.UtcNow;
+            plTranslation.ModifiedAt = DateTime.Now;
 
             var enTranslation = websiteText.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "en-GB");
             enTranslation.Text = request.TextEn;
-            enTranslation.ModifiedAt = DateTime.UtcNow;
+            enTranslation.ModifiedAt = DateTime.Now;
 
             await _websiteTextRepository.Commit();
             

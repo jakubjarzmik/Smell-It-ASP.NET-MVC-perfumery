@@ -21,7 +21,7 @@ namespace SmellIt.Admin.Controllers
         {
 	        Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
 		        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-		        new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+		        new CookieOptions() { Expires = DateTimeOffset.Now.AddYears(1) });
 
 	        return Redirect(Request.Headers["Referer"].ToString());
         }

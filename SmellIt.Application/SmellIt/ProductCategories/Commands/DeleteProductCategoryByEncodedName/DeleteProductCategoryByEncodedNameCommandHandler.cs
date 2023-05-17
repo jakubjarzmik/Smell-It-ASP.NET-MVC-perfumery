@@ -16,12 +16,12 @@ namespace SmellIt.Application.SmellIt.ProductCategories.Commands.DeleteProductCa
         {
             var productCategory = (await _productCategoryRepository.GetByEncodedName(request.EncodedName))!;
             productCategory.IsActive = false;
-            productCategory.DeletedAt = DateTime.UtcNow;
+            productCategory.DeletedAt = DateTime.Now;
 
             foreach (var productCategoryTranslation in productCategory.ProductCategoryTranslations)
             {
                 productCategoryTranslation.IsActive = false;
-                productCategoryTranslation.DeletedAt = DateTime.UtcNow;
+                productCategoryTranslation.DeletedAt = DateTime.Now;
             }
 
             await _productCategoryRepository.Commit();

@@ -276,6 +276,9 @@
   <data name="HomeFragrance" xml:space="preserve">
     <value>Home Fragrance</value>
   </data>
+  <data name="IsPromotion" xml:space="preserve">
+    <value>Is Promotion</value>
+  </data>
   <data name="Key" xml:space="preserve">
     <value>Key</value>
   </data>
@@ -320,6 +323,9 @@
   </data>
   <data name="Newest" xml:space="preserve">
     <value>Newest</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="Oldest" xml:space="preserve">
     <value>Oldest</value>
@@ -396,6 +402,9 @@
   <data name="Show" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="ShowPriceHistory" xml:space="preserve">
+    <value>Show Price History</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
   </data>
@@ -464,6 +473,9 @@
   </data>
   <data name="WomensPerfumeDesc" xml:space="preserve">
     <value>Fragrances that will steal your senses</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="YourEmail" xml:space="preserve">
     <value>Your email</value>

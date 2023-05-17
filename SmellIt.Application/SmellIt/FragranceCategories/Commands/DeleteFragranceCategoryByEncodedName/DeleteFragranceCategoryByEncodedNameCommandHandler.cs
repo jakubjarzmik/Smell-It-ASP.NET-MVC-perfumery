@@ -16,12 +16,12 @@ namespace SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragran
         {
             var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedName(request.EncodedName))!;
             fragranceCategory.IsActive = false;
-            fragranceCategory.DeletedAt = DateTime.UtcNow;
+            fragranceCategory.DeletedAt = DateTime.Now;
 
             foreach (var fragranceCategoryTranslation in fragranceCategory.FragranceCategoryTranslations)
             {
                 fragranceCategoryTranslation.IsActive = false;
-                fragranceCategoryTranslation.DeletedAt = DateTime.UtcNow;
+                fragranceCategoryTranslation.DeletedAt = DateTime.Now;
             }
 
             await _fragranceCategoryRepository.Commit();

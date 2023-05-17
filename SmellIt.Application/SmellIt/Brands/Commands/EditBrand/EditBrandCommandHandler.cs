@@ -14,15 +14,15 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.EditBrand
         public async Task<Unit> Handle(EditBrandCommand request, CancellationToken cancellationToken)
         {
             var brand = (await _brandRepository.GetByEncodedName(request.EncodedName))!;
-            brand.ModifiedAt = DateTime.UtcNow;
+            brand.ModifiedAt = DateTime.Now;
 
             var plTranslation = brand.BrandTranslations.First(bt=>bt.Language.Code == "pl-PL");
             plTranslation.Description = request.DescriptionPl;
-            plTranslation.ModifiedAt = DateTime.UtcNow;
+            plTranslation.ModifiedAt = DateTime.Now;
 
             var enTranslation = brand.BrandTranslations.First(bt => bt.Language.Code == "en-GB");
             enTranslation.Description = request.DescriptionEn;
-            enTranslation.ModifiedAt = DateTime.UtcNow;
+            enTranslation.ModifiedAt = DateTime.Now;
 
             await _brandRepository.Commit();
             

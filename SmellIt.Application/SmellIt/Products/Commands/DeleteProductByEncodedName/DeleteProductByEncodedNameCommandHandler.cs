@@ -16,18 +16,18 @@ namespace SmellIt.Application.SmellIt.Products.Commands.DeleteProductByEncodedNa
         {
             var product = (await _productRepository.GetByEncodedName(request.EncodedName))!;
             product.IsActive = false;
-            product.DeletedAt = DateTime.UtcNow;
+            product.DeletedAt = DateTime.Now;
 
             foreach (var productTranslation in product.ProductTranslations)
             {
                 productTranslation.IsActive = false;
-                productTranslation.DeletedAt = DateTime.UtcNow;
+                productTranslation.DeletedAt = DateTime.Now;
             }
 
             foreach (var productPrice in product.ProductPrices)
             {
                 productPrice.IsActive = false;
-                productPrice.DeletedAt = DateTime.UtcNow;
+                productPrice.DeletedAt = DateTime.Now;
             }
 
             await _productRepository.Commit();

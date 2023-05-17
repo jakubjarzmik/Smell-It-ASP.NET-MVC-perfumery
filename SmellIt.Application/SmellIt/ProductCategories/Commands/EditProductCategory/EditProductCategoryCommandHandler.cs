@@ -20,17 +20,17 @@ namespace SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCate
 
             if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
                 productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName!);
-            productCategory.ModifiedAt = DateTime.UtcNow;
+            productCategory.ModifiedAt = DateTime.Now;
 
             var plTranslation = productCategory.ProductCategoryTranslations.First(fct => fct.Language.Code == "pl-PL");
             plTranslation.Name = request.NamePl;
             plTranslation.Description = request.DescriptionPl;
-            plTranslation.ModifiedAt = DateTime.UtcNow;
+            plTranslation.ModifiedAt = DateTime.Now;
 
             var enTranslation = productCategory.ProductCategoryTranslations.First(fct => fct.Language.Code == "en-GB");
             enTranslation.Name = request.NameEn;
             enTranslation.Description = request.DescriptionEn;
-            enTranslation.ModifiedAt = DateTime.UtcNow;
+            enTranslation.ModifiedAt = DateTime.Now;
 
             productCategory.EncodeName();
             await _productCategoryRepository.Commit();

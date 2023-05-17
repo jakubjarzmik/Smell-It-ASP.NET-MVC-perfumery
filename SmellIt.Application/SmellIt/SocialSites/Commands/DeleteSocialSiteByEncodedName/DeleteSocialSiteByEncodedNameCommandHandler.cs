@@ -16,7 +16,7 @@ namespace SmellIt.Application.SmellIt.SocialSites.Commands.DeleteSocialSiteByEnc
         {
             var socialSite = (await _socialSiteRepository.GetByEncodedName(request.EncodedName))!;
             socialSite.IsActive = false;
-            socialSite.DeletedAt = DateTime.UtcNow;
+            socialSite.DeletedAt = DateTime.Now;
 
             await _socialSiteRepository.Commit();
             return Unit.Value;

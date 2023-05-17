@@ -11,8 +11,8 @@ namespace SmellIt.Application.Mappings.ProductMapping
         {
             var productPrice = source.ProductPrices
                 .Where(pp =>
-                    pp.IsActive && !pp.IsPromotion && (pp.EndDateTime == null || pp.EndDateTime > DateTime.UtcNow) &&
-                    pp.StartDateTime <= DateTime.UtcNow).OrderByDescending(pp => pp.StartDateTime).First();
+                    pp.IsActive && !pp.IsPromotion && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now) &&
+                    pp.StartDateTime <= DateTime.Now).OrderByDescending(pp => pp.StartDateTime).First();
             return new ProductPriceDto
             {
                 Value = productPrice.Value, 

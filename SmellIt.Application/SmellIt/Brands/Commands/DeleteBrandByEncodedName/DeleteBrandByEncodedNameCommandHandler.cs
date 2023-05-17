@@ -16,12 +16,12 @@ namespace SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName
         {
             var brand = (await _brandRepository.GetByEncodedName(request.EncodedName))!;
             brand.IsActive = false;
-            brand.DeletedAt = DateTime.UtcNow;
+            brand.DeletedAt = DateTime.Now;
 
             foreach (var brandTranslation in brand.BrandTranslations)
             {
                 brandTranslation.IsActive = false;
-                brandTranslation.DeletedAt = DateTime.UtcNow;
+                brandTranslation.DeletedAt = DateTime.Now;
             }
 
             await _brandRepository.Commit();

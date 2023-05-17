@@ -4,6 +4,7 @@
 @using SmellIt.Application.SmellIt.FragranceCategories
 @using SmellIt.Application.SmellIt.Genders
 @using SmellIt.Application.SmellIt.ProductCategories
+@using SmellIt.Application.SmellIt.ProductPrices
 @model SmellIt.Application.SmellIt.Products.Commands.EditProduct.EditProductCommand
 
 @{
@@ -21,6 +22,7 @@
                         <div class="card-title col s12">
                             <a class="btn left" asp-controller="Products" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
                             <p class="right">@language.GetValue("EditProduct")</p>
+                            
                         </div>
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="helper-text"></div>
@@ -34,43 +36,44 @@
                                 <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
                                 <span asp-validation-for="NameEn" class="helper-text"></span>
                             </div>
-                            <div class="col s12">
+                            <div class="col s12 m9">
                                 <div class="input-field col s4">
                                     <label asp-for="PriceValue">@language.GetValue("Price")</label>
-                                    <input type="number" class="number" asp-for="PriceValue"/>
+                                    <input type="number" class="number" asp-for="PriceValue" />
                                     <span asp-validation-for="PriceValue" class="helper-text"></span>
                                 </div>
                                 <div class="input-field col s4">
                                     <label asp-for="PriceStartDateTime">@language.GetValue("StartDate")</label>
-                                    <input type="datetime-local" asp-for="PriceStartDateTime"/>
+                                    <input type="datetime-local" asp-for="PriceStartDateTime" />
                                     <span asp-validation-for="PriceStartDateTime" class="helper-text"></span>
                                 </div>
                                 <div class="input-field col s4">
                                     <label asp-for="PriceEndDateTime">@language.GetValue("EndDate")</label>
-                                    <input type="datetime-local" asp-for="PriceEndDateTime"/>
+                                    <input type="datetime-local" asp-for="PriceEndDateTime" />
                                     <span asp-validation-for="PriceEndDateTime" class="helper-text"></span>
                                 </div>
-                            </div>
-                            <div class="col s12">
                                 <div class="input-field col s4">
                                     <label asp-for="PromotionalPriceValue">@language.GetValue("PromotionalPrice")</label>
-                                    <input type="number" class="number" asp-for="PromotionalPriceValue"/>
+                                    <input type="number" class="number" asp-for="PromotionalPriceValue" />
                                     <span asp-validation-for="PromotionalPriceValue" class="helper-text"></span>
                                 </div>
                                 <div class="input-field col s4">
                                     <label asp-for="PromotionalPriceStartDateTime">@language.GetValue("StartDate")</label>
-                                    <input type="datetime-local" asp-for="PromotionalPriceStartDateTime"/>
+                                    <input type="datetime-local" asp-for="PromotionalPriceStartDateTime" />
                                     <span asp-validation-for="PromotionalPriceStartDateTime" class="helper-text"></span>
                                 </div>
                                 <div class="input-field col s4">
                                     <label asp-for="PromotionalPriceEndDateTime">@language.GetValue("EndDate")</label>
-                                    <input type="datetime-local" asp-for="PromotionalPriceEndDateTime"/>
+                                    <input type="datetime-local" asp-for="PromotionalPriceEndDateTime" />
                                     <span asp-validation-for="PromotionalPriceEndDateTime" class="helper-text"></span>
                                 </div>
                             </div>
+                            <div class="input-field col s12 m3">
+                                <a href="#showPrices" class="btn center modal-trigger center">@language.GetValue("ShowPriceHistory")</a>
+                            </div>
                             <div class="input-field col s12">
                                 <label asp-for="Capacity">@language.GetValue("Capacity")</label>
-                                <input type="number" class="number" asp-for="Capacity"/>
+                                <input type="number" class="number" asp-for="Capacity" />
                                 <span asp-validation-for="Capacity" class="helper-text"></span>
                             </div>
                             <div class="input-field col l2 m3 s4">
@@ -142,6 +145,38 @@
                             </div>
 
                             <input type="submit" value="@language.GetValue("Save")" class="btn right" />
+
+                            <div id="showPrices" class="modal">
+                                <div class="modal-content">
+                                    <div class="col s12">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>@language.GetValue("IsPromotion")</th>
+                                                    <th>@language.GetValue("Value")</th>
+                                                    <th>@language.GetValue("StartDate")</th>
+                                                    <th>@language.GetValue("EndDate")</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (var item in ViewData["ProductPrices"] as IEnumerable<ProductPriceDto>)
+                                                {
+                                                    <tr>
+                                                        <td>@(item.IsPromotion ? language.GetValue("Yes") : language.GetValue("No"))</td>
+                                                        <td>@item.Value zł</td>
+                                                        <td>@item.StartDateTime</td>
+                                                        <td>@item.EndDateTime</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

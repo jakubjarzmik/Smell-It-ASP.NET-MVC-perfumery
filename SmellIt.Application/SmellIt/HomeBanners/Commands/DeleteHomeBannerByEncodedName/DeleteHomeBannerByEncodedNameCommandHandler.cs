@@ -16,12 +16,12 @@ namespace SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEnc
         {
             var homeBanner = (await _homeBannerRepository.GetByEncodedName(request.EncodedName))!;
             homeBanner.IsActive = false;
-            homeBanner.DeletedAt = DateTime.UtcNow;
+            homeBanner.DeletedAt = DateTime.Now;
 
             foreach (var homeBannerTranslation in homeBanner.HomeBannerTranslations)
             {
                 homeBannerTranslation.IsActive = false;
-                homeBannerTranslation.DeletedAt = DateTime.UtcNow;
+                homeBannerTranslation.DeletedAt = DateTime.Now;
             }
 
             await _homeBannerRepository.Commit();
