@@ -2,9 +2,11 @@
 using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
+using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductsByCategoryEncodedName;
 using SmellIt.Application.SmellIt.Products.Queries.GetAllProducts;
+using SmellIt.Application.SmellIt.Products.Queries.GetFilteredProducts;
 
 namespace SmellIt.Website.Controllers;
 public class ProductsController : Controller
@@ -19,9 +21,15 @@ public class ProductsController : Controller
     }
 
     [Route("products")]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? category, string? brand, string? gender, string? fragranceCategory)
     {
-        var products = await _mediator.Send(new GetAllProductsQuery()); ;
+        var products = await _mediator.Send(new GetFilteredProductsQuery
+        {
+            CategoryEncodedName = category,
+            BrandEncodedName = brand,
+            GenderEncodedName = gender,
+            FragranceCategoryEncodedName = fragranceCategory
+        });
         return View(products);
     }
 

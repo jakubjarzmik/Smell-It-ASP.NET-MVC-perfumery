@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Application.Helpers;
 using SmellIt.Application.Helpers.Images;
-using System.Configuration;
 using System.Reflection;
 
 namespace SmellIt.Application.Extensions;

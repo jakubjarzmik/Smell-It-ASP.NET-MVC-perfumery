@@ -2,6 +2,6 @@
 using SmellIt.Domain.Interfaces.Abstract;
 
 namespace SmellIt.Domain.Interfaces;
-public interface IGenderRepository : IBaseRepository<Gender>
+public interface IGenderRepository : IBaseRepositoryWithEncodedName<Gender>
 {
 }

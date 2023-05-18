@@ -15,8 +15,8 @@
                                 @foreach (var photo in Model.ProductImages!)
                                 {
                                     <div class='item @(active ? "" : "active")'>
-                                        <img src='@photo.ImageUrl' alt='@photo.ImageAlt' data-zoom-image="@photo.ImageUrl"/>
-                                    </div>
+                                            <img src='@photo.ImageUrl' alt='@photo.ImageAlt' data-zoom-image="@photo.ImageUrl" />
+                                        </div>
                                     active = true;
                                 }
                             </div>

@@ -36,11 +36,11 @@
                             }
                             <li class="dropdown-header">@itemName</li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/products/@item.EncodedName">@WebsiteTexts.GetValue("All")</a></li>
+                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@WebsiteTexts.GetValue("All")</a></li>
                         }
                         else
                         {
-                            <li><a href="/products/@item.EncodedName">@itemName</a></li>
+                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@itemName</a></li>
                         }
                         i++;
                     }

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SmellIt.Application.SmellIt.Genders.GenderDto>
+@{
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+    var genders = currentCulture == "pl-PL"
+        ? Model.OrderBy(m => m.NamePl).Select(m => new { Name = m.NamePl, EncodedName = m.EncodedName })
+        : Model.OrderBy(m => m.NameEn).Select(m => new { Name = m.NameEn, EncodedName = m.EncodedName });
+    var queryString = Context.Request.Query;
+
+    var routeValues = new Dictionary<string, string>();
+    foreach (var key in queryString.Keys)
+    {
+        if (key != "gender")
+        {
+            routeValues[key] = queryString[key];
+        }
+    }
+}
+<li><a asp-all-route-data="routeValues">@WebsiteTexts.GetValue("All")</a></li>
+@foreach (var gender in genders)
+{
+    routeValues["gender"] = gender.EncodedName;
+    if (queryString.ContainsKey("gender") && queryString["gender"] == gender.EncodedName)
+    {
+        <li><strong><a asp-all-route-data="routeValues">@gender.Name</a></strong></li>
+    }
+    else
+    {
+        <li><a asp-all-route-data="routeValues">@gender.Name</a></li>
+    }
+}

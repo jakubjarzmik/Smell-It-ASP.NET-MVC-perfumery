@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SmellIt.Application.SmellIt.Brands.BrandDto>
+@{
+    var brands = Model.OrderBy(m => m.Name);
+    var queryString = Context.Request.Query;
+
+    var routeValues = new Dictionary<string, string>();
+    foreach (var key in queryString.Keys)
+    {
+        if (key != "brand")
+        {
+            routeValues[key] = queryString[key];
+        }
+    }
+}
+<li><a asp-all-route-data="routeValues">@WebsiteTexts.GetValue("All")</a></li>
+@foreach (var brand in brands)
+{
+    routeValues["brand"] = brand.EncodedName;
+    if (queryString.ContainsKey("brand") && queryString["brand"] == brand.EncodedName)
+    {
+        <li><strong><a asp-all-route-data="routeValues">@brand.Name</a></strong></li>
+    }
+    else
+    {
+        <li><a asp-all-route-data="routeValues">@brand.Name</a></li>
+    }
+}

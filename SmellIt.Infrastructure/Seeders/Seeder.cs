@@ -422,6 +422,10 @@ namespace SmellIt.Infrastructure.Seeders
                     unisex.GenderTranslations = unisexTranslations;
                     await _dbContext.GenderTranslations.AddRangeAsync(unisexTranslations);
 
+                    await _dbContext.SaveChangesAsync();
+                    var genderList = await _dbContext.Genders.ToListAsync();
+                    foreach (var x in genderList) x.EncodeName();
+
                     #endregion
 
                     #region Products
@@ -625,43 +629,115 @@ namespace SmellIt.Infrastructure.Seeders
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
-                            ImageAlt = "Smell It Diffuser",
+                            ImageAlt = "dyfuzor-smell-it1",
+                            Product = smellItDiffuser
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1-1.jpg",
+                            ImageAlt = "dyfuzor-smell-it1-1",
                             Product = smellItDiffuser
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
-                            ImageAlt = "Si",
+                            ImageAlt = "armani-si1",
+                            Product = si
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si2.png",
+                            ImageAlt = "armani-si2",
+                            Product = si
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si3.png",
+                            ImageAlt = "armani-si3",
                             Product = si
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
-                            ImageAlt = "Sauvage",
+                            ImageAlt = "dior-savuage1",
+                            Product = sauvage
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage2.png",
+                            ImageAlt = "dior-savuage2",
+                            Product = sauvage
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage3.png",
+                            ImageAlt = "dior-savuage3",
                             Product = sauvage
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
-                            ImageAlt = "Black Opium",
+                            ImageAlt = "ysl-black-opium1",
+                            Product = blackOpium
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium2.png",
+                            ImageAlt = "ysl-black-opium2",
+                            Product = blackOpium
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium3.png",
+                            ImageAlt = "ysl-black-opium3",
                             Product = blackOpium
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
-                            ImageAlt = "Good Girl",
+                            ImageAlt = "ch-good-girl1",
+                            Product = goodGirl
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl2.png",
+                            ImageAlt = "ch-good-girl2",
+                            Product = goodGirl
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl3.png",
+                            ImageAlt = "ch-good-girl3",
                             Product = goodGirl
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
-                            ImageAlt = "1 Million",
+                            ImageAlt = "pr-1million1",
+                            Product = oneMillion
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million2.png",
+                            ImageAlt = "pr-1million2",
+                            Product = oneMillion
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million3.png",
+                            ImageAlt = "pr-1million3",
                             Product = oneMillion
                         },
                         new ProductImage()
                         {
                             ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
-                            ImageAlt = "Eros",
+                            ImageAlt = "versace-eros1",
+                            Product = eros
+                        },
+                        new ProductImage()
+                        {
+                            ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros2.png",
+                            ImageAlt = "versace-eros2",
                             Product = eros
                         },
                     };
@@ -1005,6 +1081,18 @@ namespace SmellIt.Infrastructure.Seeders
                     };
                     brand.WebsiteTextTranslations = brandTranslations;
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(brandTranslations);
+
+
+                    var clearAll = new WebsiteText { Key = "ClearAll" };
+                    await _dbContext.WebsiteTexts.AddAsync(clearAll);
+
+                    List<WebsiteTextTranslation> clearAllTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = clearAll, Language = polish, Text = "Wyczyść wszystkie" },
+                        new WebsiteTextTranslation { WebsiteText = clearAll, Language = english, Text = "Clear All" },
+                    };
+                    clearAll.WebsiteTextTranslations = clearAllTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(clearAllTranslations);
 
 
                     var fragranceCategory = new WebsiteText { Key = "FragranceCategory" };

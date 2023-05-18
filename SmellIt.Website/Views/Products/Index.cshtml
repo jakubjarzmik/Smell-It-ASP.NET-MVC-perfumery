@@ -1,7 +1,10 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.ProductDto>
+﻿@using SmellIt.Application.SmellIt.Genders
+@model IEnumerable<SmellIt.Application.SmellIt.Products.ProductDto>
 @{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
+    var stringQuery = Context.Request.Query;
 }
+
 
 <section class="page-header">
     <div class="container">
@@ -33,22 +36,20 @@
                     </form>
                 </div>
                 <div class="widget product-category">
-                    <h4 class="widget-title">Filters</h4>
+                    <h4 class="widget-title">@WebsiteTexts.GetValue("Filters")</h4>
                     <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Gender
+                                    <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        @WebsiteTexts.GetValue("Gender")
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapseOne" class="panel-collapse collapse @(stringQuery.Keys.Contains("gender") ? "in":"")" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#!">Men</a></li>
-                                        <li><a href="#!">Women</a></li>
-                                        <li><a href="#!">Unisex</a></li>
+                                        @await Component.InvokeAsync("Genders")
                                     </ul>
                                 </div>
                             </div>
@@ -56,21 +57,15 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Brand
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        @WebsiteTexts.GetValue("Brand")
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div id="collapseTwo" class="panel-collapse collapse @(stringQuery.Keys.Contains("brand") ? "in":"")" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#!">Smell it</a></li>
-                                        <li><a href="#!">Dior</a></li>
-                                        <li><a href="#!">Versace</a></li>
-                                        <li><a href="#!">Armani</a></li>
-                                        <li><a href="#!">Yves Saint Laurent</a></li>
-                                        <li><a href="#!">Carolina Herrera</a></li>
-                                        <li><a href="#!">Paco Rabanne</a></li>
+                                        @await Component.InvokeAsync("Brands")
                                     </ul>
                                 </div>
                             </div>
@@ -78,26 +73,21 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Fragrance Category
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        @WebsiteTexts.GetValue("FragranceCategory")
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div id="collapseThree" class="panel-collapse collapse @(stringQuery.Keys.Contains("fragranceCategory") ? "in":"")" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#!">Oriental</a></li>
-                                        <li><a href="#!">Fruity</a></li>
-                                        <li><a href="#!">Citrus</a></li>
-                                        <li><a href="#!">Aromatic</a></li>
-                                        <li><a href="#!">Floral</a></li>
-                                        <li><a href="#!">Other</a></li>
+                                        @await Component.InvokeAsync("FragranceCategories")
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <a class="btn btn-main btn-medium center-align" asp-all-route-data="null">@WebsiteTexts.GetValue("ClearAll")</a>
                 </div>
             </div>
             <div class="col-md-9">

@@ -3,7 +3,6 @@ using MediatR;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncodedName;
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;
