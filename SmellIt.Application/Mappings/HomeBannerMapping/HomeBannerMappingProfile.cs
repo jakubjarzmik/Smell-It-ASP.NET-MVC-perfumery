@@ -19,5 +19,14 @@ public class HomeBannerMappingProfile : Profile
                 opt => opt.MapFrom(src => src.HomeBannerTranslations.First(hbt => hbt.Language.Code == "en-GB").Text));
 
         CreateMap<HomeBannerDto, EditHomeBannerCommand>();
+
+        CreateMap<HomeBanner, WebsiteHomeBannerDto>()
+            .ForMember(dto => dto.Text,
+                opt => opt.Ignore())
+            .AfterMap((src, dest, ctx) =>
+            {
+                var languageCode = ctx.Items["LanguageCode"].ToString();
+                dest.Text = src.HomeBannerTranslations.First(fct => fct.Language.Code == languageCode).Text;
+            });
     }
 }

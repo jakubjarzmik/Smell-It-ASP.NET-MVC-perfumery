@@ -1,7 +1,5 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.ProductCategories.ProductCategoryDto>
+﻿@model IEnumerable<SmellIt.Application.SmellIt.ProductCategories.WebsiteProductCategoryDto>
 @{
-    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
     int i = 0;
     bool isSecond = false;
 }
@@ -25,8 +23,6 @@
                 <ul>
                     @foreach (var item in Model)
                     {
-                        var itemName = currentCulture == "en-GB" ? item.NameEn : item.NamePl;
-
                         if (item.ParentCategory == null)
                         {
                             if (i != 0)
@@ -34,13 +30,13 @@
                                 @Html.Raw(isSecond ? "</ul></div></div><div class=\"row\"><div class=\"col-lg-6 col-md-6 mb-sm-3\"><ul>" : "</ul></div><div class=\"col-lg-6 col-md-6 mb-sm-3\"><ul>")
                                 isSecond = !isSecond;
                             }
-                            <li class="dropdown-header">@itemName</li>
+                            <li class="dropdown-header">@item.Name</li>
                             <li role="separator" class="divider"></li>
                             <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@WebsiteTexts.GetValue("All")</a></li>
                         }
                         else
                         {
-                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@itemName</a></li>
+                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@item.Name</a></li>
                         }
                         i++;
                     }

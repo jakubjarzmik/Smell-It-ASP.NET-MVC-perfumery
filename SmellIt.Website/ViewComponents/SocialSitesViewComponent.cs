@@ -1,20 +1,19 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.SmellIt.SocialSites.Queries.GetAllSocialSites;
+using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents
 {
-    public class SocialSitesViewComponent : ViewComponent
+    public class SocialSitesViewComponent : BaseViewComponent
     {
-        private readonly IMediator _mediator;
 
-        public SocialSitesViewComponent(IMediator mediator)
+        public SocialSitesViewComponent(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var socialSites =  await _mediator.Send(new GetAllSocialSitesQuery());
+            var socialSites =  await Mediator.Send(new GetAllSocialSitesQuery());
 
             return View(socialSites);
         }

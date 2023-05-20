@@ -1,20 +1,19 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategories;
+using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
+using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents
 {
-    public class ProductCategoriesViewComponent : ViewComponent
+    public class ProductCategoriesViewComponent : BaseViewComponent
     {
-        private readonly IMediator _mediator;
-
-        public ProductCategoriesViewComponent(IMediator mediator)
+        public ProductCategoriesViewComponent(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var productCategories =  await _mediator.Send(new GetAllProductCategoriesQuery());
+            var productCategories =  await Mediator.Send(new GetAllProductCategoriesForWebsiteQuery(CurrentCulture));
 
             return View(productCategories);
         }

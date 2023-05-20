@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Helpers;
 using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
@@ -14,34 +15,33 @@ using SmellIt.Application.SmellIt.Products.Queries.GetPaginatedProducts;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
-public class ProductsController : Controller
+public class ProductsController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
     private readonly IProductCategoryPrefixGenerator _prefixGenerator;
 
-    public ProductsController(IMediator mediator, IMapper mapper, IProductCategoryPrefixGenerator prefixGenerator)
+    public ProductsController(IMediator mediator, IMapper mapper, IProductCategoryPrefixGenerator prefixGenerator) : base(mediator, mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
         _prefixGenerator = prefixGenerator;
     }
     private async Task LoadViewData()
     {
         ViewData["PrefixGenerator"] = _prefixGenerator;
-        ViewData["ProductCategories"] = await _mediator.Send(new GetAllProductCategoriesQuery());
-        ViewData["Brands"] = await _mediator.Send(new GetAllBrandsQuery());
-        ViewData["FragranceCategories"] = await _mediator.Send(new GetAllFragranceCategoriesQuery());
-        ViewData["Genders"] = await _mediator.Send(new GetAllGendersQuery());
+        ViewData["ProductCategories"] = await Mediator.Send(new GetAllProductCategoriesQuery());
+        ViewData["Brands"] = await Mediator.Send(new GetAllBrandsQuery());
+        ViewData["FragranceCategories"] = await Mediator.Send(new GetAllFragranceCategoriesQuery());
+        ViewData["Genders"] = await Mediator.Send(new GetAllGendersQuery());
     }
+
+    [Route("products")]
     public async Task<IActionResult> Index(int? page)
     {
         await LoadViewData();
 
-        var viewModel = await _mediator.Send(new GetPaginatedProductsQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedProductsQuery(page, 7));
         return View(viewModel);
     }
 
+    [Route("products/create")]
     public async Task<IActionResult> Create()
     {
         await LoadViewData();
@@ -50,6 +50,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [Route("products/create")]
     public async Task<IActionResult> Create(CreateProductCommand command)
     {
         if (!ModelState.IsValid)
@@ -57,30 +58,24 @@ public class ProductsController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 
-    [Route("Products/{encodedName}/Edit")]
+    [Route("products/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         await LoadViewData();
 
-        ViewData["ProductPrices"] = await _mediator.Send(new GetAllProductPricesByProductEncodedNameQuery(encodedName));
+        ViewData["ProductPrices"] = await Mediator.Send(new GetAllProductPricesByProductEncodedNameQuery(encodedName));
 
-        var dto = await _mediator.Send(new GetProductByEncodedNameQuery(encodedName));
-        EditProductCommand model = _mapper.Map<EditProductCommand>(dto);
+        var dto = await Mediator.Send(new GetProductByEncodedNameQuery(encodedName));
+        EditProductCommand model = Mapper.Map<EditProductCommand>(dto);
         return View(model);
     }
 
-    public async Task<IActionResult> Delete(string encodedName)
-    {
-        await _mediator.Send(new DeleteProductByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
-    }
-
     [HttpPost]
-    [Route("Products/{encodedName}/Edit")]
+    [Route("products/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditProductCommand command)
     {
         command.EncodedName = encodedName;
@@ -89,7 +84,14 @@ public class ProductsController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Route("products/{encodedName}/delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await Mediator.Send(new DeleteProductByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
 }

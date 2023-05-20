@@ -5,33 +5,29 @@ using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncoded
 using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;
 
 namespace SmellIt.Admin.Controllers;
-public class HomeBannersController : Controller
+public class HomeBannersController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-    private readonly IWebHostEnvironment _env;
 
-    public HomeBannersController(IMediator mediator, IMapper mapper, IWebHostEnvironment env)
+    public HomeBannersController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
-        _env = env;
     }
-
+    [Route("home-banners")]
     public async Task<IActionResult> Index(int? page)
     {
-        return View(await _mediator.Send(new GetPaginatedHomeBannersQuery(page,7)));
+        return View(await Mediator.Send(new GetPaginatedHomeBannersQuery(page, 7)));
     }
-
+    [Route("home-banners/create")]
     public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
+    [Route("home-banners/create")]
     public async Task<IActionResult> Create(CreateHomeBannerCommand command)
     {
         if (!ModelState.IsValid)
@@ -39,27 +35,21 @@ public class HomeBannersController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 
 
-    [Route("HomeBanner/{encodedName}/Edit")]
+    [Route("home-banners/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        var dto = await _mediator.Send(new GetHomeBannerByEncodedNameQuery(encodedName));
-        EditHomeBannerCommand model = _mapper.Map<EditHomeBannerCommand>(dto);
+        var dto = await Mediator.Send(new GetHomeBannerByEncodedNameQuery(encodedName));
+        EditHomeBannerCommand model = Mapper.Map<EditHomeBannerCommand>(dto);
         return View(model);
     }
 
-    public async Task<IActionResult> Delete(string encodedName)
-    {
-        await _mediator.Send(new DeleteHomeBannerByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
-    }
-
     [HttpPost]
-    [Route("HomeBanner/{encodedName}/Edit")]
+    [Route("home-banners/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditHomeBannerCommand command)
     {
         command.EncodedName = encodedName;
@@ -68,7 +58,14 @@ public class HomeBannersController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Route("home-banners/{encodedName}/delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await Mediator.Send(new DeleteHomeBannerByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
 }

@@ -12,11 +12,6 @@ namespace SmellIt.Admin.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult ChangeLanguage(string culture)
         {
 	        Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,

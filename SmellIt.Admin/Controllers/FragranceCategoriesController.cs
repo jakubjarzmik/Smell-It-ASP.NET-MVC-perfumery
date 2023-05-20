@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCategory;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName;
 using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
@@ -8,21 +9,18 @@ using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetFragranceCatego
 using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetPaginatedFragranceCategories;
 
 namespace SmellIt.Admin.Controllers;
-public class FragranceCategoriesController : Controller
+public class FragranceCategoriesController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-
-    public FragranceCategoriesController(IMediator mediator, IMapper mapper)
+    public FragranceCategoriesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
     }
+    [Route("fragrance-categories")]
     public async Task<IActionResult> Index(int? page)
     {
-        var viewModel = await _mediator.Send(new GetPaginatedFragranceCategoriesQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedFragranceCategoriesQuery(page, 7));
         return View(viewModel);
     }
+    [Route("fragrance-categories/create")]
 
     public IActionResult Create()
     {
@@ -30,6 +28,7 @@ public class FragranceCategoriesController : Controller
     }
 
     [HttpPost]
+    [Route("fragrance-categories/create")]
     public async Task<IActionResult> Create(CreateFragranceCategoryCommand command)
     {
         if (!ModelState.IsValid)
@@ -37,26 +36,20 @@ public class FragranceCategoriesController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 
-    [Route("FragranceCategories/{encodedName}/Edit")]
+    [Route("fragrance-categories/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        var dto = await _mediator.Send(new GetFragranceCategoryByEncodedNameQuery(encodedName));
-        EditFragranceCategoryCommand model = _mapper.Map<EditFragranceCategoryCommand>(dto);
+        var dto = await Mediator.Send(new GetFragranceCategoryByEncodedNameQuery(encodedName));
+        EditFragranceCategoryCommand model = Mapper.Map<EditFragranceCategoryCommand>(dto);
         return View(model);
-    }
-    
-    public async Task<IActionResult> Delete(string encodedName)
-    {
-        await _mediator.Send(new DeleteFragranceCategoryByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
-    [Route("FragranceCategories/{encodedName}/Edit")]
+    [Route("fragrance-categories/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditFragranceCategoryCommand command)
     {
         command.EncodedName = encodedName;
@@ -65,7 +58,14 @@ public class FragranceCategoriesController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Route("fragrance-categories/{encodedName}/delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await Mediator.Send(new DeleteFragranceCategoryByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
 }

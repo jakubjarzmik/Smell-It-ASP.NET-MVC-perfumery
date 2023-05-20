@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite;
 using SmellIt.Application.SmellIt.SocialSites.Commands.DeleteSocialSiteByEncodedName;
 using SmellIt.Application.SmellIt.SocialSites.Commands.EditSocialSite;
@@ -8,23 +9,21 @@ using SmellIt.Application.SmellIt.SocialSites.Queries.GetPaginatedSocialSites;
 using SmellIt.Application.SmellIt.SocialSites.Queries.GetSocialSiteByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
-public class SocialSitesController : Controller
+public class SocialSitesController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
     protected readonly List<string> socialTypes = new() { "dropbox", "facebook", "github", "instagram", "linkedin", "pinterest", "twitter", "youtube" };
 
-    public SocialSitesController(IMediator mediator, IMapper mapper)
+    public SocialSitesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
     }
+    [Route("social-sites")]
     public async Task<IActionResult> Index(int? page)
     {
-        var viewModel = await _mediator.Send(new GetPaginatedSocialSitesQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedSocialSitesQuery(page, 7));
         return View(viewModel);
     }
 
+    [Route("social-sites/create")]
     public IActionResult Create()
     {
         ViewData["SocialTypes"] = socialTypes;
@@ -32,6 +31,7 @@ public class SocialSitesController : Controller
     }
 
     [HttpPost]
+    [Route("social-sites/create")]
     public async Task<IActionResult> Create(CreateSocialSiteCommand command)
     {
         if (!ModelState.IsValid)
@@ -39,27 +39,21 @@ public class SocialSitesController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 
-    [Route("SocialSites/{encodedName}/Edit")]
+    [Route("social-sites/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         ViewData["SocialTypes"] = socialTypes;
-        var dto = await _mediator.Send(new GetSocialSiteByEncodedNameQuery(encodedName));
-        EditSocialSiteCommand model = _mapper.Map<EditSocialSiteCommand>(dto);
+        var dto = await Mediator.Send(new GetSocialSiteByEncodedNameQuery(encodedName));
+        EditSocialSiteCommand model = Mapper.Map<EditSocialSiteCommand>(dto);
         return View(model);
-    }
-    
-    public async Task<IActionResult> Delete(string encodedName)
-    {
-        await _mediator.Send(new DeleteSocialSiteByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
-    [Route("SocialSites/{encodedName}/Edit")]
+    [Route("social-sites/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditSocialSiteCommand command)
     {
         command.EncodedName = encodedName;
@@ -68,7 +62,14 @@ public class SocialSitesController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Route("social-sites/{encodedName}/delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await Mediator.Send(new DeleteSocialSiteByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
 }

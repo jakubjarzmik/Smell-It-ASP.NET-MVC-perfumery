@@ -1,19 +1,17 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
+using SmellIt.Application.SmellIt.Genders.Queries.GetAllGendersForWebsite;
+using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents;
-public class GendersViewComponent : ViewComponent
+public class GendersViewComponent : BaseViewComponent
 {
-    private readonly IMediator _mediator;
-
-    public GendersViewComponent(IMediator mediator)
+    public GendersViewComponent(IMediator mediator) : base(mediator)
     {
-        _mediator = mediator;
     }
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var genders = await _mediator.Send(new GetAllGendersQuery());
+        var genders = await Mediator.Send(new GetAllGendersForWebsiteQuery(CurrentCulture));
 
         return View(genders);
     }

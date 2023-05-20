@@ -1,5 +1,4 @@
-﻿@using SmellIt.Application.SmellIt.Genders
-@model IEnumerable<SmellIt.Application.SmellIt.Products.ProductDto>
+﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.WebsiteProductDto>
 @{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
     var stringQuery = Context.Request.Query;
@@ -12,7 +11,6 @@
             <div class="col-md-12">
                 <div class="content">
                     <h1 class="page-name">@WebsiteTexts.GetValue("Products")</h1>
-
                 </div>
             </div>
         </div>

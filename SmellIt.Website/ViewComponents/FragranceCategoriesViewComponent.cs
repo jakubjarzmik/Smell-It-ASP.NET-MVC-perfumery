@@ -1,20 +1,18 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
+using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategoriesForWebsite;
+using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents;
-public class FragranceCategoriesViewComponent : ViewComponent
+public class FragranceCategoriesViewComponent : BaseViewComponent
 {
-    private readonly IMediator _mediator;
-
-    public FragranceCategoriesViewComponent(IMediator mediator)
+    public FragranceCategoriesViewComponent(IMediator mediator) : base(mediator)
     {
-        _mediator = mediator;
     }
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var brands = await _mediator.Send(new GetAllFragranceCategoriesQuery());
+        var fragranceCategories = await Mediator.Send(new GetAllFragranceCategoriesForWebsiteQuery(CurrentCulture));
 
-        return View(brands);
+        return View(fragranceCategories);
     }
 }

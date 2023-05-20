@@ -19,5 +19,14 @@ public class BrandMappingProfile : Profile
                 opt => opt.MapFrom(src => src.BrandTranslations.First(bt => bt.Language.Code == "en-GB").Description));
 
         CreateMap<BrandDto, EditBrandCommand>();
+
+        CreateMap<Brand, WebsiteBrandDto>()
+            .ForMember(dto => dto.Description,
+                opt => opt.Ignore())
+            .AfterMap((src, dest, ctx) =>
+            {
+                var languageCode = ctx.Items["LanguageCode"].ToString();
+                dest.Description = src.BrandTranslations.First(fct => fct.Language.Code == languageCode).Description;
+            });
     }
 }

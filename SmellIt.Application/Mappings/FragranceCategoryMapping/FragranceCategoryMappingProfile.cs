@@ -23,5 +23,17 @@ public class FragranceCategoryMappingProfile : Profile
                 opt => opt.MapFrom(src => src.FragranceCategoryTranslations.First(fct => fct.Language.Code == "en-GB").Description));
 
         CreateMap<FragranceCategoryDto, EditFragranceCategoryCommand>();
+
+        CreateMap<FragranceCategory, WebsiteFragranceCategoryDto>()
+            .ForMember(dto => dto.Name,
+                opt => opt.Ignore())
+            .ForMember(dto => dto.Description,
+                opt => opt.Ignore())
+            .AfterMap((src, dest, ctx) =>
+            {
+                var languageCode = ctx.Items["LanguageCode"].ToString();
+                dest.Name = src.FragranceCategoryTranslations.First(fct => fct.Language.Code == languageCode).Name;
+                dest.Description = src.FragranceCategoryTranslations.First(fct => fct.Language.Code == languageCode).Description;
+            });
     }
 }

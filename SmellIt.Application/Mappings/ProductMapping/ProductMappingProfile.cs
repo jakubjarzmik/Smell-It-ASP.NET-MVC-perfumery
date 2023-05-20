@@ -44,24 +44,46 @@ public class ProductMappingProfile : Profile
             .ForMember(dto => dto.ProductImages,
                 opt => opt.MapFrom(src => src.ProductImages))
             .ForMember(dest => dest.Price,
-                opt => opt.MapFrom<ProductPriceResolver>())
+                opt => opt.MapFrom<ProductPriceResolver<ProductDto>>())
             .ForMember(dest => dest.PromotionalPrice,
-                opt => opt.MapFrom<ProductPromotionalPriceResolver>())
+                opt => opt.MapFrom<ProductPromotionalPriceResolver<ProductDto>>())
             .ForMember(dest => dest.Last30DaysLowestPrice,
                 opt => opt.MapFrom(src => src.ProductPrices
                     .Where(pp => pp.IsActive && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now.AddDays(-30)) && pp.StartDateTime <= DateTime.Now)
                     .OrderBy(pp => pp.Value)
                     .FirstOrDefault().Value));
-        //.ForMember(dto => dto.Price,
-        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && !pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.Now))
-        //        .OrderByDescending(pp=>pp.CreatedAt).First().Value))
-        //.ForMember(dto => dto.PromotionalPrice,
-        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.IsActive && pp.IsPromotion && (pp.DeletedAt == null || pp.DeletedAt > DateTime.Now))
-        //        .OrderByDescending(pp => pp.CreatedAt).FirstOrDefault().Value))
-        //.ForMember(dto => dto.Last30DaysLowestPrice,
-        //    opt => opt.MapFrom(src => src.ProductPrices.Where(pp=>pp.DeletedAt >= DateTime.Now.AddDays(-30) || pp.DeletedAt == null)
-        //        .OrderBy(pp=>pp.Value).FirstOrDefault().Value));
 
         CreateMap<ProductDto, EditProductCommand>();
+
+        CreateMap<Product, WebsiteProductDto>()
+            .ForMember(dto => dto.ProductCategory,
+                opt => opt.MapFrom(src => src.ProductCategory))
+            .ForMember(dto => dto.Brand,
+                opt => opt.MapFrom(src => src.Brand))
+            .ForMember(dto => dto.FragranceCategory,
+                opt => opt.MapFrom(src => src.FragranceCategory))
+            .ForMember(dto => dto.Gender,
+                opt => opt.MapFrom(src => src.Gender))
+            .ForMember(dto => dto.ProductImages,
+                opt => opt.MapFrom(src => src.ProductImages))
+            .ForMember(dest => dest.Price,
+                opt => opt.MapFrom<ProductPriceResolver<WebsiteProductDto>>())
+            .ForMember(dest => dest.PromotionalPrice,
+                opt => opt.MapFrom<ProductPromotionalPriceResolver<WebsiteProductDto>>())
+            .ForMember(dest => dest.Last30DaysLowestPrice,
+                opt => opt.MapFrom(src => src.ProductPrices
+                    .Where(pp => pp.IsActive && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now.AddDays(-30)) && pp.StartDateTime <= DateTime.Now)
+                    .OrderBy(pp => pp.Value)
+                    .FirstOrDefault().Value))
+            .ForMember(dto => dto.Name,
+                opt => opt.Ignore())
+            .ForMember(dto => dto.Description,
+                opt => opt.Ignore())
+            .AfterMap((src, dest, ctx) =>
+            {
+                var languageCode = ctx.Items["LanguageCode"].ToString();
+                dest.Name = src.ProductTranslations.First(fct => fct.Language.Code == languageCode).Name;
+                dest.Description = src.ProductTranslations.First(fct => fct.Language.Code == languageCode).Description;
+            });
     }
 }

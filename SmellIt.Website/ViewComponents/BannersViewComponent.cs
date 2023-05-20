@@ -1,20 +1,18 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBanners;
+using SmellIt.Application.SmellIt.HomeBanners.Queries.GetAllHomeBannersForWebsite;
+using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents
 {
-    public class BannersViewComponent : ViewComponent
+    public class BannersViewComponent : BaseViewComponent
     {
-        private readonly IMediator _mediator;
-
-        public BannersViewComponent(IMediator mediator)
+        public BannersViewComponent(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var banners = await _mediator.Send(new GetAllHomeBannersQuery());
+            var banners = await Mediator.Send(new GetAllHomeBannersForWebsiteQuery(CurrentCulture));
 
             return View(banners);
         }

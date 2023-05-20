@@ -27,5 +27,19 @@ public class ProductCategoryMappingProfile : Profile
                 opt => opt.MapFrom(src => src.ProductCategoryTranslations.First(fct => fct.Language.Code == "en-GB").Description));
 
         CreateMap<ProductCategoryDto, EditProductCategoryCommand>();
+
+        CreateMap<ProductCategory, WebsiteProductCategoryDto>()
+            .ForMember(dto => dto.ParentCategory,
+                opt => opt.MapFrom(src => src.ParentCategory))
+            .ForMember(dto => dto.Name,
+                opt => opt.Ignore())
+            .ForMember(dto => dto.Description,
+                opt => opt.Ignore())
+            .AfterMap((src, dest, ctx) =>
+            {
+                var languageCode = ctx.Items["LanguageCode"].ToString();
+                dest.Name = src.ProductCategoryTranslations.First(fct => fct.Language.Code == languageCode).Name;
+                dest.Description = src.ProductCategoryTranslations.First(fct => fct.Language.Code == languageCode).Description;
+            });
     }
 }

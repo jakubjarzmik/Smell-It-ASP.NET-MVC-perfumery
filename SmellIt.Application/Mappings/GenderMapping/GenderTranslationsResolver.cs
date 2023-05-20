@@ -22,8 +22,8 @@ public class GenderTranslationsResolver : IValueResolver<GenderDto, Gender, ICol
         {
             return new List<GenderTranslation>
             {
-                new GenderTranslation { Language = plLanguage, Name = source.NamePl, Description = source.DescriptionPl },
-                new GenderTranslation { Language = enLanguage, Name = source.NameEn, Description = source.DescriptionEn }
+                new GenderTranslation { Language = plLanguage, Name = source.NamePl },
+                new GenderTranslation { Language = enLanguage, Name = source.NameEn }
             };
         }
 

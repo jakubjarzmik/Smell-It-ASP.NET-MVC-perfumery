@@ -4,18 +4,14 @@ using System.Diagnostics;
 using MediatR;
 using Microsoft.AspNetCore.Localization;
 using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
+using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly IMediator _mediator;
-        private readonly IWebHostEnvironment _env;
-
-        public HomeController(IMediator mediator, IWebHostEnvironment env)
+        public HomeController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
-            _env = env;
         }
         public IActionResult Index()
         {
@@ -31,8 +27,7 @@ namespace SmellIt.Website.Controllers
         }
         public async Task<IActionResult> Privacy()
         {
-            var currentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()!.RequestCulture.Culture.ToString();
-            var privacyPolicy = await _mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(currentCulture));
+            var privacyPolicy = await Mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(CurrentCulture));
             return View(privacyPolicy);
         }
         public IActionResult ChangeLanguage(string culture)

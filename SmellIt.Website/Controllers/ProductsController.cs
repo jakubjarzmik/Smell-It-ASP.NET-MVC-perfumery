@@ -2,48 +2,36 @@
 using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
-using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
-using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
-using SmellIt.Application.SmellIt.Products.Queries.GetProductsByCategoryEncodedName;
-using SmellIt.Application.SmellIt.Products.Queries.GetAllProducts;
-using SmellIt.Application.SmellIt.Products.Queries.GetFilteredProducts;
+using SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWebsite;
+using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedNameForWebsite;
+using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers;
-public class ProductsController : Controller
+public class ProductsController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IWebHostEnvironment _env;
-
-    public ProductsController(IMediator mediator, IWebHostEnvironment env)
+    public ProductsController(IMediator mediator) : base(mediator)
     {
-        _mediator = mediator;
-        _env = env;
+
     }
 
     [Route("products")]
     public async Task<IActionResult> Index(string? category, string? brand, string? gender, string? fragranceCategory)
     {
-        var products = await _mediator.Send(new GetFilteredProductsQuery
+        var products = await Mediator.Send(new GetFilteredProductsForWebsiteQuery
         {
             CategoryEncodedName = category,
             BrandEncodedName = brand,
             GenderEncodedName = gender,
-            FragranceCategoryEncodedName = fragranceCategory
+            FragranceCategoryEncodedName = fragranceCategory,
+            LanguageCode = CurrentCulture
         });
-        return View(products);
-    }
-
-    [Route("products/{encodedName}")]
-	public async Task<IActionResult> Index(string encodedName)
-    {
-        var products = await _mediator.Send(new GetProductsByCategoryEncodedNameQuery(encodedName));
         return View(products);
     }
 
     [Route("products/details/{encodedName}")]
     public async Task<IActionResult> Details(string encodedName)
     {
-	    var product = await _mediator.Send(new GetProductByEncodedNameQuery(encodedName));
+        var product = await Mediator.Send(new GetProductByEncodedNameForWebsiteQuery(encodedName, CurrentCulture));
         return View(product);
     }
 

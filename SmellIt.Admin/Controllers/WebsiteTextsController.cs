@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
 using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
@@ -8,28 +9,26 @@ using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
 using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
-public class WebsiteTextsController : Controller
+public class WebsiteTextsController : BaseController
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-
-    public WebsiteTextsController(IMediator mediator, IMapper mapper)
+    public WebsiteTextsController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
-        _mediator = mediator;
-        _mapper = mapper;
     }
+    [Route("website-texts")]
     public async Task<IActionResult> Index(int? page)
     {
-        var viewModel = await _mediator.Send(new GetPaginatedWebsiteTextsQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedWebsiteTextsQuery(page, 7));
         return View(viewModel);
     }
 
+    [Route("website-texts/create")]
     public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
+    [Route("website-texts/create")]
     public async Task<IActionResult> Create(CreateWebsiteTextCommand command)
     {
         if (!ModelState.IsValid)
@@ -37,26 +36,20 @@ public class WebsiteTextsController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 
-    [Route("WebsiteText/{encodedName}/Edit")]
+    [Route("website-texts/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        var dto = await _mediator.Send(new GetWebsiteTextByEncodedNameQuery(encodedName));
-        EditWebsiteTextCommand model = _mapper.Map<EditWebsiteTextCommand>(dto);
+        var dto = await Mediator.Send(new GetWebsiteTextByEncodedNameQuery(encodedName));
+        EditWebsiteTextCommand model = Mapper.Map<EditWebsiteTextCommand>(dto);
         return View(model);
-    }
-    
-    public async Task<IActionResult> Delete(string encodedName)
-    {
-        await _mediator.Send(new DeleteWebsiteTextByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
-    [Route("WebsiteText/{encodedName}/Edit")]
+    [Route("website-texts/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditWebsiteTextCommand command)
     {
         command.EncodedName = encodedName;
@@ -65,7 +58,14 @@ public class WebsiteTextsController : Controller
             return View(command);
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Route("website-texts/{encodedName}/delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        await Mediator.Send(new DeleteWebsiteTextByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
 }

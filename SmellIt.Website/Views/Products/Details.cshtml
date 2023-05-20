@@ -1,4 +1,4 @@
-﻿@model SmellIt.Application.SmellIt.Products.ProductDto
+﻿@model SmellIt.Application.SmellIt.Products.WebsiteProductDto
 @{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
@@ -41,7 +41,7 @@
             <div class="col-md-7">
                 <div class="single-product-details">
                     <h2>
-                        @Model.Brand?.Name - @(currentCulture == "en-GB" ? @Model.NameEn : @Model.NamePl)
+                        @Model.Brand?.Name - @Model.Name
                     </h2>
                     @if (Model.PromotionalPrice == null)
                     {
@@ -53,13 +53,13 @@
                         <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
                     }
                     <p class="product-description mt-20">
-                        @(currentCulture == "en-GB" ? @Model.DescriptionEn : @Model.DescriptionPl)
+                        @Model.Description
                     </p>
                     @if (Model.ProductCategory != null)
                     {
                         <p>
                             <strong>@WebsiteTexts.GetValue("Category"): </strong>
-                            @(currentCulture == "en-GB" ? @Model.ProductCategory.NameEn : @Model.ProductCategory.NamePl)
+                            @Model.ProductCategory.Name
                         </p>
                     }
                     @if (Model.Capacity != null)
@@ -73,14 +73,14 @@
                     {
                         <p>
                             <strong>@WebsiteTexts.GetValue("Gender"): </strong>
-                            @(currentCulture == "en-GB" ? @Model.Gender.NameEn : @Model.Gender.NamePl)
+                            @(currentCulture == "pl-PL" ? Model.Gender?.NamePl : Model.Gender?.NameEn)
                         </p>
                     }
                     @if (Model.FragranceCategory != null)
                     {
                         <p>
                             <strong>@WebsiteTexts.GetValue("FragranceCategory"): </strong>
-                            @(currentCulture == "en-GB" ? @Model.FragranceCategory.NameEn : @Model.FragranceCategory.NamePl)
+                            @Model.FragranceCategory.Name
                         </p>
                     }
 

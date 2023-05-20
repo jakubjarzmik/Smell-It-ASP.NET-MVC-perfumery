@@ -1,8 +1,5 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.ProductDto>
-@{
-    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
-}
+﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.WebsiteProductDto>
+
 @foreach (var item in Model)
 {
     <div class="col-md-4 col-sm-6 col-xs-6">
@@ -30,7 +27,7 @@
                 <a href="#">
                     <h4>
                         @item.Brand?.Name<br />
-                        <strong>@(currentCulture == "en-GB" ? @item.NameEn : @item.NamePl)</strong>
+                        <strong>@item.Name</strong>
                     </h4>
                 </a>
 
@@ -55,7 +52,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="product-short-details">
-                                <h2 class="product-title">@(item.Brand != null ? item.Brand.Name + " - " : "")@(currentCulture == "en-GB" ? @item.NameEn : @item.NamePl)</h2>
+                                <h2 class="product-title">@((item.Brand != null ? $"{item.Brand.Name} - " : "") + $"{item.Name}")</h2>
                                 @if (item.PromotionalPrice == null)
                                 {
                                     <p class="product-price">@item.Price.Value zł</p>
@@ -66,7 +63,7 @@
                                     <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł</p>
                                 }
                                 <p class="product-short-description">
-                                    @(currentCulture == "en-GB" ? @item.DescriptionEn : @item.DescriptionPl)
+                                    @item.Description
                                 </p>
                                 <a href="cart.html" class="btn btn-main">@WebsiteTexts.GetValue("AddToCart")</a>
                                 <a href="/products/details/@item.EncodedName" class="btn btn-transparent">@WebsiteTexts.GetValue("ViewProductDetails")</a>

@@ -1,10 +1,6 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.FragranceCategories.FragranceCategoryDto>
+﻿@model IEnumerable<SmellIt.Application.SmellIt.FragranceCategories.WebsiteFragranceCategoryDto>
 @{
-    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
-    var fragranceCategories = currentCulture == "pl-PL"
-        ? Model.OrderBy(m => m.NamePl).Select(m => new { Name = m.NamePl, EncodedName = m.EncodedName })
-        : Model.OrderBy(m => m.NameEn).Select(m => new { Name = m.NameEn, EncodedName = m.EncodedName });
+    var fragranceCategories = Model.OrderBy(m => m.Name).Select(m => new { Name = m.Name, EncodedName = m.EncodedName });
 
     var queryString = Context.Request.Query;
 
