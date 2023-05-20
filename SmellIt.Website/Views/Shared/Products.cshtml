@@ -14,7 +14,7 @@
                             </span>
                         </li>
                         <li>
-                            <a href="/products/details/@item.EncodedName"><i class="tf-ion-android-list"></i></a>
+                            <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName"><i class="tf-ion-android-list"></i></a>
                         </li>
                         <li>
                             <a href="#"><i class="tf-ion-android-cart"></i></a>
@@ -65,8 +65,8 @@
                                 <p class="product-short-description">
                                     @item.Description
                                 </p>
-                                <a href="cart.html" class="btn btn-main">@WebsiteTexts.GetValue("AddToCart")</a>
-                                <a href="/products/details/@item.EncodedName" class="btn btn-transparent">@WebsiteTexts.GetValue("ViewProductDetails")</a>
+                                <a href="#" class="btn btn-main">@WebsiteTexts.GetValue("AddToCart")</a>
+                                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName" class="btn btn-transparent">@WebsiteTexts.GetValue("ViewProductDetails")</a>
                             </div>
                         </div>
                     </div>

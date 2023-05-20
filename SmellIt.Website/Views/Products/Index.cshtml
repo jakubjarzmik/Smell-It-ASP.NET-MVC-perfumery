@@ -2,6 +2,10 @@
 @{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
     var stringQuery = Context.Request.Query;
+    var isNewestSelected = stringQuery["sortType"] == SortType.Newest.ToString();
+    var isOldestSelected = stringQuery["sortType"] == SortType.Oldest.ToString();
+    var isPriceAscendingSelected = stringQuery["sortType"] == SortType.PriceAscending.ToString();
+    var isPriceDescendingSelected = stringQuery["sortType"] == SortType.PriceDescending.ToString();
 }
 
 
@@ -24,12 +28,12 @@
             <div class="col-md-3">
                 <div class="widget">
                     <h4 class="widget-title">@WebsiteTexts.GetValue("SortBy")</h4>
-                    <form method="post" action="#">
-                        <select class="form-control">
-                            <option>@WebsiteTexts.GetValue("Newest")</option>
-                            <option>@WebsiteTexts.GetValue("Oldest")</option>
-                            <option>@WebsiteTexts.GetValue("PriceAscending")</option>
-                            <option>@WebsiteTexts.GetValue("PriceDescending")</option>
+                    <form method="get" id="sortForm">
+                        <select class="form-control" name="sortType" onchange="document.getElementById('sortForm').submit();">
+                            <option value="@SortType.Newest" selected="@isNewestSelected">@WebsiteTexts.GetValue("Newest")</option>
+                            <option value="@SortType.Oldest" selected="@isOldestSelected">@WebsiteTexts.GetValue("Oldest")</option>
+                            <option value="@SortType.PriceAscending" selected="@isPriceAscendingSelected">@WebsiteTexts.GetValue("PriceAscending")</option>
+                            <option value="@SortType.PriceDescending" selected="@isPriceDescendingSelected">@WebsiteTexts.GetValue("PriceDescending")</option>
                         </select>
                     </form>
                 </div>

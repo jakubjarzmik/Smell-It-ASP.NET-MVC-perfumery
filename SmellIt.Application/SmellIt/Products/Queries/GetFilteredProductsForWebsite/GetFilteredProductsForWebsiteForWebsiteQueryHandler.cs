@@ -32,10 +32,27 @@ namespace SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWeb
             if (request.GenderEncodedName != null)
                 products = products.Where(p => p.Gender?.EncodedName == request.GenderEncodedName);
 
+
             var dtos = _mapper.Map<IEnumerable<WebsiteProductDto>>(products, opt =>
             {
                 opt.Items["LanguageCode"] = request.LanguageCode;
             });
+
+            switch (request.SortType)
+            {
+                case SortType.Newest:
+                    dtos = dtos.OrderByDescending(p => p.CreatedAt);
+                    break;
+                case SortType.Oldest:
+                    dtos = dtos.OrderBy(p => p.CreatedAt);
+                    break;
+                case SortType.PriceAscending:
+                    dtos = dtos.OrderBy(p => p.Price.Value);
+                    break;
+                case SortType.PriceDescending:
+                    dtos = dtos.OrderByDescending(p => p.Price.Value);
+                    break;
+            }
 
             return dtos;
         }

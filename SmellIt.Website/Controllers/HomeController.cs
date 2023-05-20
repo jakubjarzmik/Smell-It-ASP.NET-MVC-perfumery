@@ -17,14 +17,14 @@ namespace SmellIt.Website.Controllers
         {
             return View();
         }
-        public IActionResult Products()
-        {
-            return View();
-        }
+
+        [Route("home/contact")]
         public IActionResult Contact()
         {
             return View();
         }
+
+        [Route("home/privacy-policy")]
         public async Task<IActionResult> Privacy()
         {
             var privacyPolicy = await Mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(CurrentCulture));

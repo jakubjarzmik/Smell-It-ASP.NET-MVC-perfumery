@@ -19,5 +19,6 @@ public class WebsiteProductDto
     public WebsiteBrandDto? Brand { get; set; }
     public WebsiteFragranceCategoryDto? FragranceCategory { get; set; }
     public GenderDto? Gender { get; set; }
+    public DateTime CreatedAt { get; set; }
     public ICollection<ProductImageDto>? ProductImages { get; set; }
 }

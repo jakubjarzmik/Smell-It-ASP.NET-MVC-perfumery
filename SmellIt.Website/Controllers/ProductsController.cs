@@ -5,6 +5,7 @@ using MediatR;
 using SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWebsite;
 using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedNameForWebsite;
 using SmellIt.Website.Controllers.Abstract;
+using Microsoft.Data.SqlClient;
 
 namespace SmellIt.Website.Controllers;
 public class ProductsController : BaseController
@@ -15,10 +16,11 @@ public class ProductsController : BaseController
     }
 
     [Route("products")]
-    public async Task<IActionResult> Index(string? category, string? brand, string? gender, string? fragranceCategory)
+    public async Task<IActionResult> Index(SortType? sortType, string? category, string? brand, string? gender, string? fragranceCategory)
     {
         var products = await Mediator.Send(new GetFilteredProductsForWebsiteQuery
         {
+            SortType = sortType,
             CategoryEncodedName = category,
             BrandEncodedName = brand,
             GenderEncodedName = gender,
@@ -28,7 +30,7 @@ public class ProductsController : BaseController
         return View(products);
     }
 
-    [Route("products/details/{encodedName}")]
+    [Route("products/{encodedName}/details")]
     public async Task<IActionResult> Details(string encodedName)
     {
         var product = await Mediator.Send(new GetProductByEncodedNameForWebsiteQuery(encodedName, CurrentCulture));
