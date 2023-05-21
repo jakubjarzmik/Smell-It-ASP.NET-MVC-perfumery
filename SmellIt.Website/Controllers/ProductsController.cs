@@ -16,15 +16,15 @@ public class ProductsController : BaseController
     }
 
     [Route("products")]
-    public async Task<IActionResult> Index(SortType? sortType, string? category, string? brand, string? gender, string? fragranceCategory)
+    public async Task<IActionResult> Index(SortType? sort_type, string? category, string? brand, string? gender, string? fragrance_category)
     {
         var products = await Mediator.Send(new GetFilteredProductsForWebsiteQuery
         {
-            SortType = sortType,
+            SortType = sort_type,
             CategoryEncodedName = category,
             BrandEncodedName = brand,
             GenderEncodedName = gender,
-            FragranceCategoryEncodedName = fragranceCategory,
+            FragranceCategoryEncodedName = fragrance_category,
             LanguageCode = CurrentCulture
         });
         return View(products);

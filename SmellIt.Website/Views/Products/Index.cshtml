@@ -1,11 +1,7 @@
 ﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.WebsiteProductDto>
 @{
     ViewData["Title"] = @WebsiteTexts.GetValue("Products");
-    var stringQuery = Context.Request.Query;
-    var isNewestSelected = stringQuery["sortType"] == SortType.Newest.ToString();
-    var isOldestSelected = stringQuery["sortType"] == SortType.Oldest.ToString();
-    var isPriceAscendingSelected = stringQuery["sortType"] == SortType.PriceAscending.ToString();
-    var isPriceDescendingSelected = stringQuery["sortType"] == SortType.PriceDescending.ToString();
+    var stringQuery = Context.Request.Query.Keys;
 }
 
 
@@ -28,14 +24,7 @@
             <div class="col-md-3">
                 <div class="widget">
                     <h4 class="widget-title">@WebsiteTexts.GetValue("SortBy")</h4>
-                    <form method="get" id="sortForm">
-                        <select class="form-control" name="sortType" onchange="document.getElementById('sortForm').submit();">
-                            <option value="@SortType.Newest" selected="@isNewestSelected">@WebsiteTexts.GetValue("Newest")</option>
-                            <option value="@SortType.Oldest" selected="@isOldestSelected">@WebsiteTexts.GetValue("Oldest")</option>
-                            <option value="@SortType.PriceAscending" selected="@isPriceAscendingSelected">@WebsiteTexts.GetValue("PriceAscending")</option>
-                            <option value="@SortType.PriceDescending" selected="@isPriceDescendingSelected">@WebsiteTexts.GetValue("PriceDescending")</option>
-                        </select>
-                    </form>
+                    @await Html.PartialAsync("SortTypes")
                 </div>
                 <div class="widget product-category">
                     <h4 class="widget-title">@WebsiteTexts.GetValue("Filters")</h4>
@@ -43,12 +32,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                         @WebsiteTexts.GetValue("Gender")
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse @(stringQuery.Keys.Contains("gender") ? "in":"")" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapseOne" class="panel-collapse collapse @(stringQuery.Contains("gender") ? "in":"")" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <ul>
                                         @await Component.InvokeAsync("Genders")
@@ -64,7 +53,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseTwo" class="panel-collapse collapse @(stringQuery.Keys.Contains("brand") ? "in":"")" role="tabpanel" aria-labelledby="headingTwo">
+                            <div id="collapseTwo" class="panel-collapse collapse @(stringQuery.Contains("brand") ? "in":"")" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <ul>
                                         @await Component.InvokeAsync("Brands")
@@ -80,7 +69,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse @(stringQuery.Keys.Contains("fragranceCategory") ? "in":"")" role="tabpanel" aria-labelledby="headingThree">
+                            <div id="collapseThree" class="panel-collapse collapse @(stringQuery.Contains("fragrance_category") ? "in":"")" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul>
                                         @await Component.InvokeAsync("FragranceCategories")

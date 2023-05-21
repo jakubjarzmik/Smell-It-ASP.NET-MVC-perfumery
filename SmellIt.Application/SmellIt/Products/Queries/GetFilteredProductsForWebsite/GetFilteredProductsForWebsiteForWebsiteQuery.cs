@@ -2,10 +2,10 @@
 
 public enum SortType
 {
-    Newest,
-    Oldest,
-    PriceAscending,
-    PriceDescending
+    newest,
+    oldest,
+    price_ascending,
+    price_descending
 }
 
 namespace SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWebsite

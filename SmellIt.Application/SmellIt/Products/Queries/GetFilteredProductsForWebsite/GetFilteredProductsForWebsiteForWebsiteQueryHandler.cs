@@ -40,16 +40,16 @@ namespace SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWeb
 
             switch (request.SortType)
             {
-                case SortType.Newest:
+                case SortType.newest:
                     dtos = dtos.OrderByDescending(p => p.CreatedAt);
                     break;
-                case SortType.Oldest:
+                case SortType.oldest:
                     dtos = dtos.OrderBy(p => p.CreatedAt);
                     break;
-                case SortType.PriceAscending:
+                case SortType.price_ascending:
                     dtos = dtos.OrderBy(p => p.Price.Value);
                     break;
-                case SortType.PriceDescending:
+                case SortType.price_descending:
                     dtos = dtos.OrderByDescending(p => p.Price.Value);
                     break;
             }

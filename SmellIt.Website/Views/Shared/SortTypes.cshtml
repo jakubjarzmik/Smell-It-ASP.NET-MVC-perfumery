@@ -1,0 +1,29 @@
+﻿@{
+    var stringQuery = Context.Request.Query;
+    var isNewestSelected = stringQuery["sort_type"] == SortType.newest.ToString();
+    var isOldestSelected = stringQuery["sort_type"] == SortType.oldest.ToString();
+    var isPriceAscendingSelected = stringQuery["sort_type"] == SortType.price_ascending.ToString();
+    var isPriceDescendingSelected = stringQuery["sort_type"] == SortType.price_descending.ToString();
+}
+
+<select class="form-control" id="sort_type" name="sort_type" onchange="changeSortType();">
+    <option value="@SortType.newest" selected="@isNewestSelected">@WebsiteTexts.GetValue("Newest")</option>
+    <option value="@SortType.oldest" selected="@isOldestSelected">@WebsiteTexts.GetValue("Oldest")</option>
+    <option value="@SortType.price_ascending" selected="@isPriceAscendingSelected">@WebsiteTexts.GetValue("PriceAscending")</option>
+    <option value="@SortType.price_descending" selected="@isPriceDescendingSelected">@WebsiteTexts.GetValue("PriceDescending")</option>
+</select>
+
+
+<script>
+    function changeSortType() {
+        var selectElement = document.getElementById('sort_type');
+        var sortType = selectElement.options[selectElement.selectedIndex].value;
+        var url = new URL(window.location.href);
+        var searchParams = new URLSearchParams(url.search);
+
+        searchParams.set('sort_type', sortType);
+
+        url.search = searchParams.toString();
+        window.location.href = url.toString();
+    }
+</script>
