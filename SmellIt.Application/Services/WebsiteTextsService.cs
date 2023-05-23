@@ -15,7 +15,7 @@ public class WebsiteTextsService
     public async Task<string> GetValueAsync(string key)
     {
         var websiteText =  await _mediator.Send(new GetWebsiteTextByKeyQuery(key, CultureInfo.CurrentCulture.ToString()));
-        if (string.IsNullOrWhiteSpace(websiteText.Text))
+        if (websiteText == null!)
             return key;
         return websiteText.Text;
     }

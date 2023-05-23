@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.Features.WebsiteTexts;
+using SmellIt.Application.Features.WebsiteTexts.DTOs;
 
 namespace SmellIt.Application.Mappings.WebsiteTextMapping;
 public class WebsiteTextTranslationsResolver : IValueResolver<WebsiteTextForAdminDto, WebsiteText, ICollection<WebsiteTextTranslation>>

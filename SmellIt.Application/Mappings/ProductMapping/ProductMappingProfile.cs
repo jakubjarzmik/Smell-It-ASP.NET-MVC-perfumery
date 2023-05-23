@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.Products;
 using SmellIt.Application.Features.Products.Commands.EditProduct;
+using SmellIt.Application.Features.Products.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.ProductMapping;

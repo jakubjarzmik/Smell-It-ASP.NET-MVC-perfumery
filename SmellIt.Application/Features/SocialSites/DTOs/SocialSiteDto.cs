@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.SocialSites;
+﻿namespace SmellIt.Application.Features.SocialSites.DTOs;
 public class SocialSiteDto
 {
     public string EncodedName { get; set; } = default!;

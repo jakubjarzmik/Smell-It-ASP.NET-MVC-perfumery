@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Features.ProductImages.DTOs;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.ProductImages.Queries.GetAllProductImages;

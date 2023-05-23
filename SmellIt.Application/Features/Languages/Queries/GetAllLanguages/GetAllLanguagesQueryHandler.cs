@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Features.Languages.DTOs;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.Languages.Queries.GetAllLanguages;

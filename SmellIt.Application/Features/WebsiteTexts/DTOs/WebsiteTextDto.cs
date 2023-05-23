@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.WebsiteTexts;
+﻿namespace SmellIt.Application.Features.WebsiteTexts.DTOs;
 public class WebsiteTextDto
 {
     public string EncodedName { get; set; } = default!;

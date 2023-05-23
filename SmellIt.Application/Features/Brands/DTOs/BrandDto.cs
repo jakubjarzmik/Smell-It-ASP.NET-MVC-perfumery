@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.Brands;
+﻿namespace SmellIt.Application.Features.Brands.DTOs;
 public class BrandDto
 {
     public string EncodedName { get; set; } = default!;

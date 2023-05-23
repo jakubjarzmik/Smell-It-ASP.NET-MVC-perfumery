@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.ProductPrices
+﻿namespace SmellIt.Application.Features.ProductPrices.DTOs
 {
     public class ProductPriceDto
     {

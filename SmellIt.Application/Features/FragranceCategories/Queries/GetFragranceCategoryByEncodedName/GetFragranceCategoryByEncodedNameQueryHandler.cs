@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Features.FragranceCategories.DTOs;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCategoryByEncodedName

@@ -14,23 +14,7 @@ namespace SmellIt.Application.Features.Products.Commands.DeleteProductByEncodedN
 
         public async Task<Unit> Handle(DeleteProductByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            var product = (await _productRepository.GetByEncodedName(request.EncodedName))!;
-            product.IsActive = false;
-            product.DeletedAt = DateTime.Now;
-
-            foreach (var productTranslation in product.ProductTranslations)
-            {
-                productTranslation.IsActive = false;
-                productTranslation.DeletedAt = DateTime.Now;
-            }
-
-            foreach (var productPrice in product.ProductPrices)
-            {
-                productPrice.IsActive = false;
-                productPrice.DeletedAt = DateTime.Now;
-            }
-
-            await _productRepository.Commit();
+            await _productRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

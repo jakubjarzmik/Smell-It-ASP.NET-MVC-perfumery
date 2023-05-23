@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.ProductCategories;
+﻿namespace SmellIt.Application.Features.ProductCategories.DTOs;
 public class WebsiteProductCategoryDto
 {
     public string EncodedName { get; set; } = default!;

@@ -12,7 +12,7 @@ public class CreateWebsiteTextCommandValidator : AbstractValidator<CreateWebsite
             .MaximumLength(50).WithMessage("Key should have maximum of 50 characters")
             .Custom((value, context) =>
             {
-                var existingBrand = websiteTextRepository.GetByKey(value).Result;
+                var existingBrand = websiteTextRepository.GetByKey(value).GetAwaiter().GetResult();
                 if (existingBrand != null)
                 {
                     context.AddFailure($"{value} is not unique key for brand");

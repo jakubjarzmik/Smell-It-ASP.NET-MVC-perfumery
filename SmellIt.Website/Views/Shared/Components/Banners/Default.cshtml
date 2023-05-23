@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.Features.HomeBanners.WebsiteHomeBannerDto>
+﻿@model IEnumerable<SmellIt.Application.Features.HomeBanners.DTOs.WebsiteHomeBannerDto>
 @foreach (var item in Model)
 {
     <div class="slider-item th-fullpage hero-area" style="background-image: url(@item.ImagePath);">
@@ -12,3 +12,4 @@
         </div>
     </div>
 }
+

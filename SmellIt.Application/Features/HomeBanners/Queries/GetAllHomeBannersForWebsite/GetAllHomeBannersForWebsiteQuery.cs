@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.HomeBanners.DTOs;
 
 namespace SmellIt.Application.Features.HomeBanners.Queries.GetAllHomeBannersForWebsite;
 public class GetAllHomeBannersForWebsiteQuery : IRequest<IEnumerable<WebsiteHomeBannerDto>>

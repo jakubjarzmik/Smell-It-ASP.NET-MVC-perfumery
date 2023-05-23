@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SmellIt.Application.Features.Genders.WebsiteGenderDto>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<SmellIt.Application.Features.Genders.DTOs.WebsiteGenderDto>
 @{
     var genders = Model.OrderBy(m => m.Name).Select(m => new { Name = m.Name, EncodedName = m.EncodedName });
     var queryString = Context.Request.Query;

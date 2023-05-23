@@ -1,4 +1,4 @@
-﻿using SmellIt.Application.Features.HomeBanners;
+﻿using SmellIt.Application.Features.HomeBanners.DTOs;
 using SmellIt.Application.ViewModels.Abstract;
 
 namespace SmellIt.Application.ViewModels

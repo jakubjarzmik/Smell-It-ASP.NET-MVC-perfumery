@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.Brands;
 using SmellIt.Application.Features.Brands.Commands.EditBrand;
+using SmellIt.Application.Features.Brands.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.BrandMapping;

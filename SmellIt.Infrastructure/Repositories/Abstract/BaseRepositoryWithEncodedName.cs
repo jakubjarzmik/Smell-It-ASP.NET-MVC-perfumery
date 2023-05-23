@@ -17,6 +17,18 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
             entity.EncodeName();
             await DbContext.SaveChangesAsync();
         }
+
+        public virtual async Task DeleteByEncodedName(string encodedName)
+        {
+            var entity = await GetByEncodedName(encodedName);
+            if (entity != null)
+            {
+                entity.IsActive = false;
+                entity.DeletedAt = DateTime.Now;
+                await DbContext.SaveChangesAsync();
+            }
+        }
+
         public virtual async Task<T?> GetByEncodedName(string encodedName)
             => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
     }

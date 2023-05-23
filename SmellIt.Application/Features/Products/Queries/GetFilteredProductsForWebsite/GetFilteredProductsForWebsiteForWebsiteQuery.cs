@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.Products.DTOs;
 
 public enum SortType
 {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Features.Brands.DTOs;
 using SmellIt.Application.ViewModels;
 using SmellIt.Domain.Interfaces;
 

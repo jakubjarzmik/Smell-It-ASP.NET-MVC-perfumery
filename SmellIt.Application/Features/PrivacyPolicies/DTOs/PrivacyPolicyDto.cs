@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.PrivacyPolicies;
+﻿namespace SmellIt.Application.Features.PrivacyPolicies.DTOs;
 public class PrivacyPolicyDto
 {
     public string EncodedName { get; set; } = default!;

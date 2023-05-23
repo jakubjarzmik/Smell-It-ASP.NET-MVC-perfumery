@@ -14,17 +14,7 @@ namespace SmellIt.Application.Features.FragranceCategories.Commands.DeleteFragra
 
         public async Task<Unit> Handle(DeleteFragranceCategoryByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedName(request.EncodedName))!;
-            fragranceCategory.IsActive = false;
-            fragranceCategory.DeletedAt = DateTime.Now;
-
-            foreach (var fragranceCategoryTranslation in fragranceCategory.FragranceCategoryTranslations)
-            {
-                fragranceCategoryTranslation.IsActive = false;
-                fragranceCategoryTranslation.DeletedAt = DateTime.Now;
-            }
-
-            await _fragranceCategoryRepository.Commit();
+            await _fragranceCategoryRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

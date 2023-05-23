@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SmellIt.Application.Features.Products.WebsiteProductDto>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<SmellIt.Application.Features.Products.DTOs.WebsiteProductDto>
 @{
     ViewData["Title"] = await WebsiteTexts.GetValueAsync("Products");
     var stringQuery = Context.Request.Query.Keys;

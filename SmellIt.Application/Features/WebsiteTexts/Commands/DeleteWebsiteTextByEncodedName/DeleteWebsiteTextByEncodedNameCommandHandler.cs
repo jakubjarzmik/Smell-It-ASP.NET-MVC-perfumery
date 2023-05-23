@@ -14,17 +14,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Commands.DeleteWebsiteTextBy
 
         public async Task<Unit> Handle(DeleteWebsiteTextByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
-            websiteText.IsActive = false;
-            websiteText.DeletedAt = DateTime.Now;
-
-            foreach (var websiteTextTranslation in websiteText.WebsiteTextTranslations)
-            {
-                websiteTextTranslation.IsActive = false;
-                websiteTextTranslation.DeletedAt = DateTime.Now;
-            }
-
-            await _websiteTextRepository.Commit();
+            await _websiteTextRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

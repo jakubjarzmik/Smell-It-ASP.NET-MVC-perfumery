@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.Features.HomeBanners;
+using SmellIt.Application.Features.HomeBanners.DTOs;
 
 namespace SmellIt.Application.Mappings.HomeBannerMapping;
 public class HomeBannerTranslationsResolver : IValueResolver<HomeBannerDto, HomeBanner, ICollection<HomeBannerTranslation>>

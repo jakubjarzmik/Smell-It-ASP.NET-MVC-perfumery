@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.HomeBanners;
+﻿namespace SmellIt.Application.Features.HomeBanners.DTOs;
 public class WebsiteHomeBannerDto
 {
     public string EncodedName { get; set; } = default!;

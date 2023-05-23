@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SmellIt.Application.Features.Brands.WebsiteBrandDto>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<SmellIt.Application.Features.Brands.DTOs.WebsiteBrandDto>
 @{
     var brands = Model.OrderBy(m => m.Name);
     var queryString = Context.Request.Query;

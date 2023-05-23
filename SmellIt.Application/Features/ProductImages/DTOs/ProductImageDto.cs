@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.ProductImages;
+﻿namespace SmellIt.Application.Features.ProductImages.DTOs;
 public class ProductImageDto
 {
     public int Id { get; set; }

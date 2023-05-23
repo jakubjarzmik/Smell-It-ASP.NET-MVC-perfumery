@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.Languages.DTOs;
 
 namespace SmellIt.Application.Features.Languages.Queries.GetAllLanguages
 {

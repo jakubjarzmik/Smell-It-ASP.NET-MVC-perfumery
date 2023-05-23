@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.Features.ProductCategories;
+using SmellIt.Application.Features.ProductCategories.DTOs;
 
 namespace SmellIt.Application.Mappings.ProductCategoryMapping;
 public class ParentCategoryResolver : IValueResolver<ProductCategoryDto, ProductCategory, ProductCategory?>

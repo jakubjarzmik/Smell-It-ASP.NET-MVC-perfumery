@@ -1,5 +1,5 @@
-﻿namespace SmellIt.Application.Features.FragranceCategories;
-public class WebsiteFragranceCategoryDto
+﻿namespace SmellIt.Application.Features.Brands.DTOs;
+public class WebsiteBrandDto
 {
     public string EncodedName { get; set; } = default!;
     public string Name { get; set; } = default!;

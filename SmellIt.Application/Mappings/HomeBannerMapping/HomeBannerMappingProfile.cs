@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.HomeBanners;
 using SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner;
+using SmellIt.Application.Features.HomeBanners.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.HomeBannerMapping;

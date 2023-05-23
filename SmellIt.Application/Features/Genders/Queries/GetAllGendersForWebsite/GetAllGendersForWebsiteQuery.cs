@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.Genders.DTOs;
 
 namespace SmellIt.Application.Features.Genders.Queries.GetAllGendersForWebsite
 {

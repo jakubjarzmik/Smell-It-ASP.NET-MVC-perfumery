@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SmellIt.Application.Features.HomeBanners.DTOs;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.HomeBanners.Queries.GetAllHomeBannersForWebsite;

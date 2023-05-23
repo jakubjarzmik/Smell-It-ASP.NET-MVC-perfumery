@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using SmellIt.Application.Features.Products.DTOs;
 
 namespace SmellIt.Application.Features.Products.Commands.CreateProduct
 {

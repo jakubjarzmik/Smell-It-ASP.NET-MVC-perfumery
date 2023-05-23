@@ -37,4 +37,63 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
 
         return products;
     }
+
+    public override async Task Delete(Product product)
+    {
+        product.IsActive = false;
+        product.DeletedAt = DateTime.Now;
+
+        DeleteAllRelatedObjects(product);
+
+        await DbContext.SaveChangesAsync();
+    }
+
+    public override async Task DeleteByEncodedName(string encodedName)
+    {
+        var product = await GetByEncodedName(encodedName);
+        if (product != null)
+        {
+            product.IsActive = false;
+            product.DeletedAt = DateTime.Now;
+
+            DeleteAllRelatedObjects(product);
+
+            await DbContext.SaveChangesAsync();
+        }
+    }
+
+    private void DeleteAllRelatedObjects(Product product)
+    {
+        DeleteTranslations(product);
+        DeletePrices(product);
+        DeleteImages(product);
+    }
+
+    private void DeleteTranslations(Product product)
+    {
+        foreach (var productTranslation in product.ProductTranslations)
+        {
+            productTranslation.IsActive = false;
+            productTranslation.DeletedAt = DateTime.Now;
+        }
+    }
+
+    private void DeletePrices(Product product)
+    {
+        foreach (var productPrice in product.ProductPrices)
+        {
+            productPrice.IsActive = false;
+            productPrice.DeletedAt = DateTime.Now;
+        }
+    }
+
+    private void DeleteImages(Product product)
+    {
+        if (product.ProductImages == null) return;
+        foreach (var productImage in product.ProductImages)
+        {
+            productImage.IsActive = false;
+            productImage.DeletedAt = DateTime.Now;
+        }
+    }
 }

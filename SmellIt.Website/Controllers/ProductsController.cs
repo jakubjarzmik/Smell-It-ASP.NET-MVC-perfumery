@@ -5,7 +5,6 @@ using MediatR;
 using SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWebsite;
 using SmellIt.Application.Features.Products.Queries.GetProductByEncodedNameForWebsite;
 using SmellIt.Website.Controllers.Abstract;
-using Microsoft.Data.SqlClient;
 
 namespace SmellIt.Website.Controllers;
 public class ProductsController : BaseController

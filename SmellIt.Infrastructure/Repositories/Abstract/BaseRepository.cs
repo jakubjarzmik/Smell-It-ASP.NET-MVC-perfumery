@@ -19,6 +19,13 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
             await DbContext.SaveChangesAsync();
         }
 
+        public virtual async Task Delete(T entity)
+        {
+            entity.IsActive = false;
+            entity.DeletedAt = DateTime.Now;
+            await DbContext.SaveChangesAsync();
+        }
+
         public virtual async Task<IEnumerable<T>> GetAll()
             => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 

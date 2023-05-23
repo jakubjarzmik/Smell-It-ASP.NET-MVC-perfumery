@@ -14,17 +14,7 @@ namespace SmellIt.Application.Features.HomeBanners.Commands.DeleteHomeBannerByEn
 
         public async Task<Unit> Handle(DeleteHomeBannerByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            var homeBanner = (await _homeBannerRepository.GetByEncodedName(request.EncodedName))!;
-            homeBanner.IsActive = false;
-            homeBanner.DeletedAt = DateTime.Now;
-
-            foreach (var homeBannerTranslation in homeBanner.HomeBannerTranslations)
-            {
-                homeBannerTranslation.IsActive = false;
-                homeBannerTranslation.DeletedAt = DateTime.Now;
-            }
-
-            await _homeBannerRepository.Commit();
+            await _homeBannerRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.ProductPrices.DTOs;
 
 namespace SmellIt.Application.Features.ProductPrices.Queries.GetAllProductPricesByProductEncodedName
 {

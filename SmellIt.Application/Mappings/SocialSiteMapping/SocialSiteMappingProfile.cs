@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.SocialSites;
 using SmellIt.Application.Features.SocialSites.Commands.EditSocialSite;
+using SmellIt.Application.Features.SocialSites.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.SocialSiteMapping;

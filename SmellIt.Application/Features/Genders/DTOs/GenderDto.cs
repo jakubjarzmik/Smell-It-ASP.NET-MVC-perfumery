@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.Genders;
+﻿namespace SmellIt.Application.Features.Genders.DTOs;
 public class GenderDto
 {
     public int Id { get; set; }

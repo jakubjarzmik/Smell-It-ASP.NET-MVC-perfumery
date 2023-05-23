@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.WebsiteTexts;
 using SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText;
+using SmellIt.Application.Features.WebsiteTexts.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.WebsiteTextMapping;

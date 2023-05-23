@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.ProductCategories;
 using SmellIt.Application.Features.ProductCategories.Commands.EditProductCategory;
+using SmellIt.Application.Features.ProductCategories.DTOs;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.ProductCategoryMapping;

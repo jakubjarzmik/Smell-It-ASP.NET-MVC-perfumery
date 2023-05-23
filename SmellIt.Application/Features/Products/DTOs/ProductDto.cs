@@ -1,11 +1,11 @@
-﻿using SmellIt.Application.Features.Brands;
-using SmellIt.Application.Features.FragranceCategories;
-using SmellIt.Application.Features.Genders;
-using SmellIt.Application.Features.ProductCategories;
-using SmellIt.Application.Features.ProductImages;
-using SmellIt.Application.Features.ProductPrices;
+﻿using SmellIt.Application.Features.Brands.DTOs;
+using SmellIt.Application.Features.FragranceCategories.DTOs;
+using SmellIt.Application.Features.Genders.DTOs;
+using SmellIt.Application.Features.ProductCategories.DTOs;
+using SmellIt.Application.Features.ProductImages.DTOs;
+using SmellIt.Application.Features.ProductPrices.DTOs;
 
-namespace SmellIt.Application.Features.Products;
+namespace SmellIt.Application.Features.Products.DTOs;
 public class ProductDto
 {
     public string EncodedName { get; set; } = default!;

@@ -1,4 +1,4 @@
-﻿namespace SmellIt.Application.Features.Languages;
+﻿namespace SmellIt.Application.Features.Languages.DTOs;
 public class LanguageDto
 {
     public int Id { get; set; } = default!;

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmellIt.Application.Features.WebsiteTexts.DTOs;
 
 namespace SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByKey
 {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.Features.PrivacyPolicies;
+using SmellIt.Application.Features.PrivacyPolicies.DTOs;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
