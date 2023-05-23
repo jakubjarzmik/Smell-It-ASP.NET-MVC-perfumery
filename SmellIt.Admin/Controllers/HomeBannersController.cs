@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.SmellIt.HomeBanners.Commands.CreateHomeBanner;
-using SmellIt.Application.SmellIt.HomeBanners.Commands.DeleteHomeBannerByEncodedName;
-using SmellIt.Application.SmellIt.HomeBanners.Commands.EditHomeBanner;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetHomeBannerByEncodedName;
+using SmellIt.Application.Features.HomeBanners.Commands.CreateHomeBanner;
+using SmellIt.Application.Features.HomeBanners.Commands.DeleteHomeBannerByEncodedName;
+using SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner;
+using SmellIt.Application.Features.HomeBanners.Queries.GetHomeBannerByEncodedName;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.HomeBanners.Queries.GetPaginatedHomeBanners;
+using SmellIt.Application.Features.HomeBanners.Queries.GetPaginatedHomeBanners;
 
 namespace SmellIt.Admin.Controllers;
 public class HomeBannersController : BaseController

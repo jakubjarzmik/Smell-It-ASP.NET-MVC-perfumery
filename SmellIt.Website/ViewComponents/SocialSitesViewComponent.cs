@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.SocialSites.Queries.GetAllSocialSites;
+using SmellIt.Application.Features.SocialSites.Queries.GetAllSocialSites;
 using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.SmellIt.FragranceCategories;
+using SmellIt.Application.Features.FragranceCategories;
 
 namespace SmellIt.Application.Mappings.FragranceCategoryMapping;
 public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCategoryDto, FragranceCategory, ICollection<FragranceCategoryTranslation>>

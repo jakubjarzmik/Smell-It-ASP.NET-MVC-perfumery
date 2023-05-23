@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.FragranceCategories.WebsiteFragranceCategoryDto>
+﻿@model IEnumerable<SmellIt.Application.Features.FragranceCategories.WebsiteFragranceCategoryDto>
 @{
     var fragranceCategories = Model.OrderBy(m => m.Name).Select(m => new { Name = m.Name, EncodedName = m.EncodedName });
 
@@ -13,7 +13,7 @@
         }
     }
 }
-<li><a asp-all-route-data="routeValues">@WebsiteTexts.GetValue("All")</a></li>
+<li><a asp-all-route-data="routeValues">@await WebsiteTexts.GetValueAsync("All")</a></li>
 @foreach (var fragranceCategory in fragranceCategories)
 {
     routeValues["fragrance_category"] = fragranceCategory.EncodedName;

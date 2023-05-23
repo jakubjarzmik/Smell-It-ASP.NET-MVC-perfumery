@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Brands.WebsiteBrandDto>
+﻿@model IEnumerable<SmellIt.Application.Features.Brands.WebsiteBrandDto>
 @{
     var brands = Model.OrderBy(m => m.Name);
     var queryString = Context.Request.Query;
@@ -12,7 +12,7 @@
         }
     }
 }
-<li><a asp-all-route-data="routeValues">@WebsiteTexts.GetValue("All")</a></li>
+<li><a asp-all-route-data="routeValues">@await WebsiteTexts.GetValueAsync("All")</a></li>
 @foreach (var brand in brands)
 {
     routeValues["brand"] = brand.EncodedName;

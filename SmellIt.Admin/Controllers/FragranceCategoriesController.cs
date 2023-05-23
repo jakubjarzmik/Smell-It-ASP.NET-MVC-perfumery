@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.FragranceCategories.Commands.CreateFragranceCategory;
-using SmellIt.Application.SmellIt.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName;
-using SmellIt.Application.SmellIt.FragranceCategories.Commands.EditFragranceCategory;
-using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
-using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetPaginatedFragranceCategories;
+using SmellIt.Application.Features.FragranceCategories.Commands.CreateFragranceCategory;
+using SmellIt.Application.Features.FragranceCategories.Commands.DeleteFragranceCategoryByEncodedName;
+using SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory;
+using SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
+using SmellIt.Application.Features.FragranceCategories.Queries.GetPaginatedFragranceCategories;
 
 namespace SmellIt.Admin.Controllers;
 public class FragranceCategoriesController : BaseController

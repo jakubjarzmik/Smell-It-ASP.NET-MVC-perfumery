@@ -7,10 +7,10 @@
 }
 
 <select class="form-control" id="sort_type" name="sort_type" onchange="changeSortType();">
-    <option value="@SortType.newest" selected="@isNewestSelected">@WebsiteTexts.GetValue("Newest")</option>
-    <option value="@SortType.oldest" selected="@isOldestSelected">@WebsiteTexts.GetValue("Oldest")</option>
-    <option value="@SortType.price_ascending" selected="@isPriceAscendingSelected">@WebsiteTexts.GetValue("PriceAscending")</option>
-    <option value="@SortType.price_descending" selected="@isPriceDescendingSelected">@WebsiteTexts.GetValue("PriceDescending")</option>
+    <option value="@SortType.newest" selected="@isNewestSelected">@await WebsiteTexts.GetValueAsync("Newest")</option>
+    <option value="@SortType.oldest" selected="@isOldestSelected">@await WebsiteTexts.GetValueAsync("Oldest")</option>
+    <option value="@SortType.price_ascending" selected="@isPriceAscendingSelected">@await WebsiteTexts.GetValueAsync("PriceAscending")</option>
+    <option value="@SortType.price_descending" selected="@isPriceDescendingSelected">@await WebsiteTexts.GetValueAsync("PriceDescending")</option>
 </select>
 
 

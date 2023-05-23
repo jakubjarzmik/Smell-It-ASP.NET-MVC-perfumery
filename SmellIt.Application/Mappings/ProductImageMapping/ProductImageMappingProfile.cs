@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.ProductImages;
+using SmellIt.Application.Features.ProductImages;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.ProductImageMapping;

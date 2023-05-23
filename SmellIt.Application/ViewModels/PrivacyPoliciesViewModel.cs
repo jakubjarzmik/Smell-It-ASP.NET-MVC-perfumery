@@ -1,5 +1,5 @@
-﻿using SmellIt.Application.SmellIt.Languages;
-using SmellIt.Application.SmellIt.PrivacyPolicies;
+﻿using SmellIt.Application.Features.Languages;
+using SmellIt.Application.Features.PrivacyPolicies;
 
 namespace SmellIt.Application.ViewModels
 {

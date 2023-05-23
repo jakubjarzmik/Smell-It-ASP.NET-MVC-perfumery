@@ -3,16 +3,16 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Helpers;
-using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrands;
-using SmellIt.Application.SmellIt.FragranceCategories.Queries.GetAllFragranceCategories;
-using SmellIt.Application.SmellIt.Genders.Queries.GetAllGenders;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategories;
-using SmellIt.Application.SmellIt.ProductPrices.Queries.GetAllProductPricesByProductEncodedName;
-using SmellIt.Application.SmellIt.Products.Commands.CreateProduct;
-using SmellIt.Application.SmellIt.Products.Commands.DeleteProductByEncodedName;
-using SmellIt.Application.SmellIt.Products.Commands.EditProduct;
-using SmellIt.Application.SmellIt.Products.Queries.GetPaginatedProducts;
-using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedName;
+using SmellIt.Application.Features.Brands.Queries.GetAllBrands;
+using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategories;
+using SmellIt.Application.Features.Genders.Queries.GetAllGenders;
+using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
+using SmellIt.Application.Features.ProductPrices.Queries.GetAllProductPricesByProductEncodedName;
+using SmellIt.Application.Features.Products.Commands.CreateProduct;
+using SmellIt.Application.Features.Products.Commands.DeleteProductByEncodedName;
+using SmellIt.Application.Features.Products.Commands.EditProduct;
+using SmellIt.Application.Features.Products.Queries.GetPaginatedProducts;
+using SmellIt.Application.Features.Products.Queries.GetProductByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
 public class ProductsController : BaseController

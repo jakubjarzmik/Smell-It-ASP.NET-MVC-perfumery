@@ -3,7 +3,7 @@ using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
 using Microsoft.AspNetCore.Localization;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
+using SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
 using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers

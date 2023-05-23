@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.Languages;
+using SmellIt.Application.Features.Languages;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.LanguageMapping;

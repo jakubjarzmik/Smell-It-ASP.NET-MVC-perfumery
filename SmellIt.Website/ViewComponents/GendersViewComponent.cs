@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.Genders.Queries.GetAllGendersForWebsite;
+using SmellIt.Application.Features.Genders.Queries.GetAllGendersForWebsite;
 using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents;

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Genders.WebsiteGenderDto>
+﻿@model IEnumerable<SmellIt.Application.Features.Genders.WebsiteGenderDto>
 @{
     var genders = Model.OrderBy(m => m.Name).Select(m => new { Name = m.Name, EncodedName = m.EncodedName });
     var queryString = Context.Request.Query;
@@ -12,7 +12,7 @@
         }
     }
 }
-<li><a asp-all-route-data="routeValues">@WebsiteTexts.GetValue("All")</a></li>
+<li><a asp-all-route-data="routeValues">@await WebsiteTexts.GetValueAsync("All")</a></li>
 @foreach (var gender in genders)
 {
     routeValues["gender"] = gender.EncodedName;

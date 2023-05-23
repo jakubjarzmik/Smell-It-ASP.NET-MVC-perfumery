@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
+using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
 using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.ProductCategories.WebsiteProductCategoryDto>
+﻿@model IEnumerable<SmellIt.Application.Features.ProductCategories.WebsiteProductCategoryDto>
 @{
     int i = 0;
     bool isSecond = false;
@@ -7,13 +7,13 @@
 <li class="dropdown dropdown-slide">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
        role="button" aria-haspopup="true" aria-expanded="false">
-        @WebsiteTexts.GetValue("Products") <span class="tf-ion-ios-arrow-down"></span>
+        @await WebsiteTexts.GetValueAsync("Products") <span class="tf-ion-ios-arrow-down"></span>
     </a>
     <div class="dropdown-menu">
         <div class="row">
             <div class="col-lg-12 col-md-12 mb-sm-12">
                 <ul>
-                    <li><a class="text-center" href="/products">@WebsiteTexts.GetValue("AllProducts")</a></li>
+                    <li><a class="text-center" href="/products">@await WebsiteTexts.GetValueAsync("AllProducts")</a></li>
                     <li role="separator" class="divider"></li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                             }
                             <li class="dropdown-header">@item.Name</li>
                             <li role="separator" class="divider"></li>
-                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@WebsiteTexts.GetValue("All")</a></li>
+                            <li><a asp-controller="Products" asp-action="Index" asp-route-category="@item.EncodedName">@await WebsiteTexts.GetValueAsync("All")</a></li>
                         }
                         else
                         {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.PrivacyPolicies;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.EditPrivacyPolicy;
+using SmellIt.Application.Features.PrivacyPolicies;
+using SmellIt.Application.Features.PrivacyPolicies.Commands.EditPrivacyPolicy;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.PrivacyPolicyMapping;
@@ -10,7 +10,7 @@ public class PrivacyPolicyMappingProfile : Profile
     {
         CreateMap<PrivacyPolicyDto, PrivacyPolicy>()
             .ForMember(pp => pp.Language,
-                opt => opt.MapFrom<LanguageResolver>());
+                opt => opt.MapFrom<PrivacyPolicyLanguageResolver>());
         CreateMap<PrivacyPolicy, PrivacyPolicyDto>()
             .ForMember(pp => pp.LanguageCode,
                 opt => opt.MapFrom(src=>src.Language.Code));

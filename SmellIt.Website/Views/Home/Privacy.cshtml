@@ -1,6 +1,6 @@
-﻿@model SmellIt.Application.SmellIt.PrivacyPolicies.PrivacyPolicyDto
+﻿@model SmellIt.Application.Features.PrivacyPolicies.PrivacyPolicyDto
 @{
-    ViewData["Title"] = @WebsiteTexts.GetValue("PrivacyPolicy");
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("PrivacyPolicy");
 }
 <style>
     .dots li:before {
@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="dots col-sm-12">
-            <h2 class="text-center">@WebsiteTexts.GetValue("PrivacyTitle")</h2>
+            <h2 class="text-center">@await WebsiteTexts.GetValueAsync("PrivacyTitle")</h2>
             @Html.Raw(Model.Text)
         </div>
     </div>

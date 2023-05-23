@@ -1,4 +1,4 @@
-﻿using SmellIt.Application.SmellIt.ProductCategories;
+﻿using SmellIt.Application.Features.ProductCategories;
 
 namespace SmellIt.Application.Helpers;
 public interface IProductCategoryPrefixGenerator : IHelper

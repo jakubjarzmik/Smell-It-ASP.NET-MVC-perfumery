@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.CreateWebsiteText;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
-using SmellIt.Application.SmellIt.WebsiteTexts.Commands.EditWebsiteText;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
+using SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText;
+using SmellIt.Application.Features.WebsiteTexts.Commands.DeleteWebsiteTextByEncodedName;
+using SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText;
+using SmellIt.Application.Features.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
+using SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
 public class WebsiteTextsController : BaseController

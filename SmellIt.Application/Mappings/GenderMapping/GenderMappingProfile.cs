@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmellIt.Application.SmellIt.Genders;
+using SmellIt.Application.Features.Genders;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.GenderMapping;

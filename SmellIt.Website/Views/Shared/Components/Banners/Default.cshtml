@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.HomeBanners.WebsiteHomeBannerDto>
+﻿@model IEnumerable<SmellIt.Application.Features.HomeBanners.WebsiteHomeBannerDto>
 @foreach (var item in Model)
 {
     <div class="slider-item th-fullpage hero-area" style="background-image: url(@item.ImagePath);">
@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-8 text-center">
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@item.Text</h1>
-                    <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Products", "Home")">@WebsiteTexts.GetValue("SeeNow")</a>
+                    <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@Url.Action("Index", "Products")">@await WebsiteTexts.GetValueAsync("SeeNow")</a>
                 </div>
             </div>
         </div>

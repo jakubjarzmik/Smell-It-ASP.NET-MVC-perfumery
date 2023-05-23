@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Application.SmellIt.Brands;
+using SmellIt.Application.Features.Brands;
 
 namespace SmellIt.Application.Mappings.BrandMapping;
 public class BrandTranslationsResolver : IValueResolver<BrandDto, Brand, ICollection<BrandTranslation>>

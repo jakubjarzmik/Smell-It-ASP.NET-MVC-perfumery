@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using MediatR;
-using SmellIt.Application.SmellIt.WebsiteTexts.Queries.GetWebsiteTextByKey;
+using SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByKey;
 
 namespace SmellIt.Application.Services;
 public class WebsiteTextsService
@@ -12,13 +12,11 @@ public class WebsiteTextsService
         _mediator = mediator;
     }
 
-    public string GetValue(string key)
+    public async Task<string> GetValueAsync(string key)
     {
-        var layoutText = _mediator.Send(new GetWebsiteTextByKeyQuery(key)).Result;
-        if (layoutText == null)
+        var websiteText =  await _mediator.Send(new GetWebsiteTextByKeyQuery(key, CultureInfo.CurrentCulture.ToString()));
+        if (string.IsNullOrWhiteSpace(websiteText.Text))
             return key;
-        if (CultureInfo.CurrentCulture.ToString().Equals("pl-PL"))
-            return layoutText.TextPl;
-        return layoutText.TextEn;
+        return websiteText.Text;
     }
 }

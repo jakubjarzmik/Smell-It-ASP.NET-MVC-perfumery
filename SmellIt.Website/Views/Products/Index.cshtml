@@ -1,6 +1,6 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.WebsiteProductDto>
+﻿@model IEnumerable<SmellIt.Application.Features.Products.WebsiteProductDto>
 @{
-    ViewData["Title"] = @WebsiteTexts.GetValue("Products");
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("Products");
     var stringQuery = Context.Request.Query.Keys;
 }
 
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content">
-                    <h1 class="page-name">@WebsiteTexts.GetValue("Products")</h1>
+                    <h1 class="page-name">@await WebsiteTexts.GetValueAsync("Products")</h1>
                 </div>
             </div>
         </div>
@@ -23,17 +23,17 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="widget">
-                    <h4 class="widget-title">@WebsiteTexts.GetValue("SortBy")</h4>
+                    <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("SortBy")</h4>
                     @await Html.PartialAsync("SortTypes")
                 </div>
                 <div class="widget product-category">
-                    <h4 class="widget-title">@WebsiteTexts.GetValue("Filters")</h4>
+                    <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Filters")</h4>
                     <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        @WebsiteTexts.GetValue("Gender")
+                                        @await WebsiteTexts.GetValueAsync("Gender")
                                     </a>
                                 </h4>
                             </div>
@@ -49,7 +49,7 @@
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        @WebsiteTexts.GetValue("Brand")
+                                        @await WebsiteTexts.GetValueAsync("Brand")
                                     </a>
                                 </h4>
                             </div>
@@ -65,7 +65,7 @@
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        @WebsiteTexts.GetValue("FragranceCategory")
+                                        @await WebsiteTexts.GetValueAsync("FragranceCategory")
                                     </a>
                                 </h4>
                             </div>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-main btn-medium center-align" asp-all-route-data="null">@WebsiteTexts.GetValue("ClearAll")</a>
+                    <a class="btn btn-main btn-medium center-align" asp-all-route-data="null">@await WebsiteTexts.GetValueAsync("ClearAll")</a>
                 </div>
             </div>
             <div class="col-md-9">

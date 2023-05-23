@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.Brands.Commands.CreateBrand;
-using SmellIt.Application.SmellIt.Brands.Commands.DeleteBrandByEncodedName;
-using SmellIt.Application.SmellIt.Brands.Commands.EditBrand;
-using SmellIt.Application.SmellIt.Brands.Queries.GetBrandByEncodedName;
-using SmellIt.Application.SmellIt.Brands.Queries.GetPaginatedBrands;
+using SmellIt.Application.Features.Brands.Commands.CreateBrand;
+using SmellIt.Application.Features.Brands.Commands.DeleteBrandByEncodedName;
+using SmellIt.Application.Features.Brands.Commands.EditBrand;
+using SmellIt.Application.Features.Brands.Queries.GetBrandByEncodedName;
+using SmellIt.Application.Features.Brands.Queries.GetPaginatedBrands;
 
 namespace SmellIt.Admin.Controllers;
 public class BrandsController : BaseController

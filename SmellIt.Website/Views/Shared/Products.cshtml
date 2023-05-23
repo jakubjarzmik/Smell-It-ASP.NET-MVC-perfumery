@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmellIt.Application.SmellIt.Products.WebsiteProductDto>
+﻿@model IEnumerable<SmellIt.Application.Features.Products.WebsiteProductDto>
 
 @foreach (var item in Model)
 {
@@ -60,13 +60,13 @@
                                 else
                                 {
                                     <p class="product-price"><del>@item.Price.Value</del> @item.PromotionalPrice.Value zł</p>
-                                    <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł</p>
+                                    <p>@await WebsiteTexts.GetValueAsync("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł</p>
                                 }
                                 <p class="product-short-description">
                                     @item.Description
                                 </p>
-                                <a href="#" class="btn btn-main">@WebsiteTexts.GetValue("AddToCart")</a>
-                                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName" class="btn btn-transparent">@WebsiteTexts.GetValue("ViewProductDetails")</a>
+                                <a href="#" class="btn btn-main">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
+                                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName" class="btn btn-transparent">@await WebsiteTexts.GetValueAsync("ViewProductDetails")</a>
                             </div>
                         </div>
                     </div>

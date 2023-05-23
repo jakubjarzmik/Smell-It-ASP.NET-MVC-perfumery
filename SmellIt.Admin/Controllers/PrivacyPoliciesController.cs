@@ -2,12 +2,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.CreatePrivacyPolicy;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.DeletePrivacyPolicyByEncodedName;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Commands.EditPrivacyPolicy;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
-using SmellIt.Application.SmellIt.PrivacyPolicies.Queries.GetPrivacyPolicyByEncodedName;
-using SmellIt.Application.SmellIt.Languages.Queries.GetAllLanguages;
+using SmellIt.Application.Features.PrivacyPolicies.Commands.CreatePrivacyPolicy;
+using SmellIt.Application.Features.PrivacyPolicies.Commands.DeletePrivacyPolicyByEncodedName;
+using SmellIt.Application.Features.PrivacyPolicies.Commands.EditPrivacyPolicy;
+using SmellIt.Application.Features.PrivacyPolicies.Queries.GetAllPrivacyPolicies;
+using SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyByEncodedName;
+using SmellIt.Application.Features.Languages.Queries.GetAllLanguages;
 
 namespace SmellIt.Admin.Controllers;
 public class PrivacyPoliciesController : BaseController

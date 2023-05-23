@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.SmellIt.SocialSites.Commands.CreateSocialSite;
-using SmellIt.Application.SmellIt.SocialSites.Commands.DeleteSocialSiteByEncodedName;
-using SmellIt.Application.SmellIt.SocialSites.Commands.EditSocialSite;
-using SmellIt.Application.SmellIt.SocialSites.Queries.GetPaginatedSocialSites;
-using SmellIt.Application.SmellIt.SocialSites.Queries.GetSocialSiteByEncodedName;
+using SmellIt.Application.Features.SocialSites.Commands.CreateSocialSite;
+using SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEncodedName;
+using SmellIt.Application.Features.SocialSites.Commands.EditSocialSite;
+using SmellIt.Application.Features.SocialSites.Queries.GetPaginatedSocialSites;
+using SmellIt.Application.Features.SocialSites.Queries.GetSocialSiteByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
 public class SocialSitesController : BaseController

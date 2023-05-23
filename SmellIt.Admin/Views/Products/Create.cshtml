@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SmellIt.Application.Helpers
-@using SmellIt.Application.SmellIt.Brands
-@using SmellIt.Application.SmellIt.FragranceCategories
-@using SmellIt.Application.SmellIt.Genders
-@using SmellIt.Application.SmellIt.ProductCategories
-@model SmellIt.Application.SmellIt.Products.Commands.CreateProduct.CreateProductCommand
+@using SmellIt.Application.Features.Brands
+@using SmellIt.Application.Features.FragranceCategories
+@using SmellIt.Application.Features.Genders
+@using SmellIt.Application.Features.ProductCategories
+@model SmellIt.Application.Features.Products.Commands.CreateProduct.CreateProductCommand
 @{
     var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;
     ViewData["Title"] = language.GetValue("AddNewProduct");

@@ -1,7 +1,7 @@
-﻿@using SmellIt.Application.SmellIt.ProductCategories
+﻿@using SmellIt.Application.Features.ProductCategories
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SmellIt.Application.Helpers
-@model SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory.CreateProductCategoryCommand
+@model SmellIt.Application.Features.ProductCategories.Commands.CreateProductCategory.CreateProductCategoryCommand
 @{
     ViewData["Title"] = language.GetValue("AddNewProductCategory");
     var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;

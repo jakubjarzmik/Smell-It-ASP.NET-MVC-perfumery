@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmellIt.Application.SmellIt.Brands.Queries.GetAllBrandsForWebsite;
+using SmellIt.Application.Features.Brands.Queries.GetAllBrandsForWebsite;
 using SmellIt.Website.ViewComponents.Abstract;
 
 namespace SmellIt.Website.ViewComponents;

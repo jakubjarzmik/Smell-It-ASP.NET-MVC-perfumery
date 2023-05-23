@@ -1,5 +1,7 @@
-﻿@model SmellIt.Application.SmellIt.Products.WebsiteProductDto
+﻿@model SmellIt.Application.Features.Products.WebsiteProductDto
 @{
+    ViewData["Title"] = $"{Model.Brand?.Name} - {Model.Name}";
+
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
     bool active = false;
@@ -50,7 +52,7 @@
                     else
                     {
                         <p class="product-price"><del>@Model.Price.Value</del> @Model.PromotionalPrice.Value zł</p>
-                        <p>@WebsiteTexts.GetValue("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
+                        <p>@await WebsiteTexts.GetValueAsync("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
                     }
                     <p class="product-description mt-20">
                         @Model.Description
@@ -58,40 +60,40 @@
                     @if (Model.ProductCategory != null)
                     {
                         <p>
-                            <strong>@WebsiteTexts.GetValue("Category"): </strong>
+                            <strong>@await WebsiteTexts.GetValueAsync("Category"): </strong>
                             @Model.ProductCategory.Name
                         </p>
                     }
                     @if (Model.Capacity != null)
                     {
                         <p>
-                            <strong>@WebsiteTexts.GetValue("Capacity"): </strong>
+                            <strong>@await WebsiteTexts.GetValueAsync("Capacity"): </strong>
                             @Model.Capacity ml
                         </p>
                     }
                     @if (Model.Gender != null)
                     {
                         <p>
-                            <strong>@WebsiteTexts.GetValue("Gender"): </strong>
+                            <strong>@await WebsiteTexts.GetValueAsync("Gender"): </strong>
                             @(currentCulture == "pl-PL" ? Model.Gender?.NamePl : Model.Gender?.NameEn)
                         </p>
                     }
                     @if (Model.FragranceCategory != null)
                     {
                         <p>
-                            <strong>@WebsiteTexts.GetValue("FragranceCategory"): </strong>
+                            <strong>@await WebsiteTexts.GetValueAsync("FragranceCategory"): </strong>
                             @Model.FragranceCategory.Name
                         </p>
                     }
 
                     <div class="product-quantity">
-                        <span>@WebsiteTexts.GetValue("Quantity"):</span>
+                        <span>@await WebsiteTexts.GetValueAsync("Quantity"):</span>
                         <div class="product-quantity-slider">
                             <input id="product-quantity" type="text" value="1" name="product-quantity">
                         </div>
                     </div>
 
-                    <a href="" class="btn btn-main mt-20">@WebsiteTexts.GetValue("AddToCart")</a>
+                    <a href="" class="btn btn-main mt-20">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
 
                 </div>
             </div>

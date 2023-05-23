@@ -2,8 +2,8 @@
 using SmellIt.Website.Models;
 using System.Diagnostics;
 using MediatR;
-using SmellIt.Application.SmellIt.Products.Queries.GetFilteredProductsForWebsite;
-using SmellIt.Application.SmellIt.Products.Queries.GetProductByEncodedNameForWebsite;
+using SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWebsite;
+using SmellIt.Application.Features.Products.Queries.GetProductByEncodedNameForWebsite;
 using SmellIt.Website.Controllers.Abstract;
 using Microsoft.Data.SqlClient;
 

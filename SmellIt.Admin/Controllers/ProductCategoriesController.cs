@@ -3,12 +3,12 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Helpers;
-using SmellIt.Application.SmellIt.ProductCategories.Commands.CreateProductCategory;
-using SmellIt.Application.SmellIt.ProductCategories.Commands.DeleteProductCategoryByEncodedName;
-using SmellIt.Application.SmellIt.ProductCategories.Commands.EditProductCategory;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetAllProductCategories;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetPaginatedProductCategories;
-using SmellIt.Application.SmellIt.ProductCategories.Queries.GetProductCategoryByEncodedName;
+using SmellIt.Application.Features.ProductCategories.Commands.CreateProductCategory;
+using SmellIt.Application.Features.ProductCategories.Commands.DeleteProductCategoryByEncodedName;
+using SmellIt.Application.Features.ProductCategories.Commands.EditProductCategory;
+using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
+using SmellIt.Application.Features.ProductCategories.Queries.GetPaginatedProductCategories;
+using SmellIt.Application.Features.ProductCategories.Queries.GetProductCategoryByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
 public class ProductCategoriesController : BaseController
