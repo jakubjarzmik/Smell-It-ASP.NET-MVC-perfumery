@@ -15,8 +15,8 @@ public class ProductTranslationsResolver : IValueResolver<ProductDto, Product, I
 
     public ICollection<ProductTranslation> Resolve(ProductDto source, Product destination, ICollection<ProductTranslation> destMember, ResolutionContext context)
     {
-        var plLanguage = _languageRepository.GetByCodeAsync("pl-PL").Result;
-        var enLanguage = _languageRepository.GetByCodeAsync("en-GB").Result;
+        var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
+        var enLanguage = _languageRepository.GetByCode("en-GB").Result;
 
         if (plLanguage != null && enLanguage != null)
         {

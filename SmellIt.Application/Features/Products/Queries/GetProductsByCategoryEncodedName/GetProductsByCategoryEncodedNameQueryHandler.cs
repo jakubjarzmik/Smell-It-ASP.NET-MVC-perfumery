@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.Products.Queries.GetProductsByCategoryEnc
         }
         public async Task<IEnumerable<ProductDto>> Handle(GetProductsByCategoryEncodedNameQuery request, CancellationToken cancellationToken)
         {
-            var products = await _productRepository.GetProductsByCategoryEncodedNameAsync(request.EncodedName);
+            var products = await _productRepository.GetProductsByCategoryEncodedName(request.EncodedName);
             var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
             return dtos;
         }

@@ -13,7 +13,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText
         }
         public async Task<Unit> Handle(EditWebsiteTextCommand request, CancellationToken cancellationToken)
         {
-            var websiteText = (await _websiteTextRepository.GetByEncodedNameAsync(request.EncodedName))!;
+            var websiteText = (await _websiteTextRepository.GetByEncodedName(request.EncodedName))!;
             websiteText.ModifiedAt = DateTime.Now;
 
             var plTranslation = websiteText.WebsiteTextTranslations.First(wtt => wtt.Language.Code == "pl-PL");
@@ -24,7 +24,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText
             enTranslation.Text = request.TextEn;
             enTranslation.ModifiedAt = DateTime.Now;
 
-            await _websiteTextRepository.CommitAsync();
+            await _websiteTextRepository.Commit();
             
             return Unit.Value;
         }

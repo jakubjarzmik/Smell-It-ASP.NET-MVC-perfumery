@@ -17,12 +17,23 @@ public class GetPaginatedHomeBannersQueryHandler : IRequestHandler<GetPaginatedH
     }
     public async Task<HomeBannersViewModel> Handle(GetPaginatedHomeBannersQuery request, CancellationToken cancellationToken)
     {
-        var totalHomeBanners = await _homeBannerRepository.CountAsync();
-        var homeBanners = await _homeBannerRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
-
+        var homeBanners = await _homeBannerRepository.GetAll();
         var homeBannerDtos = _mapper.Map<IEnumerable<HomeBannerDto>>(homeBanners);
+        
+        var paginatedHomeBanners = homeBannerDtos
+            .Skip((request.PageNumber - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
 
-        var viewModel = new HomeBannersViewModel(homeBannerDtos, totalHomeBanners, request.PageNumber, request.PageSize);
+        var totalPages = (int)Math.Ceiling((double)homeBannerDtos.Count() / request.PageSize);
+        
+        var viewModel = new HomeBannersViewModel
+        {
+            Items = paginatedHomeBanners,
+            CurrentPage = request.PageNumber,
+            TotalPages = totalPages,
+            PageSize = request.PageSize
+        };
 
         return viewModel;
     }

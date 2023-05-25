@@ -16,7 +16,7 @@ namespace SmellIt.Application.Mappings.ProductMapping
         public ProductCategory? Resolve(ProductDto source, Product destination, ProductCategory? destMember, ResolutionContext context)
         {
             if (source.ProductCategory == null) return null;
-            return _productCategoryRepository.GetByEncodedNameAsync(source.ProductCategory.EncodedName).Result;
+            return _productCategoryRepository.GetByEncodedName(source.ProductCategory.EncodedName).Result;
         }
     }
 }

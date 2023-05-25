@@ -4,5 +4,5 @@ using SmellIt.Domain.Interfaces.Abstract;
 namespace SmellIt.Domain.Interfaces;
 public interface IProductImageRepository : IBaseRepository<ProductImage>
 {
-    Task<ICollection<ProductImage>?> GetByProductIdAsync(int id);
+    Task<ICollection<ProductImage>?> GetByProductId(int id);
 }

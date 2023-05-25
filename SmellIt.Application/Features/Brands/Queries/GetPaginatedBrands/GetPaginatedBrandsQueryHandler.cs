@@ -17,12 +17,23 @@ public class GetPaginatedBrandsQueryHandler : IRequestHandler<GetPaginatedBrands
     }
     public async Task<BrandsViewModel> Handle(GetPaginatedBrandsQuery request, CancellationToken cancellationToken)
     {
-        var totalBrands = await _brandRepository.CountAsync();
-        var brands = await _brandRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
-
+        var brands = await _brandRepository.GetAll();
         var brandDtos = _mapper.Map<IEnumerable<BrandDto>>(brands);
+        
+        var paginatedBrands = brandDtos
+            .Skip((request.PageNumber - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
 
-        var viewModel = new BrandsViewModel(brandDtos, totalBrands, request.PageNumber, request.PageSize);
+        var totalPages = (int)Math.Ceiling((double)brandDtos.Count() / request.PageSize);
+        
+        var viewModel = new BrandsViewModel
+        {
+            Items = paginatedBrands,
+            CurrentPage = request.PageNumber,
+            TotalPages = totalPages,
+            PageSize = request.PageSize
+        };
 
         return viewModel;
     }

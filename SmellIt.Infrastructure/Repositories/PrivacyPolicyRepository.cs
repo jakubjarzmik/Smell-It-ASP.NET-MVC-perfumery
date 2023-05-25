@@ -10,11 +10,11 @@ public class PrivacyPolicyRepository : BaseRepositoryWithEncodedName<PrivacyPoli
     public PrivacyPolicyRepository(SmellItDbContext dbContext) : base(dbContext)
     {
     }
-    public async Task<PrivacyPolicy?> GetTranslationAsync(string languageCode)
+    public async Task<PrivacyPolicy?> GetTranslation(string languageCode)
         => await DbContext.PrivacyPolicies.FirstOrDefaultAsync(pp 
             => pp.IsActive &&  pp.Language.Code.ToLower() == languageCode.ToLower());
 
-    public async Task<PrivacyPolicy?> GetByLanguageCodeAsync(string languageCode)
+    public async Task<PrivacyPolicy?> GetByLanguageCode(string languageCode)
         => await DbContext.PrivacyPolicies.FirstOrDefaultAsync(pp 
             => pp.IsActive && pp.Language.Code == languageCode.ToLower());
 }

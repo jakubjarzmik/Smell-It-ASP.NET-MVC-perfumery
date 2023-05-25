@@ -14,7 +14,7 @@ namespace SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEn
 
         public async Task<Unit> Handle(DeleteSocialSiteByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            await _socialSiteRepository.DeleteByEncodedNameAsync(request.EncodedName);
+            await _socialSiteRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

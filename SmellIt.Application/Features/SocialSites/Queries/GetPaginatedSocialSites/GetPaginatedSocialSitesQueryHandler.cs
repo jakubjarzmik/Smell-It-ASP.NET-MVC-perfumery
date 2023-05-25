@@ -17,12 +17,23 @@ public class GetPaginatedSocialSitesQueryHandler : IRequestHandler<GetPaginatedS
     }
     public async Task<SocialSitesViewModel> Handle(GetPaginatedSocialSitesQuery request, CancellationToken cancellationToken)
     {
-        var totalSocialSites = await _socialSiteRepository.CountAsync();
-        var socialSites = await _socialSiteRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
-
+        var socialSites = await _socialSiteRepository.GetAll();
         var socialSiteDtos = _mapper.Map<IEnumerable<SocialSiteDto>>(socialSites);
+        
+        var paginatedSocialSites = socialSiteDtos
+            .Skip((request.PageNumber - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
 
-        var viewModel = new SocialSitesViewModel(socialSiteDtos, totalSocialSites, request.PageNumber, request.PageSize);
+        var totalPages = (int)Math.Ceiling((double)socialSiteDtos.Count() / request.PageSize);
+        
+        var viewModel = new SocialSitesViewModel
+        {
+            Items = paginatedSocialSites,
+            CurrentPage = request.PageNumber,
+            TotalPages = totalPages,
+            PageSize = request.PageSize
+        };
 
         return viewModel;
     }

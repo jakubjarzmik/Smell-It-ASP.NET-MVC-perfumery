@@ -11,6 +11,6 @@ public class SocialSiteRepository : BaseRepositoryWithEncodedName<SocialSite>, I
     {
     }
 
-    public async Task<SocialSite?> GetByTypeAsync(string type)
+    public async Task<SocialSite?> GetByType(string type)
         => await DbContext.SocialSites.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Type.ToLower() == type.ToLower());
 }

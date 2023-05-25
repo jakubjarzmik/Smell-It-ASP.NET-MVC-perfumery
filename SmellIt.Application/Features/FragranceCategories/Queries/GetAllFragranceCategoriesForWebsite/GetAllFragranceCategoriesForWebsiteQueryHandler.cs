@@ -16,7 +16,7 @@ public class GetAllFragranceCategoriesForWebsiteQueryHandler : IRequestHandler<G
     }
     public async Task<IEnumerable<WebsiteFragranceCategoryDto>> Handle(GetAllFragranceCategoriesForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        var fragranceCategories = await _fragranceCategoryRepository.GetAllAsync();
+        var fragranceCategories = await _fragranceCategoryRepository.GetAll();
         var dtos = _mapper.Map<IEnumerable<WebsiteFragranceCategoryDto>>(fragranceCategories, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;

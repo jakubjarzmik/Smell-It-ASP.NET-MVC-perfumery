@@ -16,7 +16,7 @@ public class GetAllGendersForWebsiteQueryHandler : IRequestHandler<GetAllGenders
     }
     public async Task<IEnumerable<WebsiteGenderDto>> Handle(GetAllGendersForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        var genders = await _genderRepository.GetAllAsync();
+        var genders = await _genderRepository.GetAll();
         var dtos = _mapper.Map<IEnumerable<WebsiteGenderDto>>(genders, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;

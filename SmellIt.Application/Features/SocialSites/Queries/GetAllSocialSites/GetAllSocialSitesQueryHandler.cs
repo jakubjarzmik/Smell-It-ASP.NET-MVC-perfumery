@@ -16,7 +16,7 @@ public class GetAllSocialSitesQueryHandler : IRequestHandler<GetAllSocialSitesQu
     }
     public async Task<IEnumerable<SocialSiteDto>> Handle(GetAllSocialSitesQuery request, CancellationToken cancellationToken)
     {
-        var socialSites = await _socialSiteRepository.GetAllAsync();
+        var socialSites = await _socialSiteRepository.GetAll();
         var dtos = _mapper.Map<IEnumerable<SocialSiteDto>>(socialSites);
         return dtos;
     }

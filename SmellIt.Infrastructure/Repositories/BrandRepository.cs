@@ -11,9 +11,9 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
     {
     }
 
-    public async Task<Brand?> GetByNameAsync(string name)
+    public async Task<Brand?> GetByName(string name)
         => await DbContext.Brands.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
-    public override async Task DeleteAsync(Brand brand)
+    public override async Task Delete(Brand brand)
     {
         brand.IsActive = false;
         brand.DeletedAt = DateTime.Now;
@@ -23,9 +23,9 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteByEncodedName(string encodedName)
     {
-        var brand = await GetByEncodedNameAsync(encodedName);
+        var brand = await GetByEncodedName(encodedName);
         if (brand != null)
         {
             brand.IsActive = false;

@@ -16,7 +16,7 @@ public class GetAllGendersQueryHandler : IRequestHandler<GetAllGendersQuery, IEn
     }
     public async Task<IEnumerable<GenderDto>> Handle(GetAllGendersQuery request, CancellationToken cancellationToken)
     {
-        var genders = await _genderRepository.GetAllAsync();
+        var genders = await _genderRepository.GetAll();
         var dtos = _mapper.Map<IEnumerable<GenderDto>>(genders);
         return dtos;
     }

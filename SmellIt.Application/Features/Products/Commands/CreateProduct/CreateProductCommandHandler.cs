@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using SmellIt.Application.Features.Brands.DTOs;
 using SmellIt.Application.Features.FragranceCategories.DTOs;
 using SmellIt.Application.Features.Genders.DTOs;
@@ -39,62 +38,47 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        await AssignParentEntitiesToRequest(request);
-
-        var product = _mapper.Map<Product>(request);
-        await _productRepository.CreateAsync(product);
-
-        await HandleProductImages(request.ImageFiles, product);
-        await HandleProductPrices(request.PriceValue, request.PromotionalPriceValue, product);
-
-        return Unit.Value;
-    }
-
-    private async Task AssignParentEntitiesToRequest(CreateProductCommand request)
-    {
         if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
         {
-            var productCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName!);
+            var productCategory = await _productCategoryRepository.GetByEncodedName(request.ProductCategoryEncodedName!);
             request.ProductCategory = _mapper.Map<ProductCategoryDto>(productCategory);
         }
         if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
         {
-            var brand = await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName!);
+            var brand = await _brandRepository.GetByEncodedName(request.BrandEncodedName!);
             request.Brand = _mapper.Map<BrandDto>(brand);
         }
         if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
         {
-            var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName!);
+            var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedName(request.FragranceCategoryEncodedName!);
             request.FragranceCategory = _mapper.Map<FragranceCategoryDto>(fragranceCategory);
         }
         if (request.GenderId != null)
         {
-            var gender = await _genderRepository.GetByIdAsync(request.GenderId.Value);
+            var gender = await _genderRepository.GetById(request.GenderId.Value);
             request.Gender = _mapper.Map<GenderDto>(gender);
         }
-    }
+        var product = _mapper.Map<Product>(request);
+        await _productRepository.Create(product);
 
-    private async Task HandleProductImages(List<IFormFile>? imageFiles, Product product)
-    {
-        if (imageFiles != null && imageFiles.Count > 0)
+        if (request.ImageFiles != null && request.ImageFiles.Count > 0)
         {
             int i = 1;
-            foreach (var file in imageFiles)
+            foreach (var file in request.ImageFiles)
             {
                 string imagePath = await _imageUploader.UploadImageAsync($"products/{product.ProductCategory!.EncodedName}/{product.EncodedName}", file, $"image{i}");
-                await _productImageRepository.CreateAsync(new ProductImage { ImageAlt = $"image{i}", ImageUrl = imagePath, Product = product });
+                await _productImageRepository.Create(new ProductImage { ImageAlt = $"image{i}", ImageUrl = imagePath, Product = product });
                 i++;
             }
         }
-    }
 
-    private async Task HandleProductPrices(decimal priceValue, decimal? promotionalPriceValue, Product product)
-    {
-        await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = priceValue });
+        await _productPriceRepository.Create(new ProductPrice { Product = product, Value = request.PriceValue});
 
-        if (promotionalPriceValue != null)
+        if (request.PromotionalPriceValue != null)
         {
-            await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = (decimal)promotionalPriceValue!, IsPromotion = true });
+            await _productPriceRepository.Create(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue!, IsPromotion = true});
         }
+
+        return Unit.Value;
     }
 }

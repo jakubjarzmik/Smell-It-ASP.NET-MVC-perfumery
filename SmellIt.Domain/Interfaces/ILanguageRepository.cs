@@ -4,5 +4,5 @@ using SmellIt.Domain.Interfaces.Abstract;
 namespace SmellIt.Domain.Interfaces;
 public interface ILanguageRepository : IBaseRepositoryWithEncodedName<Language>
 {
-    Task<Language?> GetByCodeAsync(string code);
+    Task<Language?> GetByCode(string code);
 }

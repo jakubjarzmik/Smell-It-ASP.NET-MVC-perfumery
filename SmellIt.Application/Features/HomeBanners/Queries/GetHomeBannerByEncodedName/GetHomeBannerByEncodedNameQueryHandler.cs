@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.HomeBanners.Queries.GetHomeBannerByEncode
         }
         public async Task<HomeBannerDto> Handle(GetHomeBannerByEncodedNameQuery request, CancellationToken cancellationToken)
         {
-            var layoutText = await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName);
+            var layoutText = await _homeBannerRepository.GetByEncodedName(request.EncodedName);
             var dto = _mapper.Map<HomeBannerDto>(layoutText);
             return dto;
         }

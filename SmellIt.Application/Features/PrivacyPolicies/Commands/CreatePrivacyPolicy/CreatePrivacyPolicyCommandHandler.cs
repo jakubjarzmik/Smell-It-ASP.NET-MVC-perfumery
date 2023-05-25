@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.PrivacyPolicies.Commands.CreatePrivacyPol
         public async Task<Unit> Handle(CreatePrivacyPolicyCommand request, CancellationToken cancellationToken)
         {
             var privacyPolicy = _mapper.Map<PrivacyPolicy>(request);
-            await _privacyPolicyRepository.CreateAsync(privacyPolicy);
+            await _privacyPolicyRepository.Create(privacyPolicy);
             return Unit.Value;
         }
     }

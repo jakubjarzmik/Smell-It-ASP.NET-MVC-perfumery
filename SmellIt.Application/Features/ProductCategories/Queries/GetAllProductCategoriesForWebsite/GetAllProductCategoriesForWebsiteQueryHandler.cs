@@ -16,7 +16,7 @@ public class GetAllProductCategoriesForWebsiteQueryHandler : IRequestHandler<Get
     }
     public async Task<IEnumerable<WebsiteProductCategoryDto>> Handle(GetAllProductCategoriesForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        var productCategories = await _productCategoryRepository.GetAllAsync();
+        var productCategories = await _productCategoryRepository.GetAll();
         var dtos = _mapper.Map<IEnumerable<WebsiteProductCategoryDto>>(productCategories, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;

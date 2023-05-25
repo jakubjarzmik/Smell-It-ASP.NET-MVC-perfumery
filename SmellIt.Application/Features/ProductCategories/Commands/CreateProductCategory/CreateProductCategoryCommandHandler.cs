@@ -16,19 +16,14 @@ public class CreateProductCategoryCommandHandler : IRequestHandler<CreateProduct
     }
     public async Task<Unit> Handle(CreateProductCategoryCommand request, CancellationToken cancellationToken)
     {
-        await AttachParentCategory(request);
-        var productCategory = _mapper.Map<ProductCategory>(request);
-        await _productCategoryRepository.CreateAsync(productCategory);
-
-        return Unit.Value;
-    }
-
-    private async Task AttachParentCategory(CreateProductCategoryCommand request)
-    {
         if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
         {
-            var parentCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ParentCategoryEncodedName!);
+            var parentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName!);
             request.ParentCategory = _mapper.Map<ProductCategoryDto>(parentCategory);
         }
+
+        var productCategory = _mapper.Map<ProductCategory>(request);
+        await _productCategoryRepository.Create(productCategory);
+        return Unit.Value;
     }
 }

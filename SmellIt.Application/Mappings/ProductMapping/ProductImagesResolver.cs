@@ -15,7 +15,7 @@ namespace SmellIt.Application.Mappings.ProductMapping
         }
         public ICollection<ProductImage>? Resolve(ProductDto source, Product destination, ICollection<ProductImage>? destMember, ResolutionContext context)
         {
-            return _productImageRepository.GetByProductIdAsync(destination.Id).Result;
+            return _productImageRepository.GetByProductId(destination.Id).Result;
         }
     }
 }

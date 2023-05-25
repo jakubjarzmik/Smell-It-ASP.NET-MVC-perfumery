@@ -9,7 +9,7 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
     public FragranceCategoryRepository(SmellItDbContext dbContext): base(dbContext)
     {
     }
-    public override async Task DeleteAsync(FragranceCategory fragranceCategory)
+    public override async Task Delete(FragranceCategory fragranceCategory)
     {
         fragranceCategory.IsActive = false;
         fragranceCategory.DeletedAt = DateTime.Now;
@@ -19,9 +19,9 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteByEncodedName(string encodedName)
     {
-        var fragranceCategory = await GetByEncodedNameAsync(encodedName);
+        var fragranceCategory = await GetByEncodedName(encodedName);
         if (fragranceCategory != null)
         {
             fragranceCategory.IsActive = false;

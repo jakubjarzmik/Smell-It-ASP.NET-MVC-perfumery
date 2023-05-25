@@ -14,7 +14,7 @@ namespace SmellIt.Application.Features.PrivacyPolicies.Commands.DeletePrivacyPol
 
         public async Task<Unit> Handle(DeletePrivacyPolicyByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            await _privacyPolicyRepository.DeleteByEncodedNameAsync(request.EncodedName);
+            await _privacyPolicyRepository.DeleteByEncodedName(request.EncodedName);
             return Unit.Value;
         }
     }

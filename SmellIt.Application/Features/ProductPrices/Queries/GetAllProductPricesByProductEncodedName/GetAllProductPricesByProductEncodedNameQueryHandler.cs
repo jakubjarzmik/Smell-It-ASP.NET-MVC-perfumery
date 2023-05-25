@@ -16,7 +16,7 @@ public class GetAllProductPricesByProductEncodedNameQueryHandler : IRequestHandl
     }
     public async Task<IEnumerable<ProductPriceDto>> Handle(GetAllProductPricesByProductEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var productPrices = await _productPriceRepository.GetByProductEncodedNameAsync(request.EncodedName);
+        var productPrices = await _productPriceRepository.GetByProductEncodedName(request.EncodedName);
         var dtos = _mapper.Map<IEnumerable<ProductPriceDto>>(productPrices);
         return dtos;
     }

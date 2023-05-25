@@ -10,7 +10,7 @@ public class LanguageRepository : BaseRepositoryWithEncodedName<Language>, ILang
     public LanguageRepository(SmellItDbContext dbContext) :base (dbContext)
     {
     }
-    public Task<Language?> GetByCodeAsync(string code)
+    public Task<Language?> GetByCode(string code)
         => DbContext.Languages.Where(bt => bt.IsActive).FirstOrDefaultAsync(b => b.Code == code);
 
 }

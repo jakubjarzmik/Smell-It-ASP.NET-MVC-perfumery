@@ -17,14 +17,24 @@ public class GetPaginatedProductCategoriesQueryHandler : IRequestHandler<GetPagi
     }
     public async Task<ProductCategoriesViewModel> Handle(GetPaginatedProductCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var totalProductCategories = await _productCategoryRepository.CountAsync();
-        var productCategories = await _productCategoryRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
-
+        var productCategories = await _productCategoryRepository.GetAll();
         var productCategoryDtos = _mapper.Map<IEnumerable<ProductCategoryDto>>(productCategories);
+        
+        var paginatedProductCategories = productCategoryDtos
+            .Skip((request.PageNumber - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
 
-        var viewModel = new ProductCategoriesViewModel(productCategoryDtos, totalProductCategories, request.PageNumber, request.PageSize);
+        var totalPages = (int)Math.Ceiling((double)productCategoryDtos.Count() / request.PageSize);
+        
+        var viewModel = new ProductCategoriesViewModel
+        {
+            Items = paginatedProductCategories,
+            CurrentPage = request.PageNumber,
+            TotalPages = totalPages,
+            PageSize = request.PageSize
+        };
 
         return viewModel;
     }
-
 }

@@ -11,6 +11,6 @@ public class ProductImageRepository : BaseRepository<ProductImage>, IProductImag
     {
     }
 
-    public async Task<ICollection<ProductImage>?> GetByProductIdAsync(int id)
+    public async Task<ICollection<ProductImage>?> GetByProductId(int id)
         => await DbContext.ProductImages.Where(pi => pi.IsActive && pi.ProductId == id).ToListAsync();
 }
