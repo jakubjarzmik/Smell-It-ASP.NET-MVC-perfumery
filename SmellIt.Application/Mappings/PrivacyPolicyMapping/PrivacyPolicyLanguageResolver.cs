@@ -16,7 +16,7 @@ namespace SmellIt.Application.Mappings.PrivacyPolicyMapping
 
         public Language Resolve(PrivacyPolicyDto source, PrivacyPolicy destination, Language destMember, ResolutionContext context)
         {
-            return _languageRepository.GetByCode(source.LanguageCode).Result!;
+            return _languageRepository.GetByCodeAsync(source.LanguageCode).Result!;
         }
     }
 }

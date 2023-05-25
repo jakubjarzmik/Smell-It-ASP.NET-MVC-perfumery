@@ -13,7 +13,7 @@ namespace SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner
 	    }
         public async Task<Unit> Handle(EditHomeBannerCommand request, CancellationToken cancellationToken)
         {
-            var homeBanner = (await _homeBannerRepository.GetByEncodedName(request.EncodedName))!;
+            var homeBanner = (await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName))!;
             homeBanner.ModifiedAt = DateTime.Now;
 
             var plTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == "pl-PL");
@@ -24,7 +24,7 @@ namespace SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner
             enTranslation.Text = request.TextEn;
             enTranslation.ModifiedAt = DateTime.Now;
 
-            await _homeBannerRepository.Commit();
+            await _homeBannerRepository.CommitAsync();
             
             return Unit.Value;
         }

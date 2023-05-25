@@ -15,13 +15,13 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
         _productCategorySorter = productCategorySorter;
     }
 
-    public override async Task<IEnumerable<ProductCategory>> GetAll()
+    public override async Task<IEnumerable<ProductCategory>> GetAllAsync()
         => _productCategorySorter.SortCategories(await DbContext.ProductCategories.Where(b => b.IsActive).ToListAsync());
 
-    public async Task<IEnumerable<ProductCategory>> GetProductCategoriesByParentCategory(ProductCategory parentCategory)
+    public async Task<IEnumerable<ProductCategory>> GetProductCategoriesByParentCategoryAsync(ProductCategory parentCategory)
     => await DbContext.ProductCategories.Where(pc => pc.IsActive && pc.ParentCategory == parentCategory).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
-    public override async Task Delete(ProductCategory productCategory)
+    public override async Task DeleteAsync(ProductCategory productCategory)
     {
         productCategory.IsActive = false;
         productCategory.DeletedAt = DateTime.Now;
@@ -31,9 +31,9 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedName(string encodedName)
+    public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
-        var productCategory = await GetByEncodedName(encodedName);
+        var productCategory = await GetByEncodedNameAsync(encodedName);
         if (productCategory != null)
         {
             productCategory.IsActive = false;

@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.Products.Queries.GetProductByEncodedNameF
         }
         public async Task<WebsiteProductDto> Handle(GetProductByEncodedNameForWebsiteQuery request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetByEncodedName(request.EncodedName);
+            var product = await _productRepository.GetByEncodedNameAsync(request.EncodedName);
             var dto = _mapper.Map<WebsiteProductDto>(product, opt =>
             {
                 opt.Items["LanguageCode"] = request.LanguageCode;

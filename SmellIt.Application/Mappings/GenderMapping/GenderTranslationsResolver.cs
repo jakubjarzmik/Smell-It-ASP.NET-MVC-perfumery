@@ -15,8 +15,8 @@ public class GenderTranslationsResolver : IValueResolver<GenderDto, Gender, ICol
 
     public ICollection<GenderTranslation> Resolve(GenderDto source, Gender destination, ICollection<GenderTranslation> destMember, ResolutionContext context)
     {
-        var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
-        var enLanguage = _languageRepository.GetByCode("en-GB").Result;
+        var plLanguage = _languageRepository.GetByCodeAsync("pl-PL").Result;
+        var enLanguage = _languageRepository.GetByCodeAsync("en-GB").Result;
 
         if (plLanguage != null && enLanguage != null)
         {

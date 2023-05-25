@@ -13,11 +13,11 @@ namespace SmellIt.Application.Features.SocialSites.Commands.EditSocialSite
         }
         public async Task<Unit> Handle(EditSocialSiteCommand request, CancellationToken cancellationToken)
         {
-            var socialSite = (await _socialSiteRepository.GetByEncodedName(request.EncodedName))!;
+            var socialSite = (await _socialSiteRepository.GetByEncodedNameAsync(request.EncodedName))!;
             socialSite.ModifiedAt = DateTime.Now;
             socialSite.Link = request.Link;
 
-            await _socialSiteRepository.Commit();
+            await _socialSiteRepository.CommitAsync();
 
             return Unit.Value;
         }

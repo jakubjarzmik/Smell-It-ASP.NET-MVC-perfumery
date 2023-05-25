@@ -9,7 +9,7 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
     public GenderRepository(SmellItDbContext dbContext) : base(dbContext)
     {
     }
-    public override async Task Delete(Gender gender)
+    public override async Task DeleteAsync(Gender gender)
     {
         gender.IsActive = false;
         gender.DeletedAt = DateTime.Now;
@@ -19,9 +19,9 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedName(string encodedName)
+    public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
-        var gender = await GetByEncodedName(encodedName);
+        var gender = await GetByEncodedNameAsync(encodedName);
         if (gender != null)
         {
             gender.IsActive = false;

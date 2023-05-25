@@ -16,7 +16,7 @@ public class GetAllHomeBannersQueryHandler : IRequestHandler<GetAllHomeBannersQu
     }
     public async Task<IEnumerable<HomeBannerDto>> Handle(GetAllHomeBannersQuery request, CancellationToken cancellationToken)
     {
-        var homeBanners = await _homeBannerRepository.GetAll();
+        var homeBanners = await _homeBannerRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<HomeBannerDto>>(homeBanners);
         return dtos;
     }

@@ -13,7 +13,7 @@ namespace SmellIt.Application.Features.FragranceCategories.Commands.EditFragranc
         }
         public async Task<Unit> Handle(EditFragranceCategoryCommand request, CancellationToken cancellationToken)
         {
-            var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedName(request.EncodedName))!;
+            var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
             fragranceCategory.ModifiedAt = DateTime.Now;
 
             var plTranslation = fragranceCategory.FragranceCategoryTranslations.First(fct => fct.Language.Code == "pl-PL");
@@ -26,7 +26,7 @@ namespace SmellIt.Application.Features.FragranceCategories.Commands.EditFragranc
             enTranslation.Description = request.DescriptionEn;
             enTranslation.ModifiedAt = DateTime.Now;
 
-            await _fragranceCategoryRepository.Commit();
+            await _fragranceCategoryRepository.CommitAsync();
             
             return Unit.Value;
         }

@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Interfaces.Abstract;
 using SmellIt.Infrastructure.Persistence;
 
 namespace SmellIt.Infrastructure.Repositories.Abstract
 {
-    public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T> where T : BaseEntityWithEncodedName
+    public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBaseRepositoryWithEncodedName<T> 
+        where T : BaseEntityWithEncodedName
     {
         protected BaseRepositoryWithEncodedName(SmellItDbContext dbContext) : base(dbContext)
         {
         }
 
-        public override async Task Create(T entity)
+        public override async Task CreateAsync(T entity)
         {
             DbContext.Add(entity);
             await DbContext.SaveChangesAsync();
@@ -18,9 +20,9 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
             await DbContext.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteByEncodedName(string encodedName)
+        public virtual async Task DeleteByEncodedNameAsync(string encodedName)
         {
-            var entity = await GetByEncodedName(encodedName);
+            var entity = await GetByEncodedNameAsync(encodedName);
             if (entity != null)
             {
                 entity.IsActive = false;
@@ -29,7 +31,7 @@ namespace SmellIt.Infrastructure.Repositories.Abstract
             }
         }
 
-        public virtual async Task<T?> GetByEncodedName(string encodedName)
+        public virtual async Task<T?> GetByEncodedNameAsync(string encodedName)
             => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
     }
 }

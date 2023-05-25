@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyB
         }
         public async Task<PrivacyPolicyDto> Handle(GetPrivacyPolicyByLanguageCodeQuery request, CancellationToken cancellationToken)
         {
-            var privacyPolicy = await _privacyPolicyRepository.GetByLanguageCode(request.LanguageCode);
+            var privacyPolicy = await _privacyPolicyRepository.GetByLanguageCodeAsync(request.LanguageCode);
             var dto = _mapper.Map<PrivacyPolicyDto>(privacyPolicy);
             return dto;
         }

@@ -16,7 +16,7 @@ public class CreateFragranceCategoryCommandHandler : IRequestHandler<CreateFragr
     public async Task<Unit> Handle(CreateFragranceCategoryCommand request, CancellationToken cancellationToken)
     {
         var fragranceCategory = _mapper.Map<FragranceCategory>(request);
-        await _fragranceCategoryRepository.Create(fragranceCategory);
+        await _fragranceCategoryRepository.CreateAsync(fragranceCategory);
         return Unit.Value;
     }
 }

@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText
         public async Task<Unit> Handle(CreateWebsiteTextCommand request, CancellationToken cancellationToken)
         {
             var websiteText = _mapper.Map<WebsiteText>(request);
-            await _websiteTextRepository.Create(websiteText);
+            await _websiteTextRepository.CreateAsync(websiteText);
             return Unit.Value;
         }
     }

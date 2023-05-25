@@ -16,7 +16,7 @@ namespace SmellIt.Application.Mappings.ProductMapping
         public FragranceCategory? Resolve(ProductDto source, Product destination, FragranceCategory? destMember, ResolutionContext context)
         {
             if (source.FragranceCategory == null) return null;
-            return _fragranceCategoryRepository.GetByEncodedName(source.FragranceCategory.EncodedName).Result;
+            return _fragranceCategoryRepository.GetByEncodedNameAsync(source.FragranceCategory.EncodedName).Result;
         }
     }
 }

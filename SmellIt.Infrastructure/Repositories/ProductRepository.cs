@@ -11,7 +11,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
     {
     }
 
-    public async Task<IEnumerable<Product>> GetProductsByCategoryEncodedName(string encodedName)
+    public async Task<IEnumerable<Product>> GetProductsByCategoryEncodedNameAsync(string encodedName)
     {
         var category = await DbContext.ProductCategories.FirstOrDefaultAsync(pc => pc.IsActive && pc.EncodedName == encodedName);
         
@@ -38,7 +38,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         return products;
     }
 
-    public override async Task Delete(Product product)
+    public override async Task DeleteAsync(Product product)
     {
         product.IsActive = false;
         product.DeletedAt = DateTime.Now;
@@ -48,9 +48,9 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedName(string encodedName)
+    public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
-        var product = await GetByEncodedName(encodedName);
+        var product = await GetByEncodedNameAsync(encodedName);
         if (product != null)
         {
             product.IsActive = false;

@@ -12,7 +12,7 @@ public class CreateHomeBannerCommandValidator : AbstractValidator<CreateHomeBann
             .MaximumLength(50).WithMessage("Key should have maximum of 50 characters")
             .Custom((value, context) =>
             {
-                var existingHomeBanner = homeBannerRepository.GetByKey(value).GetAwaiter().GetResult();
+                var existingHomeBanner = homeBannerRepository.GetByKeyAsync(value).GetAwaiter().GetResult();
                 if (existingHomeBanner != null)
                 {
                     context.AddFailure($"{value} is not unique key for home banner");

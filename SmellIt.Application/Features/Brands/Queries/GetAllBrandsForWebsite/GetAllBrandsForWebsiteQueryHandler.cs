@@ -16,7 +16,7 @@ public class GetAllBrandsForWebsiteQueryHandler : IRequestHandler<GetAllBrandsFo
     }
     public async Task<IEnumerable<WebsiteBrandDto>> Handle(GetAllBrandsForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        var brands = await _brandRepository.GetAll();
+        var brands = await _brandRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<WebsiteBrandDto>>(brands, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;

@@ -5,5 +5,8 @@ namespace SmellIt.Application.ViewModels
 {
     public class HomeBannersViewModel : PaginatedViewModel<HomeBannerDto>
     {
+        public HomeBannersViewModel(IEnumerable<HomeBannerDto> items, int totalItems, int currentPage, int pageSize) : base(items, totalItems, currentPage, pageSize)
+        {
+        }
     }
 }

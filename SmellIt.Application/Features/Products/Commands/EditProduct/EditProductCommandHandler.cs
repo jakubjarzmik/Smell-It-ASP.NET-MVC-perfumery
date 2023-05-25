@@ -28,20 +28,20 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
         }
         public async Task<Unit> Handle(EditProductCommand request, CancellationToken cancellationToken)
         {
-            var product = (await _productRepository.GetByEncodedName(request.EncodedName))!;
+            var product = (await _productRepository.GetByEncodedNameAsync(request.EncodedName))!;
 
 
             if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
-                product.ProductCategory = (await _productCategoryRepository.GetByEncodedName(request.ProductCategoryEncodedName!))!;
+                product.ProductCategory = (await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName!))!;
 
             if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
-                product.Brand = (await _brandRepository.GetByEncodedName(request.BrandEncodedName!))!;
+                product.Brand = (await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName!))!;
 
             if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
-                product.FragranceCategory = (await _fragranceCategoryRepository.GetByEncodedName(request.FragranceCategoryEncodedName!))!;
+                product.FragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName!))!;
 
             if (request.GenderId != null)
-                product.Gender = (await _genderRepository.GetById(request.GenderId.Value))!;
+                product.Gender = (await _genderRepository.GetByIdAsync(request.GenderId.Value))!;
 
             product.Capacity = request.Capacity;
             product.ModifiedAt = DateTime.Now;
@@ -57,12 +57,12 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
             enTranslation.ModifiedAt = DateTime.Now;
 
 
-            var productPrices = _productPriceRepository.GetByProduct(product).Result;
+            var productPrices = _productPriceRepository.GetByProductAsync(product).Result;
             var productPrice = productPrices.First(pp => !pp.IsPromotion);
             if (request.PriceValue != productPrice.Value)
             {
                 productPrice.EndDateTime = DateTime.Now;
-                await _productPriceRepository.Create(
+                await _productPriceRepository.CreateAsync(
                     new ProductPrice
                     {
                         Product = product,
@@ -81,7 +81,7 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
                 }
 
                 if (request.PromotionalPriceValue != null)
-                    await _productPriceRepository.Create(
+                    await _productPriceRepository.CreateAsync(
                         new ProductPrice
                         {
                             Product = product,
@@ -93,7 +93,7 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
             }
 
             product.EncodeName();
-            await _productRepository.Commit();
+            await _productRepository.CommitAsync();
 
             return Unit.Value;
         }

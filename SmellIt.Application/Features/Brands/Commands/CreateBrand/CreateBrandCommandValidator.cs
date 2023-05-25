@@ -12,7 +12,7 @@ public class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
             .MaximumLength(50).WithMessage("Name should have maximum of 50 characters")
             .Custom((value, context) =>
             {
-                var existingBrand = brandRepository.GetByName(value).GetAwaiter().GetResult();
+                var existingBrand = brandRepository.GetByNameAsync(value).GetAwaiter().GetResult();
                 if (existingBrand != null)
                 {
                     context.AddFailure($"{value} is not unique name for brand");

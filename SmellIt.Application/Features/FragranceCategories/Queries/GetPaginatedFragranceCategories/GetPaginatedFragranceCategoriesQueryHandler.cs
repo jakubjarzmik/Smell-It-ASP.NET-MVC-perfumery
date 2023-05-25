@@ -17,23 +17,12 @@ public class GetPaginatedFragranceCategoriesQueryHandler : IRequestHandler<GetPa
     }
     public async Task<FragranceCategoriesViewModel> Handle(GetPaginatedFragranceCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var fragranceCategories = await _fragranceCategoryRepository.GetAll();
-        var fragranceCategoryDtos = _mapper.Map<IEnumerable<FragranceCategoryDto>>(fragranceCategories);
-        
-        var paginatedFragranceCategories = fragranceCategoryDtos
-            .Skip((request.PageNumber - 1) * request.PageSize)
-            .Take(request.PageSize)
-            .ToList();
+        var totalFragranceCategories = await _fragranceCategoryRepository.CountAsync();
+        var fragranceCategories = await _fragranceCategoryRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
 
-        var totalPages = (int)Math.Ceiling((double)fragranceCategoryDtos.Count() / request.PageSize);
-        
-        var viewModel = new FragranceCategoriesViewModel
-        {
-            Items = paginatedFragranceCategories,
-            CurrentPage = request.PageNumber,
-            TotalPages = totalPages,
-            PageSize = request.PageSize
-        };
+        var fragranceCategoryDtos = _mapper.Map<IEnumerable<FragranceCategoryDto>>(fragranceCategories);
+
+        var viewModel = new FragranceCategoriesViewModel(fragranceCategoryDtos, totalFragranceCategories, request.PageNumber, request.PageSize);
 
         return viewModel;
     }

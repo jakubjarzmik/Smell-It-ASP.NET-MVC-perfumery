@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceC
         }
         public async Task<FragranceCategoryDto> Handle(GetFragranceCategoryByEncodedNameQuery request, CancellationToken cancellationToken)
         {
-            var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedName(request.EncodedName);
+            var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName);
             var dto = _mapper.Map<FragranceCategoryDto>(fragranceCategory);
             return dto;
         }

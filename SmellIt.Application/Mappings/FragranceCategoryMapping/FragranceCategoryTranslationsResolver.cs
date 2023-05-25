@@ -15,8 +15,8 @@ public class FragranceCategoryTranslationsResolver : IValueResolver<FragranceCat
 
     public ICollection<FragranceCategoryTranslation> Resolve(FragranceCategoryDto source, FragranceCategory destination, ICollection<FragranceCategoryTranslation> destMember, ResolutionContext context)
     {
-        var plLanguage = _languageRepository.GetByCode("pl-PL").Result;
-        var enLanguage = _languageRepository.GetByCode("en-GB").Result;
+        var plLanguage = _languageRepository.GetByCodeAsync("pl-PL").Result;
+        var enLanguage = _languageRepository.GetByCodeAsync("en-GB").Result;
 
         if (plLanguage != null && enLanguage != null)
         {
