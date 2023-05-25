@@ -16,7 +16,7 @@ public class GetAllWebsiteTextsQueryHandler : IRequestHandler<GetAllWebsiteTexts
     }
     public async Task<IEnumerable<WebsiteTextForAdminDto>> Handle(GetAllWebsiteTextsQuery request, CancellationToken cancellationToken)
     {
-        var layoutTexts = await _websiteTextRepository.GetAll();
+        var layoutTexts = await _websiteTextRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<WebsiteTextForAdminDto>>(layoutTexts);
         return dtos;
     }

@@ -15,7 +15,7 @@ namespace SmellIt.Application.Mappings.ProductMapping
         }
         public ICollection<ProductPrice> Resolve(ProductDto source, Product destination, ICollection<ProductPrice> destMember, ResolutionContext context)
         {
-            return _productPriceRepository.GetByProduct(destination).Result;
+            return _productPriceRepository.GetByProductAsync(destination).Result;
         }
     }
 }

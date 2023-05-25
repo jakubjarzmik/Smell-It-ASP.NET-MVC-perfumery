@@ -27,7 +27,7 @@ namespace SmellIt.Application.Features.HomeBanners.Commands.CreateHomeBanner
                 string imagePath = await _imageUploader.UploadImageAsync("HomeBanners", request.ImageFile, homeBanner.Key);
                 homeBanner.ImagePath = imagePath;
             }
-            await _homeBannerRepository.Create(homeBanner);
+            await _homeBannerRepository.CreateAsync(homeBanner);
 
             return Unit.Value;
         }

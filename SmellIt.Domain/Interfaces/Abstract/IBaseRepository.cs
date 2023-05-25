@@ -5,10 +5,12 @@ namespace SmellIt.Domain.Interfaces.Abstract
     public interface IBaseRepository<T> : IRepository 
         where T : BaseEntity
     {
-        Task Create(T entity);
-        Task Delete(T entity);
-        Task<IEnumerable<T>> GetAll();
-        Task<T?> GetById(int id);
-        Task Commit();
+        Task CreateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T?> GetByIdAsync(int id);
+        Task CommitAsync();
+        Task<int> CountAsync();
+        Task<IEnumerable<T>> GetPaginatedAsync(int pageNumber, int pageSize);
     }
 }

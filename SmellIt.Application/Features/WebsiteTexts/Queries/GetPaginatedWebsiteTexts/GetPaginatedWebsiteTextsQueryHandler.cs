@@ -17,23 +17,12 @@ public class GetPaginatedWebsiteTextsQueryHandler : IRequestHandler<GetPaginated
     }
     public async Task<WebsiteTextsViewModel> Handle(GetPaginatedWebsiteTextsQuery request, CancellationToken cancellationToken)
     {
-        var websiteTexts = await _websiteTextRepository.GetAll();
-        var websiteTextDtos = _mapper.Map<IEnumerable<WebsiteTextForAdminDto>>(websiteTexts);
-        
-        var paginatedWebsiteTexts = websiteTextDtos
-            .Skip((request.PageNumber - 1) * request.PageSize)
-            .Take(request.PageSize)
-            .ToList();
+        var totalWebsiteTexts = await _websiteTextRepository.CountAsync();
+        var websiteTexts = await _websiteTextRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
 
-        var totalPages = (int)Math.Ceiling((double)websiteTextDtos.Count() / request.PageSize);
-        
-        var viewModel = new WebsiteTextsViewModel
-        {
-            Items = paginatedWebsiteTexts,
-            CurrentPage = request.PageNumber,
-            TotalPages = totalPages,
-            PageSize = request.PageSize
-        };
+        var websiteTextDtos = _mapper.Map<IEnumerable<WebsiteTextForAdminDto>>(websiteTexts);
+
+        var viewModel = new WebsiteTextsViewModel(websiteTextDtos, totalWebsiteTexts, request.PageNumber, request.PageSize);
 
         return viewModel;
     }

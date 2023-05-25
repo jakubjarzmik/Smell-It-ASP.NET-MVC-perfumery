@@ -22,9 +22,9 @@ namespace SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWe
             IEnumerable<Product> products = new List<Product>();
 
             if (request.CategoryEncodedName != null)
-                 products = await _productRepository.GetProductsByCategoryEncodedName(request.CategoryEncodedName);
+                 products = await _productRepository.GetProductsByCategoryEncodedNameAsync(request.CategoryEncodedName);
             else
-                products = await _productRepository.GetAll();
+                products = await _productRepository.GetAllAsync();
 
             if (request.BrandEncodedName != null)
                 products = products.Where(p => p.Brand?.EncodedName == request.BrandEncodedName);

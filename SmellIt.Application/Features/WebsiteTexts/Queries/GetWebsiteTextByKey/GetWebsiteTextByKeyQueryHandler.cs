@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByKey
         }
         public async Task<WebsiteTextDto> Handle(GetWebsiteTextByKeyQuery request, CancellationToken cancellationToken)
         {
-            var websiteText = await _websiteTextRepository.GetByKey(request.Key);
+            var websiteText = await _websiteTextRepository.GetByKeyAsync(request.Key);
             var dto = _mapper.Map<WebsiteTextDto>(websiteText, opt =>
             {
                 opt.Items["LanguageCode"] = request.LanguageCode;

@@ -13,11 +13,11 @@ namespace SmellIt.Application.Features.PrivacyPolicies.Commands.EditPrivacyPolic
         }
         public async Task<Unit> Handle(EditPrivacyPolicyCommand request, CancellationToken cancellationToken)
         {
-            var websiteText = (await _privacyPolicyRepository.GetByEncodedName(request.EncodedName))!;
+            var websiteText = (await _privacyPolicyRepository.GetByEncodedNameAsync(request.EncodedName))!;
             websiteText.ModifiedAt = DateTime.Now;
             websiteText.Text = request.Text;
 
-            await _privacyPolicyRepository.Commit();
+            await _privacyPolicyRepository.CommitAsync();
             
             return Unit.Value;
         }

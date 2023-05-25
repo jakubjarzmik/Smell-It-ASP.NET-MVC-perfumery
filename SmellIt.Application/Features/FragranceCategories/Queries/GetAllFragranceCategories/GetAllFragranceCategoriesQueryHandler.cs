@@ -16,7 +16,7 @@ public class GetAllFragranceCategoriesQueryHandler : IRequestHandler<GetAllFragr
     }
     public async Task<IEnumerable<FragranceCategoryDto>> Handle(GetAllFragranceCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var fragranceCategories = await _fragranceCategoryRepository.GetAll();
+        var fragranceCategories = await _fragranceCategoryRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<FragranceCategoryDto>>(fragranceCategories);
         return dtos;
     }

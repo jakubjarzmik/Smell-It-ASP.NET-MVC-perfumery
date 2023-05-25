@@ -4,5 +4,5 @@ using SmellIt.Domain.Interfaces.Abstract;
 namespace SmellIt.Domain.Interfaces;
 public interface IHomeBannerRepository : IBaseRepositoryWithEncodedName<HomeBanner>
 {
-    Task<HomeBanner?> GetByKey(string key);
+    Task<HomeBanner?> GetByKeyAsync(string key);
 }

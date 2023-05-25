@@ -16,7 +16,7 @@ public class GetAllPrivacyPoliciesQueryHandler : IRequestHandler<GetAllPrivacyPo
     }
     public async Task<IEnumerable<PrivacyPolicyDto>> Handle(GetAllPrivacyPoliciesQuery request, CancellationToken cancellationToken)
     {
-        var privacyPolicies = await _privacyPolicyRepository.GetAll();
+        var privacyPolicies = await _privacyPolicyRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<PrivacyPolicyDto>>(privacyPolicies);
         return dtos;
     }

@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyB
         }
         public async Task<PrivacyPolicyDto> Handle(GetPrivacyPolicyByEncodedNameQuery request, CancellationToken cancellationToken)
         {
-            var websiteText = await _privacyPolicyRepository.GetByEncodedName(request.EncodedName);
+            var websiteText = await _privacyPolicyRepository.GetByEncodedNameAsync(request.EncodedName);
             var dto = _mapper.Map<PrivacyPolicyDto>(websiteText);
             return dto;
         }

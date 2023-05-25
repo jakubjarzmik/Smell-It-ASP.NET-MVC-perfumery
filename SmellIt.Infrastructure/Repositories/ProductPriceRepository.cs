@@ -11,9 +11,9 @@ public class ProductPriceRepository : BaseRepository<ProductPrice>, IProductPric
     {
     }
 
-    public async Task<ICollection<ProductPrice>> GetByProduct(Product product)
+    public async Task<ICollection<ProductPrice>> GetByProductAsync(Product product)
         => await DbContext.ProductPrices.Where(pi => pi.IsActive && pi.Product == product).OrderByDescending(pp=>pp.StartDateTime).ToListAsync();
 
-    public async Task<ICollection<ProductPrice>> GetByProductEncodedName(string productEncodedName)
+    public async Task<ICollection<ProductPrice>> GetByProductEncodedNameAsync(string productEncodedName)
         => await DbContext.ProductPrices.Where(pi => pi.IsActive && pi.Product.EncodedName == productEncodedName).OrderByDescending(pp=>pp.StartDateTime).ToListAsync();
 }

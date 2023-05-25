@@ -5,5 +5,8 @@ namespace SmellIt.Application.ViewModels
 {
     public class FragranceCategoriesViewModel : PaginatedViewModel<FragranceCategoryDto>
     {
+        public FragranceCategoriesViewModel(IEnumerable<FragranceCategoryDto> items, int totalItems, int currentPage, int pageSize) : base(items, totalItems, currentPage, pageSize)
+        {
+        }
     }
 }

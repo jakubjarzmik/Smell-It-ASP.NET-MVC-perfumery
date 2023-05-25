@@ -4,5 +4,5 @@ using SmellIt.Domain.Interfaces.Abstract;
 namespace SmellIt.Domain.Interfaces;
 public interface ISocialSiteRepository : IBaseRepositoryWithEncodedName<SocialSite>
 {
-    Task<SocialSite?> GetByType(string type);
+    Task<SocialSite?> GetByTypeAsync(string type);
 }

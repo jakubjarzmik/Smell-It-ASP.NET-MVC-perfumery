@@ -18,12 +18,12 @@ public class CreateProductCategoryCommandHandler : IRequestHandler<CreateProduct
     {
         if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
         {
-            var parentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName!);
+            var parentCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ParentCategoryEncodedName!);
             request.ParentCategory = _mapper.Map<ProductCategoryDto>(parentCategory);
         }
 
         var productCategory = _mapper.Map<ProductCategory>(request);
-        await _productCategoryRepository.Create(productCategory);
+        await _productCategoryRepository.CreateAsync(productCategory);
         return Unit.Value;
     }
 }

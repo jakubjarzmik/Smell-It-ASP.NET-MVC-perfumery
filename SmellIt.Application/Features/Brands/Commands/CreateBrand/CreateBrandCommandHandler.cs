@@ -17,7 +17,7 @@ public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand>
     {
         var brand = _mapper.Map<Brand>(request);
 
-        await _brandRepository.Create(brand);
+        await _brandRepository.CreateAsync(brand);
 
         return Unit.Value;
     }

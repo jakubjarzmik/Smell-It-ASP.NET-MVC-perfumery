@@ -16,7 +16,7 @@ public class GetAllLanguagesQueryHandler : IRequestHandler<GetAllLanguagesQuery,
     }
     public async Task<IEnumerable<LanguageDto>> Handle(GetAllLanguagesQuery request, CancellationToken cancellationToken)
     {
-        var languages = await _languageRepository.GetAll();
+        var languages = await _languageRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<LanguageDto>>(languages);
         return dtos;
     }

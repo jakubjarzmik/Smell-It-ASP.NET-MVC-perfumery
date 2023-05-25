@@ -16,10 +16,10 @@ namespace SmellIt.Application.Features.ProductCategories.Commands.EditProductCat
         }
         public async Task<Unit> Handle(EditProductCategoryCommand request, CancellationToken cancellationToken)
         {
-            var productCategory = (await _productCategoryRepository.GetByEncodedName(request.EncodedName))!;
+            var productCategory = (await _productCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
 
             if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
-                productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedName(request.ParentCategoryEncodedName!);
+                productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ParentCategoryEncodedName!);
             productCategory.ModifiedAt = DateTime.Now;
 
             var plTranslation = productCategory.ProductCategoryTranslations.First(fct => fct.Language.Code == "pl-PL");
@@ -33,7 +33,7 @@ namespace SmellIt.Application.Features.ProductCategories.Commands.EditProductCat
             enTranslation.ModifiedAt = DateTime.Now;
 
             productCategory.EncodeName();
-            await _productCategoryRepository.Commit();
+            await _productCategoryRepository.CommitAsync();
             
             return Unit.Value;
         }

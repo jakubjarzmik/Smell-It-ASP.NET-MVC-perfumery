@@ -11,10 +11,10 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
     {
     }
 
-    public async Task<WebsiteText?> GetByKey(string key)
+    public async Task<WebsiteText?> GetByKeyAsync(string key)
         => await DbContext.WebsiteTexts.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Key.ToLower() == key.ToLower());
 
-    public override async Task Delete(WebsiteText websiteText)
+    public override async Task DeleteAsync(WebsiteText websiteText)
     {
         websiteText.IsActive = false;
         websiteText.DeletedAt = DateTime.Now;
@@ -24,9 +24,9 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedName(string encodedName)
+    public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
-        var websiteText = await GetByEncodedName(encodedName);
+        var websiteText = await GetByEncodedNameAsync(encodedName);
         if (websiteText != null)
         {
             websiteText.IsActive = false;

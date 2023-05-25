@@ -9,10 +9,10 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
 {
     public HomeBannerRepository(SmellItDbContext dbContext) : base(dbContext) { }
 
-    public async Task<HomeBanner?> GetByKey(string key)
+    public async Task<HomeBanner?> GetByKeyAsync(string key)
         => await DbContext.HomeBanners.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Key.ToLower() == key.ToLower());
 
-    public override async Task Delete(HomeBanner homeBanner)
+    public override async Task DeleteAsync(HomeBanner homeBanner)
     {
         homeBanner.IsActive = false;
         homeBanner.DeletedAt = DateTime.Now;
@@ -22,9 +22,9 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedName(string encodedName)
+    public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
-        var homeBanner = await GetByEncodedName(encodedName);
+        var homeBanner = await GetByEncodedNameAsync(encodedName);
         if (homeBanner != null)
         {
             homeBanner.IsActive = false;

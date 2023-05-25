@@ -16,7 +16,7 @@ public class GetAllProductImagesQueryHandler : IRequestHandler<GetAllProductImag
     }
     public async Task<IEnumerable<ProductImageDto>> Handle(GetAllProductImagesQuery request, CancellationToken cancellationToken)
     {
-        var productImages = await _productImageRepository.GetAll();
+        var productImages = await _productImageRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<ProductImageDto>>(productImages);
         return dtos;
     }

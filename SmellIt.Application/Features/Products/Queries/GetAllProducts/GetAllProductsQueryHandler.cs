@@ -16,7 +16,7 @@ public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, I
     }
     public async Task<IEnumerable<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
     {
-        var products = await _productRepository.GetAll();
+        var products = await _productRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
         return dtos;
     }

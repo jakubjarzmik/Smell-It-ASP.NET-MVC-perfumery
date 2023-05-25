@@ -16,7 +16,7 @@ public class GetAllHomeBannersForWebsiteQueryHandler : IRequestHandler<GetAllHom
     }
     public async Task<IEnumerable<WebsiteHomeBannerDto>> Handle(GetAllHomeBannersForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        var homeBanners = await _homeBannerRepository.GetAll();
+        var homeBanners = await _homeBannerRepository.GetAllAsync();
         var dtos = _mapper.Map<IEnumerable<WebsiteHomeBannerDto>>(homeBanners, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;

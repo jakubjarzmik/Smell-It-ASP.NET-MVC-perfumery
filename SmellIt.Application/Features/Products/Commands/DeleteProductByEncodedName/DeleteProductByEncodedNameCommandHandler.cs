@@ -14,7 +14,7 @@ namespace SmellIt.Application.Features.Products.Commands.DeleteProductByEncodedN
 
         public async Task<Unit> Handle(DeleteProductByEncodedNameCommand request, CancellationToken cancellationToken)
         {
-            await _productRepository.DeleteByEncodedName(request.EncodedName);
+            await _productRepository.DeleteByEncodedNameAsync(request.EncodedName);
             return Unit.Value;
         }
     }

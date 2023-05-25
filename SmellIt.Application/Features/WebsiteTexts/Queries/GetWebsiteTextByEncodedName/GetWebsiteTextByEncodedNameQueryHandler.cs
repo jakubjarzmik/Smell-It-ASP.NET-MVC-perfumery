@@ -17,7 +17,7 @@ namespace SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByEnco
         }
         public async Task<WebsiteTextForAdminDto> Handle(GetWebsiteTextByEncodedNameQuery request, CancellationToken cancellationToken)
         {
-            var websiteText = await _websiteTextRepository.GetByEncodedName(request.EncodedName);
+            var websiteText = await _websiteTextRepository.GetByEncodedNameAsync(request.EncodedName);
             var dto = _mapper.Map<WebsiteTextForAdminDto>(websiteText);
             return dto;
         }
