@@ -1,34 +1,41 @@
 ﻿using MediatR;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory
+namespace SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory;
+public class EditFragranceCategoryCommandHandler : IRequestHandler<EditFragranceCategoryCommand>
 {
-    public class EditFragranceCategoryCommandHandler : IRequestHandler<EditFragranceCategoryCommand>
+    private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
+
+    public EditFragranceCategoryCommandHandler(IFragranceCategoryRepository fragranceCategoryRepository)
     {
-        private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
+        _fragranceCategoryRepository = fragranceCategoryRepository;
+    }
+    public async Task<Unit> Handle(EditFragranceCategoryCommand request, CancellationToken cancellationToken)
+    {
+        var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        fragranceCategory.ModifiedAt = DateTime.Now;
 
-        public EditFragranceCategoryCommandHandler(IFragranceCategoryRepository fragranceCategoryRepository)
+        UpdateTranslations(request, fragranceCategory);
+
+        await _fragranceCategoryRepository.CommitAsync();
+
+        return Unit.Value;
+    }
+    private void UpdateTranslations(EditFragranceCategoryCommand request, FragranceCategory fragranceCategory)
+    {
+        var translations = new Dictionary<string, (string Name, string? Description)>
         {
-            _fragranceCategoryRepository = fragranceCategoryRepository;
-        }
-        public async Task<Unit> Handle(EditFragranceCategoryCommand request, CancellationToken cancellationToken)
+            { "pl-PL", (request.NamePl, request.DescriptionPl) },
+            { "en-GB", (request.NameEn, request.DescriptionEn) }
+        };
+
+        foreach (var translation in translations)
         {
-            var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
-            fragranceCategory.ModifiedAt = DateTime.Now;
-
-            var plTranslation = fragranceCategory.FragranceCategoryTranslations.First(fct => fct.Language.Code == "pl-PL");
-            plTranslation.Name = request.NamePl;
-            plTranslation.Description = request.DescriptionPl;
-            plTranslation.ModifiedAt = DateTime.Now;
-
-            var enTranslation = fragranceCategory.FragranceCategoryTranslations.First(fct => fct.Language.Code == "en-GB");
-            enTranslation.Name = request.NameEn;
-            enTranslation.Description = request.DescriptionEn;
-            enTranslation.ModifiedAt = DateTime.Now;
-
-            await _fragranceCategoryRepository.CommitAsync();
-            
-            return Unit.Value;
+            var fragranceCategoryTranslation = fragranceCategory.FragranceCategoryTranslations.First(fct => fct.Language.Code == translation.Key);
+            fragranceCategoryTranslation.Name = translation.Value.Name;
+            fragranceCategoryTranslation.Description = translation.Value.Description;
+            fragranceCategoryTranslation.ModifiedAt = DateTime.Now;
         }
     }
 }

@@ -15,8 +15,14 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
         private readonly IProductPriceRepository _productPriceRepository;
         private readonly IMapper _mapper;
 
-        public EditProductCommandHandler(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository, IBrandRepository brandRepository,
-            IFragranceCategoryRepository fragranceCategoryRepository, IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IMapper mapper)
+        public EditProductCommandHandler(
+            IProductRepository productRepository,
+            IProductCategoryRepository productCategoryRepository,
+            IBrandRepository brandRepository,
+            IFragranceCategoryRepository fragranceCategoryRepository,
+            IGenderRepository genderRepository,
+            IProductPriceRepository productPriceRepository,
+            IMapper mapper)
         {
             _productRepository = productRepository;
             _productCategoryRepository = productCategoryRepository;
@@ -26,42 +32,64 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
             _productPriceRepository = productPriceRepository;
             _mapper = mapper;
         }
+
         public async Task<Unit> Handle(EditProductCommand request, CancellationToken cancellationToken)
         {
-            var product = (await _productRepository.GetByEncodedNameAsync(request.EncodedName))!;
-
-
-            if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
-                product.ProductCategory = (await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName!))!;
-
-            if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
-                product.Brand = (await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName!))!;
-
-            if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
-                product.FragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName!))!;
-
-            if (request.GenderId != null)
-                product.Gender = (await _genderRepository.GetByIdAsync(request.GenderId.Value))!;
-
-            product.Capacity = request.Capacity;
+            var product = await _productRepository.GetByEncodedNameAsync(request.EncodedName);
             product.ModifiedAt = DateTime.Now;
 
-            var plTranslation = product.ProductTranslations.First(fct => fct.Language.Code == "pl-PL");
-            plTranslation.Name = request.NamePl;
-            plTranslation.Description = request.DescriptionPl;
-            plTranslation.ModifiedAt = DateTime.Now;
+            await UpdateProductDetails(request, product);
+            UpdateTranslations(request, product);
+            await UpdateProductPrices(request, product);
 
-            var enTranslation = product.ProductTranslations.First(fct => fct.Language.Code == "en-GB");
-            enTranslation.Name = request.NameEn;
-            enTranslation.Description = request.DescriptionEn;
-            enTranslation.ModifiedAt = DateTime.Now;
+            product.EncodeName();
+            await _productRepository.CommitAsync();
 
+            return Unit.Value;
+        }
 
-            var productPrices = _productPriceRepository.GetByProductAsync(product).Result;
-            var productPrice = productPrices.First(pp => !pp.IsPromotion);
-            if (request.PriceValue != productPrice.Value)
+        private async Task UpdateProductDetails(EditProductCommand request, Product product)
+        {
+            if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
+                product.ProductCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName);
+
+            if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
+                product.Brand = await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName);
+
+            if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
+                product.FragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName);
+
+            if (request.GenderId != null)
+                product.Gender = await _genderRepository.GetByIdAsync(request.GenderId.Value);
+
+            product.Capacity = request.Capacity;
+        }
+
+        private void UpdateTranslations(EditProductCommand request, Product product)
+        {
+            var translations = new Dictionary<string, (string Name, string? Description)>
+        {
+            { "pl-PL", (request.NamePl, request.DescriptionPl) },
+            { "en-GB", (request.NameEn, request.DescriptionEn) }
+        };
+
+            foreach (var translation in translations)
             {
-                productPrice.EndDateTime = DateTime.Now;
+                var productTranslation = product.ProductTranslations.First(pt => pt.Language.Code == translation.Key);
+                productTranslation.Name = translation.Value.Name;
+                productTranslation.Description = translation.Value.Description;
+                productTranslation.ModifiedAt = DateTime.Now;
+            }
+        }
+
+        private async Task UpdateProductPrices(EditProductCommand request, Product product)
+        {
+            var productPrices = await _productPriceRepository.GetByProductAsync(product);
+
+            var standardPrice = productPrices.First(pp => !pp.IsPromotion);
+            if (request.PriceValue != standardPrice.Value)
+            {
+                standardPrice.EndDateTime = DateTime.Now;
                 await _productPriceRepository.CreateAsync(
                     new ProductPrice
                     {
@@ -81,21 +109,18 @@ namespace SmellIt.Application.Features.Products.Commands.EditProduct
                 }
 
                 if (request.PromotionalPriceValue != null)
+                {
                     await _productPriceRepository.CreateAsync(
                         new ProductPrice
                         {
                             Product = product,
-                            Value = (decimal)request.PromotionalPriceValue!,
+                            Value = (decimal)request.PromotionalPriceValue,
                             IsPromotion = true,
-                            StartDateTime = (DateTime)request.PromotionalPriceStartDateTime!,
+                            StartDateTime = (request.PromotionalPriceStartDateTime ?? DateTime.Now),
                             EndDateTime = request.PromotionalPriceEndDateTime
                         });
+                }
             }
-
-            product.EncodeName();
-            await _productRepository.CommitAsync();
-
-            return Unit.Value;
         }
     }
 }

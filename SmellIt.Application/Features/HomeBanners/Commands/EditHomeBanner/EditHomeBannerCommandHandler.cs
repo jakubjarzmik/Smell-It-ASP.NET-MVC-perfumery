@@ -1,32 +1,40 @@
 ﻿using MediatR;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner
+namespace SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner;
+public class EditHomeBannerCommandHandler : IRequestHandler<EditHomeBannerCommand>
 {
-    public class EditHomeBannerCommandHandler : IRequestHandler<EditHomeBannerCommand>
+    private readonly IHomeBannerRepository _homeBannerRepository;
+
+    public EditHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository)
     {
-	    private readonly IHomeBannerRepository _homeBannerRepository;
+        _homeBannerRepository = homeBannerRepository;
+    }
+    public async Task<Unit> Handle(EditHomeBannerCommand request, CancellationToken cancellationToken)
+    {
+        var homeBanner = (await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        homeBanner.ModifiedAt = DateTime.Now;
 
-	    public EditHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository)
-	    {
-		    _homeBannerRepository = homeBannerRepository;
-	    }
-        public async Task<Unit> Handle(EditHomeBannerCommand request, CancellationToken cancellationToken)
+        UpdateTranslations(request, homeBanner);
+
+        await _homeBannerRepository.CommitAsync();
+
+        return Unit.Value;
+    }
+    private void UpdateTranslations(EditHomeBannerCommand request, HomeBanner homeBanner)
+    {
+        var translations = new Dictionary<string, string>
         {
-            var homeBanner = (await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName))!;
-            homeBanner.ModifiedAt = DateTime.Now;
+            { "pl-PL", request.TextPl },
+            { "en-GB", request.TextEn }
+        };
 
-            var plTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == "pl-PL");
-            plTranslation.Text = request.TextPl;
-            plTranslation.ModifiedAt = DateTime.Now;
-
-            var enTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == "en-GB");
-            enTranslation.Text = request.TextEn;
-            enTranslation.ModifiedAt = DateTime.Now;
-
-            await _homeBannerRepository.CommitAsync();
-            
-            return Unit.Value;
+        foreach (var translation in translations)
+        {
+            var homeBannerTranslation = homeBanner.HomeBannerTranslations.First(hbt => hbt.Language.Code == translation.Key);
+            homeBannerTranslation.Text = translation.Value;
+            homeBannerTranslation.ModifiedAt = DateTime.Now;
         }
     }
 }
