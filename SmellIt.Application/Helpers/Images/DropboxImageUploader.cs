@@ -25,16 +25,22 @@ public class DropboxImageUploader : IImageUploader
 
         memoryStream.Position = 0;
 
-        var updated = await dropboxClient.Files.UploadAsync(
-            $"/{path}/{key}.{extension}",
-            WriteMode.Overwrite.Instance,
-            body: memoryStream);
+        try
+        {
+            var updated = await dropboxClient.Files.UploadAsync(
+                $"/{path}/{key}.{extension}",
+                WriteMode.Overwrite.Instance,
+                body: memoryStream);
 
-        var sharedUrl = await dropboxClient.Sharing.CreateSharedLinkWithSettingsAsync($"/{path}/{key}.{extension}");
+            var sharedUrl = await dropboxClient.Sharing.CreateSharedLinkWithSettingsAsync($"/{path}/{key}.{extension}");
 
-        var modifiedUrl = sharedUrl.Url.Replace("?dl=0", "?raw=1");
+            var modifiedUrl = sharedUrl.Url.Replace("?dl=0", "?raw=1");
 
-        return modifiedUrl;
+            return modifiedUrl;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"There was a problem uploading the image to Dropbox: {ex.Message}", ex);
+        }
     }
-
 }
