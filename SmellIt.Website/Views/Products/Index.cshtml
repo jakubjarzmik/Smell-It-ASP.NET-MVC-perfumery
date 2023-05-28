@@ -33,7 +33,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <a class="@(stringQuery.Contains("gender") ? "":"collapsed")" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                         @await WebsiteTexts.GetValueAsync("Gender")
                                     </a>
                                 </h4>
@@ -49,7 +49,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <a class="@(stringQuery.Contains("brand") ? "":"collapsed")" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         @await WebsiteTexts.GetValueAsync("Brand")
                                     </a>
                                 </h4>
@@ -65,12 +65,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="@(stringQuery.Contains("fragrance-category") ? "":"collapsed")" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                         @await WebsiteTexts.GetValueAsync("FragranceCategory")
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse @(stringQuery.Contains("fragrance_category") ? "in":"")" role="tabpanel" aria-labelledby="headingThree">
+                            <div id="collapseThree" class="panel-collapse collapse @(stringQuery.Contains("fragrance-category") ? "in":"")" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul>
                                         @await Component.InvokeAsync("FragranceCategories")

@@ -4,7 +4,8 @@
 
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
-    bool active = false;
+    bool isActive = false;
+    bool isAdded = false;
 }
 <section class="single-product">
     <div class="container">
@@ -16,10 +17,17 @@
                             <div class='carousel-inner '>
                                 @foreach (var photo in Model.ProductImages!)
                                 {
-                                    <div class='item @(active ? "" : "active")'>
-                                            <img src='@photo.ImageUrl' alt='@photo.ImageAlt' data-zoom-image="@photo.ImageUrl" />
-                                        </div>
-                                    active = true;
+                                    <div class='item @(isActive ? "" : "active")'>
+                                        <img src='@photo.ImageUrl' alt='@photo.ImageAlt' data-zoom-image="@photo.ImageUrl" />
+                                    </div>
+                                    isActive = true;
+                                    isAdded = true;
+                                }
+                                @if (!isAdded)
+                                {
+                                    <div class='item active'>
+                                        <img src='/images/shop/products/product-default.png' alt='default' data-zoom-image="/images/shop/products/product-default.png" />
+                                    </div>
                                 }
                             </div>
                             <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
@@ -43,7 +51,11 @@
             <div class="col-md-7">
                 <div class="single-product-details">
                     <h2>
-                        @Model.Brand?.Name - @Model.Name
+                        @if (Model.Brand != null)
+                        {
+                            @(Model.Brand.Name + " - ")
+                        }
+                        @Model.Name
                     </h2>
                     @if (Model.PromotionalPrice == null)
                     {

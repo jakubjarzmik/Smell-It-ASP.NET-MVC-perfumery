@@ -1,12 +1,12 @@
 ﻿@{
     var stringQuery = Context.Request.Query;
-    var isNewestSelected = stringQuery["sort_type"] == SortType.newest.ToString();
-    var isOldestSelected = stringQuery["sort_type"] == SortType.oldest.ToString();
-    var isPriceAscendingSelected = stringQuery["sort_type"] == SortType.price_ascending.ToString();
-    var isPriceDescendingSelected = stringQuery["sort_type"] == SortType.price_descending.ToString();
+    var isNewestSelected = stringQuery["sort-type"] == SortType.newest.ToString();
+    var isOldestSelected = stringQuery["sort-type"] == SortType.oldest.ToString();
+    var isPriceAscendingSelected = stringQuery["sort-type"] == SortType.price_ascending.ToString();
+    var isPriceDescendingSelected = stringQuery["sort-type"] == SortType.price_descending.ToString();
 }
 
-<select class="form-control" id="sort_type" name="sort_type" onchange="changeSortType();">
+<select class="form-control" id="sort-type" name="sort_type" onchange="changeSortType();">
     <option value="@SortType.newest" selected="@isNewestSelected">@await WebsiteTexts.GetValueAsync("Newest")</option>
     <option value="@SortType.oldest" selected="@isOldestSelected">@await WebsiteTexts.GetValueAsync("Oldest")</option>
     <option value="@SortType.price_ascending" selected="@isPriceAscendingSelected">@await WebsiteTexts.GetValueAsync("PriceAscending")</option>
@@ -16,12 +16,12 @@
 
 <script>
     function changeSortType() {
-        var selectElement = document.getElementById('sort_type');
+        var selectElement = document.getElementById('sort-type');
         var sortType = selectElement.options[selectElement.selectedIndex].value;
         var url = new URL(window.location.href);
         var searchParams = new URLSearchParams(url.search);
 
-        searchParams.set('sort_type', sortType);
+        searchParams.set('sort-type', sortType);
 
         url.search = searchParams.toString();
         window.location.href = url.toString();

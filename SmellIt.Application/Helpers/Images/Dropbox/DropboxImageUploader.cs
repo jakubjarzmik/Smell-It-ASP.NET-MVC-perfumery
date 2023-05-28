@@ -3,7 +3,7 @@ using Dropbox.Api.Files;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace SmellIt.Application.Helpers.Images;
+namespace SmellIt.Application.Helpers.Images.Dropbox;
 
 public class DropboxImageUploader : IImageUploader
 {

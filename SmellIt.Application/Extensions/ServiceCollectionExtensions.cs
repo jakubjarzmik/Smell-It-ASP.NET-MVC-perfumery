@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Application.Helpers;
 using SmellIt.Application.Helpers.Images;
+using SmellIt.Application.Helpers.Images.Dropbox;
+using SmellIt.Application.Helpers.Images.Imgur;
+using System.Configuration;
 using System.Reflection;
 
 namespace SmellIt.Application.Extensions;
@@ -63,7 +66,11 @@ public static class ServiceCollectionExtension
             .AsImplementedInterfaces()
             .WithScopedLifetime());
 
-        services.Configure<DropboxSettings>(configuration.GetSection("Dropbox"));
-        services.AddScoped<IImageUploader, DropboxImageUploader>();
+        //services.Configure<DropboxSettings>(configuration.GetSection("Dropbox"));
+        //services.AddScoped<IImageUploader, DropboxImageUploader>();
+        services.Configure<ImgurSettings>(configuration.GetSection("ImgurSettings"));
+        services.AddScoped<IImageUploader, ImgurImageUploader>();
+
+
     }
 }

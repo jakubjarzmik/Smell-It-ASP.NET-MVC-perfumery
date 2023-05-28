@@ -8,7 +8,7 @@
     var routeValues = new Dictionary<string, string>();
     foreach (var key in queryString.Keys)
     {
-        if (key != "fragrance_category")
+        if (key != "fragrance-category")
         {
             routeValues[key] = queryString[key];
         }
@@ -17,8 +17,8 @@
 <li><a asp-all-route-data="routeValues">@await WebsiteTexts.GetValueAsync("All")</a></li>
 @foreach (var fragranceCategory in fragranceCategories)
 {
-    routeValues["fragrance_category"] = fragranceCategory.EncodedName;
-    if (queryString.ContainsKey("fragrance_category") && queryString["fragrance_category"] == fragranceCategory.EncodedName)
+    routeValues["fragrance-category"] = fragranceCategory.EncodedName;
+    if (queryString.ContainsKey("fragrance-category") && queryString["fragrance-category"] == fragranceCategory.EncodedName)
     {
         <li><strong><a asp-all-route-data="routeValues">@fragranceCategory.Name</a></strong></li>
     }
