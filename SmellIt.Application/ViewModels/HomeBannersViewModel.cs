@@ -1,12 +1,11 @@
 ﻿using SmellIt.Application.Features.HomeBanners.DTOs;
 using SmellIt.Application.ViewModels.Abstract;
 
-namespace SmellIt.Application.ViewModels
+namespace SmellIt.Application.ViewModels;
+
+public class HomeBannersViewModel : PaginatedViewModel<HomeBannerDto>
 {
-    public class HomeBannersViewModel : PaginatedViewModel<HomeBannerDto>
+    public HomeBannersViewModel(IEnumerable<HomeBannerDto> items, int totalItems, int currentPage, int pageSize) : base(items, totalItems, currentPage, pageSize)
     {
-        public HomeBannersViewModel(IEnumerable<HomeBannerDto> items, int totalItems, int currentPage, int pageSize) : base(items, totalItems, currentPage, pageSize)
-        {
-        }
     }
 }

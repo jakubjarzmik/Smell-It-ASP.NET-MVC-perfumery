@@ -3,22 +3,21 @@ using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText
+namespace SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText;
+
+public class CreateWebsiteTextCommandHandler : IRequestHandler<CreateWebsiteTextCommand>
 {
-    public class CreateWebsiteTextCommandHandler : IRequestHandler<CreateWebsiteTextCommand>
+    private readonly IWebsiteTextRepository _websiteTextRepository;
+    private readonly IMapper _mapper;
+    public CreateWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository, IMapper mapper)
     {
-        private readonly IWebsiteTextRepository _websiteTextRepository;
-        private readonly IMapper _mapper;
-        public CreateWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository, IMapper mapper)
-        {
-            _websiteTextRepository = websiteTextRepository;
-            _mapper = mapper;
-        }
-        public async Task<Unit> Handle(CreateWebsiteTextCommand request, CancellationToken cancellationToken)
-        {
-            var websiteText = _mapper.Map<WebsiteText>(request);
-            await _websiteTextRepository.CreateAsync(websiteText);
-            return Unit.Value;
-        }
+        _websiteTextRepository = websiteTextRepository;
+        _mapper = mapper;
+    }
+    public async Task<Unit> Handle(CreateWebsiteTextCommand request, CancellationToken cancellationToken)
+    {
+        var websiteText = _mapper.Map<WebsiteText>(request);
+        await _websiteTextRepository.CreateAsync(websiteText);
+        return Unit.Value;
     }
 }

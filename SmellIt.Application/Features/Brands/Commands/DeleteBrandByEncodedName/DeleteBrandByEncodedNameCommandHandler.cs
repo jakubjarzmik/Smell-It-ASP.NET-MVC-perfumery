@@ -1,22 +1,21 @@
 ﻿using MediatR;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Features.Brands.Commands.DeleteBrandByEncodedName
+namespace SmellIt.Application.Features.Brands.Commands.DeleteBrandByEncodedName;
+
+public class DeleteBrandByEncodedNameCommandHandler : IRequestHandler<DeleteBrandByEncodedNameCommand>
 {
-    public class DeleteBrandByEncodedNameCommandHandler : IRequestHandler<DeleteBrandByEncodedNameCommand>
+    private readonly IBrandRepository _brandRepository;
+
+    public DeleteBrandByEncodedNameCommandHandler(IBrandRepository brandRepository)
     {
-        private readonly IBrandRepository _brandRepository;
+        _brandRepository = brandRepository;
+    }
 
-        public DeleteBrandByEncodedNameCommandHandler(IBrandRepository brandRepository)
-        {
-            _brandRepository = brandRepository;
-        }
+    public async Task<Unit> Handle(DeleteBrandByEncodedNameCommand request, CancellationToken cancellationToken)
+    {
+        await _brandRepository.DeleteByEncodedNameAsync(request.EncodedName);
 
-        public async Task<Unit> Handle(DeleteBrandByEncodedNameCommand request, CancellationToken cancellationToken)
-        {
-            await _brandRepository.DeleteByEncodedNameAsync(request.EncodedName);
-
-            return Unit.Value;
-        }
+        return Unit.Value;
     }
 }

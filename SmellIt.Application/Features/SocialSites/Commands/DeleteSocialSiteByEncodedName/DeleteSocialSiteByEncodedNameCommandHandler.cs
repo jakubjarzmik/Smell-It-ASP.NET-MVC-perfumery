@@ -1,21 +1,20 @@
 ﻿using MediatR;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEncodedName
+namespace SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEncodedName;
+
+public class DeleteSocialSiteByEncodedNameCommandHandler : IRequestHandler<DeleteSocialSiteByEncodedNameCommand>
 {
-    public class DeleteSocialSiteByEncodedNameCommandHandler : IRequestHandler<DeleteSocialSiteByEncodedNameCommand>
+    private readonly ISocialSiteRepository _socialSiteRepository;
+
+    public DeleteSocialSiteByEncodedNameCommandHandler(ISocialSiteRepository socialSiteRepository)
     {
-        private readonly ISocialSiteRepository _socialSiteRepository;
+        _socialSiteRepository = socialSiteRepository;
+    }
 
-        public DeleteSocialSiteByEncodedNameCommandHandler(ISocialSiteRepository socialSiteRepository)
-        {
-            _socialSiteRepository = socialSiteRepository;
-        }
-
-        public async Task<Unit> Handle(DeleteSocialSiteByEncodedNameCommand request, CancellationToken cancellationToken)
-        {
-            await _socialSiteRepository.DeleteByEncodedNameAsync(request.EncodedName);
-            return Unit.Value;
-        }
+    public async Task<Unit> Handle(DeleteSocialSiteByEncodedNameCommand request, CancellationToken cancellationToken)
+    {
+        await _socialSiteRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        return Unit.Value;
     }
 }

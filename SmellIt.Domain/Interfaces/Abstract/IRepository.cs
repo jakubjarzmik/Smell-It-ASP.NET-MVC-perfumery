@@ -1,6 +1,5 @@
-﻿namespace SmellIt.Domain.Interfaces.Abstract
+﻿namespace SmellIt.Domain.Interfaces.Abstract;
+
+public interface IRepository
 {
-    public interface IRepository
-    {
-    }
 }

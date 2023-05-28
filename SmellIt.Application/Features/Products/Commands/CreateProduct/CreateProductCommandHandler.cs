@@ -76,7 +76,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 
         if (request.PromotionalPriceValue != null)
         {
-            await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue!, IsPromotion = true});
+            await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue, IsPromotion = true});
         }
 
         return Unit.Value;

@@ -6,42 +6,41 @@ using Microsoft.AspNetCore.Localization;
 using SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyByLanguageCode;
 using SmellIt.Website.Controllers.Abstract;
 
-namespace SmellIt.Website.Controllers
+namespace SmellIt.Website.Controllers;
+
+public class HomeController : BaseController
 {
-    public class HomeController : BaseController
+    public HomeController(IMediator mediator) : base(mediator)
     {
-        public HomeController(IMediator mediator) : base(mediator)
-        {
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
+    }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        [Route("home/contact")]
-        public IActionResult Contact()
-        {
-            return View();
-        }
+    [Route("home/contact")]
+    public IActionResult Contact()
+    {
+        return View();
+    }
 
-        [Route("home/privacy-policy")]
-        public async Task<IActionResult> Privacy()
-        {
-            var privacyPolicy = await Mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(CurrentCulture));
-            return View(privacyPolicy);
-        }
-        public IActionResult ChangeLanguage(string culture)
-        {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions(){Expires = DateTimeOffset.Now.AddYears(1)});
+    [Route("home/privacy-policy")]
+    public async Task<IActionResult> Privacy()
+    {
+        var privacyPolicy = await Mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(CurrentCulture));
+        return View(privacyPolicy);
+    }
+    public IActionResult ChangeLanguage(string culture)
+    {
+        Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            new CookieOptions(){Expires = DateTimeOffset.Now.AddYears(1)});
 
-            return Redirect(Request.Headers["Referer"].ToString());
-        }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        return Redirect(Request.Headers["Referer"].ToString());
+    }
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

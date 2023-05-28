@@ -3,19 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
 using SmellIt.Website.ViewComponents.Abstract;
 
-namespace SmellIt.Website.ViewComponents
+namespace SmellIt.Website.ViewComponents;
+
+public class ProductCategoriesViewComponent : BaseViewComponent
 {
-    public class ProductCategoriesViewComponent : BaseViewComponent
+    public ProductCategoriesViewComponent(IMediator mediator) : base(mediator)
     {
-        public ProductCategoriesViewComponent(IMediator mediator) : base(mediator)
-        {
-        }
+    }
 
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var productCategories =  await Mediator.Send(new GetAllProductCategoriesForWebsiteQuery(CurrentCulture));
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        var productCategories =  await Mediator.Send(new GetAllProductCategoriesForWebsiteQuery(CurrentCulture));
 
-            return View(productCategories);
-        }
+        return View(productCategories);
     }
 }

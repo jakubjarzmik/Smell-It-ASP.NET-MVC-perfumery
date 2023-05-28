@@ -3,19 +3,18 @@ using SmellIt.Application.Features.Products.DTOs;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
-namespace SmellIt.Application.Mappings.ProductMapping
-{
-    public class ProductImagesResolver : IValueResolver<ProductDto, Product, ICollection<ProductImage>?>
-    {
-        private readonly IProductImageRepository _productImageRepository;
+namespace SmellIt.Application.Mappings.ProductMapping;
 
-        public ProductImagesResolver(IProductImageRepository productImageRepository)
-        {
-            _productImageRepository = productImageRepository;
-        }
-        public ICollection<ProductImage>? Resolve(ProductDto source, Product destination, ICollection<ProductImage>? destMember, ResolutionContext context)
-        {
-            return _productImageRepository.GetByProductIdAsync(destination.Id).Result;
-        }
+public class ProductImagesResolver : IValueResolver<ProductDto, Product, ICollection<ProductImage>?>
+{
+    private readonly IProductImageRepository _productImageRepository;
+
+    public ProductImagesResolver(IProductImageRepository productImageRepository)
+    {
+        _productImageRepository = productImageRepository;
+    }
+    public ICollection<ProductImage>? Resolve(ProductDto source, Product destination, ICollection<ProductImage>? destMember, ResolutionContext context)
+    {
+        return _productImageRepository.GetByProductIdAsync(destination.Id).Result;
     }
 }
