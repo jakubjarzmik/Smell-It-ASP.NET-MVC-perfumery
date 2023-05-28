@@ -1251,6 +1251,18 @@ namespace SmellIt.Infrastructure.Seeders
                     await _dbContext.WebsiteTextTranslations.AddRangeAsync(somethingWentWrongTranslations);
 
 
+                    var smellItAddress = new WebsiteText { Key = "SmellItAddress" };
+                    await _dbContext.WebsiteTexts.AddAsync(smellItAddress);
+
+                    List<WebsiteTextTranslation> smellItAddressTranslations = new()
+                    {
+                        new WebsiteTextTranslation { WebsiteText = smellItAddress, Language = polish, Text = "Floriańska 1, 31-019 Kraków" },
+                        new WebsiteTextTranslation { WebsiteText = smellItAddress, Language = english, Text = "Florianska 1, 31-019 Cracow" },
+                    };
+                    smellItAddress.WebsiteTextTranslations = smellItAddressTranslations;
+                    await _dbContext.WebsiteTextTranslations.AddRangeAsync(smellItAddressTranslations);
+
+
                     var seeNow = new WebsiteText { Key = "SeeNow" };
                     await _dbContext.WebsiteTexts.AddAsync(seeNow);
 
@@ -1285,7 +1297,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner1 = new HomeBanner
                     {
                         Key = "HomeBanner1",
-                        ImagePath = "https://www.dropbox.com/s/99dba461lflqyo2/HomeBanner1.jpg?raw=1"
+                        ImagePath = "https://i.imgur.com/rJpL9Qr.jpg"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner1);
 
@@ -1301,7 +1313,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner2 = new HomeBanner
                     {
                         Key = "HomeBanner2",
-                        ImagePath = "https://www.dropbox.com/s/w4ydtgiv7zhakys/HomeBanner2.jpg?raw=1"
+                        ImagePath = "https://i.imgur.com/THroTSI.jpg"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner2);
 
@@ -1317,7 +1329,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner3 = new HomeBanner
                     {
                         Key = "HomeBanner3",
-                        ImagePath = "https://www.dropbox.com/s/kwpvkigvye41yve/HomeBanner3.jpg?raw=1"
+                        ImagePath = "https://i.imgur.com/3Cq8XuF.png"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner3);
 
@@ -1333,7 +1345,7 @@ namespace SmellIt.Infrastructure.Seeders
                     var homeBanner4 = new HomeBanner
                     {
                         Key = "HomeBanner4",
-                        ImagePath = "https://www.dropbox.com/s/tbhic8nyr77n8g4/HomeBanner4.jpg?raw=1"
+                        ImagePath = "https://i.imgur.com/SttTli5.jpg"
                     };
                     await _dbContext.HomeBanners.AddAsync(homeBanner4);
 

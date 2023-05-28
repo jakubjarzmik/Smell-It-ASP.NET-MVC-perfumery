@@ -41,9 +41,6 @@ namespace SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWe
 
             switch (request.SortType)
             {
-                case SortType.newest:
-                    dtos = dtos.OrderByDescending(p => p.CreatedAt);
-                    break;
                 case SortType.oldest:
                     dtos = dtos.OrderBy(p => p.CreatedAt);
                     break;
@@ -52,6 +49,9 @@ namespace SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWe
                     break;
                 case SortType.price_descending:
                     dtos = dtos.OrderByDescending(p => p.Price.Value);
+                    break;
+                default:
+                    dtos = dtos.OrderByDescending(p => p.CreatedAt);
                     break;
             }
 

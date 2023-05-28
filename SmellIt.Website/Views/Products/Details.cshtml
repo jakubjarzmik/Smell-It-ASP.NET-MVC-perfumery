@@ -57,15 +57,17 @@
                         }
                         @Model.Name
                     </h2>
-                    @if (Model.PromotionalPrice == null)
-                    {
-                        <p class="product-price">@Model.Price.Value zł</p>
-                    }
-                    else
-                    {
-                        <p class="product-price"><del>@Model.Price.Value</del> @Model.PromotionalPrice.Value zł</p>
-                        <p>@await WebsiteTexts.GetValueAsync("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
-                    }
+                    <h3>
+                        @if (Model.PromotionalPrice == null)
+                        {
+                            <span class="product-price right">@Model.Price.Value zł</span>
+                        }
+                        else
+                        {
+                            <span class="product-price right"><del>@Model.Price.Value</del> @Model.PromotionalPrice.Value zł</span>
+                            <p>@await WebsiteTexts.GetValueAsync("Last30DaysLowestPrice"): @Model.Last30DaysLowestPrice zł</p>
+                        }
+                    </h3>
                     <p class="product-description mt-20">
                         @Model.Description
                     </p>
