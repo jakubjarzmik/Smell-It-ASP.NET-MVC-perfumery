@@ -64,31 +64,16 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
 
     private void DeleteAllRelatedObjects(Product product)
     {
-        DeleteTranslations(product);
-        DeletePrices(product);
-        DeleteImages(product);
-    }
-
-    private void DeleteTranslations(Product product)
-    {
         foreach (var productTranslation in product.ProductTranslations)
         {
             productTranslation.IsActive = false;
             productTranslation.DeletedAt = DateTime.Now;
         }
-    }
-
-    private void DeletePrices(Product product)
-    {
         foreach (var productPrice in product.ProductPrices)
         {
             productPrice.IsActive = false;
             productPrice.DeletedAt = DateTime.Now;
         }
-    }
-
-    private void DeleteImages(Product product)
-    {
         if (product.ProductImages == null) return;
         foreach (var productImage in product.ProductImages)
         {

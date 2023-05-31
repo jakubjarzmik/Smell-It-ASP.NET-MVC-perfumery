@@ -9,6 +9,11 @@ using SmellIt.Application.Features.ProductCategories.Commands.EditProductCategor
 using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetPaginatedProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetProductCategoryByEncodedName;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
+using SmellIt.Application.Features.Brands.Queries.GetAllBrands;
+using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategories;
+using SmellIt.Application.Features.Genders.Queries.GetAllGenders;
 
 namespace SmellIt.Admin.Controllers;
 public class ProductCategoriesController : BaseController
@@ -22,8 +27,7 @@ public class ProductCategoriesController : BaseController
     [Route("product-categories")]
     public async Task<IActionResult> Index(int? page)
     {
-        ViewData["PrefixGenerator"] = _prefixGenerator;
-        ViewData["ProductCategories"] = await Mediator.Send(new GetAllProductCategoriesQuery());
+        await LoadViewBags();
         var viewModel = await Mediator.Send(new GetPaginatedProductCategoriesQuery(page, 7));
         return View(viewModel);
     }
@@ -31,8 +35,7 @@ public class ProductCategoriesController : BaseController
     [Route("product-categories/create")]
     public async Task<IActionResult> Create()
     {
-        ViewData["ProductCategories"] = await Mediator.Send(new GetAllProductCategoriesQuery());
-        ViewData["PrefixGenerator"] = _prefixGenerator;
+        await LoadViewBags();
         return View();
     }
 
@@ -52,8 +55,7 @@ public class ProductCategoriesController : BaseController
     [Route("product-categories/{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        ViewData["PrefixGenerator"] = _prefixGenerator;
-        ViewData["ProductCategories"] = await Mediator.Send(new GetAllProductCategoriesQuery());
+        await LoadViewBags();
         var dto = await Mediator.Send(new GetProductCategoryByEncodedNameQuery(encodedName));
         EditProductCategoryCommand model = Mapper.Map<EditProductCategoryCommand>(dto);
         return View(model);
@@ -78,5 +80,10 @@ public class ProductCategoriesController : BaseController
     {
         await Mediator.Send(new DeleteProductCategoryByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
+    }
+    private async Task LoadViewBags()
+    {
+        ViewBag.ProductCategories = await Mediator.Send(new GetAllProductCategoriesQuery());
+        ViewBag.PrefixGenerator = _prefixGenerator;
     }
 }

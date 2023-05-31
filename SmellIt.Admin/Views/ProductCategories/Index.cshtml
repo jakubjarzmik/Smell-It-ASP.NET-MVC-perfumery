@@ -1,7 +1,7 @@
 ﻿@using SmellIt.Application.Helpers
 @model ProductCategoriesViewModel
 @{
-    var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;
+    var prefixGenerator = (ViewBag.PrefixGenerator as IProductCategoryPrefixGenerator)!;
     ViewData["Title"] = language.GetValue("ProductCategories");
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();

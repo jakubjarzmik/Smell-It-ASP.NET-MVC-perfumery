@@ -77,42 +77,24 @@
                                 <label asp-for="BrandEncodedName">@language.GetValue("Brand")</label>
                             </div>
                             <div class="input-field col l10 m9 s8">
-                                <select id="parents" asp-for="BrandEncodedName">
+                                <select id="parents" asp-for="BrandEncodedName" asp-items="ViewBag.Brands">
                                     <option value="@null" selected></option>
-                                    @foreach (var brand in ViewData["Brands"] as IEnumerable<BrandDto>)
-                                    {
-                                        <option value="@brand.EncodedName">
-                                            @brand.Name
-                                        </option>
-                                    }
                                 </select>
                             </div>
                             <div class="input-field col l2 m3 s4">
                                 <label asp-for="FragranceCategoryEncodedName">@language.GetValue("FragranceCategory")</label>
                             </div>
                             <div class="input-field col l10 m9 s8">
-                                <select id="parents" asp-for="FragranceCategoryEncodedName">
+                                <select id="parents" asp-for="FragranceCategoryEncodedName" asp-items="ViewBag.FragranceCategories">
                                     <option value="@null" selected></option>
-                                    @foreach (var fragranceCategory in ViewData["FragranceCategories"] as IEnumerable<FragranceCategoryDto>)
-                                    {
-                                        <option value="@fragranceCategory.EncodedName">
-                                            @(currentCulture == "pl-PL" ? fragranceCategory.NamePl : fragranceCategory.NameEn)
-                                        </option>
-                                    }
                                 </select>
                             </div>
                             <div class="input-field col l2 m3 s4">
                                 <label asp-for="GenderId">@language.GetValue("Gender")</label>
                             </div>
                             <div class="input-field col l10 m9 s8">
-                                <select id="parents" asp-for="GenderId">
+                                <select id="parents" asp-for="GenderId" asp-items="ViewBag.Genders">
                                     <option value="@null" selected></option>
-                                    @foreach (var gender in ViewData["Genders"] as IEnumerable<GenderDto>)
-                                    {
-                                        <option value="@gender.Id">
-                                            @(currentCulture == "pl-PL" ? gender.NamePl : gender.NameEn)
-                                        </option>
-                                    }
                                 </select>
                             </div>
                             <div class="input-field col s12">

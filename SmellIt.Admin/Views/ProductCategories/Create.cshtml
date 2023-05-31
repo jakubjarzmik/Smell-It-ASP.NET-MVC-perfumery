@@ -4,7 +4,7 @@
 @model SmellIt.Application.Features.ProductCategories.Commands.CreateProductCategory.CreateProductCategoryCommand
 @{
     ViewData["Title"] = language.GetValue("AddNewProductCategory");
-    var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;
+    var prefixGenerator = (ViewBag.PrefixGenerator as IProductCategoryPrefixGenerator)!;
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
@@ -26,7 +26,7 @@
                             <div class="input-field col s12">
                                 <select id="parentCategories" asp-for="ParentCategoryEncodedName">
                                     <option value="@null" selected></option>
-                                    @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
+                                    @foreach (var category in (ViewBag.ProductCategories as IEnumerable<ProductCategoryDto>)!)
                                     {
                                         <option value="@category.EncodedName">
                                             @prefixGenerator.GeneratePrefix(category)

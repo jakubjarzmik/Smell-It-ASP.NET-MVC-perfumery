@@ -19,13 +19,23 @@ public class GetFilteredProductsForWebsiteQueryHandler : IRequestHandler<GetFilt
 
     public async Task<IEnumerable<WebsiteProductDto>> Handle(GetFilteredProductsForWebsiteQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Product> products = new List<Product>();
+        var products = await FetchProductsAsync(request);
+        products = ApplyFilters(request, products);
+        var dtos = _mapper.Map<IEnumerable<WebsiteProductDto>>(products, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
+        dtos = SortDtos(request, dtos);
 
-        if (request.CategoryEncodedName != null)
-            products = await _productRepository.GetProductsByCategoryEncodedNameAsync(request.CategoryEncodedName);
-        else
-            products = await _productRepository.GetAllAsync();
+        return dtos;
+    }
 
+    private async Task<IEnumerable<Product>> FetchProductsAsync(GetFilteredProductsForWebsiteQuery request)
+    {
+        return request.CategoryEncodedName != null
+            ? await _productRepository.GetProductsByCategoryEncodedNameAsync(request.CategoryEncodedName)
+            : await _productRepository.GetAllAsync();
+    }
+
+    private IEnumerable<Product> ApplyFilters(GetFilteredProductsForWebsiteQuery request, IEnumerable<Product> products)
+    {
         if (request.BrandEncodedName != null)
             products = products.Where(p => p.Brand?.EncodedName == request.BrandEncodedName);
         if (request.FragranceCategoryEncodedName != null)
@@ -33,28 +43,21 @@ public class GetFilteredProductsForWebsiteQueryHandler : IRequestHandler<GetFilt
         if (request.GenderEncodedName != null)
             products = products.Where(p => p.Gender?.EncodedName == request.GenderEncodedName);
 
+        return products;
+    }
 
-        var dtos = _mapper.Map<IEnumerable<WebsiteProductDto>>(products, opt =>
-        {
-            opt.Items["LanguageCode"] = request.LanguageCode;
-        });
-
+    private IEnumerable<WebsiteProductDto> SortDtos(GetFilteredProductsForWebsiteQuery request, IEnumerable<WebsiteProductDto> dtos)
+    {
         switch (request.SortType)
         {
             case SortType.oldest:
-                dtos = dtos.OrderBy(p => p.CreatedAt);
-                break;
+                return dtos.OrderBy(p => p.CreatedAt);
             case SortType.price_ascending:
-                dtos = dtos.OrderBy(p => p.Price.Value);
-                break;
+                return dtos.OrderBy(p => p.Price.Value);
             case SortType.price_descending:
-                dtos = dtos.OrderByDescending(p => p.Price.Value);
-                break;
+                return dtos.OrderByDescending(p => p.Price.Value);
             default:
-                dtos = dtos.OrderByDescending(p => p.CreatedAt);
-                break;
+                return dtos.OrderByDescending(p => p.CreatedAt);
         }
-
-        return dtos;
     }
 }

@@ -38,6 +38,20 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
+        await SetRelatedEntitiesAsync(request);
+
+        var product = _mapper.Map<Product>(request);
+        await _productRepository.CreateAsync(product);
+
+        await ProcessImagesAsync(request, product);
+
+        await ProcessProductPriceAsync(request, product);
+
+        return Unit.Value;
+    }
+
+    private async Task SetRelatedEntitiesAsync(CreateProductCommand request)
+    {
         if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
         {
             var productCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName!);
@@ -58,9 +72,10 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
             var gender = await _genderRepository.GetByIdAsync(request.GenderId.Value);
             request.Gender = _mapper.Map<GenderDto>(gender);
         }
-        var product = _mapper.Map<Product>(request);
-        await _productRepository.CreateAsync(product);
+    }
 
+    private async Task ProcessImagesAsync(CreateProductCommand request, Product product)
+    {
         if (request.ImageFiles != null && request.ImageFiles.Count > 0)
         {
             int i = 1;
@@ -71,14 +86,15 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
                 i++;
             }
         }
+    }
 
-        await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = request.PriceValue});
+    private async Task ProcessProductPriceAsync(CreateProductCommand request, Product product)
+    {
+        await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = request.PriceValue });
 
         if (request.PromotionalPriceValue != null)
         {
-            await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue, IsPromotion = true});
+            await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = (decimal)request.PromotionalPriceValue, IsPromotion = true });
         }
-
-        return Unit.Value;
     }
 }

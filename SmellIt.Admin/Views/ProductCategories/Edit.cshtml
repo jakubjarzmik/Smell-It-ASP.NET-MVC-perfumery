@@ -27,7 +27,7 @@
                             <div class="input-field col s12">
                                 <select id="parentCategories" asp-for="ParentCategoryEncodedName">
                                     <option value="@null" selected></option>
-                                    @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
+                                    @foreach (var category in (ViewBag.ProductCategories as IEnumerable<ProductCategoryDto>)!)
                                     {
                                         <option value="@category.EncodedName">
                                             @prefixGenerator.GeneratePrefix(category)
