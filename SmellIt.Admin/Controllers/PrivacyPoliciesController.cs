@@ -10,40 +10,35 @@ using SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyByEnc
 using SmellIt.Application.Features.Languages.Queries.GetAllLanguages;
 
 namespace SmellIt.Admin.Controllers;
+
+[Route("privacy-policies")]
 public class PrivacyPoliciesController : BaseController
 {
     public PrivacyPoliciesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    [Route("privacy-policies")]
     public async Task<IActionResult> Index(int? page)
     {
         var privacyPolicies = await Mediator.Send(new GetAllPrivacyPoliciesQuery());
 
         return View(privacyPolicies);
     }
-    [Route("privacy-policies/create")]
+    [Route("create")]
     public async Task<IActionResult> Create()
     {
         var languages = await Mediator.Send(new GetAllLanguagesQuery());
-        ViewData["Languages"] = languages;
+        ViewBag.Languages = languages;
         return View();
     }
 
     [HttpPost]
-    [Route("privacy-policies/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreatePrivacyPolicyCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("privacy-policies/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         var dto = await Mediator.Send(new GetPrivacyPolicyByEncodedNameQuery(encodedName));
@@ -52,21 +47,14 @@ public class PrivacyPoliciesController : BaseController
     }
 
     [HttpPost]
-    [Route("privacy-policies/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditPrivacyPolicyCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
 
-    [Route("privacy-policies/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeletePrivacyPolicyByEncodedNameCommand(encodedName));

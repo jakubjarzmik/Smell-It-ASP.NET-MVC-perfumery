@@ -4,7 +4,7 @@ using SmellIt.Application.Features.ProductCategories.DTOs;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
-public class GetAllProductCategoriesForWebsiteQueryHandler : IRequestHandler<GetAllProductCategoriesForWebsiteQuery, IEnumerable<WebsiteProductCategoryDto>>
+public class GetAllProductCategoriesForWebsiteQueryHandler : IRequestHandler<GetAllProductCategoriesForWebsiteQuery, IEnumerable<ProductCategoryDtoForWebsite>>
 {
     private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly IMapper _mapper;
@@ -14,10 +14,10 @@ public class GetAllProductCategoriesForWebsiteQueryHandler : IRequestHandler<Get
         _productCategoryRepository = productCategoryRepository;
         _mapper = mapper;
     }
-    public async Task<IEnumerable<WebsiteProductCategoryDto>> Handle(GetAllProductCategoriesForWebsiteQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ProductCategoryDtoForWebsite>> Handle(GetAllProductCategoriesForWebsiteQuery request, CancellationToken cancellationToken)
     {
         var productCategories = await _productCategoryRepository.GetAllAsync();
-        var dtos = _mapper.Map<IEnumerable<WebsiteProductCategoryDto>>(productCategories, opt =>
+        var dtos = _mapper.Map<IEnumerable<ProductCategoryDtoForWebsite>>(productCategories, opt =>
         {
             opt.Items["LanguageCode"] = request.LanguageCode;
         });

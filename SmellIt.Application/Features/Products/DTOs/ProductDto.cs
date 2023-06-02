@@ -17,9 +17,13 @@ public class ProductDto
     public ProductPriceDto Price { get; set; } = default!;
     public ProductPriceDto? PromotionalPrice { get; set; }
     public decimal? Last30DaysLowestPrice { get; set; }
+    public string? ProductCategoryEncodedName { get; set; }
     public ProductCategoryDto? ProductCategory { get; set; }
+    public string? BrandEncodedName { get; set; }
     public BrandDto? Brand { get; set; }
+    public string? FragranceCategoryEncodedName { get; set; }
     public FragranceCategoryDto? FragranceCategory { get; set; }
+    public int? GenderId { get; set; }
     public GenderDto? Gender { get; set; }
     public ICollection<ProductImageDto>? ProductImages { get; set; }
 }

@@ -1,0 +1,7 @@
+﻿@model SmellIt.Application.Features.PrivacyPolicies.DTOs.PrivacyPolicyDto
+
+<div class="input-field col s12">
+    <textarea id="privacy-policy" class="materialize-textarea" asp-for="Text"></textarea>
+    <span asp-validation-for="Text" class="helper-text"></span>
+</div>
+<input type="submit" value="@language.GetValue("Save")" class="btn right" />" value="@language.GetValue("Save")" class="btn right" />

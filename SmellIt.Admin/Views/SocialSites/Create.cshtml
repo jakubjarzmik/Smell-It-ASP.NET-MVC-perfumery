@@ -2,41 +2,27 @@
 @{
     ViewData["Title"] = language.GetValue("AddNewSocialSite");
 }
-<div class="container">
+<div class="card-content">
     <div class="row">
-        <div class="col s12">
-            <div class="card grey darken-3 white-text">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="card-title col s12">
-                            <a class="btn left" asp-controller="SocialSites" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("AddNewSocialSite")</p>
-                        </div>
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="helper-text"></div>
-                            <div class="input-field col s12">
-                                <label asp-for="Link">Link</label>
-                                <textarea class="materialize-textarea" asp-for="Link"></textarea>
-                                <span asp-validation-for="Link" class="helper-text"></span>
-                            </div>
-                            <div class="input-field col s12">
-                            <label asp-for="Type">Typ</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <select id="types" asp-for="Type">
-                                    <option value="@null" selected disabled></option>
-                                    @foreach (var type in ViewData["SocialTypes"] as IEnumerable<string>)
-                                    {
-                                        <option value="@type">@type</option>
-                                    }
-                                </select>
-                            </div>
-                            <input type="submit" value="@language.GetValue("Save")" class="btn right" />
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="card-title col s12">
+            <a class="btn left" asp-controller="SocialSites" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
+            <p class="right">@language.GetValue("AddNewSocialSite")</p>
         </div>
+        <form asp-action="Create">
+            <div class="input-field col s12">
+                <label asp-for="Type">Typ</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="types" asp-for="Type">
+                    <option value="@null" selected disabled></option>
+                    @foreach (var type in ViewBag.SocialTypes)
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+            </div>
+            @await Html.PartialAsync("PartialViews/Forms/_SocialSiteForm", Model)
+        </form>
     </div>
 </div>
 

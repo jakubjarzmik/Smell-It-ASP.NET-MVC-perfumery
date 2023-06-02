@@ -13,28 +13,15 @@
         lists_indent_on_tab: false
     });
 </script>
-<div class="container">
+<div class="card-content">
     <div class="row">
-        <div class="col s12">
-            <div class="card grey darken-3 white-text">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="card-title col s12">
-                            <a class="btn left" asp-controller="PrivacyPolicies" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-                            <p class="right">@language.GetValue("EditPrivacyPolicy") @Model.EncodedName</p>
-                        </div>
-                        <form asp-action="Edit">
-                            <div asp-validation-summary="ModelOnly" class="helper-text"></div>
-                            <div class="input-field col s12">
-                                <textarea id="privacy-policy" asp-for="Text"></textarea>
-                                <span asp-validation-for="Text" class="helper-text"></span>
-                            </div>
-                            <input type="submit" value="@language.GetValue("Save")" class="btn right" />
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="card-title col s12">
+            <a class="btn left" asp-controller="PrivacyPolicies" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
+            <p class="right">@language.GetValue("EditPrivacyPolicy") @Model.EncodedName</p>
         </div>
+        <form asp-action="Edit">
+            @await Html.PartialAsync("PartialViews/Forms/_PrivacyPolicyForm", Model)
+        </form>
     </div>
 </div>
 

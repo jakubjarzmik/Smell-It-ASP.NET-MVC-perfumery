@@ -28,7 +28,7 @@ public class ProductCategoryMappingProfile : Profile
 
         CreateMap<ProductCategoryDto, EditProductCategoryCommand>();
 
-        CreateMap<ProductCategory, WebsiteProductCategoryDto>()
+        CreateMap<ProductCategory, ProductCategoryDtoForWebsite>()
             .ForMember(dto => dto.ParentCategory,
                 opt => opt.MapFrom(src => src.ParentCategory))
             .ForMember(dto => dto.Name,

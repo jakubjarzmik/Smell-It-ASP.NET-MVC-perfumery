@@ -6,5 +6,6 @@ public class ProductCategoryDto
     public string NameEn { get; set; } = default!;
     public string? DescriptionPl { get; set; }
     public string? DescriptionEn { get; set; }
+    public string? ParentCategoryEncodedName { get; set; }
     public ProductCategoryDto? ParentCategory { get; set; }
 }

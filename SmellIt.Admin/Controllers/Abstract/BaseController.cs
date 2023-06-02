@@ -16,4 +16,14 @@ public abstract class BaseController : Controller
         Mediator = mediator;
         Mapper = mapper;
     }
+    protected async Task<IActionResult> HandleCommand<TCommand>(TCommand command, string successActionName, Func<TCommand, IActionResult> failureView)
+    {
+        if (!ModelState.IsValid)
+        {
+            return failureView(command);
+        }
+
+        await Mediator.Send(command);
+        return RedirectToAction(successActionName);
+    }
 }

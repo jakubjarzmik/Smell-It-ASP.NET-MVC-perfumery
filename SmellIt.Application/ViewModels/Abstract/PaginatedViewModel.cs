@@ -1,6 +1,4 @@
-﻿using SmellIt.Application.Features.Brands.DTOs;
-
-namespace SmellIt.Application.ViewModels.Abstract;
+﻿namespace SmellIt.Application.ViewModels.Abstract;
 public abstract class PaginatedViewModel<TDto>
 {
     public IEnumerable<TDto>? Items { get; set; }

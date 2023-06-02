@@ -9,37 +9,31 @@ using SmellIt.Application.Features.Brands.Queries.GetBrandByEncodedName;
 using SmellIt.Application.Features.Brands.Queries.GetPaginatedBrands;
 
 namespace SmellIt.Admin.Controllers;
+[Route("brands")]
 public class BrandsController : BaseController
 {
     public BrandsController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    [Route("brands")]
     public async Task<IActionResult> Index(int? page)
     {
         var viewModel = await Mediator.Send(new GetPaginatedBrandsQuery(page, 7));
         return View(viewModel);
     }
-    [Route("brands/create")]
+    [Route("create")]
     public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    [Route("brands/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateBrandCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("brands/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         var dto = await Mediator.Send(new GetBrandByEncodedNameQuery(encodedName));
@@ -48,20 +42,13 @@ public class BrandsController : BaseController
     }
 
     [HttpPost]
-    [Route("brands/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditBrandCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("brands/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteBrandByEncodedNameCommand(encodedName));

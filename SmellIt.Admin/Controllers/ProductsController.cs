@@ -4,11 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Helpers;
-using SmellIt.Application.Features.Brands.Queries.GetAllBrands;
 using SmellIt.Application.Features.Brands.Queries.GetAllBrandsForWebsite;
-using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategories;
 using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategoriesForWebsite;
-using SmellIt.Application.Features.Genders.Queries.GetAllGenders;
 using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
 using SmellIt.Application.Features.ProductPrices.Queries.GetAllProductPricesByProductEncodedName;
 using SmellIt.Application.Features.Products.Commands.CreateProduct;
@@ -19,6 +16,8 @@ using SmellIt.Application.Features.Products.Queries.GetProductByEncodedName;
 using SmellIt.Application.Features.Genders.Queries.GetAllGendersForWebsite;
 
 namespace SmellIt.Admin.Controllers;
+
+[Route("products")]
 public class ProductsController : BaseController
 {
     private readonly IProductCategoryPrefixGenerator _prefixGenerator;
@@ -28,42 +27,35 @@ public class ProductsController : BaseController
         _prefixGenerator = prefixGenerator;
     }
 
-    [Route("products")]
     public async Task<IActionResult> Index(int? page)
     {
-        await LoadViewData();
+        await LoadViewBagsAsync();
 
         var viewModel = await Mediator.Send(new GetPaginatedProductsQuery(page, 7));
         return View(viewModel);
     }
 
-    [Route("products/create")]
+    [Route("create")]
     public async Task<IActionResult> Create()
     {
-        await LoadViewData();
+        await LoadViewBagsAsync();
 
         return View();
     }
 
     [HttpPost]
-    [Route("products/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateProductCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("products/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        await LoadViewData();
+        await LoadViewBagsAsync();
 
-        ViewData["ProductPrices"] = await Mediator.Send(new GetAllProductPricesByProductEncodedNameQuery(encodedName));
+        ViewBag.ProductPrices = await Mediator.Send(new GetAllProductPricesByProductEncodedNameQuery(encodedName));
 
         var dto = await Mediator.Send(new GetProductByEncodedNameQuery(encodedName));
         EditProductCommand model = Mapper.Map<EditProductCommand>(dto);
@@ -71,26 +63,19 @@ public class ProductsController : BaseController
     }
 
     [HttpPost]
-    [Route("products/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditProductCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("products/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteProductByEncodedNameCommand(encodedName));
         return RedirectToAction(nameof(Index));
     }
-    private async Task LoadViewData()
+    private async Task LoadViewBagsAsync()
     {
         ViewBag.PrefixGenerator = _prefixGenerator;
         ViewBag.ProductCategories = await Mediator.Send(new GetAllProductCategoriesQuery());

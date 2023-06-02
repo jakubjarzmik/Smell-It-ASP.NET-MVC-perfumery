@@ -5,5 +5,4 @@ namespace SmellIt.Application.Features.ProductCategories.Commands.EditProductCat
 
 public class EditProductCategoryCommand : ProductCategoryDto, IRequest
 {
-    public string? ParentCategoryEncodedName { get; set; }
 }

@@ -9,38 +9,33 @@ using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.HomeBanners.Queries.GetPaginatedHomeBanners;
 
 namespace SmellIt.Admin.Controllers;
+
+[Route("home-banners")]
 public class HomeBannersController : BaseController
 {
-
     public HomeBannersController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    [Route("home-banners")]
+
     public async Task<IActionResult> Index(int? page)
     {
         return View(await Mediator.Send(new GetPaginatedHomeBannersQuery(page, 7)));
     }
-    [Route("home-banners/create")]
+    [Route("create")]
     public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    [Route("home-banners/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateHomeBannerCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
 
-    [Route("home-banners/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         var dto = await Mediator.Send(new GetHomeBannerByEncodedNameQuery(encodedName));
@@ -49,20 +44,13 @@ public class HomeBannersController : BaseController
     }
 
     [HttpPost]
-    [Route("home-banners/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditHomeBannerCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("home-banners/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteHomeBannerByEncodedNameCommand(encodedName));

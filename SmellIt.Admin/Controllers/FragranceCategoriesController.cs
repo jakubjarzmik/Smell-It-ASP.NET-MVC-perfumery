@@ -9,18 +9,19 @@ using SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCateg
 using SmellIt.Application.Features.FragranceCategories.Queries.GetPaginatedFragranceCategories;
 
 namespace SmellIt.Admin.Controllers;
+[Route("fragrance-categories")]
 public class FragranceCategoriesController : BaseController
 {
     public FragranceCategoriesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    [Route("fragrance-categories")]
+    
     public async Task<IActionResult> Index(int? page)
     {
         var viewModel = await Mediator.Send(new GetPaginatedFragranceCategoriesQuery(page, 7));
         return View(viewModel);
     }
-    [Route("fragrance-categories/create")]
+    [Route("create")]
 
     public IActionResult Create()
     {
@@ -28,19 +29,13 @@ public class FragranceCategoriesController : BaseController
     }
 
     [HttpPost]
-    [Route("fragrance-categories/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateFragranceCategoryCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("fragrance-categories/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         var dto = await Mediator.Send(new GetFragranceCategoryByEncodedNameQuery(encodedName));
@@ -49,20 +44,13 @@ public class FragranceCategoriesController : BaseController
     }
 
     [HttpPost]
-    [Route("fragrance-categories/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditFragranceCategoryCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("fragrance-categories/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteFragranceCategoryByEncodedNameCommand(encodedName));

@@ -9,13 +9,10 @@ using SmellIt.Application.Features.ProductCategories.Commands.EditProductCategor
 using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetPaginatedProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetProductCategoryByEncodedName;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategoriesForWebsite;
-using SmellIt.Application.Features.Brands.Queries.GetAllBrands;
-using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategories;
-using SmellIt.Application.Features.Genders.Queries.GetAllGenders;
 
 namespace SmellIt.Admin.Controllers;
+
+[Route("product-categories")]
 public class ProductCategoriesController : BaseController
 {
     private readonly IProductCategoryPrefixGenerator _prefixGenerator;
@@ -24,7 +21,6 @@ public class ProductCategoriesController : BaseController
     {
         _prefixGenerator = prefixGenerator;
     }
-    [Route("product-categories")]
     public async Task<IActionResult> Index(int? page)
     {
         await LoadViewBags();
@@ -32,7 +28,7 @@ public class ProductCategoriesController : BaseController
         return View(viewModel);
     }
 
-    [Route("product-categories/create")]
+    [Route("create")]
     public async Task<IActionResult> Create()
     {
         await LoadViewBags();
@@ -40,19 +36,13 @@ public class ProductCategoriesController : BaseController
     }
 
     [HttpPost]
-    [Route("product-categories/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateProductCategoryCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("product-categories/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
         await LoadViewBags();
@@ -62,20 +52,13 @@ public class ProductCategoriesController : BaseController
     }
 
     [HttpPost]
-    [Route("product-categories/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditProductCategoryCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("product-categories/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteProductCategoryByEncodedNameCommand(encodedName));

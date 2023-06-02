@@ -9,6 +9,8 @@ using SmellIt.Application.Features.SocialSites.Queries.GetPaginatedSocialSites;
 using SmellIt.Application.Features.SocialSites.Queries.GetSocialSiteByEncodedName;
 
 namespace SmellIt.Admin.Controllers;
+
+[Route("social-sites")]
 public class SocialSitesController : BaseController
 {
     protected readonly List<string> socialTypes = new() { "dropbox", "facebook", "github", "instagram", "linkedin", "pinterest", "twitter", "youtube" };
@@ -16,57 +18,42 @@ public class SocialSitesController : BaseController
     public SocialSitesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    [Route("social-sites")]
     public async Task<IActionResult> Index(int? page)
     {
         var viewModel = await Mediator.Send(new GetPaginatedSocialSitesQuery(page, 7));
         return View(viewModel);
     }
 
-    [Route("social-sites/create")]
+    [Route("create")]
     public IActionResult Create()
     {
-        ViewData["SocialTypes"] = socialTypes;
+        ViewBag.SocialTypes = socialTypes;
         return View();
     }
 
     [HttpPost]
-    [Route("social-sites/create")]
+    [Route("create")]
     public async Task<IActionResult> Create(CreateSocialSiteCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("social-sites/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
-        ViewData["SocialTypes"] = socialTypes;
         var dto = await Mediator.Send(new GetSocialSiteByEncodedNameQuery(encodedName));
         EditSocialSiteCommand model = Mapper.Map<EditSocialSiteCommand>(dto);
         return View(model);
     }
 
     [HttpPost]
-    [Route("social-sites/{encodedName}/edit")]
+    [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditSocialSiteCommand command)
     {
-        command.EncodedName = encodedName;
-        if (!ModelState.IsValid)
-        {
-            return View(command);
-        }
-
-        await Mediator.Send(command);
-        return RedirectToAction(nameof(Index));
+        return await HandleCommand(command, nameof(Index), View);
     }
 
-    [Route("social-sites/{encodedName}/delete")]
+    [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
         await Mediator.Send(new DeleteSocialSiteByEncodedNameCommand(encodedName));

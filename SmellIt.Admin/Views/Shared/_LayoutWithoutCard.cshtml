@@ -143,15 +143,7 @@
     </ul>
 
     <main class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card grey darken-3 white-text">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-        </div>
+        @RenderBody()
     </main>
 
     <footer class="page-footer section grey darken-4 white-text center ">
@@ -161,7 +153,7 @@
             src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="~/lib/materialize/js/materialize.min.js"></script>
     <script src="~/js/chart.js"></script>
-    <script>
+<script>
         $('.section').hide();
         $(document).ready(function () {
             $('.section').fadeIn();
