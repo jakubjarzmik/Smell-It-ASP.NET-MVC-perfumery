@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Application", "Smel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Infrastructure", "SmellIt.Infrastructure\SmellIt.Infrastructure.csproj", "{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.Tests", "SmellIt.Tests\SmellIt.Tests.csproj", "{00460EF0-2F1D-4F0F-90B5-4FD95B456F1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Tests", "SmellIt.Tests\SmellIt.Tests.csproj", "{00460EF0-2F1D-4F0F-90B5-4FD95B456F1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

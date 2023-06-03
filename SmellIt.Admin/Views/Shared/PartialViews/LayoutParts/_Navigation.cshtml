@@ -1,0 +1,127 @@
+﻿@{
+    var action = ViewContext.RouteData.Values["Action"]!.ToString();
+    var controller = ViewContext.RouteData.Values["Controller"]!.ToString();
+}
+<div class="navbar-fixed">
+    <nav class="grey darken-4">
+        <div class="nav-wrapper">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" class="left hide-on-med-and-down">
+                <div class="valign-wrapper">
+                    <img src="~/images/av.jpg" alt="" class="circle menu-avatar">
+                    John Doe
+                </div>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
+                <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@language.GetValue("Orders")</a></li>
+                <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
+                <li><a href="">@language.GetValue("Users")</a></li>
+                <li>
+                    <a class="dropdown-trigger" href="#" data-target="othersDropdown" style="padding: 0 25px">@language.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="othersDropdown" class="dropdown-content grey darken-2">
+                        <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "Brands")">@language.GetValue("Brands")</a>
+                        </li>
+                        <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "FragranceCategories")">@language.GetValue("FragranceCategories")</a>
+                        </li>
+                        <li class="@(controller == "HomeBanners" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "HomeBanners")">@language.GetValue("HomeBanners")</a>
+                        </li>
+                        <li class="@(controller == "PrivacyPolicies" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "PrivacyPolicies")">@language.GetValue("PrivacyPolicies")</a>
+                        </li>
+                        <li class="@(controller == "ProductCategories" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "ProductCategories")">@language.GetValue("ProductCategories")</a>
+                        </li>
+                        <li class="@(controller == "SocialSites" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "SocialSites")">@language.GetValue("SocialSites")</a>
+                        </li>
+                        <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
+                            <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-trigger" href="#" data-target="languageDropdown">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="languageDropdown" class="dropdown-content grey darken-2">
+                        <li>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="white-text"> English</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+
+            <a href="@Url.Action("Index", "Home")" class="brand-logo center"><img src="~/images/logo.png" /></a>
+        </div>
+    </nav>
+</div>
+<ul id="mobile-demo" class="sidenav grey darken-4">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="~/images/ocean.jpg" alt="" />
+            </div>
+            <a href="#">
+                <img src="~/images/person1.jpg" alt="" class="circle" />
+            </a>
+            <a href="#">
+                <span class="name white-text">John Doe</span>
+            </a>
+            <a href="#">
+                <span class="email white-text">jdoe@email.com</span>
+            </a>
+        </div>
+    </li>
+    <li class="@(controller == "Home" && action == "Index" ? "active" : "")">
+        <a href="@Url.Action("Index", "Home")" class="white-text">@language.GetValue("Dashboard")</a>
+    </li>
+    <li class="@(controller == "Orders" && action == "Index" ? "active" : "")">
+        <a href="" class="white-text">@language.GetValue("Orders")</a>
+    </li>
+    <li class="@(controller == "Products" && action == "Index" ? "active" : "")">
+        <a href="@Url.Action("Index", "Products")" class="white-text">@language.GetValue("Products")</a>
+    </li>
+    <li class="@(controller == "ProductCategories" && action == "Index" ? "active" : "")">
+        <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@language.GetValue("Categories")</a>
+    </li>
+    <li>
+        <a href="" class="white-text">@language.GetValue("Users")</a>
+    </li>
+    <li>
+        <a class="dropdown-trigger white-text" href="#" data-target="othersDropdownMobile">@language.GetValue("Others")<i class="material-icons white-text right">arrow_drop_down</i></a>
+        <ul id="othersDropdownMobile" class="dropdown-content grey darken-2">
+            <li class="@(controller == "ProductCategories" && action == "Index" ? "active": "")">
+                <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@language.GetValue("Categories")</a>
+            </li>
+            <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
+                <a href="@Url.Action("Index", "Brands")" class="white-text">@language.GetValue("Brands")</a>
+            </li>
+            <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
+                <a href="@Url.Action("Index", "FragranceCategories")" class="white-text">@language.GetValue("FragranceCategories")</a>
+            </li>
+            <li class="@(controller == "WebsiteText" && action == "Index" ? "active" : "") white-text">
+                <a href="@Url.Action("Index", "WebsiteTexts")" class="white-text">@language.GetValue("WebsiteTexts")</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="dropdown-trigger white-text" href="#" data-target="languageDropdownMobile">@language.GetValue("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
+        <ul id="languageDropdownMobile" class="dropdown-content grey darken-2">
+            <li>
+                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="white-text"> English</a>
+            </li>
+        </ul>
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a href="" class="waves-effect white-text">@language.GetValue("Logout")</a></li>
+</ul>
