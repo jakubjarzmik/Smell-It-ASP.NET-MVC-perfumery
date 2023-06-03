@@ -11,10 +11,14 @@ public class StringExtensionsTests
     [InlineData("Name - string to convert", "name---string-to-convert")]
     [InlineData("My 1st text with (*&%^#", "my-1st-text-with")]
     [InlineData("123", "123")]
-    public void ConvertToEncodedName_ForStringName_ReturnsEncodedName(string name, string encodedName)
+    public void ConvertToEncodedName_ForStringName_ReturnsEncodedName(string name, string expectedEncodedName)
     {
-        string result = name.ConvertToEncodedName();
+        // Arrange
 
-        result.Should().Be(encodedName);
+        // Act
+        string actualEncodedName = name.ConvertToEncodedName();
+
+        // Assert
+        actualEncodedName.Should().Be(expectedEncodedName);
     }
 }

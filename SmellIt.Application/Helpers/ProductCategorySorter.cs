@@ -12,15 +12,15 @@ public class ProductCategorySorter : IProductCategorySorter
     {
         List<ProductCategory> sortedCategories = new List<ProductCategory>();
 
-        var productCategories = categories.ToList();
+        var productCategories = categories
+            .Where(c => c.ParentCategory == parent)
+            .OrderBy(c => c.CreatedAt)
+            .ToList();
 
         foreach (var category in productCategories)
         {
-            if (category.ParentCategory == parent)
-            {
-                sortedCategories.Add(category);
-                sortedCategories.AddRange(SortCategories(productCategories, category));
-            }
+            sortedCategories.Add(category);
+            sortedCategories.AddRange(SortCategories(categories, category));
         }
         return sortedCategories;
     }
