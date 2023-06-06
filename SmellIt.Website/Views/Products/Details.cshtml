@@ -99,16 +99,17 @@
                             @Model.FragranceCategory.Name
                         </p>
                     }
-
-                    <div class="product-quantity">
-                        <span>@await WebsiteTexts.GetValueAsync("Quantity"):</span>
-                        <div class="product-quantity-slider">
-                            <input id="product-quantity" type="text" value="1" name="product-quantity">
+                    <form asp-controller="Cart" asp-action="AddToCard" method="post">
+                        <div class="product-quantity">
+                            <span>@await WebsiteTexts.GetValueAsync("Quantity"):</span>
+                            <div class="product-quantity-slider">
+                                <input id="product-quantity" type="text" value="1" name="product-quantity">
+                            </div>
                         </div>
-                    </div>
 
-                    <a href="" class="btn btn-main mt-20">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
-
+                        <input type="hidden" name="encodedName" value="@Model.EncodedName">
+                        <button type="submit" class="btn btn-main mt-20">@await WebsiteTexts.GetValueAsync("AddToCart")</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SmellIt.Application.ViewModels;
+using SmellIt.Application.ViewModels.Admin;
 
 namespace SmellIt.Application.Features.Brands.Queries.GetPaginatedBrands;
 

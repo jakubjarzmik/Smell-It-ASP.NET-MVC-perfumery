@@ -1,7 +1,7 @@
 ﻿using SmellIt.Application.Features.FragranceCategories.DTOs;
 using SmellIt.Application.ViewModels.Abstract;
 
-namespace SmellIt.Application.ViewModels;
+namespace SmellIt.Application.ViewModels.Admin;
 
 public class FragranceCategoriesViewModel : PaginatedViewModel<FragranceCategoryDto>
 {

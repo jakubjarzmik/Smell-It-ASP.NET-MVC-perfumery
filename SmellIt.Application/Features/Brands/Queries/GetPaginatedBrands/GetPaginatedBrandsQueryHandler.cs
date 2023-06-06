@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using SmellIt.Application.Features.Brands.DTOs;
-using SmellIt.Application.ViewModels;
+using SmellIt.Application.ViewModels.Admin;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.Brands.Queries.GetPaginatedBrands;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using SmellIt.Application.Features.HomeBanners.DTOs;
-using SmellIt.Application.ViewModels;
+using SmellIt.Application.ViewModels.Admin;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.HomeBanners.Queries.GetPaginatedHomeBanners;

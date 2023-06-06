@@ -35,6 +35,7 @@
     <Folder Include="Domain\Entities\" />
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Infrastructure\" />
+    <Folder Include="Pages\" />
     <Folder Include="Website\Controllers\" />
     <Folder Include="Website\Helpers\" />
     <Folder Include="Website\Models\" />

@@ -1,7 +1,7 @@
 ﻿using SmellIt.Application.Features.Languages.DTOs;
 using SmellIt.Application.Features.PrivacyPolicies.DTOs;
 
-namespace SmellIt.Application.ViewModels;
+namespace SmellIt.Application.ViewModels.Admin;
 
 public class PrivacyPoliciesViewModel
 {

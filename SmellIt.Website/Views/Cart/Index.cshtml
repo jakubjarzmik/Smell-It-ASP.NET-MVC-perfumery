@@ -1,0 +1,54 @@
+﻿@model SmellIt.Application.ViewModels.Website.CartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+<div class="page-wrapper">
+    <div class="cart shopping">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="block">
+                        <div class="product-list">
+                            <form method="post">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="">Item Name</th>
+                                            <th class="">Item Price</th>
+                                            <th class="">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in Model.CartItems)
+                                    {
+                                        <tr class="">
+                                            <td class="">
+                                                <div class="product-info">
+                                                    <img width="80" src="@item.Product?.ProductImages?.FirstOrDefault()" alt=""/>
+                                                    <a href="#!">@item.Product?.Name</a>
+                                                </div>
+                                            </td>
+                                            @if (item.Product.PromotionalPrice == null)
+                                            {
+                                                <td class="">@item.Product.Price.Value.ToString("F2") zł</td>
+                                            }
+                                            else
+                                            {
+                                                    <td class=""><del>@item.Product.Price.Value.ToString("F2") zł</del> @item.Product.PromotionalPrice.Value.ToString("F2") zł</td>
+                                            }
+                                            <td class="">
+                                                <a class="product-remove" href="#!">Remove</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                                <a href="#" class="btn btn-main pull-right">Checkout</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
