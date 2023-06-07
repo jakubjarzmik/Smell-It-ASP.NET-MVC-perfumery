@@ -6,6 +6,7 @@ using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers;
 
+[Route("cart")]
 public class CartController : BaseController
 {
     public CartController(IMediator mediator) : base(mediator)
@@ -18,7 +19,8 @@ public class CartController : BaseController
         return View(cartViewModel);
     }
 
-    public async Task<IActionResult> AddToCard(string encodedName, [FromQuery(Name = "product-quantity")] decimal quantity)
+    [HttpPost("add-to-card")]
+    public async Task<IActionResult> AddToCard([FromForm(Name = "encoded-name")] string encodedName, [FromForm(Name = "product-quantity")] decimal quantity)
     {
         await Mediator.Send(new AddCartItemCommand
         {

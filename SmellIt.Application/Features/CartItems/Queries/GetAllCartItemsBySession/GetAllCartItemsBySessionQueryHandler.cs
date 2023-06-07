@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.Features.CartItems.DTOs;
+using SmellIt.Application.Features.CartItems.DTOs.Website;
 using SmellIt.Application.ViewModels.Website;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
@@ -19,8 +19,8 @@ public class GetAllCartItemsBySessionQueryHandler : IRequestHandler<GetAllCartIt
     public async Task<CartViewModel> Handle(GetAllCartItemsBySessionQuery request, CancellationToken cancellationToken)
     {
         var cartItems = await _cartItemRepository.GetBySessionAsync(request.Session);
-        var dtos = _mapper.Map<IEnumerable<CartItemDto>>(cartItems, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
-        var totalPrice = dtos.Sum(dto => dto.Quantity * (dto.Product?.PromotionalPrice?.Value ?? dto.Product?.Price.Value)) ?? 0;
+        var dtos = _mapper.Map<IEnumerable<CartItemDtoForView>>(cartItems, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
+        var totalPrice = dtos.Sum(dto => dto.Quantity * (dto.PromotionalPrice ?? dto.Price));
         var cartViewModel = new CartViewModel
         {
             CartItems = dtos,

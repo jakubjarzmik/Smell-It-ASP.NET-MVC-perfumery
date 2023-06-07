@@ -11,39 +11,61 @@
                         <div class="product-list">
                             <form method="post">
                                 <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="">Item Name</th>
-                                            <th class="">Item Price</th>
-                                            <th class="">Actions</th>
-                                        </tr>
-                                    </thead>
                                     <tbody>
-                                    @foreach (var item in Model.CartItems)
-                                    {
-                                        <tr class="">
-                                            <td class="">
-                                                <div class="product-info">
-                                                    <img width="80" src="@item.Product?.ProductImages?.FirstOrDefault()" alt=""/>
-                                                    <a href="#!">@item.Product?.Name</a>
-                                                </div>
+                                        @foreach (var item in Model.CartItems)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <img width="80" src="@item.ImageUrl" alt="@item.ImageAlt" />
+                                                </td>
+                                                <td>
+                                                    <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.ProductEncodedName">
+                                                        @item.Name
+                                                        <br />
+                                                        @item.ProductInfo
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    @if (item.PromotionalPrice == null)
+                                                    {
+                                                        @item.Price.ToString("F2")
+                                                    }
+                                                    else
+                                                    {
+                                                        <del>@item.Price.ToString("F2") zł</del> @item.PromotionalPrice.Value.ToString("F2")
+                                                    }
+                                                    zł
+                                                </td>
+                                                <td>
+                                                    @item.Quantity
+                                                </td>
+                                                <td>
+                                                    @if (item.TotalPromotionalPrice == null)
+                                                    {
+                                                        @item.TotalPrice.ToString("F2")
+                                                    }
+                                                    else
+                                                    {
+                                                        <del>@item.TotalPrice.ToString("F2") zł</del> @item.TotalPromotionalPrice.Value.ToString("F2")
+                                                    }
+                                                    zł
+                                                </td>
+                                                <td>
+                                                    <a class="product-remove" href="#!">x</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td colspan="4" class="text-right">
+                                                @await WebsiteTexts.GetValueAsync("Total"):
                                             </td>
-                                            @if (item.Product.PromotionalPrice == null)
-                                            {
-                                                <td class="">@item.Product.Price.Value.ToString("F2") zł</td>
-                                            }
-                                            else
-                                            {
-                                                    <td class=""><del>@item.Product.Price.Value.ToString("F2") zł</del> @item.Product.PromotionalPrice.Value.ToString("F2") zł</td>
-                                            }
-                                            <td class="">
-                                                <a class="product-remove" href="#!">Remove</a>
+                                            <td colspan="2">
+                                                <strong>@Model.TotalPrice zł</strong>
                                             </td>
                                         </tr>
-                                    }
                                     </tbody>
                                 </table>
-                                <a href="#" class="btn btn-main pull-right">Checkout</a>
+                                <a href="#" class="btn btn-main pull-right">@await WebsiteTexts.GetValueAsync("Checkout")</a>
                             </form>
                         </div>
                     </div>
