@@ -18,14 +18,14 @@
                             <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName"><i class="tf-ion-android-list"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="tf-ion-android-cart"></i></a>
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-encoded-name="@item.EncodedName"><i class="tf-ion-android-cart"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="product-content">
 
-                <a href="#">
+                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName">
                     <h4>
                         @item.Brand?.Name<br />
                         <strong>@item.Name</strong>
@@ -66,7 +66,7 @@
                                 <p class="product-short-description">
                                     @item.Description
                                 </p>
-                                <a href="#" class="btn btn-main">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-encoded-name="@item.EncodedName" class="btn btn-main">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
                                 <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName" class="btn btn-transparent">@await WebsiteTexts.GetValueAsync("ViewProductDetails")</a>
                             </div>
                         </div>

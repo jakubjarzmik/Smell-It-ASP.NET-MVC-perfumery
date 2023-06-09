@@ -99,7 +99,7 @@
                             @Model.FragranceCategory.Name
                         </p>
                     }
-                    <form asp-controller="Cart" asp-action="AddToCard" method="post">
+                    <form asp-controller="Cart" asp-action="AddToCart" method="get">
                         <div class="product-quantity">
                             <span>@await WebsiteTexts.GetValueAsync("Quantity"):</span>
                             <div class="product-quantity-slider">

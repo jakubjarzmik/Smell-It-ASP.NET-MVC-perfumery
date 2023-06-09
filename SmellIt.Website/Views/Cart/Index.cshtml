@@ -2,75 +2,126 @@
 @{
     ViewData["Title"] = "Cart";
 }
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">@await WebsiteTexts.GetValueAsync("Cart")</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="page-wrapper">
     <div class="cart shopping">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="block">
-                        <div class="product-list">
-                            <form method="post">
-                                <table class="table">
-                                    <tbody>
-                                        @foreach (var item in Model.CartItems)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    <img width="80" src="@item.ImageUrl" alt="@item.ImageAlt" />
-                                                </td>
-                                                <td>
-                                                    <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.ProductEncodedName">
-                                                        @item.Name
-                                                        <br />
-                                                        @item.ProductInfo
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    @if (item.PromotionalPrice == null)
-                                                    {
-                                                        @item.Price.ToString("F2")
-                                                    }
-                                                    else
-                                                    {
-                                                        <del>@item.Price.ToString("F2") zł</del> @item.PromotionalPrice.Value.ToString("F2")
-                                                    }
-                                                    zł
-                                                </td>
-                                                <td>
-                                                    @item.Quantity
-                                                </td>
-                                                <td>
-                                                    @if (item.TotalPromotionalPrice == null)
-                                                    {
-                                                        @item.TotalPrice.ToString("F2")
-                                                    }
-                                                    else
-                                                    {
-                                                        <del>@item.TotalPrice.ToString("F2") zł</del> @item.TotalPromotionalPrice.Value.ToString("F2")
-                                                    }
-                                                    zł
-                                                </td>
-                                                <td>
-                                                    <a class="product-remove" href="#!">x</a>
-                                                </td>
-                                            </tr>
-                                        }
-                                        <tr>
-                                            <td colspan="4" class="text-right">
-                                                @await WebsiteTexts.GetValueAsync("Total"):
-                                            </td>
-                                            <td colspan="2">
-                                                <strong>@Model.TotalPrice zł</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="btn btn-main pull-right">@await WebsiteTexts.GetValueAsync("Checkout")</a>
-                            </form>
-                        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="block">
+                    <div class="product-list">
+                        <form method="post">
+                            <table class="table">
+                                <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img width="80" src="@item.ImageUrl" alt="@item.ImageAlt" />
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.ProductEncodedName">
+                                                @item.Name
+                                                <br />
+                                                @item.ProductInfo
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if (item.PromotionalPrice == null)
+                                            {
+                                                @item.Price.ToString("F2")
+                                            }
+                                            else
+                                            {
+                                                <del>@item.Price.ToString("F2") zł</del> @item.PromotionalPrice.Value.ToString("F2")
+                                            }
+                                            zł
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs change-quantity" data-product-encoded-name="@item.ProductEncodedName" data-quantity-change="-1">
+                                                <i class="tf-ion-minus"></i>
+                                            </button>
+                                            <input readonly min="1" name="quantity" value="@item.Quantity" type="number" style="width: 5ch;" />
+                                            <button class="btn btn-xs change-quantity" data-product-encoded-name="@item.ProductEncodedName" data-quantity-change="1">
+                                                <i class="tf-ion-plus"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            @if (item.TotalPromotionalPrice == null)
+                                            {
+                                                @item.TotalPrice.ToString("F2")
+                                            }
+                                            else
+                                            {
+                                                <del>@item.TotalPrice.ToString("F2") zł</del> @item.TotalPromotionalPrice.Value.ToString("F2")
+                                            }
+                                            zł
+                                        </td>
+                                        <td>
+                                            <a class="product-remove" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-encodedName="@item.ProductEncodedName"><i class="tf-ion-close"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="4" class="text-right">
+                                        @await WebsiteTexts.GetValueAsync("Total"):
+                                    </td>
+                                    <td colspan="2">
+                                        <strong>@Model.TotalPrice zł</strong>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="btn btn-main pull-right">@await WebsiteTexts.GetValueAsync("Checkout")</a>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $(".change-quantity").click(function (event) {
+                event.preventDefault();
+
+                var encodedName = $(this).data("product-encoded-name");
+                var quantityChange = $(this).data("quantity-change");
+                var inputElement = $(this).siblings('input[name="quantity"]');
+                var totalElement = $(this).parent().next();
+                var cartTotalElement = $("strong:last");
+
+                $.ajax({
+                    url: '@Url.Action("ChangeQuantity", "Cart")',
+                    type: 'POST',
+                    data: JSON.stringify({ encodedName: encodedName, change: quantityChange }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        inputElement.val(response.newQuantity);
+
+                        if (response.newTotalPromotionalPrice == null) {
+                            totalElement.text(response.newTotalPrice.toFixed(2) + " zł");
+                        } else {
+                            totalElement.html('<del>' + response.newTotalPrice.toFixed(2) + ' zł</del> ' + response.newTotalPromotionalPrice.toFixed(2));
+                        }
+
+                        cartTotalElement.text(response.newCartTotal.toFixed(2) + " zł");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

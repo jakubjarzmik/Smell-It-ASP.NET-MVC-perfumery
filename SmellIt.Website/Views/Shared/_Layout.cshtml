@@ -1,6 +1,8 @@
 ﻿@{
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+    var controller = ViewContext.RouteData.Values["Controller"]!.ToString();
+    var action = ViewContext.RouteData.Values["Action"]!.ToString();
 }
 <!DOCTYPE html>
 <html lang="pl">
@@ -44,49 +46,12 @@
                 </div>
                 <div class="col-md-4 col-xs-12 col-sm-4">
                     <ul class="top-menu text-right list-inline">
-                        <li class="dropdown cart-nav dropdown-slide">
-                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-android-cart"></i>@await WebsiteTexts.GetValueAsync("Cart")
-                            </a>
-                            <div class="dropdown-menu cart-dropdown">
-                                <div class="media">
-                                    <a class="pull-left" href="#!">
-                                        <img class="media-object" src="~/images/shop/products/smell-it/dyfuzor-smell-it1.jpg" alt="image" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">=Smell It Diffuser=</a></h4>
-                                        <div class="cart-price">
-                                            <span>1 x</span>
-                                            <span>799.00</span>
-                                        </div>
-                                        <h5><strong>799 zł</strong></h5>
-                                    </div>
-                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="~/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png" alt="image" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#!">Dior Savuage</a></h4>
-                                        <div class="cart-price">
-                                            <span>1 x</span>
-                                            <span>502.00</span>
-                                        </div>
-                                        <h5><strong>502 zł</strong></h5>
-                                    </div>
-                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                                </div>
-
-                                <div class="cart-summary">
-                                    <span>@await WebsiteTexts.GetValueAsync("Total")</span>
-                                    <span class="total-price">1301.00 zł</span>
-                                </div>
-                                <ul class="text-center cart-buttons">
-                                    <li><a asp-action="Index" asp-controller="Cart" class="btn btn-small">@await WebsiteTexts.GetValueAsync("Cart")</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        @if (!(controller == "Cart" && action == "Index"))
+                        {
+                            <li class="dropdown cart-nav dropdown-slide">
+                                @await Component.InvokeAsync("Cart")
+                            </li>
+                        }
                         <li class="dropdown search dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                                 <i class="tf-ion-ios-search-strong"></i> @await WebsiteTexts.GetValueAsync("Search")
@@ -99,7 +64,7 @@
                         </li>
                         <li class="dropdown dropdown-slide">
                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <span class="flag-icon flag-icon-@currentCulture.Substring(3,2).ToLower()"></span>
+                                <span class="flag-icon flag-icon-@currentCulture.Substring(3, 2).ToLower()"></span>
                             </a>
                             <ul class="dropdown-menu ">
                                 <li>
@@ -216,5 +181,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
     <script type="text/javascript" src="~/plugins/google-map/gmap.js"></script>
     <script src="~/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -82,7 +82,7 @@
                     <a class="btn btn-main btn-medium center-align" asp-all-route-data="null">@await WebsiteTexts.GetValueAsync("ClearAll")</a>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" id="productsSection">
                 <div class="row">
                     @await Html.PartialAsync("Products", Model)
                 </div>
