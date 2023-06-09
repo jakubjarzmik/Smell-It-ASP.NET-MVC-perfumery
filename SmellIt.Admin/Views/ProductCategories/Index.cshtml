@@ -1,5 +1,6 @@
-﻿@    using SmellIt.Application.Helpers
-@model ProductCategoriesViewModel
+﻿@using SmellIt.Application.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SmellIt.Application.ViewModels.Admin.ProductCategoriesViewModel
 @{
     var prefixGenerator = (ViewBag.PrefixGenerator as IProductCategoryPrefixGenerator)!;
     ViewData["Title"] = language.GetValue("ProductCategories");

@@ -247,6 +247,18 @@ public class Seeder
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(cartTranslations);
 
 
+            var checkout = new WebsiteText { Key = "Checkout" };
+            await _dbContext.WebsiteTexts.AddAsync(checkout);
+
+            List<WebsiteTextTranslation> checkoutTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = checkout, Language = _polish, Text = "Kasa" },
+                new WebsiteTextTranslation { WebsiteText = checkout, Language = _english, Text = "Checkout" },
+            };
+            checkout.WebsiteTextTranslations = checkoutTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(checkoutTranslations);
+
+
             var search = new WebsiteText { Key = "Search" };
             await _dbContext.WebsiteTexts.AddAsync(search);
 
@@ -1720,7 +1732,8 @@ public class Seeder
         {
             var address = new Address
             {
-                Street = "Floriańska 1",
+                FullName = "Smell It sp. z o.o.",
+                FirstLine = "Floriańska 1",
                 PostalCode = "31-042",
                 City = "Kraków",
                 Country = "Polska",

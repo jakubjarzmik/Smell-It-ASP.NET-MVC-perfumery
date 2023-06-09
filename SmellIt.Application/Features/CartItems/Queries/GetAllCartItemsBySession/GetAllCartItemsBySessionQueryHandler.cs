@@ -2,7 +2,6 @@
 using MediatR;
 using SmellIt.Application.Features.CartItems.DTOs.Website;
 using SmellIt.Application.ViewModels.Website;
-using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.CartItems.Queries.GetAllCartItemsBySession;

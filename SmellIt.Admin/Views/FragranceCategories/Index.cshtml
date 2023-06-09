@@ -1,4 +1,5 @@
-﻿@model FragranceCategoriesViewModel
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SmellIt.Application.ViewModels.Admin.FragranceCategoriesViewModel
 @{
     ViewData["Title"] = language.GetValue("FragranceCategories");
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;

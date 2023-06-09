@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SmellIt.Domain.Entities;
-using SmellIt.Application.Features.ProductPrices.DTOs;
 using SmellIt.Application.Features.CartItems.DTOs.Website;
 
 namespace SmellIt.Application.Mappings.CartItemMapping;

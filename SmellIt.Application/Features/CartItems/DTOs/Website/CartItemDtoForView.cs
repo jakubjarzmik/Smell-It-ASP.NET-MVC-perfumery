@@ -1,6 +1,4 @@
-﻿using SmellIt.Application.Features.Products.DTOs;
-
-namespace SmellIt.Application.Features.CartItems.DTOs.Website;
+﻿namespace SmellIt.Application.Features.CartItems.DTOs.Website;
 public class CartItemDtoForView
 {
     public string ImageUrl { get; set; } = default!;

@@ -3,7 +3,7 @@
 @{
     var cartItemsCount = @Model.CartItems.Count();
 }
-<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
     <i class="tf-ion-android-cart"></i>@await WebsiteTexts.GetValueAsync("Cart") @(cartItemsCount > 0 ? "(" + cartItemsCount + ")" : "")
 </a>
 
