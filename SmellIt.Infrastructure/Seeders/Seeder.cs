@@ -13,8 +13,10 @@ public class Seeder
     public Seeder(SmellItDbContext dbContext)
     {
         _dbContext = dbContext;
-        _polish = _dbContext.Languages.FirstOrDefault(l => l.Code == "pl-PL") ?? new Language { Code = "pl-PL", Name = "Polski" };
-        _english = _dbContext.Languages.FirstOrDefault(l => l.Code == "en-GB") ?? new Language { Code = "en-GB", Name = "English (GB)" };
+        _polish = _dbContext.Languages.FirstOrDefault(l => l.Code == "pl-PL") ??
+                  new Language { Code = "pl-PL", Name = "Polski" };
+        _english = _dbContext.Languages.FirstOrDefault(l => l.Code == "en-GB") ??
+                   new Language { Code = "en-GB", Name = "English (GB)" };
     }
 
     public async Task Seed()
@@ -22,6 +24,8 @@ public class Seeder
         if (await _dbContext.Database.CanConnectAsync())
         {
             await SeedAddressesAsync();
+            await SeedDeliveriesAsync();
+            await SeedPaymentsAsync();
             await SeedProductsAsync();
             await SeedWebsiteTextsAsync();
             await SeedHomeBannersAsync();
@@ -29,6 +33,142 @@ public class Seeder
             await SeedSocialSitesAsync();
 
             await _dbContext.SaveChangesAsync();
+        }
+    }
+
+    private async Task SeedPaymentsAsync()
+    {
+        if (!await _dbContext.Payments.AnyAsync())
+        {
+            var creditCard = new Payment();
+            await _dbContext.Payments.AddAsync(creditCard);
+
+            List<PaymentTranslation> creditCardTranslations = new()
+        {
+            new PaymentTranslation
+            {
+                Payment = creditCard, Language = _polish, Name = "Karta płatnicza",
+            },
+            new PaymentTranslation
+            {
+                Payment = creditCard, Language = _english, Name = "Credit Card",
+            },
+        };
+            creditCard.PaymentTranslations = creditCardTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(creditCardTranslations);
+
+            
+            var bankTransfer = new Payment();
+            await _dbContext.Payments.AddAsync(bankTransfer);
+
+            List<PaymentTranslation> bankTransferTranslations = new()
+        {
+            new PaymentTranslation
+            {
+                Payment = bankTransfer, Language = _polish, Name = "Przelew bankowy",
+            },
+            new PaymentTranslation
+            {
+                Payment = bankTransfer, Language = _english, Name = "Bank Transfer",
+            },
+        };
+            bankTransfer.PaymentTranslations = bankTransferTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(bankTransferTranslations);
+
+
+            var blik = new Payment();
+            await _dbContext.Payments.AddAsync(bankTransfer);
+
+            List<PaymentTranslation> blikTranslations = new()
+        {
+            new PaymentTranslation
+            {
+                Payment = blik, Language = _polish, Name = "Blik",
+            },
+            new PaymentTranslation
+            {
+                Payment = blik, Language = _english, Name = "Blik",
+            },
+        };
+            blik.PaymentTranslations = blikTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(blikTranslations);
+
+
+            var cashOnDelivery = new Payment();
+            await _dbContext.Payments.AddAsync(cashOnDelivery);
+
+            List<PaymentTranslation> cashOnDeliveryTranslations = new()
+        {
+            new PaymentTranslation
+            {
+                Payment = cashOnDelivery, Language = _polish, Name = "Płatność za pobraniem",
+            },
+            new PaymentTranslation
+            {
+                Payment = cashOnDelivery, Language = _english, Name = "Cash on Delivery",
+            },
+        };
+            cashOnDelivery.PaymentTranslations = cashOnDeliveryTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(cashOnDeliveryTranslations);
+
+
+
+            await _dbContext.SaveChangesAsync();
+            var paymentList = await _dbContext.Payments.ToListAsync();
+            foreach (var x in paymentList) x.EncodeName();
+        }
+    }
+
+    private async Task SeedDeliveriesAsync()
+    {
+        if (!await _dbContext.Deliveries.AnyAsync())
+        {
+            var courier = new Delivery
+            {
+                Price = 12
+            };
+            await _dbContext.Deliveries.AddAsync(courier);
+
+            List<DeliveryTranslation> courierTranslations = new()
+            {
+                new DeliveryTranslation
+                {
+                    Delivery = courier, Language = _polish, Name = "Kurier",
+                },
+                new DeliveryTranslation
+                {
+                    Delivery = courier, Language = _english, Name = "Courier",
+                },
+            };
+            courier.DeliveryTranslations = courierTranslations;
+            await _dbContext.DeliveryTranslations.AddRangeAsync(courierTranslations);
+
+
+            var parcelLocker = new Delivery
+            {
+                Price = 9
+            };
+            await _dbContext.Deliveries.AddAsync(parcelLocker);
+
+            List<DeliveryTranslation> parcelLockerTranslations = new()
+            {
+                new DeliveryTranslation
+                {
+                    Delivery = parcelLocker, Language = _polish, Name = "Paczkomat",
+                },
+                new DeliveryTranslation
+                {
+                    Delivery = parcelLocker, Language = _english, Name = "Parcel Locker",
+                },
+            };
+            parcelLocker.DeliveryTranslations = parcelLockerTranslations;
+            await _dbContext.DeliveryTranslations.AddRangeAsync(parcelLockerTranslations);
+
+
+
+            await _dbContext.SaveChangesAsync();
+            var deliveryList = await _dbContext.Deliveries.ToListAsync();
+            foreach (var x in deliveryList) x.EncodeName();
         }
     }
 
@@ -257,6 +397,186 @@ public class Seeder
             };
             checkout.WebsiteTextTranslations = checkoutTranslations;
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(checkoutTranslations);
+
+
+            var delivery = new WebsiteText { Key = "Delivery" };
+            await _dbContext.WebsiteTexts.AddAsync(delivery);
+
+            List<WebsiteTextTranslation> deliveryTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = delivery, Language = _polish, Text = "Dostawa" },
+                new WebsiteTextTranslation { WebsiteText = delivery, Language = _english, Text = "Delivery" },
+            };
+            delivery.WebsiteTextTranslations = deliveryTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(deliveryTranslations);
+
+
+            var payment = new WebsiteText { Key = "Payment" };
+            await _dbContext.WebsiteTexts.AddAsync(payment);
+
+            List<WebsiteTextTranslation> paymentTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = payment, Language = _polish, Text = "Płatność" },
+                new WebsiteTextTranslation { WebsiteText = payment, Language = _english, Text = "Payment" },
+            };
+            payment.WebsiteTextTranslations = paymentTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(paymentTranslations);
+
+
+            var address = new WebsiteText { Key = "Address" };
+            await _dbContext.WebsiteTexts.AddAsync(address);
+
+            List<WebsiteTextTranslation> addressTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = address, Language = _polish, Text = "Adres" },
+                new WebsiteTextTranslation { WebsiteText = address, Language = _english, Text = "Address" },
+            };
+            address.WebsiteTextTranslations = addressTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(addressTranslations);
+
+
+            var firstLine = new WebsiteText { Key = "FirstLine" };
+            await _dbContext.WebsiteTexts.AddAsync(firstLine);
+
+            List<WebsiteTextTranslation> firstLineTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = firstLine, Language = _polish, Text = "Pierwsza linia" },
+                new WebsiteTextTranslation { WebsiteText = firstLine, Language = _english, Text = "First Line" },
+            };
+            firstLine.WebsiteTextTranslations = firstLineTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(firstLineTranslations);
+
+
+            var secondLine = new WebsiteText { Key = "SecondLine" };
+            await _dbContext.WebsiteTexts.AddAsync(secondLine);
+
+            List<WebsiteTextTranslation> secondLineTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = secondLine, Language = _polish, Text = "Druga linia" },
+                new WebsiteTextTranslation { WebsiteText = secondLine, Language = _english, Text = "Second Line" },
+            };
+            secondLine.WebsiteTextTranslations = secondLineTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(secondLineTranslations);
+
+
+            var postalCode = new WebsiteText { Key = "PostalCode" };
+            await _dbContext.WebsiteTexts.AddAsync(postalCode);
+
+            List<WebsiteTextTranslation> postalCodeTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = postalCode, Language = _polish, Text = "Kod pocztowy" },
+                new WebsiteTextTranslation { WebsiteText = postalCode, Language = _english, Text = "Postal Code" },
+            };
+            postalCode.WebsiteTextTranslations = postalCodeTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(postalCodeTranslations);
+
+
+            var city = new WebsiteText { Key = "City" };
+            await _dbContext.WebsiteTexts.AddAsync(city);
+
+            List<WebsiteTextTranslation> cityTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = city, Language = _polish, Text = "Miasto" },
+                new WebsiteTextTranslation { WebsiteText = city, Language = _english, Text = "City" },
+            };
+            city.WebsiteTextTranslations = cityTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(cityTranslations);
+
+
+            var country = new WebsiteText { Key = "Country" };
+            await _dbContext.WebsiteTexts.AddAsync(country);
+
+            List<WebsiteTextTranslation> countryTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = country, Language = _polish, Text = "Kraj" },
+                new WebsiteTextTranslation { WebsiteText = country, Language = _english, Text = "Country" },
+            };
+            country.WebsiteTextTranslations = countryTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(countryTranslations);
+
+
+            var orderSummary = new WebsiteText { Key = "OrderSummary" };
+            await _dbContext.WebsiteTexts.AddAsync(orderSummary);
+
+            List<WebsiteTextTranslation> orderSummaryTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = orderSummary, Language = _polish, Text = "Podsumowanie zamówienia" },
+                new WebsiteTextTranslation { WebsiteText = orderSummary, Language = _english, Text = "Order Summary" },
+            };
+            orderSummary.WebsiteTextTranslations = orderSummaryTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(orderSummaryTranslations);
+
+
+            var remove = new WebsiteText { Key = "Remove" };
+            await _dbContext.WebsiteTexts.AddAsync(remove);
+
+            List<WebsiteTextTranslation> removeTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = remove, Language = _polish, Text = "Usuń" },
+                new WebsiteTextTranslation { WebsiteText = remove, Language = _english, Text = "Remove" },
+            };
+            remove.WebsiteTextTranslations = removeTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(removeTranslations);
+
+
+            var placeOrder = new WebsiteText { Key = "PlaceOrder" };
+            await _dbContext.WebsiteTexts.AddAsync(placeOrder);
+
+            List<WebsiteTextTranslation> placeOrderTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = placeOrder, Language = _polish, Text = "Złóż zamówienie" },
+                new WebsiteTextTranslation { WebsiteText = placeOrder, Language = _english, Text = "Place Order" },
+            };
+            placeOrder.WebsiteTextTranslations = placeOrderTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(placeOrderTranslations);
+
+
+            var productsPrice = new WebsiteText { Key = "ProductsPrice" };
+            await _dbContext.WebsiteTexts.AddAsync(productsPrice);
+
+            List<WebsiteTextTranslation> productsPriceTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = productsPrice, Language = _polish, Text = "Cena produktów" },
+                new WebsiteTextTranslation { WebsiteText = productsPrice, Language = _english, Text = "Products Price" },
+            };
+            productsPrice.WebsiteTextTranslations = productsPriceTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(productsPriceTranslations);
+
+
+            var orderConfirmationTitle = new WebsiteText { Key = "OrderConfirmationTitle" };
+            await _dbContext.WebsiteTexts.AddAsync(productsPrice);
+
+            List<WebsiteTextTranslation> orderConfirmationTitleTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = orderConfirmationTitle, Language = _polish, Text = "Dziękujemy za zakupy w naszym sklepie" },
+                new WebsiteTextTranslation { WebsiteText = orderConfirmationTitle, Language = _english, Text = "Thank you for shopping at our store" },
+            };
+            orderConfirmationTitle.WebsiteTextTranslations = orderConfirmationTitleTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(orderConfirmationTitleTranslations);
+
+
+            var orderConfirmationText = new WebsiteText { Key = "OrderConfirmationText" };
+            await _dbContext.WebsiteTexts.AddAsync(productsPrice);
+
+            List<WebsiteTextTranslation> orderConfirmationTextTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = orderConfirmationText, Language = _polish, Text = "Twoje zamówienie zostało przyjęte do realizacji. W najbliższym czasie wyślemy Ci wiadomość z potwierdzeniem wysyłki wraz z numerem do śledzenia paczki. Mamy nadzieję, że nasze produkty przyniosą Ci wiele radości i zadowolenia" },
+                new WebsiteTextTranslation { WebsiteText = orderConfirmationText, Language = _english, Text = "Your order has been accepted for processing. In the near future, we will send you a message with shipping confirmation along with a tracking number for your package. We hope that our products will bring you much joy and satisfaction" },
+            };
+            orderConfirmationText.WebsiteTextTranslations = orderConfirmationTextTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(orderConfirmationTextTranslations);
+
+
+            var continueShopping = new WebsiteText { Key = "ContinueShopping" };
+            await _dbContext.WebsiteTexts.AddAsync(continueShopping);
+
+            List<WebsiteTextTranslation> continueShoppingTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = continueShopping, Language = _polish, Text = "Kontynuuj zakupy" },
+                new WebsiteTextTranslation { WebsiteText = continueShopping, Language = _english, Text = "Continue Shopping" },
+            };
+            continueShopping.WebsiteTextTranslations = continueShoppingTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(continueShoppingTranslations);
 
 
             var search = new WebsiteText { Key = "Search" };

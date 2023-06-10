@@ -1,6 +1,6 @@
 ﻿@model SmellIt.Application.ViewModels.Website.CartViewModel
 @{
-    ViewData["Title"] = "Cart";
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("Cart");
 }
 <section class="page-header">
     <div class="container">

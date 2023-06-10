@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.Features.CartItems.Queries.GetAllCartItemsBySession;
+using SmellIt.Application.Features.Deliveries.Queries.GetAllDeliveriesForWebsite;
+using SmellIt.Application.Features.Payments.Queries.GetAllPaymentsForWebsite;
 using SmellIt.Application.ViewModels.Website;
 using SmellIt.Website.Controllers.Abstract;
 
@@ -17,8 +19,15 @@ public class CheckoutController : BaseController
     {
         var checkoutViewModel = new CheckoutViewModel
         {
-            CartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture))
+            CartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture)),
+            Deliveries = await Mediator.Send(new GetAllDeliveriesForWebsiteQuery(CurrentCulture)),
+            Payments = await Mediator.Send(new GetAllPaymentsForWebsiteQuery(CurrentCulture))
         };
         return View(checkoutViewModel);
+    }
+    [Route("order-confirmation")]
+    public IActionResult OrderConfirmation()
+    {
+        return View();
     }
 }

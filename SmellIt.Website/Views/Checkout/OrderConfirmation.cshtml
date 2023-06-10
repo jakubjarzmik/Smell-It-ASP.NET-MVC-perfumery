@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("OrderConfirmation");
+}
+
+<section class="page-wrapper success-msg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="block text-center">
+                    <i class="tf-ion-android-checkmark-circle"></i>
+                    <h2 class="text-center">@await WebsiteTexts.GetValueAsync("OrderConfirmationTitle")</h2>
+                    <p>@await WebsiteTexts.GetValueAsync("OrderConfirmationText")</p>
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-main mt-20">@await WebsiteTexts.GetValueAsync("ContinueShopping")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

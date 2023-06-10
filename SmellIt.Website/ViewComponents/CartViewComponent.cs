@@ -9,10 +9,15 @@ public class CartViewComponent : BaseViewComponent
     public CartViewComponent(IMediator mediator) : base(mediator)
     {
     }
-    public async Task<IViewComponentResult> InvokeAsync()
+    public async Task<IViewComponentResult> InvokeAsync(bool forCheckout = false)
     {
         var cartItems = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture));
 
-        return View(cartItems);
+        if (forCheckout)
+        {
+            return View("CartForCheckout", cartItems);
+        }
+
+        return View("Default", cartItems);
     }
 }

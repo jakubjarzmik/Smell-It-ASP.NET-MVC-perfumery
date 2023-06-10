@@ -10,8 +10,10 @@ public class SmellItDbContext : DbContext
     }
     public DbSet<Address> Addresses { get; set; } = default!;
     public DbSet<Brand> Brands { get; set; } = default!;
-    public DbSet<CartItem> CartItems { get; set; } = default!;
     public DbSet<BrandTranslation> BrandTranslations { get; set; } = default!;
+    public DbSet<CartItem> CartItems { get; set; } = default!;
+    public DbSet<Delivery> Deliveries { get; set; } = default!;
+    public DbSet<DeliveryTranslation> DeliveryTranslations { get; set; } = default!;
     public DbSet<FragranceCategory> FragranceCategories { get; set; } = default!;
     public DbSet<FragranceCategoryTranslation> FragranceCategoryTranslations { get; set; } = default!;
     public DbSet<Gender> Genders { get; set; } = default!;
@@ -19,6 +21,8 @@ public class SmellItDbContext : DbContext
     public DbSet<HomeBanner> HomeBanners { get; set; } = default!;
     public DbSet<HomeBannerTranslation> HomeBannerTranslations { get; set; } = default!;
     public DbSet<Language> Languages { get; set; } = default!;
+    public DbSet<Payment> Payments { get; set; } = default!;
+    public DbSet<PaymentTranslation> PaymentTranslations { get; set; } = default!;
     public DbSet<PrivacyPolicy> PrivacyPolicies { get; set; } = default!;
     public DbSet<Product> Products { get; set; } = default!;
     public DbSet<ProductTranslation> ProductTranslations { get; set; } = default!;
@@ -44,5 +48,8 @@ public class SmellItDbContext : DbContext
         modelBuilder.Entity<ProductPrice>()
             .Property(p => p.EndDateTime)
             .HasColumnType("smalldatetime");
+        modelBuilder.Entity<Delivery>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(7,2)");
     }
 }
