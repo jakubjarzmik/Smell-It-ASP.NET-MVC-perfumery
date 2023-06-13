@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Infrastructure.Persistence;
-public class SmellItDbContext : DbContext
+public class SmellItDbContext : IdentityDbContext<User>
 {
     public SmellItDbContext(DbContextOptions<SmellItDbContext> options) : base(options)
     {
@@ -31,11 +32,14 @@ public class SmellItDbContext : DbContext
     public DbSet<ProductImage> ProductImages { get; set; } = default!;
     public DbSet<ProductPrice> ProductPrices { get; set; } = default!;
     public DbSet<SocialSite> SocialSites { get; set; } = default!;
+    public override DbSet<User> Users { get; set; } = default!;
     public DbSet<WebsiteText> WebsiteTexts { get; set; } = default!;
     public DbSet<WebsiteTextTranslation> WebsiteTextTranslations { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<CartItem>()
             .Property(p => p.Quantity)
             .HasColumnType("decimal(7,0)");
