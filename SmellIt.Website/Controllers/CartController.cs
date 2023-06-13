@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.Features.CartItems.Commands.AddCartItem;
 using SmellIt.Application.Features.CartItems.Commands.RemoveCartItem;
 using SmellIt.Application.Features.CartItems.Queries.GetAllCartItemsBySession;
+using SmellIt.Application.ViewModels.Website;
 using SmellIt.Website.Controllers.Abstract;
 using SmellIt.Website.Models;
 
@@ -18,6 +19,8 @@ public class CartController : BaseController
     public async Task<IActionResult> Index()
     {
         var cartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture));
+        if (!cartViewModel.CartItems.Any())
+            return RedirectToAction("Index", "Products");
         return View(cartViewModel);
     }
 

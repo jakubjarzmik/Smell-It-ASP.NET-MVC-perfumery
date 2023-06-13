@@ -23,6 +23,8 @@ public class CheckoutController : BaseController
             Deliveries = await Mediator.Send(new GetAllDeliveriesForWebsiteQuery(CurrentCulture)),
             Payments = await Mediator.Send(new GetAllPaymentsForWebsiteQuery(CurrentCulture))
         };
+        if (!checkoutViewModel.CartViewModel.CartItems.Any())
+            return RedirectToAction("Index", "Products");
         return View(checkoutViewModel);
     }
     [Route("order-confirmation")]

@@ -1,9 +1,10 @@
-﻿using SmellIt.Application.Helpers;
+﻿using FluentAssertions;
+using SmellIt.Application.Helpers;
 using SmellIt.Domain.Entities;
-using FluentAssertions;
 using Xunit;
 
-namespace SmellIt.Tests.Application.Helpers;
+namespace SmellIt.ApplicationTests.Helpers;
+
 public class ProductCategorySorterTests
 {
     private readonly ProductCategorySorter _sorter;

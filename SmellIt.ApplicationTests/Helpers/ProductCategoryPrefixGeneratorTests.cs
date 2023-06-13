@@ -1,9 +1,9 @@
-﻿using SmellIt.Application.Features.ProductCategories.DTOs;
+﻿using FluentAssertions;
+using SmellIt.Application.Features.ProductCategories.DTOs;
 using SmellIt.Application.Helpers;
-using FluentAssertions;
 using Xunit;
 
-namespace SmellIt.Tests.Application.Helpers;
+namespace SmellIt.ApplicationTests.Helpers;
 
 public class ProductCategoryPrefixGeneratorTests
 {

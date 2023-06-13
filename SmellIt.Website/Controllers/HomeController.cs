@@ -18,13 +18,19 @@ public class HomeController : BaseController
         return View();
     }
 
-    [Route("home/contact")]
+    [Route("page-not-found")]
+    public IActionResult PageNotFound()
+    {
+        return View();
+    }
+
+    [Route("contact")]
     public IActionResult Contact()
     {
         return View();
     }
 
-    [Route("home/privacy-policy")]
+    [Route("privacy-policy")]
     public async Task<IActionResult> Privacy()
     {
         var privacyPolicy = await Mediator.Send(new GetPrivacyPolicyByLanguageCodeQuery(CurrentCulture));
