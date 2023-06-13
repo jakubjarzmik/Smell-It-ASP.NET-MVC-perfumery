@@ -31,17 +31,3 @@
         </div>
     </div>
 }
-<ul class="summary-prices">
-    <li>
-        <span>@await WebsiteTexts.GetValueAsync("ProductsPrice"):</span>
-        <span class="total-price">@Model.TotalPrice zł</span>
-    </li>
-    <li>
-        <span>@await WebsiteTexts.GetValueAsync("Delivery"):</span>
-        <span>Free</span>
-    </li>
-</ul>
-<div class="summary-total">
-    <span>@await WebsiteTexts.GetValueAsync("Total"):</span>
-    <span class="total-price">@Model.TotalPrice zł</span>
-</div>

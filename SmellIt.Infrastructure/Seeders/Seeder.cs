@@ -40,24 +40,24 @@ public class Seeder
     {
         if (!await _dbContext.Payments.AnyAsync())
         {
-            var creditCard = new Payment();
-            await _dbContext.Payments.AddAsync(creditCard);
+            var cashOnDelivery = new Payment();
+            await _dbContext.Payments.AddAsync(cashOnDelivery);
 
-            List<PaymentTranslation> creditCardTranslations = new()
-        {
-            new PaymentTranslation
+            List<PaymentTranslation> cashOnDeliveryTranslations = new()
             {
-                Payment = creditCard, Language = _polish, Name = "Karta płatnicza",
-            },
-            new PaymentTranslation
-            {
-                Payment = creditCard, Language = _english, Name = "Credit Card",
-            },
-        };
-            creditCard.PaymentTranslations = creditCardTranslations;
-            await _dbContext.PaymentTranslations.AddRangeAsync(creditCardTranslations);
+                new PaymentTranslation
+                {
+                    Payment = cashOnDelivery, Language = _polish, Name = "Płatność za pobraniem",
+                },
+                new PaymentTranslation
+                {
+                    Payment = cashOnDelivery, Language = _english, Name = "Cash on Delivery",
+                },
+            };
+            cashOnDelivery.PaymentTranslations = cashOnDeliveryTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(cashOnDeliveryTranslations);
 
-            
+
             var bankTransfer = new Payment();
             await _dbContext.Payments.AddAsync(bankTransfer);
 
@@ -94,23 +94,22 @@ public class Seeder
             await _dbContext.PaymentTranslations.AddRangeAsync(blikTranslations);
 
 
-            var cashOnDelivery = new Payment();
-            await _dbContext.Payments.AddAsync(cashOnDelivery);
+            var creditCard = new Payment();
+            await _dbContext.Payments.AddAsync(creditCard);
 
-            List<PaymentTranslation> cashOnDeliveryTranslations = new()
-        {
-            new PaymentTranslation
+            List<PaymentTranslation> creditCardTranslations = new()
             {
-                Payment = cashOnDelivery, Language = _polish, Name = "Płatność za pobraniem",
-            },
-            new PaymentTranslation
-            {
-                Payment = cashOnDelivery, Language = _english, Name = "Cash on Delivery",
-            },
-        };
-            cashOnDelivery.PaymentTranslations = cashOnDeliveryTranslations;
-            await _dbContext.PaymentTranslations.AddRangeAsync(cashOnDeliveryTranslations);
-
+                new PaymentTranslation
+                {
+                    Payment = creditCard, Language = _polish, Name = "Karta płatnicza",
+                },
+                new PaymentTranslation
+                {
+                    Payment = creditCard, Language = _english, Name = "Credit Card",
+                },
+            };
+            creditCard.PaymentTranslations = creditCardTranslations;
+            await _dbContext.PaymentTranslations.AddRangeAsync(creditCardTranslations);
 
 
             await _dbContext.SaveChangesAsync();
@@ -123,6 +122,27 @@ public class Seeder
     {
         if (!await _dbContext.Deliveries.AnyAsync())
         {
+            var parcelLocker = new Delivery
+            {
+                Price = 9
+            };
+            await _dbContext.Deliveries.AddAsync(parcelLocker);
+
+            List<DeliveryTranslation> parcelLockerTranslations = new()
+            {
+                new DeliveryTranslation
+                {
+                    Delivery = parcelLocker, Language = _polish, Name = "Paczkomat",
+                },
+                new DeliveryTranslation
+                {
+                    Delivery = parcelLocker, Language = _english, Name = "Parcel Locker",
+                },
+            };
+            parcelLocker.DeliveryTranslations = parcelLockerTranslations;
+            await _dbContext.DeliveryTranslations.AddRangeAsync(parcelLockerTranslations);
+
+
             var courier = new Delivery
             {
                 Price = 12
@@ -144,26 +164,25 @@ public class Seeder
             await _dbContext.DeliveryTranslations.AddRangeAsync(courierTranslations);
 
 
-            var parcelLocker = new Delivery
+            var selfPickup = new Delivery
             {
-                Price = 9
+                Price = 0
             };
-            await _dbContext.Deliveries.AddAsync(parcelLocker);
+            await _dbContext.Deliveries.AddAsync(selfPickup);
 
-            List<DeliveryTranslation> parcelLockerTranslations = new()
+            List<DeliveryTranslation> selfPickupTranslations = new()
             {
                 new DeliveryTranslation
                 {
-                    Delivery = parcelLocker, Language = _polish, Name = "Paczkomat",
+                    Delivery = selfPickup, Language = _polish, Name = "Odbiór osobisty",
                 },
                 new DeliveryTranslation
                 {
-                    Delivery = parcelLocker, Language = _english, Name = "Parcel Locker",
+                    Delivery = selfPickup, Language = _english, Name = "Self-pickup",
                 },
             };
-            parcelLocker.DeliveryTranslations = parcelLockerTranslations;
-            await _dbContext.DeliveryTranslations.AddRangeAsync(parcelLockerTranslations);
-
+            selfPickup.DeliveryTranslations = selfPickupTranslations;
+            await _dbContext.DeliveryTranslations.AddRangeAsync(selfPickupTranslations);
 
 
             await _dbContext.SaveChangesAsync();
@@ -493,6 +512,18 @@ public class Seeder
             };
             country.WebsiteTextTranslations = countryTranslations;
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(countryTranslations);
+
+
+            var phone = new WebsiteText { Key = "Phone" };
+            await _dbContext.WebsiteTexts.AddAsync(phone);
+
+            List<WebsiteTextTranslation> phoneTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = phone, Language = _polish, Text = "Telefon" },
+                new WebsiteTextTranslation { WebsiteText = phone, Language = _english, Text = "Phone" },
+            };
+            phone.WebsiteTextTranslations = phoneTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(phoneTranslations);
 
 
             var orderSummary = new WebsiteText { Key = "OrderSummary" };
