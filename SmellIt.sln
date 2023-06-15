@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Application", "Smel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.Infrastructure", "SmellIt.Infrastructure\SmellIt.Infrastructure.csproj", "{86F1BE37-3871-4A64-BB4B-AA149A0D0C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.ApplicationTests", "SmellIt.ApplicationTests\SmellIt.ApplicationTests.csproj", "{89FB1A1E-22C3-49D2-B43D-C67849AAFC82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.ApplicationTests", "SmellIt.ApplicationTests\SmellIt.ApplicationTests.csproj", "{89FB1A1E-22C3-49D2-B43D-C67849AAFC82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.DomainTests", "SmellIt.DomainTests\SmellIt.DomainTests.csproj", "{68E9806B-2DA6-4D80-8703-A5256A134D38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.DomainTests", "SmellIt.DomainTests\SmellIt.DomainTests.csproj", "{68E9806B-2DA6-4D80-8703-A5256A134D38}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{59EBC1A3-A8B0-477B-BB5E-13AED7BF788B}"
 EndProject

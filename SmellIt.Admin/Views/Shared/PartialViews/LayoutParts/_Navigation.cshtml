@@ -1,17 +1,14 @@
 ﻿@{
-    var action = ViewContext.RouteData.Values["Action"]!.ToString();
-    var controller = ViewContext.RouteData.Values["Controller"]!.ToString();
+    var action = ViewContext.RouteData.Values["Action"]?.ToString();
+    var controller = ViewContext.RouteData.Values["Controller"]?.ToString();
 }
 <div class="navbar-fixed">
     <nav class="grey darken-4">
         <div class="nav-wrapper">
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a href="#" class="left hide-on-med-and-down">
-                <div class="valign-wrapper">
-                    <img src="~/images/av.jpg" alt="" class="circle menu-avatar">
-                    John Doe
-                </div>
-            </a>
+            <ul href="#" class="left hide-on-med-and-down">
+                <partial name="_LoginPartial"/>
+            </ul>
             <ul class="right hide-on-med-and-down">
                 <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
                 <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@language.GetValue("Orders")</a></li>

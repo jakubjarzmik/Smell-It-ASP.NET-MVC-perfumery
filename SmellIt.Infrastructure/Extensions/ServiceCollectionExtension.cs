@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmellIt.Infrastructure.Persistence;
@@ -13,6 +14,9 @@ public static class ServiceCollectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")).UseLazyLoadingProxies());
+
+        services.AddDefaultIdentity<IdentityUser>()
+            .AddEntityFrameworkStores<SmellItDbContext>();
 
         services.AddScoped<Seeder>();
 

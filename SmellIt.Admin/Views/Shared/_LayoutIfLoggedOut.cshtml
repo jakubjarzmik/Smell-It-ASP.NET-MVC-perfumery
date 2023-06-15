@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    @await Html.PartialAsync("PartialViews/LayoutParts/_Header")
+</head>
+
+<body class="grey darken-2">
+    <div class="navbar-fixed">
+        <nav class="grey darken-4">
+            <div class="nav-wrapper">
+                <a href="@Url.Action("Index", "Home")" class="brand-logo center"><img src="~/images/logo.png" /></a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="section">
+        <section class="section section-login">
+            <div class="container">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @await Html.PartialAsync("PartialViews/LayoutParts/_Footer")
+
+    @await Html.PartialAsync("PartialViews/LayoutParts/_Scripts")
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
