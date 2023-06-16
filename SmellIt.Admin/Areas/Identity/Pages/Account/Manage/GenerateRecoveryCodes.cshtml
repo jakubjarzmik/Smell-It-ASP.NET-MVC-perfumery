@@ -6,10 +6,10 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
-<div class="alert alert-warning" role="alert">
+<h4>@ViewData["Title"]</h4>
+<div class="card-panel yellow lighten-2">
     <p>
-        <span class="glyphicon glyphicon-warning-sign"></span>
+        <i class="material-icons left">warning</i>
         <strong>Put these codes in a safe place.</strong>
     </p>
     <p>
@@ -22,6 +22,6 @@
 </div>
 <div>
     <form method="post">
-        <button class="btn btn-danger" type="submit">Generate Recovery Codes</button>
+        <button class="btn waves-effect waves-light red darken-1" type="submit">Generate Recovery Codes</button>
     </form>
 </div>

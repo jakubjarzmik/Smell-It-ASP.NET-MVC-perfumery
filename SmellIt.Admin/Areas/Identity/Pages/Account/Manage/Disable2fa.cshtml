@@ -5,10 +5,13 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
+<div class="row">
+    <div class="col m12">
+        <h5 class="center-align">@ViewData["Title"]</h5>
+    </div>
+</div>
 
-<div class="alert alert-warning" role="alert">
+<div class="card-panel yellow lighten-2">
     <p>
         <strong>This action only disables 2FA.</strong>
     </p>
@@ -18,8 +21,10 @@
     </p>
 </div>
 
-<div>
-    <form method="post">
-        <button class="btn btn-danger" type="submit">Disable 2FA</button>
-    </form>
+<div class="row">
+    <div class="col m8 offset-m2">
+        <form method="post">
+            <button class="btn red darken-3 waves-effect waves-light" type="submit">Disable 2FA</button>
+        </form>
+    </div>
 </div>

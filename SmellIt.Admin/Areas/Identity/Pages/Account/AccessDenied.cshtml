@@ -2,9 +2,13 @@
 @model AccessDeniedModel
 @{
     ViewData["Title"] = "Access denied";
+    Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel red darken-3 white-text center">
+        <h4>@ViewData["Title"]</h4>
+        <p>You do not have access to this resource.</p>
+        <a href="/" class="btn btn-large waves-effect">Back to Home</a>
+    </div>
+</div>

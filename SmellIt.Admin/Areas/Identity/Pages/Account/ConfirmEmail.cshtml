@@ -2,7 +2,12 @@
 @model ConfirmEmailModel
 @{
     ViewData["Title"] = "Confirm email";
+    Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel grey darken-3 white-text center">
+        <h4>@ViewData["Title"]</h4>
+        <partial name="_StatusMessage" model="Model.StatusMessage" />
+    </div>
+</div>

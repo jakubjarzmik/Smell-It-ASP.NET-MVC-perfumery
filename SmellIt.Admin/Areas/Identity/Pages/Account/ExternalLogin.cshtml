@@ -2,28 +2,29 @@
 @model ExternalLoginModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
-<hr />
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel grey darken-3 white-text center">
+        <h4>@ViewData["Title"]</h4>
+        <h6 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h6>
+        <hr />
 
-<p id="external-login-description" class="text-info">
-    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
-</p>
-
-<div class="row">
-    <div class="col-md-4">
+        <p id="external-login-description">
+            You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+            Please enter an email address for this site below and click the Register button to finish
+            logging in.
+        </p>
+        
         <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="email" placeholder="Please enter your email."/>
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly" class="red-text text-darken-2"></div>
+            <div class="input-field">
+                <input asp-for="Input.Email" id="Input_Email" type="email" class="validate" />
+                <label class="white-text" for="Input_Email">Email</label>
+                <span asp-validation-for="Input.Email" class="helper-text" data-error="Invalid Email"></span>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button type="submit" class="btn btn-large waves-effect">Register</button>
         </form>
     </div>
 </div>
