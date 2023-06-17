@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>, IWebsiteTextRepository
 {
-    public WebsiteTextRepository(SmellItDbContext dbContext):base(dbContext)
+    public WebsiteTextRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
 
@@ -18,6 +18,7 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
     {
         websiteText.IsActive = false;
         websiteText.DeletedAt = DateTime.Now;
+        websiteText.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(websiteText);
 
@@ -31,6 +32,7 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
         {
             websiteText.IsActive = false;
             websiteText.DeletedAt = DateTime.Now;
+            websiteText.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(websiteText);
             await DbContext.SaveChangesAsync();
         }
@@ -42,6 +44,7 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
         {
             websiteTextTranslation.IsActive = false;
             websiteTextTranslation.DeletedAt = DateTime.Now;
+            websiteTextTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

@@ -2,11 +2,13 @@
 using SmellIt.Admin.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmellIt.Admin.Controllers;
 
 public class HomeController : Controller
 {
+    [Authorize]
     public IActionResult Index()
     {
         return View();

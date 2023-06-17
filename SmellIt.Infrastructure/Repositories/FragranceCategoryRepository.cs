@@ -6,13 +6,14 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<FragranceCategory>, IFragranceCategoryRepository
 {
-    public FragranceCategoryRepository(SmellItDbContext dbContext): base(dbContext)
+    public FragranceCategoryRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public override async Task DeleteAsync(FragranceCategory fragranceCategory)
     {
         fragranceCategory.IsActive = false;
         fragranceCategory.DeletedAt = DateTime.Now;
+        fragranceCategory.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(fragranceCategory);
 
@@ -26,6 +27,7 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
         {
             fragranceCategory.IsActive = false;
             fragranceCategory.DeletedAt = DateTime.Now;
+            fragranceCategory.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(fragranceCategory);
             await DbContext.SaveChangesAsync();
         }
@@ -37,6 +39,7 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
         {
             fragranceCategoryTranslation.IsActive = false;
             fragranceCategoryTranslation.DeletedAt = DateTime.Now;
+            fragranceCategoryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

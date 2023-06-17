@@ -10,7 +10,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
 {
     private readonly IProductCategorySorter _productCategorySorter;
 
-    public ProductCategoryRepository(SmellItDbContext dbContext, IProductCategorySorter productCategorySorter) : base(dbContext)
+    public ProductCategoryRepository(SmellItDbContext dbContext, IProductCategorySorter productCategorySorter, IUserContext userContext) : base(dbContext, userContext)
     {
         _productCategorySorter = productCategorySorter;
     }
@@ -25,6 +25,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
     {
         productCategory.IsActive = false;
         productCategory.DeletedAt = DateTime.Now;
+        productCategory.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(productCategory);
 
@@ -38,6 +39,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
         {
             productCategory.IsActive = false;
             productCategory.DeletedAt = DateTime.Now;
+            productCategory.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(productCategory);
             await DbContext.SaveChangesAsync();
         }
@@ -49,6 +51,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
         {
             productCategoryTranslation.IsActive = false;
             productCategoryTranslation.DeletedAt = DateTime.Now;
+            productCategoryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

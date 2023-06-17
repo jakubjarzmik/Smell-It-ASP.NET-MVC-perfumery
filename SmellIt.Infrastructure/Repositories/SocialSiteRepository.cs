@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class SocialSiteRepository : BaseRepositoryWithEncodedName<SocialSite>, ISocialSiteRepository
 {
-    public SocialSiteRepository(SmellItDbContext dbContext) : base(dbContext)
+    public SocialSiteRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
 

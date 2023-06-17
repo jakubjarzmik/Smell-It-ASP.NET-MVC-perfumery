@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities.Abstract;
+using SmellIt.Domain.Interfaces;
 using SmellIt.Domain.Interfaces.Abstract;
 using SmellIt.Infrastructure.Persistence;
 
@@ -8,20 +9,24 @@ namespace SmellIt.Infrastructure.Repositories.Abstract;
 public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
     protected readonly SmellItDbContext DbContext;
+    protected readonly IUserContext UserContext;
 
-    protected BaseRepository(SmellItDbContext dbContext)
+    protected BaseRepository(SmellItDbContext dbContext, IUserContext userContext)
     {
         DbContext = dbContext;
+        UserContext = userContext;
     }
 
     public virtual async Task CreateAsync(T entity)
     {
+        entity.CreatedById = UserContext.GetCurrentUser().Id;
         DbContext.Add(entity);
         await DbContext.SaveChangesAsync();
     }
 
     public virtual async Task DeleteAsync(T entity)
     {
+        entity.DeletedById = UserContext.GetCurrentUser().Id;
         entity.IsActive = false;
         entity.DeletedAt = DateTime.Now;
         await DbContext.SaveChangesAsync();

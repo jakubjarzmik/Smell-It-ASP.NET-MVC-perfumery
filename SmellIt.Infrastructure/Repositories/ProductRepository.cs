@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProductRepository
 {
-    public ProductRepository(SmellItDbContext dbContext):base(dbContext)
+    public ProductRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
 
@@ -42,6 +42,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
     {
         product.IsActive = false;
         product.DeletedAt = DateTime.Now;
+        product.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteAllRelatedObjects(product);
 
@@ -55,6 +56,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         {
             product.IsActive = false;
             product.DeletedAt = DateTime.Now;
+            product.DeletedById = UserContext.GetCurrentUser().Id;
 
             DeleteAllRelatedObjects(product);
 
@@ -68,17 +70,20 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         {
             productTranslation.IsActive = false;
             productTranslation.DeletedAt = DateTime.Now;
+            productTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
         foreach (var productPrice in product.ProductPrices)
         {
             productPrice.IsActive = false;
             productPrice.DeletedAt = DateTime.Now;
+            productPrice.DeletedById = UserContext.GetCurrentUser().Id;
         }
         if (product.ProductImages == null) return;
         foreach (var productImage in product.ProductImages)
         {
             productImage.IsActive = false;
             productImage.DeletedAt = DateTime.Now;
+            productImage.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

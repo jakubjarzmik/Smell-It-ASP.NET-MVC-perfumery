@@ -6,13 +6,14 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRepository
 {
-    public GenderRepository(SmellItDbContext dbContext) : base(dbContext)
+    public GenderRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public override async Task DeleteAsync(Gender gender)
     {
         gender.IsActive = false;
         gender.DeletedAt = DateTime.Now;
+        gender.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(gender);
 
@@ -26,6 +27,7 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
         {
             gender.IsActive = false;
             gender.DeletedAt = DateTime.Now;
+            gender.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(gender);
             await DbContext.SaveChangesAsync();
         }
@@ -37,6 +39,7 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
         {
             genderTranslation.IsActive = false;
             genderTranslation.DeletedAt = DateTime.Now;
+            genderTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

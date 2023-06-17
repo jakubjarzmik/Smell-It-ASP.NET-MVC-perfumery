@@ -1,5 +1,4 @@
-﻿using SmellIt.Application.Features.CartItems.DTOs.Website;
-using SmellIt.Application.Features.Deliveries.DTOs;
+﻿using SmellIt.Application.Features.Deliveries.DTOs;
 using SmellIt.Application.Features.Payments.DTOs;
 
 namespace SmellIt.Application.ViewModels.Website;

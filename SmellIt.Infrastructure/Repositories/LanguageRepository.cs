@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class LanguageRepository : BaseRepositoryWithEncodedName<Language>, ILanguageRepository
 {
-    public LanguageRepository(SmellItDbContext dbContext) :base (dbContext)
+    public LanguageRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public Task<Language?> GetByCodeAsync(string code)

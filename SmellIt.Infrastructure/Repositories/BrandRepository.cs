@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepository
 {
-    public BrandRepository(SmellItDbContext dbContext) : base(dbContext)
+    public BrandRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
 
@@ -17,6 +17,7 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
     {
         brand.IsActive = false;
         brand.DeletedAt = DateTime.Now;
+        brand.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(brand);
 
@@ -30,6 +31,7 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
         {
             brand.IsActive = false;
             brand.DeletedAt = DateTime.Now;
+            brand.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(brand);
             await DbContext.SaveChangesAsync();
         }
@@ -41,6 +43,7 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
         {
             brandTranslation.IsActive = false;
             brandTranslation.DeletedAt = DateTime.Now;
+            brandTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

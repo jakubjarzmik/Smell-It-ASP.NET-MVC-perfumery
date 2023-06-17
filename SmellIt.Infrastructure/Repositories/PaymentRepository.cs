@@ -6,13 +6,14 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymentRepository
 {
-    public PaymentRepository(SmellItDbContext dbContext): base(dbContext)
+    public PaymentRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public override async Task DeleteAsync(Payment payment)
     {
         payment.IsActive = false;
         payment.DeletedAt = DateTime.Now;
+        payment.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(payment);
 
@@ -26,6 +27,7 @@ public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymen
         {
             payment.IsActive = false;
             payment.DeletedAt = DateTime.Now;
+            payment.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(payment);
             await DbContext.SaveChangesAsync();
         }
@@ -37,6 +39,7 @@ public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymen
         {
             paymentTranslation.IsActive = false;
             paymentTranslation.DeletedAt = DateTime.Now;
+            paymentTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

@@ -7,7 +7,10 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, IHomeBannerRepository
 {
-    public HomeBannerRepository(SmellItDbContext dbContext) : base(dbContext) { }
+    public HomeBannerRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
+    {
+
+    }
 
     public async Task<HomeBanner?> GetByKeyAsync(string key)
         => await DbContext.HomeBanners.Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Key.ToLower() == key.ToLower());
@@ -16,7 +19,7 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
     {
         homeBanner.IsActive = false;
         homeBanner.DeletedAt = DateTime.Now;
-
+        homeBanner.DeletedById = UserContext.GetCurrentUser().Id;
         DeleteTranslations(homeBanner);
 
         await DbContext.SaveChangesAsync();
@@ -29,6 +32,7 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
         {
             homeBanner.IsActive = false;
             homeBanner.DeletedAt = DateTime.Now;
+            homeBanner.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(homeBanner);
             await DbContext.SaveChangesAsync();
         }
@@ -40,6 +44,7 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
         {
             homeBannerTranslation.IsActive = false;
             homeBannerTranslation.DeletedAt = DateTime.Now;
+            homeBannerTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

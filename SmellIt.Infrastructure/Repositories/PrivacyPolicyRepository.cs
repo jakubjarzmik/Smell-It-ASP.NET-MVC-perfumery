@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class PrivacyPolicyRepository : BaseRepositoryWithEncodedName<PrivacyPolicy>, IPrivacyPolicyRepository
 {
-    public PrivacyPolicyRepository(SmellItDbContext dbContext) : base(dbContext)
+    public PrivacyPolicyRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public async Task<PrivacyPolicy?> GetTranslationAsync(string languageCode)

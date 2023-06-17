@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class ProductPriceRepository : BaseRepository<ProductPrice>, IProductPriceRepository
 {
-    public ProductPriceRepository(SmellItDbContext dbContext) : base(dbContext)
+    public ProductPriceRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
 

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmellIt.Admin.Controllers.Abstract;
-
+[Authorize]
 public abstract class BaseController : Controller
 {
     protected IMediator Mediator { get; private set; }

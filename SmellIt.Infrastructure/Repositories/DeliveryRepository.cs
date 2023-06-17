@@ -2,17 +2,19 @@
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
+using System.Drawing.Drawing2D;
 
 namespace SmellIt.Infrastructure.Repositories;
 public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeliveryRepository
 {
-    public DeliveryRepository(SmellItDbContext dbContext): base(dbContext)
+    public DeliveryRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public override async Task DeleteAsync(Delivery delivery)
     {
         delivery.IsActive = false;
         delivery.DeletedAt = DateTime.Now;
+        delivery.DeletedById = UserContext.GetCurrentUser().Id;
 
         DeleteTranslations(delivery);
 
@@ -26,6 +28,7 @@ public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeli
         {
             delivery.IsActive = false;
             delivery.DeletedAt = DateTime.Now;
+            delivery.DeletedById = UserContext.GetCurrentUser().Id;
             DeleteTranslations(delivery);
             await DbContext.SaveChangesAsync();
         }
@@ -37,6 +40,7 @@ public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeli
         {
             deliveryTranslation.IsActive = false;
             deliveryTranslation.DeletedAt = DateTime.Now;
+            deliveryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
         }
     }
 }

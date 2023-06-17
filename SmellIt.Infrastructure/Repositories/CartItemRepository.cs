@@ -7,7 +7,7 @@ using SmellIt.Infrastructure.Repositories.Abstract;
 namespace SmellIt.Infrastructure.Repositories;
 public class CartItemRepository : BaseRepository<CartItem>, ICartItemRepository
 {
-    public CartItemRepository(SmellItDbContext dbContext) : base(dbContext)
+    public CartItemRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
     public async Task<IEnumerable<CartItem>> GetBySessionAsync(string session)
