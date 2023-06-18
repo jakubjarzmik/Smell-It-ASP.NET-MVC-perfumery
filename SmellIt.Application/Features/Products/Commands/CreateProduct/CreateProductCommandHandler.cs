@@ -7,6 +7,7 @@ using SmellIt.Application.Features.ProductCategories.DTOs;
 using SmellIt.Application.Helpers.Images;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using System.Globalization;
 
 namespace SmellIt.Application.Features.Products.Commands.CreateProduct;
 public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
@@ -90,7 +91,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 
     private async Task ProcessProductPriceAsync(CreateProductCommand request, Product product)
     {
-        await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = request.PriceValue });
+        await _productPriceRepository.CreateAsync(new ProductPrice { Product = product, Value = request.PriceValue, StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) });
 
         if (request.PromotionalPriceValue != null)
         {

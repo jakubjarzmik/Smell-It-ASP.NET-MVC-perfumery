@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model SmellIt.Application.Features.PrivacyPolicies.Commands.CreatePrivacyPolicy.CreatePrivacyPolicyCommand
 @{
-    ViewData["Title"] = language.GetValue("AddNewPrivacyPolicy");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewPrivacyPolicy");
 }
 <script src="~/lib/tinymce/tinymce.js"></script>
 <script>
@@ -17,16 +17,11 @@
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="PrivacyPolicies" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewPrivacyPolicy")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewPrivacyPolicy")</p>
         </div>
         <form asp-action="Create">
             <div class="input-field col s12">
-                <select id="languages" asp-for="LanguageCode">
-                    @foreach (var lang in ViewBag.Languages)
-                    {
-                        <option value="@lang.Code">@lang.Name</option>
-                    }
-                </select>
+                <select id="languages" asp-for="LanguageCode" asp-items="ViewBag.Languages"></select>
             </div>
             @await Html.PartialAsync("PartialViews/Forms/_PrivacyPolicyForm", Model)
         </form>

@@ -3,6 +3,7 @@ using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
+using static Dropbox.Api.Files.ListRevisionsMode;
 
 namespace SmellIt.Infrastructure.Repositories;
 public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>, IWebsiteTextRepository
@@ -16,35 +17,49 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
 
     public override async Task DeleteAsync(WebsiteText websiteText)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         websiteText.IsActive = false;
         websiteText.DeletedAt = DateTime.Now;
-        websiteText.DeletedById = UserContext.GetCurrentUser().Id;
+        websiteText.DeletedById = currentUser.Id;
 
-        DeleteTranslations(websiteText);
+        DeleteTranslations(websiteText, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var websiteText = await GetByEncodedNameAsync(encodedName);
         if (websiteText != null)
         {
             websiteText.IsActive = false;
             websiteText.DeletedAt = DateTime.Now;
-            websiteText.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(websiteText);
+            websiteText.DeletedById = currentUser.Id;
+            DeleteTranslations(websiteText, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(WebsiteText websiteText)
+    private void DeleteTranslations(WebsiteText websiteText, string currentUserId)
     {
         foreach (var websiteTextTranslation in websiteText.WebsiteTextTranslations)
         {
             websiteTextTranslation.IsActive = false;
             websiteTextTranslation.DeletedAt = DateTime.Now;
-            websiteTextTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            websiteTextTranslation.DeletedById = currentUserId;
         }
     }
 }

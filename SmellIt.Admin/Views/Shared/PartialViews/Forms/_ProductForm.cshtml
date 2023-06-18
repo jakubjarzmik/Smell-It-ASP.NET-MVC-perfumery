@@ -3,19 +3,19 @@
 @using SmellIt.Application.Helpers
 @model SmellIt.Application.Features.Products.DTOs.ProductDto
 @{
-    ViewData["Title"] = language.GetValue("AddNewProductCategory");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewProductCategory");
     var prefixGenerator = (ViewBag.PrefixGenerator as IProductCategoryPrefixGenerator)!;
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 
 <div class="input-field col l2 m3 s4">
-    <label asp-for="ProductCategoryEncodedName">@language.GetValue("Category")</label>
+    <label asp-for="ProductCategoryEncodedName">@WebsiteTexts.GetValue("Category")</label>
 </div>
 <div class="input-field col l10 m9 s8">
     <select id="parents" asp-for="ProductCategoryEncodedName">
         <option value="@null" selected></option>
-        @foreach (var category in ViewData["ProductCategories"] as IEnumerable<ProductCategoryDto>)
+        @foreach (var category in ViewBag.ProductCategories)
         {
             <option value="@category.EncodedName">
                 @prefixGenerator.GeneratePrefix(category)
@@ -26,7 +26,7 @@
     <span asp-validation-for="ProductCategoryEncodedName" class="helper-text"></span>
 </div>
 <div class="input-field col l2 m3 s4">
-    <label asp-for="BrandEncodedName">@language.GetValue("Brand")</label>
+    <label asp-for="BrandEncodedName">@WebsiteTexts.GetValue("Brand")</label>
 </div>
 <div class="input-field col l10 m9 s8">
     <select id="parents" asp-for="BrandEncodedName" asp-items="ViewBag.Brands">
@@ -34,7 +34,7 @@
     </select>
 </div>
 <div class="input-field col l2 m3 s4">
-    <label asp-for="FragranceCategoryEncodedName">@language.GetValue("FragranceCategory")</label>
+    <label asp-for="FragranceCategoryEncodedName">@WebsiteTexts.GetValue("FragranceCategory")</label>
 </div>
 <div class="input-field col l10 m9 s8">
     <select id="parents" asp-for="FragranceCategoryEncodedName" asp-items="ViewBag.FragranceCategories">
@@ -42,7 +42,7 @@
     </select>
 </div>
 <div class="input-field col l2 m3 s4">
-    <label asp-for="GenderId">@language.GetValue("Gender")</label>
+    <label asp-for="GenderId">@WebsiteTexts.GetValue("Gender")</label>
 </div>
 <div class="input-field col l10 m9 s8">
     <select id="parents" asp-for="GenderId" asp-items="ViewBag.Genders">
@@ -50,14 +50,14 @@
     </select>
 </div>
 <div class="input-field col s12">
-    <label asp-for="DescriptionPl">(PL) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionPl">(PL) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionPl"></textarea>
     <span asp-validation-for="DescriptionPl" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="DescriptionEn">(EN) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionEn">(EN) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionEn"></textarea>
     <span asp-validation-for="DescriptionEn" class="helper-text"></span>
 </div>
 
-<input type="submit" value="@language.GetValue("Save")" class="btn right" />
+<input type="submit" value="@WebsiteTexts.GetValue("Save")" class="btn right" />

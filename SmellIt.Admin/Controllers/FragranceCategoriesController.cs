@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.FragranceCategories.Commands.CreateFragranceCategory;
@@ -7,6 +8,7 @@ using SmellIt.Application.Features.FragranceCategories.Commands.DeleteFragranceC
 using SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
 using SmellIt.Application.Features.FragranceCategories.Queries.GetPaginatedFragranceCategories;
+using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 [Route("fragrance-categories")]
@@ -16,18 +18,20 @@ public class FragranceCategoriesController : BaseController
     {
     }
     
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")] int? pageNumber)
     {
-        var viewModel = await Mediator.Send(new GetPaginatedFragranceCategoriesQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedFragranceCategoriesQuery(pageNumber, 7));
         return View(viewModel);
     }
-    [Route("create")]
 
+    [Authorize(Roles = "Admin")]
+    [Route("create")]
     public IActionResult Create()
     {
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateFragranceCategoryCommand command)
@@ -35,6 +39,7 @@ public class FragranceCategoriesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -43,6 +48,7 @@ public class FragranceCategoriesController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditFragranceCategoryCommand command)
@@ -50,6 +56,7 @@ public class FragranceCategoriesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {

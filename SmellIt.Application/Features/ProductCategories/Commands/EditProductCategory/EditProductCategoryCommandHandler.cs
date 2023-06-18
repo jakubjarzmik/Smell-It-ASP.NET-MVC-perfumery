@@ -7,30 +7,38 @@ namespace SmellIt.Application.Features.ProductCategories.Commands.EditProductCat
 public class EditProductCategoryCommandHandler : IRequestHandler<EditProductCategoryCommand>
 {
     private readonly IProductCategoryRepository _productCategoryRepository;
-    private readonly IMapper _mapper;
+    private readonly IUserContext _userContext;
 
-    public EditProductCategoryCommandHandler(IProductCategoryRepository productCategoryRepository, IMapper mapper)
+    public EditProductCategoryCommandHandler(IProductCategoryRepository productCategoryRepository, IUserContext userContext)
     {
         _productCategoryRepository = productCategoryRepository;
-        _mapper = mapper;
+        _userContext = userContext;
     }
     public async Task<Unit> Handle(EditProductCategoryCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var productCategory = (await _productCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
 
         if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
             productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ParentCategoryEncodedName!);
 
         productCategory.ModifiedAt = DateTime.Now;
+        productCategory.ModifiedById = currentUser.Id;
 
-        UpdateTranslations(request, productCategory);
+        UpdateTranslations(request, productCategory, currentUser.Id);
 
         productCategory.EncodeName();
         await _productCategoryRepository.CommitAsync();
 
         return Unit.Value;
     }
-    private void UpdateTranslations(EditProductCategoryCommand request, ProductCategory productCategory)
+    private void UpdateTranslations(EditProductCategoryCommand request, ProductCategory productCategory, string currentUserId)
     {
         var translations = new Dictionary<string, (string Name, string? Description)>
         {
@@ -44,6 +52,7 @@ public class EditProductCategoryCommandHandler : IRequestHandler<EditProductCate
             productCategoryTranslation.Name = translation.Value.Name;
             productCategoryTranslation.Description = translation.Value.Description;
             productCategoryTranslation.ModifiedAt = DateTime.Now;
+            productCategoryTranslation.ModifiedById = currentUserId;
         }
     }
 }

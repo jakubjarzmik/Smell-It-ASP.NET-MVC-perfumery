@@ -3,14 +3,14 @@
 @using SmellIt.Application.Helpers
 @model SmellIt.Application.Features.ProductCategories.DTOs.ProductCategoryDto
 @{
-    ViewData["Title"] = language.GetValue("AddNewProductCategory");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewProductCategory");
     var prefixGenerator = (ViewBag.PrefixGenerator as IProductCategoryPrefixGenerator)!;
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
     var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 
 <div class="input-field col s12">
-    <label asp-for="ParentCategoryEncodedName">@language.GetValue("ParentCategory")</label>
+    <label asp-for="ParentCategoryEncodedName">@WebsiteTexts.GetValue("ParentCategory")</label>
 </div>
 <div class="input-field col s12">
     <select id="parentCategories" asp-for="ParentCategoryEncodedName">
@@ -25,23 +25,23 @@
     </select>
 </div>
 <div class="input-field col s12">
-    <label asp-for="NamePl">(PL) @language.GetValue("Name")</label>
+    <label asp-for="NamePl">(PL) @WebsiteTexts.GetValue("Name")</label>
     <textarea class="materialize-textarea" asp-for="NamePl"></textarea>
     <span asp-validation-for="NamePl" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="NameEn">(EN) @language.GetValue("Name")</label>
+    <label asp-for="NameEn">(EN) @WebsiteTexts.GetValue("Name")</label>
     <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
     <span asp-validation-for="NameEn" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="DescriptionPl">(PL) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionPl">(PL) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionPl"></textarea>
     <span asp-validation-for="DescriptionPl" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="DescriptionEn">(EN) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionEn">(EN) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionEn"></textarea>
     <span asp-validation-for="DescriptionEn" class="helper-text"></span>
 </div>
-<input type="submit" value="@language.GetValue("Save")" class="btn right" />
+<input type="submit" value="@WebsiteTexts.GetValue("Save")" class="btn right" />

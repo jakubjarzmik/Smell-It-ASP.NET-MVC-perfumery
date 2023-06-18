@@ -1,6 +1,6 @@
 ﻿@model SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText.CreateWebsiteTextCommand
 @{
-    ViewData["Title"] = language.GetValue("AddNewWebsiteText");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewWebsiteText");
 }
 <script src="~/lib/tinymce/tinymce.js"></script>
 <script>
@@ -13,11 +13,11 @@
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="WebsiteTexts" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewWebsiteText")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewWebsiteText")</p>
         </div>
         <form asp-action="Create">
             <div class="input-field col s12">
-                <label asp-for="Key">@language.GetValue("Key")</label>
+                <label asp-for="Key">@WebsiteTexts.GetValue("Key")</label>
                 <textarea class="materialize-textarea" asp-for="Key"></textarea>
                 <span asp-validation-for="Key" class="helper-text"></span>
             </div>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <partial name="PartialViews/LayoutParts/_Header" />
+</head>
+
+<body id="body">
+<partial name="PartialViews/LayoutParts/_Navigation" />
+
+    <section class="section">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+
+    <partial name="PartialViews/LayoutParts/_Newsletter" />
+
+    <partial name="PartialViews/LayoutParts/_Footer" />
+
+    <partial name="PartialViews/LayoutParts/_Scripts" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

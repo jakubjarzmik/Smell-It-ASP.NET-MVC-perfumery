@@ -14,7 +14,14 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
 
     public override async Task CreateAsync(T entity)
     {
-        entity.CreatedById = UserContext.GetCurrentUser().Id;
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
+        entity.CreatedById = currentUser.Id;
         DbContext.Add(entity);
         await DbContext.SaveChangesAsync();
         entity.EncodeName();
@@ -23,10 +30,17 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
 
     public virtual async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var entity = await GetByEncodedNameAsync(encodedName);
         if (entity != null)
         {
-            entity.DeletedById = UserContext.GetCurrentUser().Id;
+            entity.DeletedById = currentUser.Id;
             entity.IsActive = false;
             entity.DeletedAt = DateTime.Now;
             await DbContext.SaveChangesAsync();

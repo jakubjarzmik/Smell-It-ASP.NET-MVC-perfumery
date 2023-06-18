@@ -1,19 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model SmellIt.Application.ViewModels.Admin.HomeBannersViewModel
 @{
-    ViewData["Title"] = language.GetValue("HomeBanners");
+    ViewData["Title"] =WebsiteTexts.GetValue("HomeBanners");
 }
 <div class="card-content">
     <div class="card-title">
-        @language.GetValue("HomeBanners")
-        <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
+        @WebsiteTexts.GetValue("HomeBanners")
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
+        }
     </div>
 
     <table class="striped">
         <thead>
             <tr>
-                <th>@language.GetValue("Text") (PL)</th>
-                <th>@language.GetValue("Text") (EN)</th>
+                <th>@WebsiteTexts.GetValue("Text") (PL)</th>
+                <th>@WebsiteTexts.GetValue("Text") (EN)</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,19 +35,23 @@
                             <div class="modal-content">
                                 <h4>@item.Key</h4>
                                 <img class="image-in-modal" src="@item.ImagePath" />
-                                <h5>@language.GetValue("ImagePath") (PL)</h5>
+                                <h5>@WebsiteTexts.GetValue("ImagePath") (PL)</h5>
                                 <p>@item.ImagePath</p>
-                                <h5>@language.GetValue("Text") (PL)</h5>
+                                <h5>@WebsiteTexts.GetValue("Text") (PL)</h5>
                                 <p>@item.TextPl</p>
-                                <h5>@language.GetValue("Text") (EN)</h5>
+                                <h5>@WebsiteTexts.GetValue("Text") (EN)</h5>
                                 <p>@item.TextEn</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
+                                <a href="#!" class="modal-close btn">@WebsiteTexts.GetValue("Close")</a>
                             </div>
                         </div>
-                        <a asp-controller="HomeBanners" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
-                        <a asp-controller="HomeBanners" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="HomeBanners" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
+                            <a asp-controller="HomeBanners" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+                        }
                     </td>
                 </tr>
                 index++;
@@ -52,27 +59,4 @@
         </tbody>
     </table>
 </div>
-<div class="card-action">
-    <ul class="pagination">
-        <li class="@(Model.CurrentPage == 1 ? "disabled" : "waves-effect")">
-            <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" class="purple-text" style="@(Model.CurrentPage == 1 ? "display: none;" : "")">
-                <i class="material-icons">chevron_left</i>
-            </a>
-        </li>
-        @{
-            for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                <li class="@(Model.CurrentPage == i ? "active purple lighten-1" : "waves-effect")">
-                    <a asp-action="Index" asp-route-page="@i" class="@(Model.CurrentPage == i ? "white-text" : "purple-text")">
-                        @i
-                    </a>
-                </li>
-            }
-        }
-        <li class="@(Model.CurrentPage == Model.TotalPages ? "disabled" : "waves-effect")">
-            <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" class="purple-text" style="@(Model.CurrentPage == Model.TotalPages ? "display: none;" : "")">
-                <i class="material-icons">chevron_right</i>
-            </a>
-        </li>
-    </ul>
-</div>
+<partial name="PartialViews/_Pagination" />

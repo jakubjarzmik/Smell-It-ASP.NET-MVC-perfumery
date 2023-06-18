@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.FragranceCategories.Commands.CreateFragranceCategory.CreateFragranceCategoryCommand
 @{
-    ViewData["Title"] = @language.GetValue("AddNewFragranceCategory");
+    ViewData["Title"] = @WebsiteTexts.GetValue("AddNewFragranceCategory");
 }
 
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="FragranceCategories" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewFragranceCategory")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewFragranceCategory")</p>
         </div>
         <form asp-action="Create">
             @await Html.PartialAsync("PartialViews/Forms/_FragranceCategoryForm", Model)

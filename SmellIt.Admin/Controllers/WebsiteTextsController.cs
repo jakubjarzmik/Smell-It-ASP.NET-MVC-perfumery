@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText;
@@ -7,6 +8,7 @@ using SmellIt.Application.Features.WebsiteTexts.Commands.DeleteWebsiteTextByEnco
 using SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText;
 using SmellIt.Application.Features.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
 using SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
+using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 
@@ -16,18 +18,20 @@ public class WebsiteTextsController : BaseController
     public WebsiteTextsController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")]int? pageNumber)
     {
-        var viewModel = await Mediator.Send(new GetPaginatedWebsiteTextsQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedWebsiteTextsQuery(pageNumber, 7));
         return View(viewModel);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("create")]
     public IActionResult Create()
     {
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateWebsiteTextCommand command)
@@ -35,6 +39,7 @@ public class WebsiteTextsController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -43,6 +48,7 @@ public class WebsiteTextsController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditWebsiteTextCommand command)
@@ -50,6 +56,7 @@ public class WebsiteTextsController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {

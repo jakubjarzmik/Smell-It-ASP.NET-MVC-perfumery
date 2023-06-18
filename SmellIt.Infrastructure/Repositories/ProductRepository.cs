@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using SmellIt.Domain.Models;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
@@ -40,50 +41,64 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
 
     public override async Task DeleteAsync(Product product)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         product.IsActive = false;
         product.DeletedAt = DateTime.Now;
-        product.DeletedById = UserContext.GetCurrentUser().Id;
+        product.DeletedById = currentUser.Id;
 
-        DeleteAllRelatedObjects(product);
+        DeleteAllRelatedObjects(product, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var product = await GetByEncodedNameAsync(encodedName);
         if (product != null)
         {
             product.IsActive = false;
             product.DeletedAt = DateTime.Now;
-            product.DeletedById = UserContext.GetCurrentUser().Id;
+            product.DeletedById = currentUser.Id;
 
-            DeleteAllRelatedObjects(product);
+            DeleteAllRelatedObjects(product, currentUser.Id);
 
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteAllRelatedObjects(Product product)
+    private void DeleteAllRelatedObjects(Product product, string currentUserId)
     {
         foreach (var productTranslation in product.ProductTranslations)
         {
             productTranslation.IsActive = false;
             productTranslation.DeletedAt = DateTime.Now;
-            productTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            productTranslation.DeletedById = currentUserId;
         }
         foreach (var productPrice in product.ProductPrices)
         {
             productPrice.IsActive = false;
             productPrice.DeletedAt = DateTime.Now;
-            productPrice.DeletedById = UserContext.GetCurrentUser().Id;
+            productPrice.DeletedById = currentUserId;
         }
         if (product.ProductImages == null) return;
         foreach (var productImage in product.ProductImages)
         {
             productImage.IsActive = false;
             productImage.DeletedAt = DateTime.Now;
-            productImage.DeletedById = UserContext.GetCurrentUser().Id;
+            productImage.DeletedById = currentUserId;
         }
     }
 }

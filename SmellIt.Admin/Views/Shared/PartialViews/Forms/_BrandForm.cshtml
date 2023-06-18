@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.Brands.DTOs.BrandDto
 
 <div class="input-field col s12">
-    <label asp-for="DescriptionPl">(PL) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionPl">(PL) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionPl"></textarea>
     <span asp-validation-for="DescriptionPl" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="DescriptionEn">(EN) @language.GetValue("Description")</label>
+    <label asp-for="DescriptionEn">(EN) @WebsiteTexts.GetValue("Description")</label>
     <textarea class="materialize-textarea" asp-for="DescriptionEn"></textarea>
     <span asp-validation-for="DescriptionEn" class="helper-text"></span>
 </div>
-<input type="submit" value="@language.GetValue("Save")" class="btn right" />
+<input type="submit" value="@WebsiteTexts.GetValue("Save")" class="btn right" />

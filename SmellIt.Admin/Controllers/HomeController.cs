@@ -8,7 +8,7 @@ namespace SmellIt.Admin.Controllers;
 
 public class HomeController : Controller
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Employee")]
     public IActionResult Index()
     {
         return View();

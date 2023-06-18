@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = @WebsiteTexts.GetValue("Register");
     Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
@@ -19,23 +19,23 @@
             <div class="input-field">
                 <i class="material-icons prefix">lock</i>
                 <input asp-for="Input.Password" id="Input_Password" type="password" class="validate" />
-                <label class="white-text" for="Input_Password">Password</label>
+                <label class="white-text" for="Input_Password">@WebsiteTexts.GetValue("Password")</label>
                 <span asp-validation-for="Input.Password" class="helper-text" data-error="Invalid Password"></span>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">lock</i>
                 <input asp-for="Input.ConfirmPassword" id="Input_ConfirmPassword" type="password" class="validate" />
-                <label class="white-text" for="Input_ConfirmPassword">Confirm Password</label>
+                <label class="white-text" for="Input_ConfirmPassword">@WebsiteTexts.GetValue("ConfirmPassword")</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="helper-text" data-error="Invalid Password"></span>
             </div>
             <input id="registerSubmit"
                    class="btn btn-large waves-effect"
-                   value="Register"
+                   value="@WebsiteTexts.GetValue("Register")"
                    type="submit" />
         </form>
         <div>
             <p>
-                <a id="login" asp-page="./Login" class="white-text">Already have an account? Log in</a>
+                <a id="login" asp-page="./Login" class="white-text">@WebsiteTexts.GetValue("AlreadyHaveAnAccount")</a>
             </p>
         </div>
     </div>

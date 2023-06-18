@@ -17,34 +17,48 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
 
     public override async Task DeleteAsync(HomeBanner homeBanner)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         homeBanner.IsActive = false;
         homeBanner.DeletedAt = DateTime.Now;
-        homeBanner.DeletedById = UserContext.GetCurrentUser().Id;
-        DeleteTranslations(homeBanner);
+        homeBanner.DeletedById = currentUser.Id;
+        DeleteTranslations(homeBanner, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var homeBanner = await GetByEncodedNameAsync(encodedName);
         if (homeBanner != null)
         {
             homeBanner.IsActive = false;
             homeBanner.DeletedAt = DateTime.Now;
-            homeBanner.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(homeBanner);
+            homeBanner.DeletedById = currentUser.Id;
+            DeleteTranslations(homeBanner, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(HomeBanner homeBanner)
+    private void DeleteTranslations(HomeBanner homeBanner, string currentUserId)
     {
         foreach (var homeBannerTranslation in homeBanner.HomeBannerTranslations)
         {
             homeBannerTranslation.IsActive = false;
             homeBannerTranslation.DeletedAt = DateTime.Now;
-            homeBannerTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            homeBannerTranslation.DeletedById = currentUserId;
         }
     }
 }

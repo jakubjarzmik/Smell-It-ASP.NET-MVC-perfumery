@@ -11,35 +11,49 @@ public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymen
     }
     public override async Task DeleteAsync(Payment payment)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         payment.IsActive = false;
         payment.DeletedAt = DateTime.Now;
-        payment.DeletedById = UserContext.GetCurrentUser().Id;
+        payment.DeletedById = currentUser.Id;
 
-        DeleteTranslations(payment);
+        DeleteTranslations(payment, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var payment = await GetByEncodedNameAsync(encodedName);
         if (payment != null)
         {
             payment.IsActive = false;
             payment.DeletedAt = DateTime.Now;
-            payment.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(payment);
+            payment.DeletedById = currentUser.Id;
+            DeleteTranslations(payment, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(Payment payment)
+    private void DeleteTranslations(Payment payment, string currentUserId)
     {
         foreach (var paymentTranslation in payment.PaymentTranslations)
         {
             paymentTranslation.IsActive = false;
             paymentTranslation.DeletedAt = DateTime.Now;
-            paymentTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            paymentTranslation.DeletedById = currentUserId;
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.HomeBanners.Commands.EditHomeBanner.EditHomeBannerCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditHomeBanner");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditHomeBanner");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="HomeBanners" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditHomeBanner") @Model.Key</p>
+            <p class="right">@WebsiteTexts.GetValue("EditHomeBanner") @Model.Key</p>
         </div>
         <form asp-action="Edit">
             <img class="image-in-modal" src="@Model.ImagePath" />

@@ -1,186 +1,19 @@
-﻿@{
-    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
-    var controller = ViewContext.RouteData.Values["Controller"]!.ToString();
-    var action = ViewContext.RouteData.Values["Action"]!.ToString();
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Smell it Perfumery">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="author" content="Jakub Jarzmik">
-    <meta name="generator" content="Jakub Jarzmik Smell it v1.0">
-
-    <title>@ViewData["Title"] - Smell it</title>
-
-    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.png" />
-    <link rel="stylesheet" href="~/plugins/themefisher-font/style.css">
-    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/plugins/animate/animate.css">
-    <link rel="stylesheet" href="~/plugins/slick/slick.css">
-    <link rel="stylesheet" href="~/plugins/slick/slick-theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" type="text/css">
-    <link rel="stylesheet" href="~/css/style.css">
-
+    <partial name="PartialViews/LayoutParts/_Header"/>
 </head>
 
 <body id="body">
-    <section class="top-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-xs-12 col-sm-4">
-                    <div class="contact-number">
-                        <i class="tf-ion-ios-telephone"></i>
-                        <span>@await WebsiteTexts.GetValueAsync("PhoneNumber")</span>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-12 col-sm-4">
-                    <div class="logo text-center">
-                        <a href="@Url.Action("Index", "Home")">
-                            <img src="~/images/logo.png" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-12 col-sm-4">
-                    <ul class="top-menu text-right list-inline">
-                        @if (!(controller == "Cart" && action == "Index"))
-                        {
-                            <li class="dropdown cart-nav dropdown-slide">
-                                @await Component.InvokeAsync("Cart")
-                            </li>
-                        }
-                        <li class="dropdown search dropdown-slide">
-                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <i class="tf-ion-ios-search-strong"></i> @await WebsiteTexts.GetValueAsync("Search")
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <form action="post"><input type="search" class="form-control" placeholder="@await WebsiteTexts.GetValueAsync("Search")..."></form>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-slide">
-                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                <span class="flag-icon flag-icon-@currentCulture.Substring(3, 2).ToLower()"></span>
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <li>
-                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="nav-link"><span class="flag-icon flag-icon-pl"></span> Polski</a>
-                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="nav-link"><span class="flag-icon flag-icon-gb"></span> English</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="menu">
-        <nav class="navbar navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <h2 class="menu-title">Menu</h2>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                            aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-                <div id="navbar" class="navbar-collapse collapse text-center">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="@Url.Action("Index", "Home")">@await WebsiteTexts.GetValueAsync("Home")</a>
-                        </li>
-
-                        @await Component.InvokeAsync("ProductCategories")
-
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")">@await WebsiteTexts.GetValueAsync("Contact")</a>
-                        </li>
-
-                        <li>
-                            <a href="#">@await WebsiteTexts.GetValueAsync("AboutUs")</a>
-                        </li>
-
-                        <li>
-                            <a href="#"><b>@await WebsiteTexts.GetValueAsync("SignIn")</b></a>
-                        </li>
-
-                        <li>
-                            <a href="#">@await WebsiteTexts.GetValueAsync("Register")</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </section>
+    <partial name="PartialViews/LayoutParts/_Navigation"/>
 
     @RenderBody()
 
-    <section class="call-to-action bg-gray section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="title">
-                        <h2>@await WebsiteTexts.GetValueAsync("SubscribeToNewsletter")</h2>
-                        <p>@await WebsiteTexts.GetValueAsync("SubscribeToNewsletterDesc")</p>
-                    </div>
-                    <div class="col-lg-6 col-md-offset-3">
-                        <div class="input-group subscription-form">
-                            <input type="text" class="form-control" placeholder="@await WebsiteTexts.GetValueAsync("EnterYourEmail")">
-                            <span class="input-group-btn">
-                                <button class="btn btn-main" type="button">@await WebsiteTexts.GetValueAsync("SubscribeNow")</button>
-                            </span>
-                        </div>
-                    </div>
+    <partial name="PartialViews/LayoutParts/_Newsletter"/>
 
-                </div>
-            </div>
-        </div>
-    </section>
+    <partial name="PartialViews/LayoutParts/_Footer"/>
 
-    <footer class="footer section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="social-media">
-                        @await Component.InvokeAsync("SocialSites")
-                    </ul>
-                    <ul class="footer-menu text-uppercase">
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")">@await WebsiteTexts.GetValueAsync("Contact")</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index", "Products")">@await WebsiteTexts.GetValueAsync("Products")</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Privacy", "Home")">@await WebsiteTexts.GetValueAsync("PrivacyPolicy")</a>
-                        </li>
-                    </ul>
-                    <p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by <a href="https://www.linkedin.com/in/jakub-jarzmik">Jakub Jarzmik</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="~/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="~/plugins/instafeed/instafeed.min.js"></script>
-    <script src="~/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
-    <script src="~/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
-    <script src="~/plugins/slick/slick.min.js"></script>
-    <script src="~/plugins/slick/slick-animation.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="~/plugins/google-map/gmap.js"></script>
-    <script src="~/js/script.js"></script>
+    <partial name="PartialViews/LayoutParts/_Scripts"/>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

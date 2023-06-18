@@ -150,6 +150,9 @@
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Add New Website Text</value>
   </data>
+  <data name="AlreadyHaveAnAccount" xml:space="preserve">
+    <value>Already have an account? Log in</value>
+  </data>
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -249,6 +255,9 @@
   <data name="Floral" xml:space="preserve">
     <value>Floral</value>
   </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
   <data name="Fragrance" xml:space="preserve">
     <value>Fragrance</value>
   </data>
@@ -286,13 +295,13 @@
     <value>Language</value>
   </data>
   <data name="Last30DaysLowestPrice" xml:space="preserve">
-    <value>Lowest price in the last 30 days</value>
+    <value>Lowest price from the last 30 days before reduction</value>
   </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Latest Registered Users</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log in</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
@@ -327,6 +336,12 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NoAccess" xml:space="preserve">
+    <value>No Access</value>
+  </data>
+  <data name="NoAccessText" xml:space="preserve">
+    <value>You have no access to this content</value>
+  </data>
   <data name="Oldest" xml:space="preserve">
     <value>Oldest</value>
   </data>
@@ -347,6 +362,9 @@
   </data>
   <data name="ParentCategory" xml:space="preserve">
     <value>Parent Category</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="PeriodOfValidity" xml:space="preserve">
     <value>Period of validity</value>
@@ -386,6 +404,12 @@
   </data>
   <data name="ReedDiffusers" xml:space="preserve">
     <value>Reed Diffusers</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

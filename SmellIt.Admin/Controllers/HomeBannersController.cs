@@ -7,6 +7,8 @@ using SmellIt.Application.Features.HomeBanners.Queries.GetHomeBannerByEncodedNam
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.HomeBanners.Queries.GetPaginatedHomeBanners;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 
@@ -17,16 +19,19 @@ public class HomeBannersController : BaseController
     {
     }
 
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")] int? pageNumber)
     {
-        return View(await Mediator.Send(new GetPaginatedHomeBannersQuery(page, 7)));
+        return View(await Mediator.Send(new GetPaginatedHomeBannersQuery(pageNumber, 7)));
     }
+
+    [Authorize(Roles = "Admin")]
     [Route("create")]
     public IActionResult Create()
     {
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateHomeBannerCommand command)
@@ -34,7 +39,7 @@ public class HomeBannersController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
-
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -43,6 +48,7 @@ public class HomeBannersController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditHomeBannerCommand command)
@@ -50,6 +56,7 @@ public class HomeBannersController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {

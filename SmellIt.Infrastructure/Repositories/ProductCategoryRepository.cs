@@ -2,6 +2,7 @@
 using SmellIt.Application.Helpers;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using SmellIt.Domain.Models;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 
@@ -23,35 +24,49 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
 
     public override async Task DeleteAsync(ProductCategory productCategory)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         productCategory.IsActive = false;
         productCategory.DeletedAt = DateTime.Now;
-        productCategory.DeletedById = UserContext.GetCurrentUser().Id;
+        productCategory.DeletedById = currentUser.Id;
 
-        DeleteTranslations(productCategory);
+        DeleteTranslations(productCategory, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var productCategory = await GetByEncodedNameAsync(encodedName);
         if (productCategory != null)
         {
             productCategory.IsActive = false;
             productCategory.DeletedAt = DateTime.Now;
-            productCategory.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(productCategory);
+            productCategory.DeletedById = currentUser.Id;
+            DeleteTranslations(productCategory, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(ProductCategory productCategory)
+    private void DeleteTranslations(ProductCategory productCategory, string currentUserId)
     {
         foreach (var productCategoryTranslation in productCategory.ProductCategoryTranslations)
         {
             productCategoryTranslation.IsActive = false;
             productCategoryTranslation.DeletedAt = DateTime.Now;
-            productCategoryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            productCategoryTranslation.DeletedById = currentUserId;
         }
     }
 }

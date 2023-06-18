@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.Brands.Commands.EditBrand.EditBrandCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditBrand");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditBrand");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="Brands" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditBrand") @Model.Name</p>
+            <p class="right">@WebsiteTexts.GetValue("EditBrand") @Model.Name</p>
         </div>
         <form asp-action="Edit">
             @await Html.PartialAsync("PartialViews/Forms/_BrandForm", Model)

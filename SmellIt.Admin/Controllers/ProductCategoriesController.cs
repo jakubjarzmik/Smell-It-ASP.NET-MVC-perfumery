@@ -9,6 +9,8 @@ using SmellIt.Application.Features.ProductCategories.Commands.EditProductCategor
 using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetPaginatedProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetProductCategoryByEncodedName;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 
@@ -21,13 +23,15 @@ public class ProductCategoriesController : BaseController
     {
         _prefixGenerator = prefixGenerator;
     }
-    public async Task<IActionResult> Index(int? page)
+
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")] int? pageNumber)
     {
         await LoadViewBags();
-        var viewModel = await Mediator.Send(new GetPaginatedProductCategoriesQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedProductCategoriesQuery(pageNumber, 7));
         return View(viewModel);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("create")]
     public async Task<IActionResult> Create()
     {
@@ -35,6 +39,7 @@ public class ProductCategoriesController : BaseController
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateProductCategoryCommand command)
@@ -42,6 +47,7 @@ public class ProductCategoriesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -51,6 +57,7 @@ public class ProductCategoriesController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditProductCategoryCommand command)
@@ -58,6 +65,7 @@ public class ProductCategoriesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {

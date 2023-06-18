@@ -1,19 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<SmellIt.Application.Features.PrivacyPolicies.DTOs.PrivacyPolicyDto>
 @{
-    ViewData["Title"] = language.GetValue("PrivacyPolicies");
+    ViewData["Title"] =WebsiteTexts.GetValue("PrivacyPolicies");
 }
 <div class="card-content">
     <div class="card-title">
-        @language.GetValue("PrivacyPolicies")
-        <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
+        @WebsiteTexts.GetValue("PrivacyPolicies")
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn right" href="@Url.Action("Create")"> <i class="material-icons">add</i></a>
+        }
     </div>
 
     <table class="striped">
         <thead>
             <tr>
-                <th>@language.GetValue("Text")</th>
-                <th>@language.GetValue("Language")</th>
+                <th>@WebsiteTexts.GetValue("Text")</th>
+                <th>@WebsiteTexts.GetValue("Language")</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,15 +34,19 @@
                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                         <div id="modalDescriptionPL_@index" class="modal">
                             <div class="modal-content">
-                                <h5>@language.GetValue("Text")</h5>
+                                <h5>@WebsiteTexts.GetValue("Text")</h5>
                                 <p>@Html.Raw(item.Text)</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="#!" class="modal-close btn">@language.GetValue("Close")</a>
+                                <a href="#!" class="modal-close btn">@WebsiteTexts.GetValue("Close")</a>
                             </div>
                         </div>
-                        <a asp-controller="PrivacyPolicies" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
-                        <a asp-controller="PrivacyPolicies" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="PrivacyPolicies" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
+                            <a asp-controller="PrivacyPolicies" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>
+                        }
                     </td>
                 </tr>
                 index++;

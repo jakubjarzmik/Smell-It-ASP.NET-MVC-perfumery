@@ -18,6 +18,7 @@ public static class ServiceCollectionExtension
         services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")).UseLazyLoadingProxies());
 
         services.AddDefaultIdentity<IdentityUser>()
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<SmellItDbContext>();
 
         services.AddScoped<IUserContext, UserContext>();

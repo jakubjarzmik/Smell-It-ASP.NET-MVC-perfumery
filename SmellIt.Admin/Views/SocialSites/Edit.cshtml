@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.SocialSites.Commands.EditSocialSite.EditSocialSiteCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditSocialSite");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditSocialSite");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="SocialSites" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditSocialSite") @Model.Type</p>
+            <p class="right">@WebsiteTexts.GetValue("EditSocialSite") @Model.Type</p>
         </div>
         <form asp-action="Edit">
             @await Html.PartialAsync("PartialViews/Forms/_SocialSiteForm", Model)

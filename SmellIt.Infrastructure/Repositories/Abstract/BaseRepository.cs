@@ -19,14 +19,28 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
 
     public virtual async Task CreateAsync(T entity)
     {
-        entity.CreatedById = UserContext.GetCurrentUser().Id;
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
+        entity.CreatedById = currentUser.Id;
         DbContext.Add(entity);
         await DbContext.SaveChangesAsync();
     }
 
     public virtual async Task DeleteAsync(T entity)
     {
-        entity.DeletedById = UserContext.GetCurrentUser().Id;
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
+        entity.DeletedById = currentUser.Id;
         entity.IsActive = false;
         entity.DeletedAt = DateTime.Now;
         await DbContext.SaveChangesAsync();

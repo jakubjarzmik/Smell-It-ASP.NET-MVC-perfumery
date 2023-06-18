@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    @await Html.PartialAsync("PartialViews/LayoutParts/_Header")
+    <partial name="PartialViews/LayoutParts/_Header" />
 </head>
 
 <body class="grey darken-2">
-    @await Html.PartialAsync("PartialViews/LayoutParts/_Navigation")
+    <partial name="PartialViews/LayoutParts/_Navigation" />
 
     <main class="section">
         <div class="container">
@@ -20,9 +20,9 @@
         </div>
     </main>
 
-    @await Html.PartialAsync("PartialViews/LayoutParts/_Footer")
+    <partial name="PartialViews/LayoutParts/_Footer" />
 
-    @await Html.PartialAsync("PartialViews/LayoutParts/_Scripts")
+    <partial name="PartialViews/LayoutParts/_Scripts" />
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

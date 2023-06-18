@@ -11,35 +11,49 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
     }
     public override async Task DeleteAsync(FragranceCategory fragranceCategory)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         fragranceCategory.IsActive = false;
         fragranceCategory.DeletedAt = DateTime.Now;
-        fragranceCategory.DeletedById = UserContext.GetCurrentUser().Id;
+        fragranceCategory.DeletedById = currentUser.Id;
 
-        DeleteTranslations(fragranceCategory);
+        DeleteTranslations(fragranceCategory, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var fragranceCategory = await GetByEncodedNameAsync(encodedName);
         if (fragranceCategory != null)
         {
             fragranceCategory.IsActive = false;
             fragranceCategory.DeletedAt = DateTime.Now;
-            fragranceCategory.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(fragranceCategory);
+            fragranceCategory.DeletedById = currentUser.Id;
+            DeleteTranslations(fragranceCategory, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(FragranceCategory fragranceCategory)
+    private void DeleteTranslations(FragranceCategory fragranceCategory, string currentUserId)
     {
         foreach (var fragranceCategoryTranslation in fragranceCategory.FragranceCategoryTranslations)
         {
             fragranceCategoryTranslation.IsActive = false;
             fragranceCategoryTranslation.DeletedAt = DateTime.Now;
-            fragranceCategoryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            fragranceCategoryTranslation.DeletedById = currentUserId;
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = @WebsiteTexts.GetValue("NoAccess");
+    Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
+}
+
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel login grey darken-3 white-text center">
+        <h4>@ViewData["Title"]</h4>
+        <p>@WebsiteTexts.GetValue("NoAccessText")</p>
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index")" method="post">
+            <button type="submit" class="nav-link btn btn-link text-dark">@WebsiteTexts.GetValue("Logout")</button>
+        </form>
+    </div>
+</div>

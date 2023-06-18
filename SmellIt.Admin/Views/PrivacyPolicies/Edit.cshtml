@@ -1,7 +1,7 @@
 ﻿@model SmellIt.Application.Features.PrivacyPolicies.Commands.EditPrivacyPolicy.EditPrivacyPolicyCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditPrivacyPolicy");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditPrivacyPolicy");
 }
 <script src="~/lib/tinymce/tinymce.js"></script>
 <script>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="PrivacyPolicies" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditPrivacyPolicy") @Model.EncodedName</p>
+            <p class="right">@WebsiteTexts.GetValue("EditPrivacyPolicy") @Model.EncodedName</p>
         </div>
         <form asp-action="Edit">
             @await Html.PartialAsync("PartialViews/Forms/_PrivacyPolicyForm", Model)

@@ -150,6 +150,9 @@
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Dodaj nowy tekst strony</value>
   </data>
+  <data name="AlreadyHaveAnAccount" xml:space="preserve">
+    <value>Masz już konto? Zaloguj się</value>
+  </data>
   <data name="Brand" xml:space="preserve">
     <value>Marka</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Zamknij</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Potwierdź hasło</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
@@ -249,6 +255,9 @@
   <data name="Floral" xml:space="preserve">
     <value>Kwiatowe</value>
   </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Zapomniałeś hasła?</value>
+  </data>
   <data name="Fragrance" xml:space="preserve">
     <value>Perfumy</value>
   </data>
@@ -286,13 +295,13 @@
     <value>Język</value>
   </data>
   <data name="Last30DaysLowestPrice" xml:space="preserve">
-    <value>Najniższa cena z ostatnich 30 dni</value>
+    <value>Najniższa cena z ostatnich 30 dni przed obniżką</value>
   </data>
   <data name="LatestRegisteredUsers" xml:space="preserve">
     <value>Ostatni zarejestrowani użytkownicy</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Zaloguj</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>Zaloguj się</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Wyloguj</value>
@@ -327,6 +336,12 @@
   <data name="No" xml:space="preserve">
     <value>Nie</value>
   </data>
+  <data name="NoAccess" xml:space="preserve">
+    <value>Brak dostępu</value>
+  </data>
+  <data name="NoAccessText" xml:space="preserve">
+    <value>Nie masz dostępu do tej strony</value>
+  </data>
   <data name="Oldest" xml:space="preserve">
     <value>Najstarsze</value>
   </data>
@@ -347,6 +362,9 @@
   </data>
   <data name="ParentCategory" xml:space="preserve">
     <value>Kategoria nadrzędna</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
   </data>
   <data name="PeriodOfValidity" xml:space="preserve">
     <value>Okres obowiązywania</value>
@@ -387,6 +405,12 @@
   <data name="ReedDiffusers" xml:space="preserve">
     <value>Dyfuzory zapachowe</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Zarejestruj się</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Zapamiętaj mnie</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
@@ -405,9 +429,6 @@
   <data name="ShowPriceHistory" xml:space="preserve">
     <value>Zobacz historię cen</value>
   </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Zarejestruj się</value>
-  </data>
   <data name="SmellItDiffuser" xml:space="preserve">
     <value>Dyfuzor Smell It</value>
   </data>
@@ -425,6 +446,9 @@
   </data>
   <data name="StartDate" xml:space="preserve">
     <value>Data rozpoczęcia</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="Text" xml:space="preserve">
     <value>Tekst</value>

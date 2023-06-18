@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmellIt.Admin.Controllers.Abstract;
-[Authorize]
+
+[Authorize(Roles = "Admin,Employee")]
 public abstract class BaseController : Controller
 {
     protected IMediator Mediator { get; private set; }
@@ -24,7 +25,7 @@ public abstract class BaseController : Controller
             return failureView(command);
         }
 
-        await Mediator.Send(command);
+        if (command != null) await Mediator.Send(command);
         return RedirectToAction(successActionName);
     }
 }

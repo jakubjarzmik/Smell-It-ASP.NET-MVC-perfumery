@@ -2,13 +2,13 @@
 @model SmellIt.Application.Features.ProductCategories.Commands.EditProductCategory.EditProductCategoryCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditProductCategory");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditProductCategory");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="ProductCategories" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditProductCategory")</p>
+            <p class="right">@WebsiteTexts.GetValue("EditProductCategory")</p>
         </div>
         <form asp-action="Edit">
             @await Html.PartialAsync("PartialViews/Forms/_ProductCategoryForm", Model)

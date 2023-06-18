@@ -11,35 +11,49 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
     }
     public override async Task DeleteAsync(Gender gender)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         gender.IsActive = false;
         gender.DeletedAt = DateTime.Now;
-        gender.DeletedById = UserContext.GetCurrentUser().Id;
+        gender.DeletedById = currentUser.Id;
 
-        DeleteTranslations(gender);
+        DeleteTranslations(gender, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var gender = await GetByEncodedNameAsync(encodedName);
         if (gender != null)
         {
             gender.IsActive = false;
             gender.DeletedAt = DateTime.Now;
-            gender.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(gender);
+            gender.DeletedById = currentUser.Id;
+            DeleteTranslations(gender, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(Gender gender)
+    private void DeleteTranslations(Gender gender, string currentUserId)
     {
         foreach (var genderTranslation in gender.GenderTranslations)
         {
             genderTranslation.IsActive = false;
             genderTranslation.DeletedAt = DateTime.Now;
-            genderTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            genderTranslation.DeletedById = currentUserId;
         }
     }
 }

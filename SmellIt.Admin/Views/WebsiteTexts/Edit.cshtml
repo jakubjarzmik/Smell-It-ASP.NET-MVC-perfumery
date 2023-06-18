@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText.EditWebsiteTextCommand
 
 @{
-    ViewData["Title"] = language.GetValue("EditWebsiteText");
+    ViewData["Title"] =WebsiteTexts.GetValue("EditWebsiteText");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="WebsiteTexts" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("EditWebsiteText") @Model.Key</p>
+            <p class="right">@WebsiteTexts.GetValue("EditWebsiteText") @Model.Key</p>
         </div>
         <form asp-action="Edit">
             @await Html.PartialAsync("PartialViews/Forms/_WebsiteTextForm", Model)

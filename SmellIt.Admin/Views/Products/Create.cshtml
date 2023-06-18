@@ -2,49 +2,47 @@
 @using SmellIt.Application.Helpers
 @model SmellIt.Application.Features.Products.Commands.CreateProduct.CreateProductCommand
 @{
-    var prefixGenerator = (ViewData["PrefixGenerator"] as IProductCategoryPrefixGenerator)!;
-    ViewData["Title"] = language.GetValue("AddNewProduct");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewProduct");
     var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="Products" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewProduct")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewProduct")</p>
         </div>
         <form asp-action="Create" enctype="multipart/form-data">
             <div class="input-field col s6">
-                <label asp-for="NamePl">(PL) @language.GetValue("Name")</label>
+                <label asp-for="NamePl">(PL) @WebsiteTexts.GetValue("Name")</label>
                 <textarea class="materialize-textarea" asp-for="NamePl"></textarea>
                 <span asp-validation-for="NamePl" class="helper-text"></span>
             </div>
             <div class="input-field col s6">
-                <label asp-for="NameEn">(EN) @language.GetValue("Name")</label>
+                <label asp-for="NameEn">(EN) @WebsiteTexts.GetValue("Name")</label>
                 <textarea class="materialize-textarea" asp-for="NameEn"></textarea>
                 <span asp-validation-for="NameEn" class="helper-text"></span>
             </div>
             <div class="file-field input-field col s12">
                 <div class="btn">
-                    <span>@language.GetValue("Files")</span>
+                    <span>@WebsiteTexts.GetValue("Files")</span>
                     <input type="file" multiple asp-for="ImageFiles" accept="image/png, image/jpeg">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="@language.GetValue("UploadPhotos")">
+                    <input class="file-path validate" type="text" placeholder="@WebsiteTexts.GetValue("UploadPhotos")">
                 </div>
             </div>
             <div class="input-field col s4">
-                <label asp-for="PriceValue">@language.GetValue("Price") (zł)</label>
+                <label asp-for="PriceValue">@WebsiteTexts.GetValue("Price") (zł)</label>
                 <textarea class="materialize-textarea" asp-for="PriceValue"></textarea>
                 <span asp-validation-for="PriceValue" class="helper-text"></span>
             </div>
             <div class="input-field col s4">
-                <label asp-for="PromotionalPriceValue">@language.GetValue("PromotionalPrice") (zł)</label>
+                <label asp-for="PromotionalPriceValue">@WebsiteTexts.GetValue("PromotionalPrice") (zł)</label>
                 <textarea class="materialize-textarea" asp-for="PromotionalPriceValue"></textarea>
                 <span asp-validation-for="PromotionalPriceValue" class="helper-text"></span>
             </div>
             <div class="input-field col s4">
-                <label asp-for="Capacity">@language.GetValue("Capacity") (ml)</label>
+                <label asp-for="Capacity">@WebsiteTexts.GetValue("Capacity") (ml)</label>
                 <textarea class="materialize-textarea" asp-for="Capacity"></textarea>
                 <span asp-validation-for="Capacity" class="helper-text"></span>
             </div>

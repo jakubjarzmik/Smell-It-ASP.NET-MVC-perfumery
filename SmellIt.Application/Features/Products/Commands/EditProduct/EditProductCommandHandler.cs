@@ -2,6 +2,7 @@
 using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using SmellIt.Domain.Models;
 
 namespace SmellIt.Application.Features.Products.Commands.EditProduct;
 
@@ -13,7 +14,7 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
     private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
     private readonly IGenderRepository _genderRepository;
     private readonly IProductPriceRepository _productPriceRepository;
-    private readonly IMapper _mapper;
+    private readonly IUserContext _userContext;
 
     public EditProductCommandHandler(
         IProductRepository productRepository,
@@ -22,7 +23,7 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
         IFragranceCategoryRepository fragranceCategoryRepository,
         IGenderRepository genderRepository,
         IProductPriceRepository productPriceRepository,
-        IMapper mapper)
+        IUserContext userContext)
     {
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
@@ -30,21 +31,31 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
         _fragranceCategoryRepository = fragranceCategoryRepository;
         _genderRepository = genderRepository;
         _productPriceRepository = productPriceRepository;
-        _mapper = mapper;
+        _userContext = userContext;
     }
 
     public async Task<Unit> Handle(EditProductCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var product = await _productRepository.GetByEncodedNameAsync(request.EncodedName);
+
+        if (product == null) return Unit.Value;
+
         product.ModifiedAt = DateTime.Now;
+        product.ModifiedById = currentUser.Id;
 
         await UpdateProductDetails(request, product);
-        UpdateTranslations(request, product);
+        UpdateTranslations(request, product, currentUser.Id);
         await UpdateProductPrices(request, product);
 
         product.EncodeName();
         await _productRepository.CommitAsync();
-
         return Unit.Value;
     }
 
@@ -65,7 +76,7 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
         product.Capacity = request.Capacity;
     }
 
-    private void UpdateTranslations(EditProductCommand request, Product product)
+    private void UpdateTranslations(EditProductCommand request, Product product, string currentUserId)
     {
         var translations = new Dictionary<string, (string Name, string? Description)>
         {
@@ -79,6 +90,7 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
             productTranslation.Name = translation.Value.Name;
             productTranslation.Description = translation.Value.Description;
             productTranslation.ModifiedAt = DateTime.Now;
+            productTranslation.ModifiedById = currentUserId;
         }
     }
 

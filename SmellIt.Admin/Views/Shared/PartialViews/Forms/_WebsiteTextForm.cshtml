@@ -1,13 +1,13 @@
 ﻿@model SmellIt.Application.Features.WebsiteTexts.DTOs.WebsiteTextForAdminDto
 
 <div class="input-field col s12">
-    <label asp-for="TextPl">(PL) @language.GetValue("Text")</label>
+    <label asp-for="TextPl">(PL) @WebsiteTexts.GetValue("Text")</label>
     <textarea class="materialize-textarea" asp-for="TextPl"></textarea>
     <span asp-validation-for="TextPl" class="helper-text"></span>
 </div>
 <div class="input-field col s12">
-    <label asp-for="TextEn">(EN) @language.GetValue("Text")</label>
+    <label asp-for="TextEn">(EN) @WebsiteTexts.GetValue("Text")</label>
     <textarea class="materialize-textarea" asp-for="TextEn"></textarea>
     <span asp-validation-for="TextEn" class="helper-text"></span>
 </div>
-<input type="submit" value="@language.GetValue("Save")" class="btn right" />
+<input type="submit" value="@WebsiteTexts.GetValue("Save")" class="btn right" />

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.SocialSites.Commands.CreateSocialSite;
@@ -7,6 +8,7 @@ using SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEncode
 using SmellIt.Application.Features.SocialSites.Commands.EditSocialSite;
 using SmellIt.Application.Features.SocialSites.Queries.GetPaginatedSocialSites;
 using SmellIt.Application.Features.SocialSites.Queries.GetSocialSiteByEncodedName;
+using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 
@@ -18,12 +20,13 @@ public class SocialSitesController : BaseController
     public SocialSitesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
     }
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")] int? pageNumber)
     {
-        var viewModel = await Mediator.Send(new GetPaginatedSocialSitesQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedSocialSitesQuery(pageNumber, 7));
         return View(viewModel);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("create")]
     public IActionResult Create()
     {
@@ -31,6 +34,7 @@ public class SocialSitesController : BaseController
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateSocialSiteCommand command)
@@ -38,6 +42,7 @@ public class SocialSitesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -46,6 +51,7 @@ public class SocialSitesController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditSocialSiteCommand command)
@@ -53,6 +59,7 @@ public class SocialSitesController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {

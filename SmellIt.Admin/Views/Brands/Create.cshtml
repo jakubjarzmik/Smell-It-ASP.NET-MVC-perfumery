@@ -1,16 +1,16 @@
 ﻿@model SmellIt.Application.Features.Brands.Commands.CreateBrand.CreateBrandCommand
 @{
-    ViewData["Title"] = language.GetValue("AddNewBrand");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewBrand");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="Brands" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewBrand")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewBrand")</p>
         </div>
         <form asp-action="Create">
             <div class="input-field col s12">
-                <label asp-for="Name">@language.GetValue("Name")</label>
+                <label asp-for="Name">@WebsiteTexts.GetValue("Name")</label>
                 <textarea class="materialize-textarea" asp-for="Name"></textarea>
                 <span asp-validation-for="Name" class="helper-text"></span>
             </div>

@@ -7,41 +7,44 @@
         <div class="nav-wrapper">
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul href="#" class="left hide-on-med-and-down">
-                <partial name="_LoginPartial"/>
+                <partial name="_LoginPartial" />
             </ul>
             <ul class="right hide-on-med-and-down">
-                <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@language.GetValue("Dashboard")</a></li>
-                <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@language.GetValue("Orders")</a></li>
-                <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@language.GetValue("Products")</a></li>
-                <li><a href="">@language.GetValue("Users")</a></li>
+                <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@WebsiteTexts.GetValue("Dashboard")</a></li>
+                <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@WebsiteTexts.GetValue("Orders")</a></li>
+                <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@WebsiteTexts.GetValue("Products")</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a href="">@WebsiteTexts.GetValue("Users")</a></li>
+                }
                 <li>
-                    <a class="dropdown-trigger" href="#" data-target="othersDropdown" style="padding: 0 25px">@language.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="dropdown-trigger" href="#" data-target="othersDropdown" style="padding: 0 25px">@WebsiteTexts.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
                     <ul id="othersDropdown" class="dropdown-content grey darken-2">
                         <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "Brands")">@language.GetValue("Brands")</a>
+                            <a href="@Url.Action("Index", "Brands")">@WebsiteTexts.GetValue("Brands")</a>
                         </li>
                         <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "FragranceCategories")">@language.GetValue("FragranceCategories")</a>
+                            <a href="@Url.Action("Index", "FragranceCategories")">@WebsiteTexts.GetValue("FragranceCategories")</a>
                         </li>
                         <li class="@(controller == "HomeBanners" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "HomeBanners")">@language.GetValue("HomeBanners")</a>
+                            <a href="@Url.Action("Index", "HomeBanners")">@WebsiteTexts.GetValue("HomeBanners")</a>
                         </li>
                         <li class="@(controller == "PrivacyPolicies" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "PrivacyPolicies")">@language.GetValue("PrivacyPolicies")</a>
+                            <a href="@Url.Action("Index", "PrivacyPolicies")">@WebsiteTexts.GetValue("PrivacyPolicies")</a>
                         </li>
                         <li class="@(controller == "ProductCategories" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "ProductCategories")">@language.GetValue("ProductCategories")</a>
+                            <a href="@Url.Action("Index", "ProductCategories")">@WebsiteTexts.GetValue("ProductCategories")</a>
                         </li>
                         <li class="@(controller == "SocialSites" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "SocialSites")">@language.GetValue("SocialSites")</a>
+                            <a href="@Url.Action("Index", "SocialSites")">@WebsiteTexts.GetValue("SocialSites")</a>
                         </li>
                         <li class="@(controller == "WebsiteText" && action == "Index" ? "active": "")">
-                            <a href="@Url.Action("Index", "WebsiteTexts")">@language.GetValue("WebsiteTexts")</a>
+                            <a href="@Url.Action("Index", "WebsiteTexts")">@WebsiteTexts.GetValue("WebsiteTexts")</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a class="dropdown-trigger" href="#" data-target="languageDropdown">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="dropdown-trigger" href="#" data-target="languageDropdown">@WebsiteTexts.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
                     <ul id="languageDropdown" class="dropdown-content grey darken-2">
                         <li>
                             <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
@@ -59,7 +62,7 @@
         </div>
     </nav>
 </div>
-<ul id="mobile-demo" class="sidenav grey darken-4">
+<ul id="mobile-demo" class="sidenav grey darken-4">@*
     <li>
         <div class="user-view">
             <div class="background">
@@ -75,41 +78,44 @@
                 <span class="email white-text">jdoe@email.com</span>
             </a>
         </div>
-    </li>
+    </li>*@
     <li class="@(controller == "Home" && action == "Index" ? "active" : "")">
-        <a href="@Url.Action("Index", "Home")" class="white-text">@language.GetValue("Dashboard")</a>
+        <a href="@Url.Action("Index", "Home")" class="white-text">@WebsiteTexts.GetValue("Dashboard")</a>
     </li>
     <li class="@(controller == "Orders" && action == "Index" ? "active" : "")">
-        <a href="" class="white-text">@language.GetValue("Orders")</a>
+        <a href="" class="white-text">@WebsiteTexts.GetValue("Orders")</a>
     </li>
     <li class="@(controller == "Products" && action == "Index" ? "active" : "")">
-        <a href="@Url.Action("Index", "Products")" class="white-text">@language.GetValue("Products")</a>
+        <a href="@Url.Action("Index", "Products")" class="white-text">@WebsiteTexts.GetValue("Products")</a>
     </li>
     <li class="@(controller == "ProductCategories" && action == "Index" ? "active" : "")">
-        <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@language.GetValue("Categories")</a>
+        <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@WebsiteTexts.GetValue("Categories")</a>
     </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li>
+            <a href="" class="white-text">@WebsiteTexts.GetValue("Users")</a>
+        </li>
+    }
     <li>
-        <a href="" class="white-text">@language.GetValue("Users")</a>
-    </li>
-    <li>
-        <a class="dropdown-trigger white-text" href="#" data-target="othersDropdownMobile">@language.GetValue("Others")<i class="material-icons white-text right">arrow_drop_down</i></a>
+        <a class="dropdown-trigger white-text" href="#" data-target="othersDropdownMobile">@WebsiteTexts.GetValue("Others")<i class="material-icons white-text right">arrow_drop_down</i></a>
         <ul id="othersDropdownMobile" class="dropdown-content grey darken-2">
             <li class="@(controller == "ProductCategories" && action == "Index" ? "active": "")">
-                <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@language.GetValue("Categories")</a>
+                <a href="@Url.Action("Index", "ProductCategories")" class="white-text">@WebsiteTexts.GetValue("Categories")</a>
             </li>
             <li class="@(controller == "Brands" && action == "Index" ? "active": "")">
-                <a href="@Url.Action("Index", "Brands")" class="white-text">@language.GetValue("Brands")</a>
+                <a href="@Url.Action("Index", "Brands")" class="white-text">@WebsiteTexts.GetValue("Brands")</a>
             </li>
             <li class="@(controller == "FragranceCategories" && action == "Index" ? "active": "")">
-                <a href="@Url.Action("Index", "FragranceCategories")" class="white-text">@language.GetValue("FragranceCategories")</a>
+                <a href="@Url.Action("Index", "FragranceCategories")" class="white-text">@WebsiteTexts.GetValue("FragranceCategories")</a>
             </li>
             <li class="@(controller == "WebsiteText" && action == "Index" ? "active" : "") white-text">
-                <a href="@Url.Action("Index", "WebsiteTexts")" class="white-text">@language.GetValue("WebsiteTexts")</a>
+                <a href="@Url.Action("Index", "WebsiteTexts")" class="white-text">@WebsiteTexts.GetValue("WebsiteTexts")</a>
             </li>
         </ul>
     </li>
     <li>
-        <a class="dropdown-trigger white-text" href="#" data-target="languageDropdownMobile">@language.GetValue("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
+        <a class="dropdown-trigger white-text" href="#" data-target="languageDropdownMobile">@WebsiteTexts.GetValue("Language")<i class="material-icons white-text right">arrow_drop_down</i></a>
         <ul id="languageDropdownMobile" class="dropdown-content grey darken-2">
             <li>
                 <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>
@@ -120,5 +126,5 @@
         </ul>
     </li>
     <li><div class="divider"></div></li>
-    <li><a href="" class="waves-effect white-text">@language.GetValue("Logout")</a></li>
+    <li><a href="" class="waves-effect white-text">@WebsiteTexts.GetValue("Logout")</a></li>
 </ul>

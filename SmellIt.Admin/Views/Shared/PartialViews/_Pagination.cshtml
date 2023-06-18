@@ -1,0 +1,16 @@
+﻿<div class="card-action">
+    <a asp-action="Index" asp-route-page-number="@(Model.CurrentPage - 1)" class="btn white-text waves-effect" style="@(Model.CurrentPage == 1 ? "display: none;" : "")">
+        <i class="material-icons">chevron_left</i>
+    </a>
+    @{
+        for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <a asp-action="Index" asp-route-page-number="@i" class="btn white-text @(Model.CurrentPage == i ? "active purple lighten-2" : "waves-effect")">
+                @i
+            </a>
+        }
+    }
+    <a asp-action="Index" asp-route-page-number="@(Model.CurrentPage + 1)" class="btn white-text waves-effect" style="@(Model.CurrentPage == Model.TotalPages ? "display: none;" : "")">
+        <i class="material-icons">chevron_right</i>
+    </a>
+</div>

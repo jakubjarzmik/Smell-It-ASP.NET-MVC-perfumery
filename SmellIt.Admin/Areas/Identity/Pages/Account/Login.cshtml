@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = @WebsiteTexts.GetValue("LogIn");
     Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
@@ -20,27 +20,26 @@
             <div class="input-field">
                 <i class="material-icons prefix">lock</i>
                 <input asp-for="Input.Password" id="Input_Password" type="password" class="validate" />
-                <label class="white-text" for="Input_Password">Password</label>
+                <label class="white-text" for="Input_Password">@WebsiteTexts.GetValue("Password")</label>
                 <span asp-validation-for="Input.Password" class="helper-text" data-error="Invalid Password"></span>
             </div>
             <label>
                 <input type="checkbox" asp-for="Input.RememberMe" />
-                <span>@Html.DisplayNameFor(m => m.Input.RememberMe)</span>
+                <span>@WebsiteTexts.GetValue("RememberMe")</span>
             </label>
+            <br/>
+            <br/>
             <input id="login-submit"
                    class="btn btn-large waves-effect"
-                   value="Login"
+                   value="@WebsiteTexts.GetValue("LogIn")"
                    type="submit" />
         </form>
         <div>
             <p>
-                <a id="forgot-password" asp-page="./ForgotPassword" class="white-text">Forgot your password?</a>
+                <a id="forgot-password" asp-page="./ForgotPassword" class="white-text">@WebsiteTexts.GetValue("ForgotYourPassword")</a>
             </p>
             <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="white-text">Register as a new user</a>
-            </p>
-            <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="white-text">Resend email confirmation</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="white-text">@WebsiteTexts.GetValue("Register")</a>
             </p>
         </div>
     </div>

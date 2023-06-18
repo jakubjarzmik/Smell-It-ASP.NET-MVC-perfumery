@@ -8,16 +8,28 @@ public class AddCartItemCommandHandler : IRequestHandler<AddCartItemCommand>
 {
     private readonly ICartItemRepository _cartItemRepository;
     private readonly IMapper _mapper;
-    public AddCartItemCommandHandler(ICartItemRepository cartItemRepository, IMapper mapper)
+    private readonly IUserContext _userContext;
+
+    public AddCartItemCommandHandler(ICartItemRepository cartItemRepository, IMapper mapper, IUserContext userContext)
     {
         _cartItemRepository = cartItemRepository;
         _mapper = mapper;
+        _userContext = userContext;
     }
     public async Task<Unit> Handle(AddCartItemCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var foundCarItem = await _cartItemRepository.GetBySessionAndProductEncodedNameAsync(request.Session, request.ProductEncodedName);
         if (foundCarItem != null)
         {
+            foundCarItem.ModifiedAt = DateTime.Now;
+            foundCarItem.ModifiedById = currentUser.Id;
             foundCarItem.Quantity += request.Quantity;
             await _cartItemRepository.CommitAsync();
         }

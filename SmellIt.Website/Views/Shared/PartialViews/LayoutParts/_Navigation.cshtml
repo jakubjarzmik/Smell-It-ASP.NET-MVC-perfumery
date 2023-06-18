@@ -1,0 +1,103 @@
+﻿@{
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+    var controller = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+<section class="top-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div class="contact-number">
+                <i class="tf-ion-ios-telephone"></i>
+                <span>@await WebsiteTexts.GetValueAsync("PhoneNumber")</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div class="logo text-center">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/images/logo.png" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <ul class="top-menu text-right list-inline">
+                    @if (!(controller == "Cart" && action == "Index"))
+                    {
+                        <li class="dropdown cart-nav dropdown-slide">
+                            @await Component.InvokeAsync("Cart")
+                        </li>
+                    }
+                    <li class="dropdown search dropdown-slide">
+                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            <i class="tf-ion-ios-search-strong"></i> @await WebsiteTexts.GetValueAsync("Search")
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form action="post"><input type="search" class="form-control" placeholder="@await WebsiteTexts.GetValueAsync("Search")..."></form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown dropdown-slide">
+                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            <span class="flag-icon flag-icon-@currentCulture.Substring(3, 2).ToLower()"></span>
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <li>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="nav-link"><span class="flag-icon flag-icon-pl"></span> Polski</a>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-GB" class="nav-link"><span class="flag-icon flag-icon-gb"></span> English</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu">
+    <nav class="navbar navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h2 class="menu-title">Menu</h2>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse text-center">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">@await WebsiteTexts.GetValueAsync("Home")</a>
+                    </li>
+
+                    @await Component.InvokeAsync("ProductCategories")
+
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")">@await WebsiteTexts.GetValueAsync("Contact")</a>
+                    </li>
+
+                    <li>
+                        <a href="#">@await WebsiteTexts.GetValueAsync("AboutUs")</a>
+                    </li>
+                    <li>
+                        <a href="#" disabled>|</a>
+                    </li>
+                    @*<li>
+                        <a href="#"><b>@await WebsiteTexts.GetValueAsync("SignIn")</b></a>
+                    </li>
+
+                    <li>
+                        <a href="#">@await WebsiteTexts.GetValueAsync("Register")</a>
+                    </li>*@
+                    
+                    <partial name="PartialViews/_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>

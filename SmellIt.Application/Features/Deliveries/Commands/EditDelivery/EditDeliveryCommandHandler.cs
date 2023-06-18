@@ -1,30 +1,41 @@
 ﻿using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using System.Drawing.Drawing2D;
 
 namespace SmellIt.Application.Features.Deliveries.Commands.EditDelivery;
 public class EditDeliveryCommandHandler : IRequestHandler<EditDeliveryCommand>
 {
     private readonly IDeliveryRepository _deliveryRepository;
+    private readonly IUserContext _userContext;
 
-    public EditDeliveryCommandHandler(IDeliveryRepository deliveryRepository)
+    public EditDeliveryCommandHandler(IDeliveryRepository deliveryRepository, IUserContext userContext)
     {
         _deliveryRepository = deliveryRepository;
+        _userContext = userContext;
     }
     public async Task<Unit> Handle(EditDeliveryCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var delivery = (await _deliveryRepository.GetByEncodedNameAsync(request.EncodedName))!;
         delivery.ModifiedAt = DateTime.Now;
+        delivery.ModifiedById = currentUser.Id;
 
         delivery.Price = request.Price;
 
-        UpdateTranslations(request, delivery);
+        UpdateTranslations(request, delivery, currentUser.Id);
 
         await _deliveryRepository.CommitAsync();
 
         return Unit.Value;
     }
-    private void UpdateTranslations(EditDeliveryCommand request, Delivery delivery)
+    private void UpdateTranslations(EditDeliveryCommand request, Delivery delivery, string currentUserId)
     {
         var translations = new Dictionary<string, (string Name, string? Description)>
         {
@@ -38,6 +49,7 @@ public class EditDeliveryCommandHandler : IRequestHandler<EditDeliveryCommand>
             deliveryTranslation.Name = translation.Value.Name;
             deliveryTranslation.Description = translation.Value.Description;
             deliveryTranslation.ModifiedAt = DateTime.Now;
+            deliveryTranslation.ModifiedById = currentUserId;
         }
     }
 }

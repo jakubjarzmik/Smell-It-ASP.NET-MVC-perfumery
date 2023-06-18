@@ -1,13 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model SmellIt.Application.Features.ProductCategories.Commands.CreateProductCategory.CreateProductCategoryCommand
 @{
-    ViewData["Title"] = language.GetValue("AddNewProductCategory");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewProductCategory");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="ProductCategories" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewProductCategory")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewProductCategory")</p>
         </div>
         <form asp-action="Create">
             @await Html.PartialAsync("PartialViews/Forms/_ProductCategoryForm", Model)

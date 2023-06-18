@@ -1,5 +1,6 @@
 ﻿using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
+using SmellIt.Domain.Models;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
 using System.Drawing.Drawing2D;
@@ -12,35 +13,49 @@ public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeli
     }
     public override async Task DeleteAsync(Delivery delivery)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         delivery.IsActive = false;
         delivery.DeletedAt = DateTime.Now;
-        delivery.DeletedById = UserContext.GetCurrentUser().Id;
+        delivery.DeletedById = currentUser.Id;
 
-        DeleteTranslations(delivery);
+        DeleteTranslations(delivery, currentUser.Id);
 
         await DbContext.SaveChangesAsync();
     }
 
     public override async Task DeleteByEncodedNameAsync(string encodedName)
     {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return;
+        }
+
         var delivery = await GetByEncodedNameAsync(encodedName);
         if (delivery != null)
         {
             delivery.IsActive = false;
             delivery.DeletedAt = DateTime.Now;
-            delivery.DeletedById = UserContext.GetCurrentUser().Id;
-            DeleteTranslations(delivery);
+            delivery.DeletedById = currentUser.Id;
+            DeleteTranslations(delivery, currentUser.Id);
             await DbContext.SaveChangesAsync();
         }
     }
 
-    private void DeleteTranslations(Delivery delivery)
+    private void DeleteTranslations(Delivery delivery, string currentUserId)
     {
         foreach (var deliveryTranslation in delivery.DeliveryTranslations)
         {
             deliveryTranslation.IsActive = false;
             deliveryTranslation.DeletedAt = DateTime.Now;
-            deliveryTranslation.DeletedById = UserContext.GetCurrentUser().Id;
+            deliveryTranslation.DeletedById = currentUserId;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities;
 using SmellIt.Infrastructure.Persistence;
@@ -9,14 +10,16 @@ public class Seeder
 {
     private readonly SmellItDbContext _dbContext;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private IdentityUser? _defaultAdmin;
     private readonly Language _polish;
     private readonly Language _english;
-    private IdentityUser? _defaultUser;
 
-    public Seeder(SmellItDbContext dbContext, UserManager<IdentityUser> userManager)
+    public Seeder(SmellItDbContext dbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _dbContext = dbContext;
         _userManager = userManager;
+        _roleManager = roleManager;
         _polish = _dbContext.Languages.FirstOrDefault(l => l.Code == "pl-PL") ??
                   new Language { Code = "pl-PL", Name = "Polski" };
         _english = _dbContext.Languages.FirstOrDefault(l => l.Code == "en-GB") ??
@@ -27,6 +30,7 @@ public class Seeder
     {
         if (await _dbContext.Database.CanConnectAsync())
         {
+            await SeedRolesAsync();
             await SeedDefaultUser();
             await SeedAddressesAsync();
             await SeedDeliveriesAsync();
@@ -40,12 +44,39 @@ public class Seeder
             await _dbContext.SaveChangesAsync();
         }
     }
+    public async Task SeedRolesAsync()
+    {
+        var roles = new[] { "Admin", "Employee" };
+        foreach (var role in roles)
+        {
+            if (!await _roleManager.RoleExistsAsync(role))
+            {
+                var identityRole = new IdentityRole(role);
+                await _roleManager.CreateAsync(identityRole);
+            }
+        }
+    }
     public async Task SeedDefaultUser()
     {
-        _defaultUser = new IdentityUser { UserName = "admin@smellit.com", Email = "admin@smellit.com" };
-        if (_userManager.FindByEmailAsync(_defaultUser.Email).Result == null)
+        _defaultAdmin = new IdentityUser { UserName = "admin@smellit.com", Email = "admin@smellit.com" };
+        if (_userManager.FindByEmailAsync(_defaultAdmin.Email).Result == null)
         {
-            await _userManager.CreateAsync(_defaultUser, "zaq1@WSX");
+            await _userManager.CreateAsync(_defaultAdmin, "zaq1@WSX");
+            await _userManager.AddToRoleAsync(_defaultAdmin, "Admin");
+            await _userManager.AddToRoleAsync(_defaultAdmin, "Employee");
+        }
+
+        var defaultEmployee = new IdentityUser { UserName = "employee@smellit.com", Email = "employee@smellit.com" };
+        if (_userManager.FindByEmailAsync(defaultEmployee.Email).Result == null)
+        {
+            await _userManager.CreateAsync(defaultEmployee, "zaq1@WSX");
+            await _userManager.AddToRoleAsync(defaultEmployee, "Employee");
+        }
+
+        var defaultClient = new IdentityUser { UserName = "jankowalski@gmail.com", Email = "jankowalski@gmail.com" };
+        if (_userManager.FindByEmailAsync(defaultClient.Email).Result == null)
+        {
+            await _userManager.CreateAsync(defaultClient, "zaq1@WSX");
         }
     }
     private async Task SeedPaymentsAsync()
@@ -129,7 +160,7 @@ public class Seeder
             foreach (var x in paymentList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -206,7 +237,7 @@ public class Seeder
             foreach (var x in deliveryList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -248,7 +279,7 @@ public class Seeder
             foreach (var x in socialSites)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -278,7 +309,7 @@ public class Seeder
             foreach (var x in privacyPolicyList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -379,7 +410,7 @@ public class Seeder
             foreach (var x in homeBannerList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -1034,11 +1065,11 @@ public class Seeder
                 new WebsiteTextTranslation
                 {
                     WebsiteText = last30DaysLowestPrice, Language = _polish,
-                    Text = "Najniższa cena w ciągu ostatnich 30 dni"
+                    Text = "Najniższa cena w ciągu ostatnich 30 dni przed obniżką"
                 },
                 new WebsiteTextTranslation
                 {
-                    WebsiteText = last30DaysLowestPrice, Language = _english, Text = "Lowest price in the last 30 days"
+                    WebsiteText = last30DaysLowestPrice, Language = _english, Text = "Lowest price from last 30 days before reduction"
                 },
             };
             last30DaysLowestPrice.WebsiteTextTranslations = last30DaysLowestPriceTranslations;
@@ -1183,7 +1214,7 @@ public class Seeder
             foreach (var x in websiteTextList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
         }
     }
@@ -1375,7 +1406,7 @@ public class Seeder
             foreach (var x in productCategoryList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
 
             #endregion
@@ -1534,7 +1565,7 @@ public class Seeder
             foreach (var x in brandList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
 
             #endregion
@@ -1689,7 +1720,7 @@ public class Seeder
             foreach (var x in fragranceCategoryList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
 
             #endregion
@@ -1736,7 +1767,7 @@ public class Seeder
             foreach (var x in genderList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
 
             #endregion
@@ -1753,7 +1784,8 @@ public class Seeder
             var smellItDiffuserPrice = new ProductPrice
             {
                 Product = smellItDiffuser,
-                Value = 1099
+                Value = 1099,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(smellItDiffuserPrice);
 
@@ -1761,7 +1793,8 @@ public class Seeder
             {
                 Product = smellItDiffuser,
                 Value = 899,
-                IsPromotion = true
+                IsPromotion = true,
+                StartDateTime = DateTime.Now
             };
             await _dbContext.ProductPrices.AddAsync(smellItDiffuserPricePromotion);
 
@@ -1797,7 +1830,8 @@ public class Seeder
             var goodGirlPriceHistory = new ProductPrice
             {
                 Product = goodGirl,
-                Value = 489
+                Value = 489,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(goodGirlPriceHistory);
 
@@ -1833,7 +1867,8 @@ public class Seeder
             var sauvagePriceHistory = new ProductPrice
             {
                 Product = sauvage,
-                Value = 479
+                Value = 479,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(sauvagePriceHistory);
 
@@ -1869,7 +1904,8 @@ public class Seeder
             var siPriceHistory = new ProductPrice
             {
                 Product = si,
-                Value = 491
+                Value = 491,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(siPriceHistory);
 
@@ -1905,7 +1941,8 @@ public class Seeder
             var oneMillionPriceHistory = new ProductPrice
             {
                 Product = oneMillion,
-                Value = 332
+                Value = 332,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(oneMillionPriceHistory);
 
@@ -1941,7 +1978,8 @@ public class Seeder
             var erosPriceHistory = new ProductPrice
             {
                 Product = eros,
-                Value = 255
+                Value = 255,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(erosPriceHistory);
 
@@ -1977,7 +2015,8 @@ public class Seeder
             var blackOpiumPriceHistory = new ProductPrice
             {
                 Product = blackOpium,
-                Value = 459
+                Value = 459,
+                StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
             await _dbContext.ProductPrices.AddAsync(blackOpiumPriceHistory);
 
@@ -2004,7 +2043,7 @@ public class Seeder
             foreach (var x in productList)
             {
                 x.EncodeName();
-                x.CreatedBy = _defaultUser;
+                x.CreatedBy = _defaultAdmin;
             }
 
             #endregion
@@ -2018,133 +2057,133 @@ public class Seeder
                     ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
                     ImageAlt = "dyfuzor-smell-it1",
                     Product = smellItDiffuser,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1-1.jpg",
                     ImageAlt = "dyfuzor-smell-it1-1",
                     Product = smellItDiffuser,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
                     ImageAlt = "armani-si1",
                     Product = si,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si2.png",
                     ImageAlt = "armani-si2",
                     Product = si,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si3.png",
                     ImageAlt = "armani-si3",
                     Product = si,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                     ImageAlt = "dior-savuage1",
                     Product = sauvage,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage2.png",
                     ImageAlt = "dior-savuage2",
                     Product = sauvage,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage3.png",
                     ImageAlt = "dior-savuage3",
                     Product = sauvage,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
                     ImageAlt = "ysl-black-opium1",
                     Product = blackOpium,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium2.png",
                     ImageAlt = "ysl-black-opium2",
                     Product = blackOpium,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium3.png",
                     ImageAlt = "ysl-black-opium3",
                     Product = blackOpium,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                     ImageAlt = "ch-good-girl1",
                     Product = goodGirl,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl2.png",
                     ImageAlt = "ch-good-girl2",
                     Product = goodGirl,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl3.png",
                     ImageAlt = "ch-good-girl3",
                     Product = goodGirl,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
                     ImageAlt = "pr-1million1",
                     Product = oneMillion,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million2.png",
                     ImageAlt = "pr-1million2",
                     Product = oneMillion,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million3.png",
                     ImageAlt = "pr-1million3",
                     Product = oneMillion,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
                     ImageAlt = "versace-eros1",
                     Product = eros,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
                 new ProductImage()
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros2.png",
                     ImageAlt = "versace-eros2",
                     Product = eros,
-                    CreatedBy = _defaultUser
+                    CreatedBy = _defaultAdmin
                 },
             };
             await _dbContext.ProductImages.AddRangeAsync(productImages);

@@ -12,7 +12,7 @@
                 <a href="@Url.Action("Index", "Home")" class="brand-logo center"><img src="~/images/logo.png" /></a>
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a class="dropdown-trigger" href="#" data-target="languageDropdown">@language.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
+                        <a class="dropdown-trigger" href="#" data-target="languageDropdown">@WebsiteTexts.GetValue("Language")<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="languageDropdown" class="dropdown-content grey darken-2">
                             <li>
                                 <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pl-PL" class="white-text"> Polski</a>

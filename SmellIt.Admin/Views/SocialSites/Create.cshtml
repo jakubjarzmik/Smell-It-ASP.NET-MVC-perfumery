@@ -1,12 +1,12 @@
 ﻿@model SmellIt.Application.Features.SocialSites.Commands.CreateSocialSite.CreateSocialSiteCommand
 @{
-    ViewData["Title"] = language.GetValue("AddNewSocialSite");
+    ViewData["Title"] =WebsiteTexts.GetValue("AddNewSocialSite");
 }
 <div class="card-content">
     <div class="row">
         <div class="card-title col s12">
             <a class="btn left" asp-controller="SocialSites" asp-action="Index"> <i class="material-icons">arrow_back_ios_new</i></a>
-            <p class="right">@language.GetValue("AddNewSocialSite")</p>
+            <p class="right">@WebsiteTexts.GetValue("AddNewSocialSite")</p>
         </div>
         <form asp-action="Create">
             <div class="input-field col s12">

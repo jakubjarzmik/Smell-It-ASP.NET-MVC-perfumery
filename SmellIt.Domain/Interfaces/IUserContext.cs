@@ -4,5 +4,5 @@ namespace SmellIt.Domain.Interfaces;
 
 public interface IUserContext
 {
-    CurrentUser GetCurrentUser();
+    CurrentUser? GetCurrentUser();
 }

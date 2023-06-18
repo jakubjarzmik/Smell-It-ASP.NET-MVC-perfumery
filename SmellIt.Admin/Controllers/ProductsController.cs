@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmellIt.Admin.Controllers.Abstract;
@@ -26,15 +27,15 @@ public class ProductsController : BaseController
     {
         _prefixGenerator = prefixGenerator;
     }
-
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index([FromQuery(Name = "page-number")] int? pageNumber)
     {
         await LoadViewBagsAsync();
 
-        var viewModel = await Mediator.Send(new GetPaginatedProductsQuery(page, 7));
+        var viewModel = await Mediator.Send(new GetPaginatedProductsQuery(pageNumber, 7));
         return View(viewModel);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("create")]
     public async Task<IActionResult> Create()
     {
@@ -43,6 +44,7 @@ public class ProductsController : BaseController
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Create(CreateProductCommand command)
@@ -50,6 +52,7 @@ public class ProductsController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName)
     {
@@ -62,6 +65,7 @@ public class ProductsController : BaseController
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("{encodedName}/edit")]
     public async Task<IActionResult> Edit(string encodedName, EditProductCommand command)
@@ -69,6 +73,7 @@ public class ProductsController : BaseController
         return await HandleCommand(command, nameof(Index), View);
     }
 
+    [Authorize(Roles = "Admin")]
     [Route("{encodedName}/delete")]
     public async Task<IActionResult> Delete(string encodedName)
     {
