@@ -673,6 +673,42 @@ public class Seeder
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(continueShoppingTranslations);
 
 
+            var myAccount = new WebsiteText { Key = "MyAccount" };
+            await _dbContext.WebsiteTexts.AddAsync(myAccount);
+
+            List<WebsiteTextTranslation> myAccountTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = myAccount, Language = _polish, Text = "Moje konto" },
+                new WebsiteTextTranslation { WebsiteText = myAccount, Language = _english, Text = "My account" },
+            };
+            myAccount.WebsiteTextTranslations = myAccountTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(myAccountTranslations);
+
+
+            var logout = new WebsiteText { Key = "Logout" };
+            await _dbContext.WebsiteTexts.AddAsync(logout);
+
+            List<WebsiteTextTranslation> logoutTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = logout, Language = _polish, Text = "Wyloguj" },
+                new WebsiteTextTranslation { WebsiteText = logout, Language = _english, Text = "Logout" },
+            };
+            logout.WebsiteTextTranslations = logoutTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(logoutTranslations);
+
+
+            var manage = new WebsiteText { Key = "Manage" };
+            await _dbContext.WebsiteTexts.AddAsync(manage);
+
+            List<WebsiteTextTranslation> manageTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = manage, Language = _polish, Text = "Zarządzaj" },
+                new WebsiteTextTranslation { WebsiteText = manage, Language = _english, Text = "Manage" },
+            };
+            manage.WebsiteTextTranslations = manageTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(manageTranslations);
+
+
             var search = new WebsiteText { Key = "Search" };
             await _dbContext.WebsiteTexts.AddAsync(search);
 
@@ -756,6 +792,102 @@ public class Seeder
             };
             aboutUs.WebsiteTextTranslations = aboutUsTranslations;
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(aboutUsTranslations);
+
+
+            var confirmPassword = new WebsiteText { Key = "ConfirmPassword" };
+            await _dbContext.WebsiteTexts.AddAsync(confirmPassword);
+
+            List<WebsiteTextTranslation> confirmPasswordTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = confirmPassword, Language = _polish, Text = "Potwierdź hasło" },
+                new WebsiteTextTranslation { WebsiteText = confirmPassword, Language = _english, Text = "Confirm Password" },
+            };
+            confirmPassword.WebsiteTextTranslations = confirmPasswordTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(confirmPasswordTranslations);
+
+
+            var password = new WebsiteText { Key = "Password" };
+            await _dbContext.WebsiteTexts.AddAsync(password);
+
+            List<WebsiteTextTranslation> passwordTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = password, Language = _polish, Text = "Hasło" },
+                new WebsiteTextTranslation { WebsiteText = password, Language = _english, Text = "Password" },
+            };
+            password.WebsiteTextTranslations = passwordTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(passwordTranslations);
+
+
+            var alreadyHaveAnAccount = new WebsiteText { Key = "AlreadyHaveAnAccount" };
+            await _dbContext.WebsiteTexts.AddAsync(alreadyHaveAnAccount);
+
+            List<WebsiteTextTranslation> alreadyHaveAnAccountTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = alreadyHaveAnAccount, Language = _polish, Text = "Masz już konto?" },
+                new WebsiteTextTranslation { WebsiteText = alreadyHaveAnAccount, Language = _english, Text = "Already have an account?" },
+            };
+            alreadyHaveAnAccount.WebsiteTextTranslations = alreadyHaveAnAccountTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(alreadyHaveAnAccountTranslations);
+
+
+            var forgotYourPassword = new WebsiteText { Key = "ForgotYourPassword" };
+            await _dbContext.WebsiteTexts.AddAsync(forgotYourPassword);
+
+            List<WebsiteTextTranslation> forgotYourPasswordTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = forgotYourPassword, Language = _polish, Text = "Zapomniałeś hasła?" },
+                new WebsiteTextTranslation { WebsiteText = forgotYourPassword, Language = _english, Text = "Forgot your password?" },
+            };
+            forgotYourPassword.WebsiteTextTranslations = forgotYourPasswordTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(forgotYourPasswordTranslations);
+
+
+            var backToLoginPage = new WebsiteText { Key = "BackToLoginPage" };
+            await _dbContext.WebsiteTexts.AddAsync(backToLoginPage);
+
+            List<WebsiteTextTranslation> backToLoginPageTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = backToLoginPage, Language = _polish, Text = "Powrót do strony logowania" },
+                new WebsiteTextTranslation { WebsiteText = backToLoginPage, Language = _english, Text = "Back to login page" },
+            };
+            backToLoginPage.WebsiteTextTranslations = backToLoginPageTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(backToLoginPageTranslations);
+
+
+            var welcomeBack = new WebsiteText { Key = "WelcomeBack" };
+            await _dbContext.WebsiteTexts.AddAsync(welcomeBack);
+
+            List<WebsiteTextTranslation> welcomeBackTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = welcomeBack, Language = _polish, Text = "Witaj ponownie" },
+                new WebsiteTextTranslation { WebsiteText = welcomeBack, Language = _english, Text = "Welcome back" },
+            };
+            welcomeBack.WebsiteTextTranslations = welcomeBackTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(welcomeBackTranslations);
+
+
+            var noAccountYet = new WebsiteText { Key = "NoAccountYet" };
+            await _dbContext.WebsiteTexts.AddAsync(noAccountYet);
+
+            List<WebsiteTextTranslation> noAccountYetTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = noAccountYet, Language = _polish, Text = "Nie masz jeszcze konta?" },
+                new WebsiteTextTranslation { WebsiteText = noAccountYet, Language = _english, Text = "No account yet?" },
+            };
+            noAccountYet.WebsiteTextTranslations = noAccountYetTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(noAccountYetTranslations);
+
+
+            var resetPassword = new WebsiteText { Key = "ResetPassword" };
+            await _dbContext.WebsiteTexts.AddAsync(resetPassword);
+
+            List<WebsiteTextTranslation> resetPasswordTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = resetPassword, Language = _polish, Text = "Zresetuj hasło" },
+                new WebsiteTextTranslation { WebsiteText = resetPassword, Language = _english, Text = "Reset password" },
+            };
+            resetPassword.WebsiteTextTranslations = resetPasswordTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(resetPasswordTranslations);
 
 
             var signIn = new WebsiteText { Key = "SignIn" };

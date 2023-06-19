@@ -12,7 +12,7 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
     {
     }
 
-    public override async Task CreateAsync(T entity)
+    public override async Task CreateAsync(T cartItem)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -21,10 +21,10 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
             return;
         }
 
-        entity.CreatedById = currentUser.Id;
-        DbContext.Add(entity);
+        cartItem.CreatedById = currentUser.Id;
+        DbContext.Add(cartItem);
         await DbContext.SaveChangesAsync();
-        entity.EncodeName();
+        cartItem.EncodeName();
         await DbContext.SaveChangesAsync();
     }
 

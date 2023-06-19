@@ -17,7 +17,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
         UserContext = userContext;
     }
 
-    public virtual async Task CreateAsync(T entity)
+    public virtual async Task CreateAsync(T cartItem)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -26,8 +26,8 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
             return;
         }
 
-        entity.CreatedById = currentUser.Id;
-        DbContext.Add(entity);
+        cartItem.CreatedById = currentUser.Id;
+        DbContext.Add(cartItem);
         await DbContext.SaveChangesAsync();
     }
 

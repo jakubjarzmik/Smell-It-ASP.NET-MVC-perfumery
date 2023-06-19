@@ -20,16 +20,12 @@ public class AddCartItemCommandHandler : IRequestHandler<AddCartItemCommand>
     {
         var currentUser = _userContext.GetCurrentUser();
 
-        if (currentUser == null || !currentUser.IsInRole("Admin"))
-        {
-            return Unit.Value;
-        }
 
         var foundCarItem = await _cartItemRepository.GetBySessionAndProductEncodedNameAsync(request.Session, request.ProductEncodedName);
         if (foundCarItem != null)
         {
             foundCarItem.ModifiedAt = DateTime.Now;
-            foundCarItem.ModifiedById = currentUser.Id;
+            foundCarItem.ModifiedById = currentUser?.Id;
             foundCarItem.Quantity += request.Quantity;
             await _cartItemRepository.CommitAsync();
         }

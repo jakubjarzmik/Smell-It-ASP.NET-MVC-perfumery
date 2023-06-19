@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = @WebsiteTexts.GetValue("LogIn");
+    ViewData["Title"] = @WebsiteTexts.GetValue("SignIn");
     Layout = "/Views/Shared/_LayoutIfLoggedOut.cshtml";
 }
 
@@ -31,7 +31,7 @@
             <br/>
             <input id="login-submit"
                    class="btn btn-large waves-effect"
-                   value="@WebsiteTexts.GetValue("LogIn")"
+                   value="@WebsiteTexts.GetValue("SignIn")"
                    type="submit" />
         </form>
         <div>

@@ -5,7 +5,7 @@ namespace SmellIt.Domain.Interfaces.Abstract;
 public interface IBaseRepository<T> : IRepository 
     where T : BaseEntity
 {
-    Task CreateAsync(T entity);
+    Task CreateAsync(T cartItem);
     Task DeleteAsync(T entity);
     Task<IEnumerable<T>> GetAllAsync();
     Task<T?> GetByIdAsync(int id);

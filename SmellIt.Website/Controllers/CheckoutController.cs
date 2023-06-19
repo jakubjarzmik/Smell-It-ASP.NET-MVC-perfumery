@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Application.Features.CartItems.Queries.GetAllCartItemsBySession;
 using SmellIt.Application.Features.Deliveries.Queries.GetAllDeliveriesForWebsite;
@@ -8,6 +9,7 @@ using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers;
 
+[Authorize]
 [Route("checkout")]
 public class CheckoutController : BaseController
 {

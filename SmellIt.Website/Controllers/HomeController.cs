@@ -30,6 +30,12 @@ public class HomeController : BaseController
         return View();
     }
 
+    [Route("about-us")]
+    public IActionResult AboutUs()
+    {
+        return View();
+    }
+
     [Route("privacy-policy")]
     public async Task<IActionResult> Privacy()
     {

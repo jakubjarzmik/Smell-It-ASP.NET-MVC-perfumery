@@ -15,5 +15,21 @@ public class CartItemRepository : BaseRepository<CartItem>, ICartItemRepository
 
     public async Task<CartItem?> GetBySessionAndProductEncodedNameAsync(string session, string productEncodedName)
         => await DbContext.CartItems.FirstOrDefaultAsync(ci => ci.IsActive && ci.Session.Equals(session) && ci.Product.EncodedName!.Equals(productEncodedName));
+    public override async Task CreateAsync(CartItem cartItem)
+    {
+        var currentUser = UserContext.GetCurrentUser();
 
+        cartItem.CreatedById = currentUser?.Id;
+        DbContext.Add(cartItem);
+        await DbContext.SaveChangesAsync();
+    }
+    public override async Task DeleteAsync(CartItem cartItem)
+    {
+        var currentUser = UserContext.GetCurrentUser();
+        
+        cartItem.DeletedById = currentUser?.Id;
+        cartItem.IsActive = false;
+        cartItem.DeletedAt = DateTime.Now;
+        await DbContext.SaveChangesAsync();
+    }
 }

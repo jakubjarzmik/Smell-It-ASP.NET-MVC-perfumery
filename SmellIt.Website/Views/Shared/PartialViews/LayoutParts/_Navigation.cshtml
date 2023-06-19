@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-md-4 col-xs-12 col-sm-4">
                 <div class="contact-number">
-                <i class="tf-ion-ios-telephone"></i>
-                <span>@await WebsiteTexts.GetValueAsync("PhoneNumber")</span>
+                    <i class="tf-ion-ios-telephone"></i>
+                    <span>@await WebsiteTexts.GetValueAsync("PhoneNumber")</span>
                 </div>
             </div>
             <div class="col-md-4 col-xs-12 col-sm-4">
@@ -22,22 +22,14 @@
             </div>
             <div class="col-md-4 col-xs-12 col-sm-4">
                 <ul class="top-menu text-right list-inline">
+
                     @if (!(controller == "Cart" && action == "Index"))
                     {
                         <li class="dropdown cart-nav dropdown-slide">
                             @await Component.InvokeAsync("Cart")
                         </li>
                     }
-                    <li class="dropdown search dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                            <i class="tf-ion-ios-search-strong"></i> @await WebsiteTexts.GetValueAsync("Search")
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <form action="post"><input type="search" class="form-control" placeholder="@await WebsiteTexts.GetValueAsync("Search")..."></form>
-                            </li>
-                        </ul>
-                    </li>
+                    <partial name="PartialViews/_LoginPartial" />
                     <li class="dropdown dropdown-slide">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                             <span class="flag-icon flag-icon-@currentCulture.Substring(3, 2).ToLower()"></span>
@@ -82,20 +74,8 @@
                     </li>
 
                     <li>
-                        <a href="#">@await WebsiteTexts.GetValueAsync("AboutUs")</a>
+                        <a href="@Url.Action("AboutUs", "Home")">@await WebsiteTexts.GetValueAsync("AboutUs")</a>
                     </li>
-                    <li>
-                        <a href="#" disabled>|</a>
-                    </li>
-                    @*<li>
-                        <a href="#"><b>@await WebsiteTexts.GetValueAsync("SignIn")</b></a>
-                    </li>
-
-                    <li>
-                        <a href="#">@await WebsiteTexts.GetValueAsync("Register")</a>
-                    </li>*@
-                    
-                    <partial name="PartialViews/_LoginPartial" />
                 </ul>
             </div>
         </div>
