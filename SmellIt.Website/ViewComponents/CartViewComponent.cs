@@ -11,7 +11,9 @@ public class CartViewComponent : BaseViewComponent
     }
     public async Task<IViewComponentResult> InvokeAsync(bool forCheckout = false)
     {
-        var cartItems = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture));
+        var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+
+        var cartItems = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture, isAuthenticated));
 
         if (forCheckout)
         {

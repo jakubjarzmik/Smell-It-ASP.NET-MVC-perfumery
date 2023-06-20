@@ -1,9 +1,7 @@
 ﻿using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Domain.Models;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
-using System.Drawing.Drawing2D;
 
 namespace SmellIt.Infrastructure.Repositories;
 public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeliveryRepository

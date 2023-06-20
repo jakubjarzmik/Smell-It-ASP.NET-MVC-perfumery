@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
 using SmellIt.Application.Features.HomeBanners.Queries.GetPaginatedHomeBanners;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 

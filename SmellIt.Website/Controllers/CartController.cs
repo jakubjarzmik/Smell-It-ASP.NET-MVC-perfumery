@@ -17,7 +17,7 @@ public class CartController : BaseController
 
     public async Task<IActionResult> Index()
     {
-        var cartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture));
+        var cartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture, IsAuthenticated));
         if (!cartViewModel.CartItems.Any())
             return RedirectToAction("Index", "Products");
         return View(cartViewModel);
@@ -26,7 +26,7 @@ public class CartController : BaseController
     [Route("add-to-cart")]
     public async Task<IActionResult> AddToCart([FromQuery(Name = "encoded-name")] string encodedName, [FromQuery(Name = "product-quantity")] decimal quantity = 1)
     {
-        await Mediator.Send(new AddCartItemCommand
+        await Mediator.Send(new AddCartItemCommand(IsAuthenticated)
         {
             ProductEncodedName = encodedName,
             Quantity = quantity,
@@ -47,14 +47,14 @@ public class CartController : BaseController
     [HttpPost("change-quantity")]
     public async Task<IActionResult> ChangeQuantity([FromBody] QuantityChange quantityChange)
     {
-        await Mediator.Send(new AddCartItemCommand
+        await Mediator.Send(new AddCartItemCommand(IsAuthenticated)
         {
             ProductEncodedName = quantityChange.EncodedName,
             Quantity = quantityChange.Change,
             Session = Session
         });
 
-        var updatedCart = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture));
+        var updatedCart = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture, IsAuthenticated));
         var updatedItem = updatedCart.CartItems.First(item => item.ProductEncodedName == quantityChange.EncodedName);
         return Json(new
         {

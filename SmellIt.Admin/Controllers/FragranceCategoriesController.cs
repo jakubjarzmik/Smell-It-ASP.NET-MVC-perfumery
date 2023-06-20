@@ -8,7 +8,6 @@ using SmellIt.Application.Features.FragranceCategories.Commands.DeleteFragranceC
 using SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory;
 using SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCategoryByEncodedName;
 using SmellIt.Application.Features.FragranceCategories.Queries.GetPaginatedFragranceCategories;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 [Route("fragrance-categories")]

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Domain.Models;
 
 namespace SmellIt.Application.Features.FragranceCategories.Commands.EditFragranceCategory;
 public class EditFragranceCategoryCommandHandler : IRequestHandler<EditFragranceCategoryCommand>

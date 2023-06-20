@@ -19,14 +19,21 @@ public class AddCartItemCommandHandler : IRequestHandler<AddCartItemCommand>
     public async Task<Unit> Handle(AddCartItemCommand request, CancellationToken cancellationToken)
     {
         var currentUser = _userContext.GetCurrentUser();
-
-
-        var foundCarItem = await _cartItemRepository.GetBySessionAndProductEncodedNameAsync(request.Session, request.ProductEncodedName);
-        if (foundCarItem != null)
+        CartItem? foundCartItem;
+        if (request.IsAuthenticated)
         {
-            foundCarItem.ModifiedAt = DateTime.Now;
-            foundCarItem.ModifiedById = currentUser?.Id;
-            foundCarItem.Quantity += request.Quantity;
+            foundCartItem = await _cartItemRepository.GetBySessionOrUserAndProductEncodedNameAsync(request.Session, currentUser!.Id , request.ProductEncodedName);
+        }
+        else
+        {
+            foundCartItem = await _cartItemRepository.GetBySessionAndProductEncodedNameAsync(request.Session, request.ProductEncodedName);
+        }
+        
+        if (foundCartItem != null)
+        {
+            foundCartItem.ModifiedAt = DateTime.Now;
+            foundCartItem.ModifiedById = currentUser?.Id;
+            foundCartItem.Quantity += request.Quantity;
             await _cartItemRepository.CommitAsync();
         }
         else

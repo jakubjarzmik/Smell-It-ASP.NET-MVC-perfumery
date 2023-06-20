@@ -10,7 +10,6 @@ using SmellIt.Application.Features.ProductCategories.Queries.GetAllProductCatego
 using SmellIt.Application.Features.ProductCategories.Queries.GetPaginatedProductCategories;
 using SmellIt.Application.Features.ProductCategories.Queries.GetProductCategoryByEncodedName;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 

@@ -10,7 +10,6 @@ using SmellIt.Application.Features.PrivacyPolicies.Queries.GetAllPrivacyPolicies
 using SmellIt.Application.Features.PrivacyPolicies.Queries.GetPrivacyPolicyByEncodedName;
 using SmellIt.Application.Features.Languages.Queries.GetAllLanguages;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 

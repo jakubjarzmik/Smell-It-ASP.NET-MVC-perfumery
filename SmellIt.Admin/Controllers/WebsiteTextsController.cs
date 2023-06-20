@@ -8,7 +8,6 @@ using SmellIt.Application.Features.WebsiteTexts.Commands.DeleteWebsiteTextByEnco
 using SmellIt.Application.Features.WebsiteTexts.Commands.EditWebsiteText;
 using SmellIt.Application.Features.WebsiteTexts.Queries.GetPaginatedWebsiteTexts;
 using SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByEncodedName;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 

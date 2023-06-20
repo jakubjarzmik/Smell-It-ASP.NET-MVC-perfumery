@@ -21,7 +21,7 @@ public class CheckoutController : BaseController
     {
         var checkoutViewModel = new CheckoutViewModel
         {
-            CartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture)),
+            CartViewModel = await Mediator.Send(new GetAllCartItemsBySessionQuery(Session, CurrentCulture, IsAuthenticated)),
             Deliveries = await Mediator.Send(new GetAllDeliveriesForWebsiteQuery(CurrentCulture)),
             Payments = await Mediator.Send(new GetAllPaymentsForWebsiteQuery(CurrentCulture))
         };

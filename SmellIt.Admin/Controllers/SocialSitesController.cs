@@ -8,7 +8,6 @@ using SmellIt.Application.Features.SocialSites.Commands.DeleteSocialSiteByEncode
 using SmellIt.Application.Features.SocialSites.Commands.EditSocialSite;
 using SmellIt.Application.Features.SocialSites.Queries.GetPaginatedSocialSites;
 using SmellIt.Application.Features.SocialSites.Queries.GetSocialSiteByEncodedName;
-using System.Data;
 
 namespace SmellIt.Admin.Controllers;
 

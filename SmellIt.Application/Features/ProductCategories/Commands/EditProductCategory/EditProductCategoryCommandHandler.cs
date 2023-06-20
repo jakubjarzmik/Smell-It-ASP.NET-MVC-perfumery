@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 

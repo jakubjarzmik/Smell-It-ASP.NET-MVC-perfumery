@@ -35,10 +35,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 builder.Services.AddSession(options =>
 {
-    // Set a short timeout for easy testing.
-    options.IdleTimeout = TimeSpan.FromHours(6);
+    options.IdleTimeout = TimeSpan.FromHours(2);
     options.Cookie.HttpOnly = true;
-    // Make the session cookie essential
     options.Cookie.IsEssential = true;
 });
 
