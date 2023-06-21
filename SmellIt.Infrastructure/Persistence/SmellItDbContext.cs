@@ -22,6 +22,10 @@ public class SmellItDbContext : IdentityDbContext
     public DbSet<HomeBanner> HomeBanners { get; set; } = default!;
     public DbSet<HomeBannerTranslation> HomeBannerTranslations { get; set; } = default!;
     public DbSet<Language> Languages { get; set; } = default!;
+    public DbSet<Order> Orders { get; set; } = default!;
+    public DbSet<OrderItem> OrderItems { get; set; } = default!;
+    public DbSet<OrderStatus> OrderStatus { get; set; } = default!;
+    public DbSet<OrderStatusTranslation> OrderStatusTranslations { get; set; } = default!;
     public DbSet<Payment> Payments { get; set; } = default!;
     public DbSet<PaymentTranslation> PaymentTranslations { get; set; } = default!;
     public DbSet<PrivacyPolicy> PrivacyPolicies { get; set; } = default!;
@@ -42,6 +46,25 @@ public class SmellItDbContext : IdentityDbContext
         modelBuilder.Entity<CartItem>()
             .Property(p => p.Quantity)
             .HasColumnType("decimal(7,0)");
+
+        modelBuilder.Entity<Delivery>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(7,2)");
+
+        modelBuilder.Entity<Order>()
+            .Property(p => p.TotalPrice)
+            .HasColumnType("decimal(7,2)");
+
+        modelBuilder.Entity<OrderItem>()
+            .Property(p => p.Quantity)
+            .HasColumnType("decimal(7,0)");
+        modelBuilder.Entity<OrderItem>()
+            .Property(p => p.UnitPrice)
+            .HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<OrderItem>()
+            .Property(p => p.TotalPrice)
+            .HasColumnType("decimal(7,2)");
+
         modelBuilder.Entity<ProductPrice>()
             .Property(p => p.Value)
             .HasColumnType("decimal(7,2)");
@@ -51,8 +74,5 @@ public class SmellItDbContext : IdentityDbContext
         modelBuilder.Entity<ProductPrice>()
             .Property(p => p.EndDateTime)
             .HasColumnType("smalldatetime");
-        modelBuilder.Entity<Delivery>()
-            .Property(p => p.Price)
-            .HasColumnType("decimal(7,2)");
     }
 }

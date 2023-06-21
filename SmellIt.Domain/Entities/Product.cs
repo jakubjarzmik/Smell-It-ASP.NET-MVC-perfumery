@@ -26,6 +26,7 @@ public class Product : BaseEntityWithEncodedName
     public virtual ICollection<ProductImage>? ProductImages { get; set; }
     public virtual ICollection<ProductTranslation> ProductTranslations { get; set; } = default!;
     public virtual ICollection<ProductPrice> ProductPrices { get; set; } = default!;
+    public virtual ICollection<OrderItem>? OrderItems { get; set; }
 
     public override void EncodeName() => 
         EncodedName = (Id + "-" + ProductTranslations.First(fct => fct.Language.Code == "en-GB").Name)

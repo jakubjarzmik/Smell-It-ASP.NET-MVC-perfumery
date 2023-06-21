@@ -6,6 +6,7 @@ public class Delivery : BaseEntityWithEncodedName
 {
     public decimal Price { get; set; }
     public virtual ICollection<DeliveryTranslation> DeliveryTranslations { get; set; } = default!;
+    public virtual ICollection<Order>? Orders { get; set; }
     public override void EncodeName() =>
         EncodedName = (Id + "-" + DeliveryTranslations.First(fct => fct.Language.Code == "en-GB").Name)
             .ConvertToEncodedName();
