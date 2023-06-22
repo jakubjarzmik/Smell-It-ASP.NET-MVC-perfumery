@@ -14,7 +14,7 @@ public class DeleteFragranceCategoryByEncodedNameCommandHandler : IRequestHandle
 
     public async Task<Unit> Handle(DeleteFragranceCategoryByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _fragranceCategoryRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _fragranceCategoryRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

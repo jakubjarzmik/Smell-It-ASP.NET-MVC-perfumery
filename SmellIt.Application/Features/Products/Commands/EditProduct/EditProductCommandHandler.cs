@@ -41,7 +41,7 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
             return Unit.Value;
         }
 
-        var product = await _productRepository.GetByEncodedNameAsync(request.EncodedName);
+        var product = await _productRepository.GetAsync(request.EncodedName);
 
         if (product == null) return Unit.Value;
 
@@ -60,16 +60,16 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
     private async Task UpdateProductDetails(EditProductCommand request, Product product)
     {
         if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
-            product.ProductCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName);
+            product.ProductCategory = await _productCategoryRepository.GetAsync(request.ProductCategoryEncodedName);
 
         if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
-            product.Brand = await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName);
+            product.Brand = await _brandRepository.GetAsync(request.BrandEncodedName);
 
         if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
-            product.FragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName);
+            product.FragranceCategory = await _fragranceCategoryRepository.GetAsync(request.FragranceCategoryEncodedName);
 
         if (request.GenderId != null)
-            product.Gender = await _genderRepository.GetByIdAsync(request.GenderId.Value);
+            product.Gender = await _genderRepository.GetAsync(request.GenderId.Value);
 
         product.Capacity = request.Capacity;
     }

@@ -22,7 +22,7 @@ public class EditSocialSiteCommandHandler : IRequestHandler<EditSocialSiteComman
             return Unit.Value;
         }
 
-        var socialSite = (await _socialSiteRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var socialSite = (await _socialSiteRepository.GetAsync(request.EncodedName))!;
         socialSite.ModifiedAt = DateTime.Now;
         socialSite.ModifiedById = currentUser.Id;
 

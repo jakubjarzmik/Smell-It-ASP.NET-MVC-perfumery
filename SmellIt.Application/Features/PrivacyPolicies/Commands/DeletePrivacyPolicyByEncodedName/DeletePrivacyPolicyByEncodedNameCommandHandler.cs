@@ -14,7 +14,7 @@ public class DeletePrivacyPolicyByEncodedNameCommandHandler : IRequestHandler<De
 
     public async Task<Unit> Handle(DeletePrivacyPolicyByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _privacyPolicyRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _privacyPolicyRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

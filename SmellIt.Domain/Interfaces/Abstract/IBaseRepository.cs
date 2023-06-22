@@ -8,8 +8,8 @@ public interface IBaseRepository<T> : IRepository
     Task CreateAsync(T cartItem);
     Task DeleteAsync(T entity);
     Task<IEnumerable<T>> GetAllAsync();
-    Task<T?> GetByIdAsync(int id);
-    Task CommitAsync();
+    Task<T?> GetAsync(int id);
     Task<int> CountAsync();
     Task<IEnumerable<T>> GetPaginatedAsync(int pageNumber, int pageSize);
+    Task<IEnumerable<T>> GetLatestListAsync(int quantity);
 }

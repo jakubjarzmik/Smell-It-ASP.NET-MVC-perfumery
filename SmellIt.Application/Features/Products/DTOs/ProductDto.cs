@@ -17,6 +17,7 @@ public class ProductDto
     public ProductPriceDto Price { get; set; } = default!;
     public ProductPriceDto? PromotionalPrice { get; set; }
     public decimal? Last30DaysLowestPrice { get; set; }
+    public decimal? SoldAmount { get; set; }
     public string? ProductCategoryEncodedName { get; set; }
     public ProductCategoryDto? ProductCategory { get; set; }
     public string? BrandEncodedName { get; set; }

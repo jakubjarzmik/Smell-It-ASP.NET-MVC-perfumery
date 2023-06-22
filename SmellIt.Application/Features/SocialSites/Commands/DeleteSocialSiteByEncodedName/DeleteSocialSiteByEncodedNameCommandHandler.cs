@@ -14,7 +14,7 @@ public class DeleteSocialSiteByEncodedNameCommandHandler : IRequestHandler<Delet
 
     public async Task<Unit> Handle(DeleteSocialSiteByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _socialSiteRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _socialSiteRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

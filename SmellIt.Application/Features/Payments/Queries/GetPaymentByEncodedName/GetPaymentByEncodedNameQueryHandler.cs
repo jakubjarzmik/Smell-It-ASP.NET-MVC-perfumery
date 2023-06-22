@@ -17,7 +17,7 @@ public class GetPaymentByEncodedNameQueryHandler : IRequestHandler<GetPaymentByE
     }
     public async Task<PaymentDto> Handle(GetPaymentByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var payment = await _paymentRepository.GetByEncodedNameAsync(request.EncodedName);
+        var payment = await _paymentRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<PaymentDto>(payment);
         return dto;
     }

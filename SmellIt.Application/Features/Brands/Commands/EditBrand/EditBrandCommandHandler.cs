@@ -22,7 +22,7 @@ public class EditBrandCommandHandler : IRequestHandler<EditBrandCommand>
             return Unit.Value;
         }
 
-        var brand = (await _brandRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var brand = (await _brandRepository.GetAsync(request.EncodedName))!;
         brand.ModifiedAt = DateTime.Now;
         brand.ModifiedById = currentUser.Id;
 

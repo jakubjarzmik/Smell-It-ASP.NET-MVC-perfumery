@@ -15,6 +15,7 @@ public class WebsiteProductDto
     public ProductPriceDto Price { get; set; } = default!;
     public ProductPriceDto? PromotionalPrice { get; set; }
     public decimal? Last30DaysLowestPrice { get; set; }
+    public decimal? SoldAmount { get; set; }
     public ProductCategoryDtoForWebsite? ProductCategory { get; set; }
     public WebsiteBrandDto? Brand { get; set; }
     public WebsiteFragranceCategoryDto? FragranceCategory { get; set; }

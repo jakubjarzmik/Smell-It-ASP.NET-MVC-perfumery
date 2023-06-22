@@ -17,7 +17,7 @@ public class GetWebsiteTextByEncodedNameQueryHandler : IRequestHandler<GetWebsit
     }
     public async Task<WebsiteTextForAdminDto> Handle(GetWebsiteTextByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var websiteText = await _websiteTextRepository.GetByEncodedNameAsync(request.EncodedName);
+        var websiteText = await _websiteTextRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<WebsiteTextForAdminDto>(websiteText);
         return dto;
     }

@@ -17,7 +17,7 @@ namespace SmellIt.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.7")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -240,11 +240,6 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -427,9 +422,6 @@ namespace SmellIt.Infrastructure.Migrations
                     b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -450,8 +442,6 @@ namespace SmellIt.Infrastructure.Migrations
                     b.HasIndex("DeletedById");
 
                     b.HasIndex("ModifiedById");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -968,7 +958,8 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -978,6 +969,11 @@ namespace SmellIt.Infrastructure.Migrations
 
                     b.Property<int>("PaymentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(7,2)");
@@ -1969,10 +1965,6 @@ namespace SmellIt.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
-                    b.HasOne("SmellIt.Domain.Entities.Order", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("OrderId");
-
                     b.HasOne("SmellIt.Domain.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
@@ -2264,7 +2256,7 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasForeignKey("DeletedById");
 
                     b.HasOne("SmellIt.Domain.Entities.Delivery", "Delivery")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("DeliveryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2280,7 +2272,7 @@ namespace SmellIt.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.Payment", "Payment")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2323,13 +2315,13 @@ namespace SmellIt.Infrastructure.Migrations
                         .HasForeignKey("ModifiedById");
 
                     b.HasOne("SmellIt.Domain.Entities.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmellIt.Domain.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2790,6 +2782,8 @@ namespace SmellIt.Infrastructure.Migrations
             modelBuilder.Entity("SmellIt.Domain.Entities.Delivery", b =>
                 {
                     b.Navigation("DeliveryTranslations");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.FragranceCategory", b =>
@@ -2832,7 +2826,7 @@ namespace SmellIt.Infrastructure.Migrations
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Order", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.OrderStatus", b =>
@@ -2844,11 +2838,15 @@ namespace SmellIt.Infrastructure.Migrations
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Payment", b =>
                 {
+                    b.Navigation("Orders");
+
                     b.Navigation("PaymentTranslations");
                 });
 
             modelBuilder.Entity("SmellIt.Domain.Entities.Product", b =>
                 {
+                    b.Navigation("OrderItems");
+
                     b.Navigation("ProductImages");
 
                     b.Navigation("ProductPrices");

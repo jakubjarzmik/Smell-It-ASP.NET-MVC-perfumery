@@ -32,7 +32,7 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -41,7 +41,7 @@ public class WebsiteTextRepository : BaseRepositoryWithEncodedName<WebsiteText>,
             return;
         }
 
-        var websiteText = await GetByEncodedNameAsync(encodedName);
+        var websiteText = await GetAsync(encodedName);
         if (websiteText != null)
         {
             websiteText.IsActive = false;

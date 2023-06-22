@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SmellIt.Admin.Controllers;
 
+[Authorize(Roles = "Admin,Employee")]
 [Route("product-categories")]
 public class ProductCategoriesController : BaseController
 {

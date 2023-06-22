@@ -12,6 +12,10 @@ public class Seeder
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private IdentityUser? _defaultAdmin;
+    private IdentityUser? _defaultClient;
+    private IdentityUser? _defaultClient2;
+    private Product? _sauvage;
+    private Product? _si;
     private readonly Language _polish;
     private readonly Language _english;
 
@@ -31,11 +35,10 @@ public class Seeder
         if (await _dbContext.Database.CanConnectAsync())
         {
             await SeedRolesAsync();
-            await SeedDefaultUser();
+            await SeedDefaultUsers();
             await SeedAddressesAsync();
-            await SeedDeliveriesAsync();
-            await SeedPaymentsAsync();
             await SeedProductsAsync();
+            await SeedOrdersAsync();
             await SeedWebsiteTextsAsync();
             await SeedHomeBannersAsync();
             await SeedPrivacyPoliciesAsync();
@@ -44,45 +47,14 @@ public class Seeder
             await _dbContext.SaveChangesAsync();
         }
     }
-    public async Task SeedRolesAsync()
-    {
-        var roles = new[] { "Admin", "Employee" };
-        foreach (var role in roles)
-        {
-            if (!await _roleManager.RoleExistsAsync(role))
-            {
-                var identityRole = new IdentityRole(role);
-                await _roleManager.CreateAsync(identityRole);
-            }
-        }
-    }
-    public async Task SeedDefaultUser()
-    {
-        _defaultAdmin = new IdentityUser { UserName = "admin@smellit.com", Email = "admin@smellit.com" };
-        if (_userManager.FindByEmailAsync(_defaultAdmin.Email).Result == null)
-        {
-            await _userManager.CreateAsync(_defaultAdmin, "zaq1@WSX");
-            await _userManager.AddToRoleAsync(_defaultAdmin, "Admin");
-            await _userManager.AddToRoleAsync(_defaultAdmin, "Employee");
-        }
 
-        var defaultEmployee = new IdentityUser { UserName = "employee@smellit.com", Email = "employee@smellit.com" };
-        if (_userManager.FindByEmailAsync(defaultEmployee.Email).Result == null)
-        {
-            await _userManager.CreateAsync(defaultEmployee, "zaq1@WSX");
-            await _userManager.AddToRoleAsync(defaultEmployee, "Employee");
-        }
-
-        var defaultClient = new IdentityUser { UserName = "jankowalski@gmail.com", Email = "jankowalski@gmail.com" };
-        if (_userManager.FindByEmailAsync(defaultClient.Email).Result == null)
-        {
-            await _userManager.CreateAsync(defaultClient, "zaq1@WSX");
-        }
-    }
-    private async Task SeedPaymentsAsync()
+    private async Task SeedOrdersAsync()
     {
-        if (!await _dbContext.Payments.AnyAsync())
+
+        if (!await _dbContext.Orders.AnyAsync())
         {
+            #region Payments
+
             var cashOnDelivery = new Payment();
             await _dbContext.Payments.AddAsync(cashOnDelivery);
 
@@ -162,13 +134,11 @@ public class Seeder
                 x.EncodeName();
                 x.CreatedBy = _defaultAdmin;
             }
-        }
-    }
 
-    private async Task SeedDeliveriesAsync()
-    {
-        if (!await _dbContext.Deliveries.AnyAsync())
-        {
+            #endregion
+
+            #region Deliveries
+
             var parcelLocker = new Delivery
             {
                 Price = 9
@@ -239,6 +209,242 @@ public class Seeder
                 x.EncodeName();
                 x.CreatedBy = _defaultAdmin;
             }
+            #endregion
+
+            #region Order statuses
+
+            var shipped = new OrderStatus();
+            await _dbContext.OrderStatus.AddAsync(shipped);
+
+            List<OrderStatusTranslation> shippedTranslations = new()
+            {
+                new OrderStatusTranslation { OrderStatus = shipped, Language = _polish, Name = "Wysłane" },
+                new OrderStatusTranslation { OrderStatus = shipped, Language = _english, Name = "Shipped" },
+            };
+            shipped.OrderStatusTranslations = shippedTranslations;
+            await _dbContext.OrderStatusTranslations.AddRangeAsync(shippedTranslations);
+
+
+            var preparing = new OrderStatus();
+            await _dbContext.OrderStatus.AddAsync(preparing);
+
+            List<OrderStatusTranslation> preparingTranslations = new()
+            {
+                new OrderStatusTranslation { OrderStatus = preparing, Language = _polish, Name = "W trakcie przygotowywania" },
+                new OrderStatusTranslation { OrderStatus = preparing, Language = _english, Name = "Preparing" },
+            };
+            preparing.OrderStatusTranslations = preparingTranslations;
+            await _dbContext.OrderStatusTranslations.AddRangeAsync(preparingTranslations);
+
+
+            var received = new OrderStatus();
+            await _dbContext.OrderStatus.AddAsync(received);
+
+            List<OrderStatusTranslation> receivedTranslations = new()
+            {
+                new OrderStatusTranslation { OrderStatus = received, Language = _polish, Name = "Przyjęte" },
+                new OrderStatusTranslation { OrderStatus = received, Language = _english, Name = "Received" },
+            };
+            received.OrderStatusTranslations = receivedTranslations;
+            await _dbContext.OrderStatusTranslations.AddRangeAsync(receivedTranslations);
+
+
+
+            await _dbContext.SaveChangesAsync();
+            var orderStatusList = await _dbContext.OrderStatus.ToListAsync();
+            foreach (var x in orderStatusList)
+            {
+                x.EncodeName();
+                x.CreatedBy = _defaultAdmin;
+            }
+            #endregion
+
+            #region Addresses
+
+            var adamNowakAddress = new Address
+            {
+                CreatedBy = _defaultClient2,
+                FullName = "Adam Nowak",
+                FirstLine = "Lubawska 23",
+                PostalCode = "81-066",
+                City = "Gdynia"
+            };
+
+            await _dbContext.Addresses.AddAsync(adamNowakAddress);
+
+            var janKowalskiAddress = new Address
+            {
+                CreatedBy = _defaultClient,
+                FullName = "Jan Kowalski",
+                FirstLine = "Bolesława Krzywoustego 144",
+                PostalCode = "02-496",
+                City = "Warszawa"
+            };
+
+            await _dbContext.Addresses.AddAsync(janKowalskiAddress);
+
+            await _dbContext.SaveChangesAsync();
+            #endregion
+
+            #region Orders
+
+            var order1 = new Order
+            {
+                OrderDate = DateTime.Now.AddDays(-5),
+                Notes = "Proszę o jak najszybszą dostawę",
+                User = _defaultClient!,
+                PhoneNumber = "746456878",
+                Address = janKowalskiAddress,
+                CreatedBy = _defaultClient,
+                Delivery = courier,
+                Payment = creditCard,
+                OrderStatus = shipped
+            };
+            await _dbContext.AddAsync(order1);
+
+
+            var order2 = new Order
+            {
+                OrderDate = DateTime.Now,
+                User = _defaultClient!,
+                PhoneNumber = "746456878",
+                Address = janKowalskiAddress,
+                CreatedBy = _defaultClient,
+                Delivery = parcelLocker,
+                Payment = blik,
+                OrderStatus = received
+            };
+            await _dbContext.AddAsync(order2);
+
+
+            var order3 = new Order
+            {
+                OrderDate = DateTime.Now.AddDays(-1),
+                Notes = "Proszę dobrze zapakować",
+                User = _defaultClient2!,
+                PhoneNumber = "693532993",
+                Address = adamNowakAddress,
+                CreatedBy = _defaultClient2,
+                Delivery = parcelLocker,
+                Payment = bankTransfer,
+                OrderStatus = preparing
+            };
+            await _dbContext.AddAsync(order3);
+
+
+            await _dbContext.SaveChangesAsync();
+
+            #endregion
+
+            #region OrderItems
+
+            var sauvagePrice = _sauvage!.ProductPrices.First().Value;
+            var sauvageOrderItem = new OrderItem
+            {
+                CreatedBy = _defaultClient,
+                Quantity = 2,
+                Product = _sauvage,
+                UnitPrice = sauvagePrice,
+                TotalPrice = sauvagePrice * 2,
+                Order = order1
+            };
+            await _dbContext.AddAsync(sauvageOrderItem);
+
+            var siPrice = _si!.ProductPrices.First().Value;
+            var siOrderItem = new OrderItem
+            {
+                CreatedBy = _defaultClient,
+                Quantity = 1,
+                Product = _si,
+                UnitPrice = siPrice,
+                TotalPrice = siPrice,
+                Order = order1
+            };
+            await _dbContext.AddAsync(siOrderItem);
+
+            order1.TotalPrice = sauvageOrderItem.TotalPrice + siOrderItem.TotalPrice;
+
+            await _dbContext.SaveChangesAsync();
+
+
+            
+            var sauvageOrderItem2 = new OrderItem
+            {
+                CreatedBy = _defaultClient,
+                Quantity = 1,
+                Product = _sauvage,
+                UnitPrice = sauvagePrice,
+                TotalPrice = sauvagePrice,
+                Order = order2
+            };
+            await _dbContext.AddAsync(sauvageOrderItem2);
+
+            order2.TotalPrice = sauvageOrderItem2.TotalPrice;
+
+            await _dbContext.SaveChangesAsync();
+            
+
+
+            
+            var siOrderItem2 = new OrderItem
+            {
+                CreatedBy = _defaultClient2,
+                Quantity = 2,
+                Product = _si,
+                UnitPrice = siPrice,
+                TotalPrice = siPrice * 2,
+                Order = order3
+            };
+            await _dbContext.AddAsync(siOrderItem2);
+
+            order3.TotalPrice = siOrderItem2.TotalPrice;
+
+            await _dbContext.SaveChangesAsync();
+
+            #endregion
+        }
+    }
+
+    public async Task SeedRolesAsync()
+    {
+        var roles = new[] { "Admin", "Employee" };
+        foreach (var role in roles)
+        {
+            if (!await _roleManager.RoleExistsAsync(role))
+            {
+                var identityRole = new IdentityRole(role);
+                await _roleManager.CreateAsync(identityRole);
+            }
+        }
+    }
+
+    public async Task SeedDefaultUsers()
+    {
+        _defaultAdmin = new IdentityUser { UserName = "admin@smellit.com", Email = "admin@smellit.com" };
+        if (_userManager.FindByEmailAsync(_defaultAdmin.Email).Result == null)
+        {
+            await _userManager.CreateAsync(_defaultAdmin, "zaq1@WSX");
+            await _userManager.AddToRoleAsync(_defaultAdmin, "Admin");
+            await _userManager.AddToRoleAsync(_defaultAdmin, "Employee");
+        }
+
+        var defaultEmployee = new IdentityUser { UserName = "employee@smellit.com", Email = "employee@smellit.com" };
+        if (_userManager.FindByEmailAsync(defaultEmployee.Email).Result == null)
+        {
+            await _userManager.CreateAsync(defaultEmployee, "zaq1@WSX");
+            await _userManager.AddToRoleAsync(defaultEmployee, "Employee");
+        }
+
+        _defaultClient = new IdentityUser { UserName = "jankowalski@gmail.com", Email = "jankowalski@gmail.com" };
+        if (_userManager.FindByEmailAsync(_defaultClient.Email).Result == null)
+        {
+            await _userManager.CreateAsync(_defaultClient, "zaq1@WSX");
+        }
+
+        _defaultClient2 = new IdentityUser { UserName = "adamnowak@outlook.com", Email = "adamnowak@outlook.com" };
+        if (_userManager.FindByEmailAsync(_defaultClient2.Email).Result == null)
+        {
+            await _userManager.CreateAsync(_defaultClient2, "zaq1@WSX");
         }
     }
 
@@ -1986,7 +2192,7 @@ public class Seeder
             await _dbContext.ProductTranslations.AddRangeAsync(goodGirlTranslations);
 
 
-            var sauvage = new Product
+            _sauvage = new Product
             {
                 Brand = dior,
                 ProductCategory = eauDeParfum,
@@ -1994,11 +2200,11 @@ public class Seeder
                 Gender = men,
                 Capacity = 100
             };
-            await _dbContext.Products.AddAsync(sauvage);
+            await _dbContext.Products.AddAsync(_sauvage);
 
             var sauvagePriceHistory = new ProductPrice
             {
-                Product = sauvage,
+                Product = _sauvage,
                 Value = 479,
                 StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
@@ -2008,22 +2214,22 @@ public class Seeder
             {
                 new ProductTranslation
                 {
-                    Product = sauvage, Language = _polish, Name = "Sauvage",
+                    Product = _sauvage, Language = _polish, Name = "Sauvage",
                     Description =
                         "\"Dior Sauvage\" to luksusowy męski zapach marki Dior, który został wprowadzony na rynek w 2015 roku. Kompozycja zapachu to mieszanka zmysłowych nut bergamotki, ambrowych akordów, paczuli, jałowca i cedru wirginijskiego. Zapach jest orzeźwiający, a jednocześnie intrygujący i zmysłowy. Flakon zapachu jest prosty i elegancki, wykonany z grubego, niebieskiego szkła, nawiązujący do nieba i morza. \"Dior Sauvage\" to zapach idealny na co dzień, który wyróżnia się swoją wyjątkowością i trwałością. Jest to zapach, który pasuje do mężczyzn o silnym charakterze, którzy cenią sobie klasykę i elegancję."
                 },
                 new ProductTranslation
                 {
-                    Product = sauvage, Language = _english, Name = "Sauvage",
+                    Product = _sauvage, Language = _english, Name = "Sauvage",
                     Description =
                         "\"Dior Sauvage\" is a luxury men's fragrance by Dior that was introduced in 2015. The fragrance composition is a mixture of sensual notes of bergamot, amber accords, patchouli, juniper, and Virginia cedar. The fragrance is refreshing, yet intriguing and sensual. The fragrance bottle is simple and elegant, made of thick blue glass, reminiscent of the sky and sea. \"Dior Sauvage\" is a perfect fragrance for everyday wear that stands out for its uniqueness and longevity. It is a fragrance that suits men with strong character who appreciate classic and elegance."
                 },
             };
-            sauvage.ProductTranslations = savuageTranslations;
+            _sauvage.ProductTranslations = savuageTranslations;
             await _dbContext.ProductTranslations.AddRangeAsync(savuageTranslations);
 
 
-            var si = new Product
+            _si = new Product
             {
                 Brand = giorgioArmani,
                 ProductCategory = eauDeParfum,
@@ -2031,11 +2237,11 @@ public class Seeder
                 Gender = women,
                 Capacity = 100
             };
-            await _dbContext.Products.AddAsync(si);
+            await _dbContext.Products.AddAsync(_si);
 
             var siPriceHistory = new ProductPrice
             {
-                Product = si,
+                Product = _si,
                 Value = 491,
                 StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
@@ -2045,18 +2251,18 @@ public class Seeder
             {
                 new ProductTranslation
                 {
-                    Product = si, Language = _polish, Name = "Si",
+                    Product = _si, Language = _polish, Name = "Si",
                     Description =
                         "\"Armani Si\" to zapach dla kobiet marki Armani, który został wprowadzony na rynek w 2013 roku. Kompozycja zapachu to połączenie nut owocowych, kwiatowych i drzewnych, w tym cassis, frezji, róż, paczuli, ambry i wanilii. \"Si\" to zapach elegancki, zmysłowy i kobiecy, idealny na wieczorne wyjścia i specjalne okazje. Flakon zapachu jest prosty i elegancki, wykonany z grubego, przezroczystego szkła, a na jego szyi umieszczona jest ozdobna zawieszka. Zapach \"Si\" jest ceniony za swoją trwałość i intensywność, a jego aromat jest jednocześnie słodki, zmysłowy i delikatny."
                 },
                 new ProductTranslation
                 {
-                    Product = si, Language = _english, Name = "Si",
+                    Product = _si, Language = _english, Name = "Si",
                     Description =
                         "\"Giorgio Armani Si\" is a fragrance for women by the Armani brand that was introduced in 2013. The fragrance composition is a combination of fruity, floral, and woody notes, including cassis, freesia, rose, patchouli, amber, and vanilla. \"Si\" is an elegant, sensual, and feminine fragrance, ideal for evening outings and special occasions. The fragrance bottle is simple and elegant, made of thick, transparent glass, and features a decorative pendant on its neck. \"Si\" fragrance is valued for its longevity and intensity, and its aroma is simultaneously sweet, sensual, and delicate."
                 },
             };
-            si.ProductTranslations = siTranslations;
+            _si.ProductTranslations = siTranslations;
             await _dbContext.ProductTranslations.AddRangeAsync(siTranslations);
 
 
@@ -2184,133 +2390,133 @@ public class Seeder
 
             List<ProductImage> productImages = new()
             {
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1.jpg",
                     ImageAlt = "dyfuzor-smell-it1",
                     Product = smellItDiffuser,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/smell-it/dyfuzor-smell-it1-1.jpg",
                     ImageAlt = "dyfuzor-smell-it1-1",
                     Product = smellItDiffuser,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si1.png",
                     ImageAlt = "armani-si1",
-                    Product = si,
+                    Product = _si,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si2.png",
                     ImageAlt = "armani-si2",
-                    Product = si,
+                    Product = _si,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Giorgio Armani Si/armani-si3.png",
                     ImageAlt = "armani-si3",
-                    Product = si,
+                    Product = _si,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage1.png",
                     ImageAlt = "dior-savuage1",
-                    Product = sauvage,
+                    Product = _sauvage,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage2.png",
                     ImageAlt = "dior-savuage2",
-                    Product = sauvage,
+                    Product = _sauvage,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Dior Savuage/dior-savuage3.png",
                     ImageAlt = "dior-savuage3",
-                    Product = sauvage,
+                    Product = _sauvage,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium1.png",
                     ImageAlt = "ysl-black-opium1",
                     Product = blackOpium,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium2.png",
                     ImageAlt = "ysl-black-opium2",
                     Product = blackOpium,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/YSL Black Opium/ysl-black-opium3.png",
                     ImageAlt = "ysl-black-opium3",
                     Product = blackOpium,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                     ImageAlt = "ch-good-girl1",
                     Product = goodGirl,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl2.png",
                     ImageAlt = "ch-good-girl2",
                     Product = goodGirl,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl3.png",
                     ImageAlt = "ch-good-girl3",
                     Product = goodGirl,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million1.png",
                     ImageAlt = "pr-1million1",
                     Product = oneMillion,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million2.png",
                     ImageAlt = "pr-1million2",
                     Product = oneMillion,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Paco Rabanne 1 Million/pr-1million3.png",
                     ImageAlt = "pr-1million3",
                     Product = oneMillion,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros1.png",
                     ImageAlt = "versace-eros1",
                     Product = eros,
                     CreatedBy = _defaultAdmin
                 },
-                new ProductImage()
+                new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/men/Versace Eros/versace-eros2.png",
                     ImageAlt = "versace-eros2",
@@ -2332,8 +2538,7 @@ public class Seeder
                 FullName = "Smell It sp. z o.o.",
                 FirstLine = "Floriańska 1",
                 PostalCode = "31-042",
-                City = "Kraków",
-                Country = "Polska",
+                City = "Kraków"
             };
             await _dbContext.Addresses.AddAsync(address);
         }

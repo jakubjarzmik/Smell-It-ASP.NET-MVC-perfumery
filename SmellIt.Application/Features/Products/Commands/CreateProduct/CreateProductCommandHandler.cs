@@ -55,22 +55,22 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     {
         if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
         {
-            var productCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ProductCategoryEncodedName!);
+            var productCategory = await _productCategoryRepository.GetAsync(request.ProductCategoryEncodedName!);
             request.ProductCategory = _mapper.Map<ProductCategoryDto>(productCategory);
         }
         if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
         {
-            var brand = await _brandRepository.GetByEncodedNameAsync(request.BrandEncodedName!);
+            var brand = await _brandRepository.GetAsync(request.BrandEncodedName!);
             request.Brand = _mapper.Map<BrandDto>(brand);
         }
         if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
         {
-            var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.FragranceCategoryEncodedName!);
+            var fragranceCategory = await _fragranceCategoryRepository.GetAsync(request.FragranceCategoryEncodedName!);
             request.FragranceCategory = _mapper.Map<FragranceCategoryDto>(fragranceCategory);
         }
         if (request.GenderId != null)
         {
-            var gender = await _genderRepository.GetByIdAsync(request.GenderId.Value);
+            var gender = await _genderRepository.GetAsync(request.GenderId.Value);
             request.Gender = _mapper.Map<GenderDto>(gender);
         }
     }

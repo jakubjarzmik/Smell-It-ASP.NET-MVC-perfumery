@@ -48,7 +48,9 @@ public class ProductMappingProfile : Profile
             .ForMember(dest => dest.PromotionalPrice,
                 opt => opt.MapFrom<ProductPromotionalPriceResolver<ProductDto>>())
             .ForMember(dest => dest.Last30DaysLowestPrice,
-                opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<ProductDto>>());
+                opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<ProductDto>>())
+            .ForMember(dest => dest.SoldAmount,
+                opt => opt.MapFrom<SoldAmountResolver<ProductDto>>());
 
         CreateMap<ProductDto, EditProductCommand>();
 
@@ -69,6 +71,8 @@ public class ProductMappingProfile : Profile
                 opt => opt.MapFrom<ProductPromotionalPriceResolver<WebsiteProductDto>>())
             .ForMember(dest => dest.Last30DaysLowestPrice,
                 opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<WebsiteProductDto>>())
+            .ForMember(dest => dest.SoldAmount,
+                opt => opt.MapFrom<SoldAmountResolver<WebsiteProductDto>>())
             .ForMember(dto => dto.Name,
                 opt => opt.Ignore())
             .ForMember(dto => dto.Description,

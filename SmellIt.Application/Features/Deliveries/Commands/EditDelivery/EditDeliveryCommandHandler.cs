@@ -22,7 +22,7 @@ public class EditDeliveryCommandHandler : IRequestHandler<EditDeliveryCommand>
             return Unit.Value;
         }
 
-        var delivery = (await _deliveryRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var delivery = (await _deliveryRepository.GetAsync(request.EncodedName))!;
         delivery.ModifiedAt = DateTime.Now;
         delivery.ModifiedById = currentUser.Id;
 

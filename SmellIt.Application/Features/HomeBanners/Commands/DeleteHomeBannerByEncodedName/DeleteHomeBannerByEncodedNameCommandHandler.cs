@@ -14,7 +14,7 @@ public class DeleteHomeBannerByEncodedNameCommandHandler : IRequestHandler<Delet
 
     public async Task<Unit> Handle(DeleteHomeBannerByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _homeBannerRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _homeBannerRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

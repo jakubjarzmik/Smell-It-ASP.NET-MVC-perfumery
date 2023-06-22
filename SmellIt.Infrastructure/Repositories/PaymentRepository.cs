@@ -27,7 +27,7 @@ public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymen
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -36,7 +36,7 @@ public class PaymentRepository : BaseRepositoryWithEncodedName<Payment>, IPaymen
             return;
         }
 
-        var payment = await GetByEncodedNameAsync(encodedName);
+        var payment = await GetAsync(encodedName);
         if (payment != null)
         {
             payment.IsActive = false;

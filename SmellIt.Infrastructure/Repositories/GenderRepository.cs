@@ -27,7 +27,7 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -36,7 +36,7 @@ public class GenderRepository : BaseRepositoryWithEncodedName<Gender>, IGenderRe
             return;
         }
 
-        var gender = await GetByEncodedNameAsync(encodedName);
+        var gender = await GetAsync(encodedName);
         if (gender != null)
         {
             gender.IsActive = false;

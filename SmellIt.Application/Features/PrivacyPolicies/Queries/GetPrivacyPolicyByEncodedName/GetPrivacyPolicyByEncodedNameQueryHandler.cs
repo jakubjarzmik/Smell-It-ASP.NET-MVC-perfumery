@@ -17,7 +17,7 @@ public class GetPrivacyPolicyByEncodedNameQueryHandler : IRequestHandler<GetPriv
     }
     public async Task<PrivacyPolicyDto> Handle(GetPrivacyPolicyByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var websiteText = await _privacyPolicyRepository.GetByEncodedNameAsync(request.EncodedName);
+        var websiteText = await _privacyPolicyRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<PrivacyPolicyDto>(websiteText);
         return dto;
     }

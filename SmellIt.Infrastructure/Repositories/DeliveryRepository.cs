@@ -27,7 +27,7 @@ public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeli
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -36,7 +36,7 @@ public class DeliveryRepository : BaseRepositoryWithEncodedName<Delivery>, IDeli
             return;
         }
 
-        var delivery = await GetByEncodedNameAsync(encodedName);
+        var delivery = await GetAsync(encodedName);
         if (delivery != null)
         {
             delivery.IsActive = false;

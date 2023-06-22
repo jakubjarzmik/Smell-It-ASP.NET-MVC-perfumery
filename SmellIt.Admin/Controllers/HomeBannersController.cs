@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SmellIt.Admin.Controllers;
 
+[Authorize(Roles = "Admin,Employee")]
 [Route("home-banners")]
 public class HomeBannersController : BaseController
 {

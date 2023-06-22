@@ -1,19 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Models;
 using System.Diagnostics;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Authorization;
+using SmellIt.Admin.Controllers.Abstract;
+using SmellIt.Application.Features.Home.Queries.GetHomeData;
 
 namespace SmellIt.Admin.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
-    [Authorize(Roles = "Admin,Employee")]
-    public IActionResult Index()
+    public HomeController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
     {
-        return View();
     }
 
+    [Authorize(Roles = "Admin,Employee")]
+    public async Task<IActionResult> Index()
+    {
+        var viewModel = await Mediator.Send(new GetHomeDataQuery(CurrentCulture));
+        return View(viewModel);
+    }
     public IActionResult ChangeLanguage(string culture)
     {
         Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,

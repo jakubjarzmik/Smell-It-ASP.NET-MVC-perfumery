@@ -17,7 +17,7 @@ public class GetSocialSiteByEncodedNameQueryHandler : IRequestHandler<GetSocialS
     }
     public async Task<SocialSiteDto> Handle(GetSocialSiteByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var socialSite = await _socialSiteRepository.GetByEncodedNameAsync(request.EncodedName);
+        var socialSite = await _socialSiteRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<SocialSiteDto>(socialSite);
         return dto;
     }

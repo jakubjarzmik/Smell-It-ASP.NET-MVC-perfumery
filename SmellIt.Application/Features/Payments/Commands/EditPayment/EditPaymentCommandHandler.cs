@@ -22,7 +22,7 @@ public class EditPaymentCommandHandler : IRequestHandler<EditPaymentCommand>
             return Unit.Value;
         }
 
-        var payment = (await _paymentRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var payment = (await _paymentRepository.GetAsync(request.EncodedName))!;
         payment.ModifiedAt = DateTime.Now;
         payment.ModifiedById = currentUser.Id;
 

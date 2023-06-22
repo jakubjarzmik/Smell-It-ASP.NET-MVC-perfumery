@@ -18,6 +18,7 @@ using SmellIt.Application.Features.Genders.Queries.GetAllGendersForWebsite;
 
 namespace SmellIt.Admin.Controllers;
 
+[Authorize(Roles = "Admin,Employee")]
 [Route("products")]
 public class ProductsController : BaseController
 {

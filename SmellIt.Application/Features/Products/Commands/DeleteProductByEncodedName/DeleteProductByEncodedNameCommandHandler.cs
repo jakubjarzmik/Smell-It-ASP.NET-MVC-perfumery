@@ -14,7 +14,7 @@ public class DeleteProductByEncodedNameCommandHandler : IRequestHandler<DeletePr
 
     public async Task<Unit> Handle(DeleteProductByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _productRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _productRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

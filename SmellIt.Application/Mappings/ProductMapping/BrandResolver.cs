@@ -17,6 +17,6 @@ public class BrandResolver : IValueResolver<ProductDto, Product, Brand?>
     public Brand? Resolve(ProductDto source, Product destination, Brand? destMember, ResolutionContext context)
     {
         if (source.Brand == null) return null;
-        return _brandRepository.GetByEncodedNameAsync(source.Brand.EncodedName).Result;
+        return _brandRepository.GetAsync(source.Brand.EncodedName).Result;
     }
 }

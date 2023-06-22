@@ -39,7 +39,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -48,7 +48,7 @@ public class ProductCategoryRepository : BaseRepositoryWithEncodedName<ProductCa
             return;
         }
 
-        var productCategory = await GetByEncodedNameAsync(encodedName);
+        var productCategory = await GetAsync(encodedName);
         if (productCategory != null)
         {
             productCategory.IsActive = false;

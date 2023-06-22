@@ -10,6 +10,8 @@ using SmellIt.Application.Features.FragranceCategories.Queries.GetFragranceCateg
 using SmellIt.Application.Features.FragranceCategories.Queries.GetPaginatedFragranceCategories;
 
 namespace SmellIt.Admin.Controllers;
+
+[Authorize(Roles = "Admin,Employee")]
 [Route("fragrance-categories")]
 public class FragranceCategoriesController : BaseController
 {

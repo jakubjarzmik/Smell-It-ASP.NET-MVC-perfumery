@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SmellIt.Domain.Entities.Abstract;
+﻿using SmellIt.Domain.Entities.Abstract;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmellIt.Domain.Entities;

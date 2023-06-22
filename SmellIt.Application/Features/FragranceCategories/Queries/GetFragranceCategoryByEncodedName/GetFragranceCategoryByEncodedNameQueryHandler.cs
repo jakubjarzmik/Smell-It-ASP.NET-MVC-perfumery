@@ -17,7 +17,7 @@ public class GetFragranceCategoryByEncodedNameQueryHandler : IRequestHandler<Get
     }
     public async Task<FragranceCategoryDto> Handle(GetFragranceCategoryByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var fragranceCategory = await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName);
+        var fragranceCategory = await _fragranceCategoryRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<FragranceCategoryDto>(fragranceCategory);
         return dto;
     }

@@ -15,7 +15,5 @@ public class Address : BaseEntity
     public string PostalCode { get; set; } = default!;
     [MaxLength(50)]
     public string City { get; set; } = default!;
-    [MaxLength(50)]
-    public string Country { get; set; } = default!;
     public virtual ICollection<Order>? Orders { get; set; }
 }

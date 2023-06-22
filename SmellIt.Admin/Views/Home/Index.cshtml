@@ -1,6 +1,9 @@
-﻿@{
+﻿@model SmellIt.Application.ViewModels.Admin.HomeViewModel
+@{
     ViewData["Title"] =WebsiteTexts.GetValue("Dashboard");
     Layout = "~/Views/Shared/_LayoutWithoutCard.cshtml";
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 <!-- Stats Section : START -->
 <section class="section center">
@@ -8,29 +11,29 @@
         <div class="col s12 m6 l3">
             <div class="card-panel grey darken-3 white-text center">
                 <i class="material-icons medium">insert_emoticon</i>
-                <h5>@WebsiteTexts.GetValue("MonthlyVisitors")</h5>
-                <h3 class="count">1874</h3>
+                <h5>@WebsiteTexts.GetValue("Products")</h5>
+                <h3 class="count">@Model.ProductsCount</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel center white-text grey darken-1">
                 <i class="material-icons medium">mode_edit</i>
                 <h5>@WebsiteTexts.GetValue("MonthlyPurchases")</h5>
-                <h3 class="count">105</h3>
+                <h3 class="count">@Model.MonthlyPurchases</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel grey darken-3 white-text center">
                 <i class="material-icons medium">mode_comment</i>
                 <h5>@WebsiteTexts.GetValue("MonthlyEarnings")</h5>
-                <h3><span class="count">12468</span> zł</h3>
+                <h3><span class="count">@Model.MonthlyEarnings</span> zł</h3>
             </div>
         </div>
         <div class="col s12 m6 l3">
             <div class="card-panel center white-text grey darken-1">
                 <i class="material-icons medium">supervisor_account</i>
                 <h5>@WebsiteTexts.GetValue("Users")</h5>
-                <h3 class="count">350</h3>
+                <h3 class="count">@Model.UsersCount</h3>
             </div>
         </div>
     </div>
@@ -49,7 +52,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach (var item in Model.RecentOrders)
+                            {
+                                <tr>
+                                    <td>@item.OrderDate</td>
+                                    <td>@item.UserEmail</td>
+                                    <td>@item.TotalPrice zł</td>
+                                    <td>
+                                        <a href="#" class="btn">@WebsiteTexts.GetValue("Details")</a>
+                                    </td>
+                                </tr>
+                            }
+                            @*<tr>
                                 <td>@DateTime.Now.AddMinutes(-2)</td>
                                 <td>Catie Smith</td>
                                 <td>700 zł</td>
@@ -72,20 +86,31 @@
                                 <td>
                                     <a href="details.html" class="btn">@WebsiteTexts.GetValue("Details")</a>
                                 </td>
-                            </tr>
+                            </tr>*@
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="col s12 m6 l4 ">
-            <!-- Comments : START -->
             <div class="card">
                 <ul class="collection with-header white-text">
                     <li class="collection-header grey darken-3">
-                        <h5>@WebsiteTexts.GetValue("LatestRegisteredUsers")</h5>
+                        <h5>@WebsiteTexts.GetValue("MostPopularProducts")</h5>
                     </li>
-                    <li class="collection-item avatar left-align grey darken-3">
+                    @foreach (var item in Model.MostPopularProducts)
+                    {
+                        <li class="collection-item avatar left-align grey darken-3">
+                            <img src="@item.ProductImages?.FirstOrDefault()?.ImageUrl" alt="@item.ProductImages?.FirstOrDefault()?.ImageAlt" class="circle" />
+                            <span class="title">@(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)</span>
+                            <p>
+                                @Html.Raw(item.PromotionalPrice == null ? item.Price.Value : "<del>"+item.Price.Value +" zł</del> " + item.PromotionalPrice.Value ) zł<br />
+                                @WebsiteTexts.GetValue("Sold"): @item.SoldAmount
+                            </p>
+                            <a href="#" class=" secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
+                        </li>
+                    }
+                    @*<li class="collection-item avatar left-align grey darken-3">
                         <img src="~/images/person1.jpg" alt="" class="circle" />
                         <span class="title">ID: 3645645</span>
                         <p>
@@ -111,7 +136,7 @@
                             <a href="mailto:lisapisa89@outlook.com"><span class="email">lisapisa89@outlook.com</span></a>
                         </p>
                         <a href="#" class="secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>

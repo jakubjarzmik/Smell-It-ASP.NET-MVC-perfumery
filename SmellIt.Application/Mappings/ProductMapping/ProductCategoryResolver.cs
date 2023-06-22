@@ -16,6 +16,6 @@ public class ProductCategoryResolver : IValueResolver<ProductDto, Product, Produ
     public ProductCategory? Resolve(ProductDto source, Product destination, ProductCategory? destMember, ResolutionContext context)
     {
         if (source.ProductCategory == null) return null;
-        return _productCategoryRepository.GetByEncodedNameAsync(source.ProductCategory.EncodedName).Result;
+        return _productCategoryRepository.GetAsync(source.ProductCategory.EncodedName).Result;
     }
 }

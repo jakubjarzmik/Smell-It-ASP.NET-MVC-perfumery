@@ -17,7 +17,7 @@ public class GetHomeBannerByEncodedNameQueryHandler : IRequestHandler<GetHomeBan
     }
     public async Task<HomeBannerDto> Handle(GetHomeBannerByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var layoutText = await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName);
+        var layoutText = await _homeBannerRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<HomeBannerDto>(layoutText);
         return dto;
     }

@@ -28,7 +28,7 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
         await DbContext.SaveChangesAsync();
     }
 
-    public virtual async Task DeleteByEncodedNameAsync(string encodedName)
+    public virtual async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -37,7 +37,7 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
             return;
         }
 
-        var entity = await GetByEncodedNameAsync(encodedName);
+        var entity = await GetAsync(encodedName);
         if (entity != null)
         {
             entity.DeletedById = currentUser.Id;
@@ -47,6 +47,6 @@ public abstract class BaseRepositoryWithEncodedName<T> : BaseRepository<T>, IBas
         }
     }
 
-    public virtual async Task<T?> GetByEncodedNameAsync(string encodedName)
+    public virtual async Task<T?> GetAsync(string encodedName)
         => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.EncodedName == encodedName);
 }

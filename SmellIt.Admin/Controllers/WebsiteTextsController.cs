@@ -11,6 +11,7 @@ using SmellIt.Application.Features.WebsiteTexts.Queries.GetWebsiteTextByEncodedN
 
 namespace SmellIt.Admin.Controllers;
 
+[Authorize(Roles = "Admin,Employee")]
 [Route("website-texts")]
 public class WebsiteTextsController : BaseController
 {

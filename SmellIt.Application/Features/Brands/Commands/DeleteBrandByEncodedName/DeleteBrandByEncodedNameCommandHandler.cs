@@ -14,7 +14,7 @@ public class DeleteBrandByEncodedNameCommandHandler : IRequestHandler<DeleteBran
 
     public async Task<Unit> Handle(DeleteBrandByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _brandRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _brandRepository.DeleteAsync(request.EncodedName);
 
         return Unit.Value;
     }

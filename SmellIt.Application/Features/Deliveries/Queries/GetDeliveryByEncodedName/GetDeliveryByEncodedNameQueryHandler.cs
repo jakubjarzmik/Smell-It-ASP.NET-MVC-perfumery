@@ -17,7 +17,7 @@ public class GetDeliveryByEncodedNameQueryHandler : IRequestHandler<GetDeliveryB
     }
     public async Task<DeliveryDto> Handle(GetDeliveryByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var delivery = await _deliveryRepository.GetByEncodedNameAsync(request.EncodedName);
+        var delivery = await _deliveryRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<DeliveryDto>(delivery);
         return dto;
     }

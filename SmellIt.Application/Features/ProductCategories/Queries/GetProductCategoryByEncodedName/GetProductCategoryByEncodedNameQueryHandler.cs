@@ -17,7 +17,7 @@ public class GetProductCategoryByEncodedNameQueryHandler : IRequestHandler<GetPr
     }
     public async Task<ProductCategoryDto> Handle(GetProductCategoryByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var productCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.EncodedName);
+        var productCategory = await _productCategoryRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<ProductCategoryDto>(productCategory);
         return dto;
     }

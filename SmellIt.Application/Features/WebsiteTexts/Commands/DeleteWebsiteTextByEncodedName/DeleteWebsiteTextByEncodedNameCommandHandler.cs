@@ -14,7 +14,7 @@ public class DeleteWebsiteTextByEncodedNameCommandHandler : IRequestHandler<Dele
 
     public async Task<Unit> Handle(DeleteWebsiteTextByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _websiteTextRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _websiteTextRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

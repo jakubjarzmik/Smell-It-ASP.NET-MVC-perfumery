@@ -10,6 +10,8 @@ using SmellIt.Application.Features.Brands.Queries.GetBrandByEncodedName;
 using SmellIt.Application.Features.Brands.Queries.GetPaginatedBrands;
 
 namespace SmellIt.Admin.Controllers;
+
+[Authorize(Roles = "Admin,Employee")]
 [Route("brands")]
 public class BrandsController : BaseController
 {

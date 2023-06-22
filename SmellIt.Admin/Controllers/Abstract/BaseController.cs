@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmellIt.Admin.Controllers.Abstract;
 
-[Authorize(Roles = "Admin,Employee")]
 public abstract class BaseController : Controller
 {
     protected IMediator Mediator { get; private set; }

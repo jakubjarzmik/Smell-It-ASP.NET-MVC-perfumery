@@ -1,19 +1,15 @@
-﻿using AutoMapper;
-using MediatR;
-using SmellIt.Application.Helpers;
+﻿using MediatR;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.CartItems.Commands.AddCartItemToUser;
 public class AddCartItemsToUserCommandHandler : IRequestHandler<AddCartItemsToUserCommand>
 {
     private readonly ICartItemRepository _cartItemRepository;
-    private readonly IMapper _mapper;
     private readonly IUserContext _userContext;
 
-    public AddCartItemsToUserCommandHandler(ICartItemRepository cartItemRepository, IMapper mapper, IUserContext userContext)
+    public AddCartItemsToUserCommandHandler(ICartItemRepository cartItemRepository, IUserContext userContext)
     {
         _cartItemRepository = cartItemRepository;
-        _mapper = mapper;
         _userContext = userContext;
     }
     public async Task<Unit> Handle(AddCartItemsToUserCommand request, CancellationToken cancellationToken)

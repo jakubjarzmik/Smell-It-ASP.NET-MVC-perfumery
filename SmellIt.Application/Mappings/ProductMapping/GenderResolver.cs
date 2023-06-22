@@ -16,6 +16,6 @@ public class GenderResolver : IValueResolver<ProductDto, Product, Gender?>
     public Gender? Resolve(ProductDto source, Product destination, Gender? destMember, ResolutionContext context)
     {
         if (source.Gender == null) return null;
-        return _genderRepository.GetByIdAsync(source.Gender.Id).Result;
+        return _genderRepository.GetAsync(source.Gender.Id).Result;
     }
 }

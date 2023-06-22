@@ -14,7 +14,7 @@ public class DeletePaymentByEncodedNameCommandHandler : IRequestHandler<DeletePa
 
     public async Task<Unit> Handle(DeletePaymentByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _paymentRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _paymentRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

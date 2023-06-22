@@ -22,7 +22,7 @@ public class EditWebsiteTextCommandHandler : IRequestHandler<EditWebsiteTextComm
             return Unit.Value;
         }
 
-        var websiteText = await _websiteTextRepository.GetByEncodedNameAsync(request.EncodedName);
+        var websiteText = await _websiteTextRepository.GetAsync(request.EncodedName);
 
         if(websiteText == null) return Unit.Value;
 

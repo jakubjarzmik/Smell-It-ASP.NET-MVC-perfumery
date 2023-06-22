@@ -6,14 +6,12 @@ using SmellIt.Infrastructure.Persistence;
 
 namespace SmellIt.Infrastructure.Repositories.Abstract;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public abstract class BaseRepository<T> : Repository, IBaseRepository<T> where T : BaseEntity
 {
-    protected readonly SmellItDbContext DbContext;
     protected readonly IUserContext UserContext;
 
-    protected BaseRepository(SmellItDbContext dbContext, IUserContext userContext)
+    protected BaseRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext)
     {
-        DbContext = dbContext;
         UserContext = userContext;
     }
 
@@ -49,12 +47,9 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
     public virtual async Task<IEnumerable<T>> GetAllAsync()
         => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
 
-    public virtual async Task<T?> GetByIdAsync(int id)
+    public virtual async Task<T?> GetAsync(int id)
         => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Id == id);
-
-    public async Task CommitAsync()
-        => await DbContext.SaveChangesAsync();
-
+    
     public async Task<int> CountAsync()
         => await DbContext.Set<T>().CountAsync(b => b.IsActive);
 
@@ -67,4 +62,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
 
         return await entities.ToListAsync();
     }
+
+    public async Task<IEnumerable<T>> GetLatestListAsync(int count)
+        => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).Take(count).ToListAsync();
 }

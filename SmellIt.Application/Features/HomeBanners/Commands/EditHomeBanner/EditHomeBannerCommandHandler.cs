@@ -22,7 +22,7 @@ public class EditHomeBannerCommandHandler : IRequestHandler<EditHomeBannerComman
             return Unit.Value;
         }
 
-        var homeBanner = (await _homeBannerRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var homeBanner = (await _homeBannerRepository.GetAsync(request.EncodedName))!;
         homeBanner.ModifiedAt = DateTime.Now;
         homeBanner.ModifiedById = currentUser.Id;
 

@@ -16,6 +16,6 @@ public class CartItemProductResolver : IValueResolver<CartItemDtoForAdd, CartIte
 
     public Product Resolve(CartItemDtoForAdd source, CartItem destination, Product destMember, ResolutionContext context)
     {
-        return _productRepository.GetByEncodedNameAsync(source.ProductEncodedName).Result!;
+        return _productRepository.GetAsync(source.ProductEncodedName).Result!;
     }
 }

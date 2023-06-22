@@ -14,7 +14,7 @@ public class DeleteDeliveryByEncodedNameCommandHandler : IRequestHandler<DeleteD
 
     public async Task<Unit> Handle(DeleteDeliveryByEncodedNameCommand request, CancellationToken cancellationToken)
     {
-        await _deliveryRepository.DeleteByEncodedNameAsync(request.EncodedName);
+        await _deliveryRepository.DeleteAsync(request.EncodedName);
         return Unit.Value;
     }
 }

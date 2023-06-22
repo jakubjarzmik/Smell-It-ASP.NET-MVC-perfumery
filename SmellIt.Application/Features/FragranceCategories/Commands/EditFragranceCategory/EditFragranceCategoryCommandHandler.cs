@@ -22,7 +22,7 @@ public class EditFragranceCategoryCommandHandler : IRequestHandler<EditFragrance
             return Unit.Value;
         }
 
-        var fragranceCategory = (await _fragranceCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var fragranceCategory = (await _fragranceCategoryRepository.GetAsync(request.EncodedName))!;
         fragranceCategory.ModifiedAt = DateTime.Now;
         fragranceCategory.ModifiedById = currentUser.Id;
 

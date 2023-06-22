@@ -11,6 +11,7 @@ using SmellIt.Application.Features.SocialSites.Queries.GetSocialSiteByEncodedNam
 
 namespace SmellIt.Admin.Controllers;
 
+[Authorize(Roles = "Admin,Employee")]
 [Route("social-sites")]
 public class SocialSitesController : BaseController
 {

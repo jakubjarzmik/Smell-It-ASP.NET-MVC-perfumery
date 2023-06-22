@@ -22,10 +22,10 @@ public class EditProductCategoryCommandHandler : IRequestHandler<EditProductCate
             return Unit.Value;
         }
 
-        var productCategory = (await _productCategoryRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var productCategory = (await _productCategoryRepository.GetAsync(request.EncodedName))!;
 
         if (!string.IsNullOrWhiteSpace(request.ParentCategoryEncodedName))
-            productCategory.ParentCategory = await _productCategoryRepository.GetByEncodedNameAsync(request.ParentCategoryEncodedName!);
+            productCategory.ParentCategory = await _productCategoryRepository.GetAsync(request.ParentCategoryEncodedName!);
 
         productCategory.ModifiedAt = DateTime.Now;
         productCategory.ModifiedById = currentUser.Id;

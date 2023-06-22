@@ -31,7 +31,7 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -40,7 +40,7 @@ public class BrandRepository : BaseRepositoryWithEncodedName<Brand>, IBrandRepos
             return;
         }
 
-        var brand = await GetByEncodedNameAsync(encodedName);
+        var brand = await GetAsync(encodedName);
         if (brand != null)
         {
             brand.IsActive = false;

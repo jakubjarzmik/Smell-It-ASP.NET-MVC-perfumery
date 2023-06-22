@@ -22,7 +22,7 @@ public class EditPrivacyPolicyCommandHandler : IRequestHandler<EditPrivacyPolicy
             return Unit.Value;
         }
 
-        var websiteText = (await _privacyPolicyRepository.GetByEncodedNameAsync(request.EncodedName))!;
+        var websiteText = (await _privacyPolicyRepository.GetAsync(request.EncodedName))!;
         websiteText.ModifiedAt = DateTime.Now;
         websiteText.ModifiedById = currentUser.Id;
 

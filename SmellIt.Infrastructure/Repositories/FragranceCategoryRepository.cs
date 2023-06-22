@@ -27,7 +27,7 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -36,7 +36,7 @@ public class FragranceCategoryRepository : BaseRepositoryWithEncodedName<Fragran
             return;
         }
 
-        var fragranceCategory = await GetByEncodedNameAsync(encodedName);
+        var fragranceCategory = await GetAsync(encodedName);
         if (fragranceCategory != null)
         {
             fragranceCategory.IsActive = false;

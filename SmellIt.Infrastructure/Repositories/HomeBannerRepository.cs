@@ -32,7 +32,7 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -41,7 +41,7 @@ public class HomeBannerRepository : BaseRepositoryWithEncodedName<HomeBanner>, I
             return;
         }
 
-        var homeBanner = await GetByEncodedNameAsync(encodedName);
+        var homeBanner = await GetAsync(encodedName);
         if (homeBanner != null)
         {
             homeBanner.IsActive = false;

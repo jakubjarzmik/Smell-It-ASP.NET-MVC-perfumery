@@ -17,7 +17,7 @@ public class GetBrandByEncodedNameQueryHandler : IRequestHandler<GetBrandByEncod
     }
     public async Task<BrandDto> Handle(GetBrandByEncodedNameQuery request, CancellationToken cancellationToken)
     {
-        var brand = await _brandRepository.GetByEncodedNameAsync(request.EncodedName);
+        var brand = await _brandRepository.GetAsync(request.EncodedName);
         var dto = _mapper.Map<BrandDto>(brand);
         return dto;
     }

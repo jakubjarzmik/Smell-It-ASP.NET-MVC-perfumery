@@ -38,6 +38,24 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         return products;
     }
 
+    public async Task<IEnumerable<Product>> GetMostPopularProductsAsync(int count)
+    {
+        var topProducts = await DbContext.OrderItems
+            .Where(oi => oi.IsActive && oi.Order.OrderDate >= DateTime.Now.AddMonths(-1))
+            .GroupBy(oi => oi.ProductId)
+            .Select(group => new
+            {
+                ProductId = group.Key,
+                Quantity = group.Sum(x => x.Quantity)
+            })
+            .OrderByDescending(x => x.Quantity)
+            .Take(count)
+            .Select(x => x.ProductId)
+            .ToListAsync();
+
+        return await DbContext.Products.Where(p => topProducts.Contains(p.Id)).ToListAsync();
+    }
+
     public override async Task DeleteAsync(Product product)
     {
         var currentUser = UserContext.GetCurrentUser();
@@ -56,7 +74,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         await DbContext.SaveChangesAsync();
     }
 
-    public override async Task DeleteByEncodedNameAsync(string encodedName)
+    public override async Task DeleteAsync(string encodedName)
     {
         var currentUser = UserContext.GetCurrentUser();
 
@@ -65,7 +83,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
             return;
         }
 
-        var product = await GetByEncodedNameAsync(encodedName);
+        var product = await GetAsync(encodedName);
         if (product != null)
         {
             product.IsActive = false;
