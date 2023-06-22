@@ -63,30 +63,6 @@
                                     </td>
                                 </tr>
                             }
-                            @*<tr>
-                                <td>@DateTime.Now.AddMinutes(-2)</td>
-                                <td>Catie Smith</td>
-                                <td>700 zł</td>
-                                <td>
-                                    <a href="details.html" class="btn">@WebsiteTexts.GetValue("Details")</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>@DateTime.Now.AddMinutes(-12)</td>
-                                <td>Adam Jones</td>
-                                <td>259 zł</td>
-                                <td>
-                                    <a href="details.html" class="btn">@WebsiteTexts.GetValue("Details")</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>@DateTime.Now.AddMinutes(-14)</td>
-                                <td>Kevin Brown</td>
-                                <td>899 zł</td>
-                                <td>
-                                    <a href="details.html" class="btn">@WebsiteTexts.GetValue("Details")</a>
-                                </td>
-                            </tr>*@
                         </tbody>
                     </table>
                 </div>
@@ -96,7 +72,7 @@
             <div class="card">
                 <ul class="collection with-header white-text">
                     <li class="collection-header grey darken-3">
-                        <h5>@WebsiteTexts.GetValue("MostPopularProducts")</h5>
+                        <h5>@WebsiteTexts.GetValue("PopularProductsThisMonth")</h5>
                     </li>
                     @foreach (var item in Model.MostPopularProducts)
                     {
@@ -105,38 +81,11 @@
                             <span class="title">@(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)</span>
                             <p>
                                 @Html.Raw(item.PromotionalPrice == null ? item.Price.Value : "<del>"+item.Price.Value +" zł</del> " + item.PromotionalPrice.Value ) zł<br />
-                                @WebsiteTexts.GetValue("Sold"): @item.SoldAmount
+                                @WebsiteTexts.GetValue("Sold"): @item.SoldAmount @WebsiteTexts.GetValue("Pcs")
                             </p>
                             <a href="#" class=" secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
                         </li>
                     }
-                    @*<li class="collection-item avatar left-align grey darken-3">
-                        <img src="~/images/person1.jpg" alt="" class="circle" />
-                        <span class="title">ID: 3645645</span>
-                        <p>
-                            Kevin Brown <br />
-                            <a href="mailto:kevinbrown@gmail.com"><span class="email">kevinbrown@gmail.com</span></a>
-                        </p>
-                        <a href="#" class=" secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
-                    </li>
-                    <li class="collection-item avatar left-align grey darken-3">
-                        <img src="~/images/person2.jpg" alt="" class="circle" />
-                        <span class="title">ID: 3645644</span>
-                        <p>
-                            Steve Smith<br />
-                            <a href="mailto:s.smith99@gmail.com"><span class="email">s.smith99@gmail.com</span></a>
-                        </p>
-                        <a href="#" class="secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
-                    </li>
-                    <li class="collection-item avatar left-align grey darken-3">
-                        <img src="./images/person3.jpg" alt="" class="circle" />
-                        <span class="title">ID: 3645643</span>
-                        <p>
-                            Liza Pisa<br />
-                            <a href="mailto:lisapisa89@outlook.com"><span class="email">lisapisa89@outlook.com</span></a>
-                        </p>
-                        <a href="#" class="secondary-content btn">@WebsiteTexts.GetValue("Details")</a>
-                    </li>*@
                 </ul>
             </div>
         </div>

@@ -366,6 +366,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Pcs" xml:space="preserve">
+    <value>pcs</value>
+  </data>
   <data name="PeriodOfValidity" xml:space="preserve">
     <value>Period of validity</value>
   </data>
@@ -374,6 +377,9 @@
   </data>
   <data name="PopularProducts" xml:space="preserve">
     <value>Popular Products</value>
+  </data>
+  <data name="PopularProductsThisMonth" xml:space="preserve">
+    <value>Popular products this month</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
@@ -440,6 +446,9 @@
   </data>
   <data name="SocialSites" xml:space="preserve">
     <value>Social Sites</value>
+  </data>
+  <data name="Sold" xml:space="preserve">
+    <value>Sold</value>
   </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Something went wrong :( Try again later</value>
