@@ -7,4 +7,5 @@ public class OrderItemDto
     public decimal UnitPrice { get; set; }
     public decimal TotalPrice { get; set; }
     public string Product { get; set; } = default!;
+    public string? ProductImage { get; set; }
 }

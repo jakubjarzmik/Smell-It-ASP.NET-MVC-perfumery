@@ -20,8 +20,8 @@
     <table class="striped">
         <thead>
             <tr>
-                <th>@WebsiteTexts.GetValue("Name")</th>
-                <th>@WebsiteTexts.GetValue("Description")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Name")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Description")</th>
                 <th></th>
             </tr>
         </thead>
@@ -37,11 +37,11 @@
                 else if (currentCulture == "en-GB" && item.DescriptionEn != null)
                     description = item.DescriptionEn.Length > 80 ? item.DescriptionEn.Substring(0, 80) + "..." : item.DescriptionEn;
                 <tr>
-                    <td>
+                    <td class="center-align">
                         @prefixGenerator.GeneratePrefix(item)
                         @(currentCulture == "pl-PL" ? item.NamePl : item.NameEn)
                     </td>
-                    <td>@description</td>
+                    <td class="center-align">@description</td>
                     <td class="right">
                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                         <div id="modalDescriptionPL_@index" class="modal">

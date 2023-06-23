@@ -15,8 +15,8 @@
     <table class="striped">
         <thead>
             <tr>
-                <th>Link</th>
-                <th>@WebsiteTexts.GetValue("Type")</th>
+                <th class="center-align">Link</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Type")</th>
                 <th></th>
             </tr>
         </thead>
@@ -29,8 +29,8 @@
                 var link = "";
                 link = item.Link.Length > 80 ? item.Link.Substring(0, 80) + "..." : item.Link;
                 <tr>
-                    <td>@link</td>
-                    <td>@item.Type</td>
+                    <td class="center-align">@link</td>
+                    <td> class="center-align"@item.Type</td>
                     <td class="right">
                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                         <div id="modalDescriptionPL_@index" class="modal">

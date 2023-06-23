@@ -1,0 +1,34 @@
+﻿@model SmellIt.Application.Features.Orders.DTOs.OrderDto
+@{
+    ViewData["Title"] = WebsiteTexts.GetValue("Order") + " " + Model.Id;
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+}
+<div class="card-content">
+    <div class="card-title">
+        @(WebsiteTexts.GetValue("Order") + " " + Model.Id)
+
+        <p class="right">@(WebsiteTexts.GetValue("OrderDate") + ": " + Model.OrderDate)</p>
+    </div>
+    <br />
+    <h5 class="center-align">@Model.OrderStatus</h5>
+    <br />
+    <table class="striped">
+        <tbody>
+            @foreach (var item in Model.OrderItems!)
+            {
+                <tr>
+                    <td class="center-align"><img src="@item.ProductImage" class="small-img" /></td>
+                    <td class="center-align">@item.Product</td>
+                    <td class="center-align">@item.UnitPrice zł</td>
+                    <td class="center-align">@item.Quantity @WebsiteTexts.GetValue("Pcs")</td>
+                    <td class="center-align">@item.TotalPrice zł</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="right-align"><strong>@WebsiteTexts.GetValue("TotalPrice"):</strong></td>
+                <td class="center-align"><strong>@Model.TotalPrice zł</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

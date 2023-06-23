@@ -11,7 +11,7 @@
             </ul>
             <ul class="right hide-on-med-and-down">
                 <li class="@(controller == "Home" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Home")">@WebsiteTexts.GetValue("Dashboard")</a></li>
-                <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="">@WebsiteTexts.GetValue("Orders")</a></li>
+                <li class="@(controller == "Orders" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Orders")">@WebsiteTexts.GetValue("Orders")</a></li>
                 <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@WebsiteTexts.GetValue("Products")</a></li>
                 @if (User.IsInRole("Admin"))
                 {

@@ -12,6 +12,8 @@ public class OrderMappingProfile : Profile
                 opt => opt.MapFrom(src => src.User.Email))
             .ForMember(dto => dto.Address,
                 opt => opt.MapFrom(src => src.Address))
+            .ForMember(dto => dto.OrderItems,
+                opt => opt.MapFrom(src => src.OrderItems))
             .AfterMap((src, dest, ctx) =>
             {
                 var languageCode = ctx.Items["LanguageCode"].ToString();

@@ -16,6 +16,7 @@ public class Seeder
     private IdentityUser? _defaultClient2;
     private Product? _sauvage;
     private Product? _si;
+    private Product? _goodGirl;
     private readonly Language _polish;
     private readonly Language _english;
 
@@ -249,6 +250,18 @@ public class Seeder
             await _dbContext.OrderStatusTranslations.AddRangeAsync(receivedTranslations);
 
 
+            var canceled = new OrderStatus();
+            await _dbContext.OrderStatus.AddAsync(canceled);
+
+            List<OrderStatusTranslation> canceledTranslations = new()
+            {
+                new OrderStatusTranslation { OrderStatus = canceled, Language = _polish, Name = "Anulowane" },
+                new OrderStatusTranslation { OrderStatus = canceled, Language = _english, Name = "Canceled" },
+            };
+            canceled.OrderStatusTranslations = canceledTranslations;
+            await _dbContext.OrderStatusTranslations.AddRangeAsync(canceledTranslations);
+
+
 
             await _dbContext.SaveChangesAsync();
             var orderStatusList = await _dbContext.OrderStatus.ToListAsync();
@@ -305,21 +318,21 @@ public class Seeder
 
             var order2 = new Order
             {
-                OrderDate = DateTime.Now,
+                OrderDate = DateTime.Now.AddDays(-1),
                 User = _defaultClient!,
                 PhoneNumber = "746456878",
                 Address = janKowalskiAddress,
                 CreatedBy = _defaultClient,
                 Delivery = parcelLocker,
                 Payment = blik,
-                OrderStatus = received
+                OrderStatus = preparing
             };
             await _dbContext.AddAsync(order2);
 
 
             var order3 = new Order
             {
-                OrderDate = DateTime.Now.AddDays(-1),
+                OrderDate = DateTime.Now,
                 Notes = "Proszę dobrze zapakować",
                 User = _defaultClient2!,
                 PhoneNumber = "693532993",
@@ -327,7 +340,7 @@ public class Seeder
                 CreatedBy = _defaultClient2,
                 Delivery = parcelLocker,
                 Payment = bankTransfer,
-                OrderStatus = preparing
+                OrderStatus = received
             };
             await _dbContext.AddAsync(order3);
 
@@ -382,22 +395,23 @@ public class Seeder
             order2.TotalPrice = sauvageOrderItem2.TotalPrice;
 
             await _dbContext.SaveChangesAsync();
-            
 
 
-            
-            var siOrderItem2 = new OrderItem
+
+
+            var goodGirlPrice = _goodGirl!.ProductPrices.First().Value;
+            var goodGirlOrderItem = new OrderItem
             {
                 CreatedBy = _defaultClient2,
                 Quantity = 2,
-                Product = _si,
-                UnitPrice = siPrice,
-                TotalPrice = siPrice * 2,
+                Product = _goodGirl,
+                UnitPrice = goodGirlPrice,
+                TotalPrice = goodGirlPrice * 2,
                 Order = order3
             };
-            await _dbContext.AddAsync(siOrderItem2);
+            await _dbContext.AddAsync(goodGirlOrderItem);
 
-            order3.TotalPrice = siOrderItem2.TotalPrice;
+            order3.TotalPrice = goodGirlOrderItem.TotalPrice;
 
             await _dbContext.SaveChangesAsync();
 
@@ -2155,7 +2169,7 @@ public class Seeder
             await _dbContext.ProductTranslations.AddRangeAsync(smellItDiffuserTranslations);
 
 
-            var goodGirl = new Product
+            _goodGirl = new Product
             {
                 Brand = carolinaHerrera,
                 ProductCategory = eauDeParfum,
@@ -2163,11 +2177,11 @@ public class Seeder
                 Gender = women,
                 Capacity = 80
             };
-            await _dbContext.Products.AddAsync(goodGirl);
+            await _dbContext.Products.AddAsync(_goodGirl);
 
             var goodGirlPriceHistory = new ProductPrice
             {
-                Product = goodGirl,
+                Product = _goodGirl,
                 Value = 489,
                 StartDateTime = DateTime.ParseExact("1900-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
             };
@@ -2177,18 +2191,18 @@ public class Seeder
             {
                 new ProductTranslation
                 {
-                    Product = goodGirl, Language = _polish, Name = "Good Girl",
+                    Product = _goodGirl, Language = _polish, Name = "Good Girl",
                     Description =
                         "\"Good Girl\" to popularny zapach marki Carolina Herrera, który jest dostępny w wersjach dla kobiet i mężczyzn. Kompozycja zapachu to mieszanka zmysłowych i intensywnych nut, w tym bergamotki, jaśminu, tuberozy, kawy, paczuli i wanilii. Flakon zapachu w kształcie szklanej szpilki, symbolizuje kobiecość, elegancję i pewność siebie. \"Good Girl\" to zapach z charakterem, który jest idealny na wieczorne wyjścia i specjalne okazje. Zapach jest ceniony za swoją trwałość i oryginalność, a jego aromat jest jednocześnie słodki, zmysłowy i uwodzicielski."
                 },
                 new ProductTranslation
                 {
-                    Product = goodGirl, Language = _english, Name = "Good Girl",
+                    Product = _goodGirl, Language = _english, Name = "Good Girl",
                     Description =
                         "\"Good Girl\" is a popular fragrance by Carolina Herrera, available in versions for women and men. The fragrance composition is a mixture of sensual and intense notes, including bergamot, jasmine, tuberose, coffee, patchouli, and vanilla. The fragrance bottle in the shape of a glass stiletto symbolizes femininity, elegance, and confidence. \"Good Girl\" is a fragrance with character, perfect for evening outings and special occasions. The fragrance is valued for its longevity and originality, and its aroma is simultaneously sweet, sensual, and seductive."
                 },
             };
-            goodGirl.ProductTranslations = goodGirlTranslations;
+            _goodGirl.ProductTranslations = goodGirlTranslations;
             await _dbContext.ProductTranslations.AddRangeAsync(goodGirlTranslations);
 
 
@@ -2471,21 +2485,21 @@ public class Seeder
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl1.png",
                     ImageAlt = "ch-good-girl1",
-                    Product = goodGirl,
+                    Product = _goodGirl,
                     CreatedBy = _defaultAdmin
                 },
                 new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl2.png",
                     ImageAlt = "ch-good-girl2",
-                    Product = goodGirl,
+                    Product = _goodGirl,
                     CreatedBy = _defaultAdmin
                 },
                 new ProductImage
                 {
                     ImageUrl = "/images/shop/products/perfumes/women/Carolina Herrera Good Girl/ch-good-girl3.png",
                     ImageAlt = "ch-good-girl3",
-                    Product = goodGirl,
+                    Product = _goodGirl,
                     CreatedBy = _defaultAdmin
                 },
                 new ProductImage

@@ -16,8 +16,8 @@
     <table class="striped">
         <thead>
             <tr>
-                <th>@WebsiteTexts.GetValue("Text") (PL)</th>
-                <th>@WebsiteTexts.GetValue("Text") (EN)</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Text") (PL)</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Text") (EN)</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,8 +28,8 @@
             @foreach (var item in Model.Items!)
             {
                 <tr>
-                    <td>@(item.TextPl.Length > 50 ? item.TextPl.Substring(0, 49) + "..." : item.TextPl)</td>
-                    <td>@(item.TextEn.Length > 50 ? item.TextEn.Substring(0, 49) + "..." : item.TextEn)</td>
+                    <td class="center-align">@(item.TextPl.Length > 50 ? item.TextPl.Substring(0, 49) + "..." : item.TextPl)</td>
+                    <td class="center-align">@(item.TextEn.Length > 50 ? item.TextEn.Substring(0, 49) + "..." : item.TextEn)</td>
                     <td class="right">
                         <a href="#modalDescriptionPL_@index" class="btn modal-trigger"><i class="material-icons">more</i></a>
                         <div id="modalDescriptionPL_@index" class="modal">

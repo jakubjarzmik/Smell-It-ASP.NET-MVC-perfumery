@@ -41,7 +41,7 @@ public class GetHomeDataQueryHandler : IRequestHandler<GetHomeDataQuery, HomeVie
             MonthlyEarnings = (int)await _orderRepository.CountMonthlyEarningsAsync(),
             UsersCount = await _userRepository.CountAsync(),
             RecentOrders = orderDtos,
-            MostPopularProducts = productDtos
+            MostPopularProducts = productDtos.OrderByDescending(p=>p.SoldAmount)
         };
 
         return viewModel;

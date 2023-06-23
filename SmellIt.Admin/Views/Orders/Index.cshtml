@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SmellIt.Application.ViewModels.Admin.OrdersViewModel
+@{
+    ViewData["Title"] = WebsiteTexts.GetValue("Orders");
+    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
+}
+<div class="card-content">
+    <div class="card-title">
+        @WebsiteTexts.GetValue("Orders")
+
+    </div>
+
+    <table class="striped">
+        <thead>
+            <tr>
+                <th class="center-align">ID</th>
+                <th class="center-align">@WebsiteTexts.GetValue("User")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Time")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Value")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Status")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items!)
+            {
+                <tr>
+                    <td class="center-align">
+                        @item.Id
+                    </td>
+                    <td class="center-align">
+                        @item.UserEmail
+                    </td>
+                    <td class="center-align">@item.OrderDate</td>
+                    <td class="center-align">@item.TotalPrice zł</td>
+                    <td class="center-align">@item.OrderStatus</td>
+                    <td class="right">
+                        <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.Id" class="btn"><i class="material-icons">more</i></a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @*<a asp-controller="Orders" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
+                            <a asp-controller="Orders" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>*@
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/_Pagination" />

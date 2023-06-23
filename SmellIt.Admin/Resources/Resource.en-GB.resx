@@ -345,6 +345,12 @@
   <data name="Oldest" xml:space="preserve">
     <value>Oldest</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
@@ -473,6 +479,9 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Total Price</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
