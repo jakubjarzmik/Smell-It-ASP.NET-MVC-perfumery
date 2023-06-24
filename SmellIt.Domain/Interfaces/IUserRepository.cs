@@ -6,4 +6,8 @@ public interface IUserRepository : IRepository
 {
     Task<int> CountAsync();
     IEnumerable<IdentityUser> GetLatestListAsync(int count);
+    Task<IEnumerable<IdentityUser>> GetPaginatedAsync(int pageNumber, int pageSize);
+    Task<IdentityUser?> GetAsync(string id);
+    Task<IdentityUser?> GetByEmailAsync(string email);
+    Task DeleteAsync(string id);
 }

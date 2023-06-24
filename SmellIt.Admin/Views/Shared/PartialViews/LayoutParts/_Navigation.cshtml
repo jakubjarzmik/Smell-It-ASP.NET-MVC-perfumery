@@ -15,7 +15,7 @@
                 <li class="@(controller == "Products" && action == "Index" ? "active": "")"><a href="@Url.Action("Index", "Products")">@WebsiteTexts.GetValue("Products")</a></li>
                 @if (User.IsInRole("Admin"))
                 {
-                    <li><a href="">@WebsiteTexts.GetValue("Users")</a></li>
+                    <li><a asp-controller="Users" asp-action="Index">@WebsiteTexts.GetValue("Users")</a></li>
                 }
                 <li>
                     <a class="dropdown-trigger" href="#" data-target="othersDropdown" style="padding: 0 25px">@WebsiteTexts.GetValue("Others")<i class="material-icons right">arrow_drop_down</i></a>
@@ -62,28 +62,12 @@
         </div>
     </nav>
 </div>
-<ul id="mobile-demo" class="sidenav grey darken-4">@*
-    <li>
-        <div class="user-view">
-            <div class="background">
-                <img src="~/images/ocean.jpg" alt="" />
-            </div>
-            <a href="#">
-                <img src="~/images/person1.jpg" alt="" class="circle" />
-            </a>
-            <a href="#">
-                <span class="name white-text">John Doe</span>
-            </a>
-            <a href="#">
-                <span class="email white-text">jdoe@email.com</span>
-            </a>
-        </div>
-    </li>*@
+<ul id="mobile-demo" class="sidenav grey darken-4">
     <li class="@(controller == "Home" && action == "Index" ? "active" : "")">
         <a href="@Url.Action("Index", "Home")" class="white-text">@WebsiteTexts.GetValue("Dashboard")</a>
     </li>
     <li class="@(controller == "Orders" && action == "Index" ? "active" : "")">
-        <a href="" class="white-text">@WebsiteTexts.GetValue("Orders")</a>
+        <a asp-controller="Orders" asp-action="Index" class="white-text">@WebsiteTexts.GetValue("Orders")</a>
     </li>
     <li class="@(controller == "Products" && action == "Index" ? "active" : "")">
         <a href="@Url.Action("Index", "Products")" class="white-text">@WebsiteTexts.GetValue("Products")</a>
@@ -94,7 +78,7 @@
     @if (User.IsInRole("Admin"))
     {
         <li>
-            <a href="" class="white-text">@WebsiteTexts.GetValue("Users")</a>
+            <a asp-controller="Users" asp-action="Index" class="white-text">@WebsiteTexts.GetValue("Users")</a>
         </li>
     }
     <li>

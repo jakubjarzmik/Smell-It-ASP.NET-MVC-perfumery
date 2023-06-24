@@ -1,7 +1,6 @@
-﻿@model SmellIt.Application.ViewModels.Website.CheckoutViewModel
+﻿@model SmellIt.Application.Features.Orders.Commands.CreateOrder.CreateOrderCommand
 @{
     ViewData["Title"] = await WebsiteTexts.GetValueAsync("Checkout");
-    var checker = false;
 }
 
 <section class="page-header">
@@ -18,118 +17,119 @@
 <div class="page-wrapper">
     <div class="checkout shopping">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="block">
-                                <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Delivery")</h4>
-                                @foreach (var item in Model.Deliveries)
-                                {
-                                    <div class="form-check">
-                                        <input class="form-check-input delivery-option" type="radio" name="delivery" id="@item.EncodedName" data-price="@item.Price" @(checker==false? "checked":"")>
-        
-                                        <label class="form-check-label no-bold" for="@item.EncodedName">
-                                            @item.Name - @item.Price zł
-                                        </label>
-                                    </div>
-                                    checker = true;
-                                }
-                                @{ checker = false;}
+            <form asp-controller="Checkout" asp-action="PlaceOrder" method="POST" >
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="block">
+                                    <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Delivery")</h4>
+                                    @foreach (var item in ViewBag.Deliveries)
+                                    {
+                                        <div class="form-check">
+                                            <input class="form-check-input delivery-option" type="radio" name="DeliveryId" id="@item.EncodedName" value="@item.Id" data-price="@item.Price" @(Model.DeliveryId == item.Id ? "checked" : "")>
+
+                                            <label class="form-check-label no-bold" for="@item.EncodedName">
+                                                @item.Name - @item.Price zł
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="block">
+                                    <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Payment")</h4>
+                                    @foreach (var item in ViewBag.Payments)
+                                    {
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="PaymentId" id="@item.EncodedName" value="@item.Id" @(Model.PaymentId == item.Id ? "checked" : "")>
+                                            <label class="form-check-label no-bold" for="@item.EncodedName">
+                                                @item.Name
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="block">
-                                <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Payment")</h4>
-                                @foreach (var item in Model.Payments)
-                                {
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="payment" id="@item.EncodedName" @(checker == false ? "checked" : "")>
-                                        <label class="form-check-label no-bold" for="@item.EncodedName">
-                                            @item.Name
-                                        </label>
-                                    </div>
-                                    checker = true;
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block">
-                                <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Address")</h4>
-                                <form class="checkout-form">
-                                    <div class="form-group">
-                                        <label for="first-line">@await WebsiteTexts.GetValueAsync("FirstLine")*</label>
-                                        <input type="text" class="form-control" id="first-line" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="second-line">@await WebsiteTexts.GetValueAsync("SecondLine")</label>
-                                        <input type="text" class="form-control" id="second-line" placeholder="">
-                                    </div>
-                                    <div class="checkout-country-code clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block">
+                                    <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("Address")</h4>
+                                    <span class="checkout-form">
                                         <div class="form-group">
-                                            <label for="postal-code">@await WebsiteTexts.GetValueAsync("PostalCode")*</label>
-                                            <input type="text" class="form-control" id="postal-code" name="postal-code" value="">
+                                            <label for="FullName">@await WebsiteTexts.GetValueAsync("FullName")*</label>
+                                            <input type="text" class="form-control" id="FullName" asp-for="FullName" name="FullName" value="@Model.FullName">
                                         </div>
                                         <div class="form-group">
-                                            <label for="city">@await WebsiteTexts.GetValueAsync("City")*</label>
-                                            <input type="text" class="form-control" id="city" name="city" value="">
+                                            <label for="FirstLine">@await WebsiteTexts.GetValueAsync("FirstLine")*</label>
+                                            <input type="text" class="form-control" id="FirstLine" asp-for="FirstLine" name="FirstLine" value="@Model.FirstLine">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="country">@await WebsiteTexts.GetValueAsync("Country")*</label>
-                                        <input type="text" class="form-control" id="country" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone-number">@await WebsiteTexts.GetValueAsync("Phone")*</label>
-                                        <input type="text" class="form-control" id="phone-number" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">E-mail*</label>
-                                        <input type="text" class="form-control" id="email" placeholder="">
-                                    </div>
-                                </form>
+                                        <div class="form-group">
+                                            <label for="SecondLine">@await WebsiteTexts.GetValueAsync("SecondLine")</label>
+                                            <input type="text" class="form-control" id="SecondLine" asp-for="SecondLine" name="SecondLine" value="@Model.SecondLine">
+                                        </div>
+                                        <div class="checkout-country-code clearfix">
+                                            <div class="form-group">
+                                                <label for="PostalCode">@await WebsiteTexts.GetValueAsync("PostalCode")*</label>
+                                                <input type="text" class="form-control" id="PostalCode" asp-for="PostalCode" name="PostalCode" value="@Model.PostalCode">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="City">@await WebsiteTexts.GetValueAsync("City")*</label>
+                                                <input type="text" class="form-control" id="City" asp-for="City" name="City" value="@Model.City">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PhoneNumber">@await WebsiteTexts.GetValueAsync("Phone")*</label>
+                                            <input type="text" class="form-control" id="PhoneNumber" asp-for="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber">
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-checkout-details">
+                            <div class="block">
+                                <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("OrderSummary")</h4>
+                                @await Component.InvokeAsync("Cart", new { forCheckout = true })
+                                <ul class="summary-prices">
+                                    <li>
+                                        <span>@await WebsiteTexts.GetValueAsync("ProductsPrice"):</span>
+                                        <span id="product-total" class="total-price">@ViewBag.CartViewModel.TotalPrice zł</span>
+                                    </li>
+                                    <li>
+                                        <span>@await WebsiteTexts.GetValueAsync("Delivery"):</span>
+                                        <span id="delivery-price"> zł</span>
+                                    </li>
+                                </ul>
+                                <div class="summary-total">
+                                    <span>@await WebsiteTexts.GetValueAsync("Total"):</span>
+                                    <span id="total-price" class="total-price"> zł</span>
+                                </div>
+                            </div>
+                            <div class="block">
+                                <div class="form-group">
+                                    <label for="notes">@await WebsiteTexts.GetValueAsync("MessageToTheSeller")</label>
+                                    <textarea class="form-control" id="notes" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <div class="block">
+                                <button type="submit" class="btn btn-main">@await WebsiteTexts.GetValueAsync("PlaceOrder")</button>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="col-md-4">
-                    <div class="product-checkout-details">
-                        <div class="block">
-                            <h4 class="widget-title">@await WebsiteTexts.GetValueAsync("OrderSummary")</h4>
-                            @await Component.InvokeAsync("Cart", new { forCheckout = true })
-                            <ul class="summary-prices">
-                                <li>
-                                    <span>@await WebsiteTexts.GetValueAsync("ProductsPrice"):</span>
-                                    <span id="product-total" class="total-price">@Model.CartViewModel.TotalPrice zł</span>
-                                </li>
-                                <li>
-                                    <span>@await WebsiteTexts.GetValueAsync("Delivery"):</span>
-                                    <span id="delivery-price"> zł</span>
-                                </li>
-                            </ul>
-                            <div class="summary-total">
-                                <span>@await WebsiteTexts.GetValueAsync("Total"):</span>
-                                <span id="total-price" class="total-price"> zł</span>
-                            </div>
-                        </div>
-                        <div class="block">
-                            <a asp-controller="Checkout" asp-action="OrderConfirmation" class="btn btn-main">@await WebsiteTexts.GetValueAsync("PlaceOrder")</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
 @section Scripts
-{
+    {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             updatePrices();
-            
+
             document.querySelectorAll('.delivery-option').forEach(function (radio) {
                 radio.addEventListener('change', function () {
                     updatePrices();
@@ -139,14 +139,13 @@
 
         function updatePrices() {
             var productTotal = parseFloat(document.getElementById('product-total').textContent);
-            
+
             var deliveryPrice = parseFloat(document.querySelector('.delivery-option:checked').dataset.price);
-            
+
             var totalPrice = productTotal + deliveryPrice;
-            
+
             document.getElementById('delivery-price').textContent = deliveryPrice.toFixed(2) + ' zł';
             document.getElementById('total-price').textContent = totalPrice.toFixed(2) + ' zł';
         }
     </script>
-
 }

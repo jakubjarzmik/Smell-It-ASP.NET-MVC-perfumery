@@ -5,9 +5,10 @@ namespace SmellIt.Domain.Interfaces.Abstract;
 public interface IBaseRepository<T> : IRepository 
     where T : BaseEntity
 {
-    Task CreateAsync(T cartItem);
+    Task CreateAsync(T entity);
     Task DeleteAsync(T entity);
     Task<IEnumerable<T>> GetAllAsync();
+    Task<T?> GetAsync(T entity);
     Task<T?> GetAsync(int id);
     Task<int> CountAsync();
     Task<IEnumerable<T>> GetPaginatedAsync(int pageNumber, int pageSize);

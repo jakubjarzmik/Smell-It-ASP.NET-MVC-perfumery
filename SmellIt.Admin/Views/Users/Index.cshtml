@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SmellIt.Application.ViewModels.Admin.UsersViewModel
+@{
+    ViewData["Title"] = WebsiteTexts.GetValue("Users");
+}
+<div class="card-content">
+    <div class="card-title">
+        @WebsiteTexts.GetValue("Users")
+    </div>
+
+    <table class="striped">
+        <thead>
+        <tr>
+            <th class="center-align">ID</th>
+            <th class="center-align">@WebsiteTexts.GetValue("Email")</th>
+            <th class="center-align">@WebsiteTexts.GetValue("PhoneNumber")</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Items!)
+        {
+            <tr>
+                <td class="center-align">
+                    @item.Id
+                </td>
+                <td class="center-align">
+                    @item.Email
+                </td>
+                <td class="center-align">@item.PhoneNumber</td>
+                <td class="right">
+                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id" class="btn"> <i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/_Pagination" />

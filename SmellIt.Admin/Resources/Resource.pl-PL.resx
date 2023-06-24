@@ -150,6 +150,9 @@
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Dodaj nowy tekst strony</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
   <data name="AlreadyHaveAnAccount" xml:space="preserve">
     <value>Masz już konto? Zaloguj się</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="Category" xml:space="preserve">
     <value>Kategoria</value>
   </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Zmień status</value>
+  </data>
   <data name="Checkout" xml:space="preserve">
     <value>Realizuj</value>
   </data>
@@ -197,6 +203,9 @@
   </data>
   <data name="DateCreated" xml:space="preserve">
     <value>Data utworzenia</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Dostawa</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Opis</value>
@@ -318,6 +327,9 @@
   <data name="Message" xml:space="preserve">
     <value>Wiadomość</value>
   </data>
+  <data name="MessageToTheSeller" xml:space="preserve">
+    <value>Wiadomość do sprzedawcy</value>
+  </data>
   <data name="MonthlyEarnings" xml:space="preserve">
     <value>Miesięczne zyski</value>
   </data>
@@ -354,6 +366,9 @@
   <data name="Orders" xml:space="preserve">
     <value>Zamówienia</value>
   </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Status zamówienia</value>
+  </data>
   <data name="Oriental" xml:space="preserve">
     <value>Orientalne</value>
   </data>
@@ -372,6 +387,9 @@
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Płatność</value>
+  </data>
   <data name="Pcs" xml:space="preserve">
     <value>szt.</value>
   </data>
@@ -380,6 +398,9 @@
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefon</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Numer telefonu</value>
   </data>
   <data name="PopularProducts" xml:space="preserve">
     <value>Popularne produkty</value>

@@ -17,9 +17,26 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 
     public async Task<IEnumerable<Order>?> GetAllAsync(IdentityUser user)
         => await DbContext.Orders.Where(o => o.IsActive && o.User == user).ToListAsync();
+
+    public async Task<Order?> GetLatestUserOrderAsync(string userId)
+        => await DbContext.Orders.Where(o => o.IsActive && o.UserId == userId).OrderByDescending(o=>o.OrderDate).FirstOrDefaultAsync();
     public async Task<int> CountLastMonthAsync()
         => await DbContext.Orders.CountAsync(o => o.IsActive && o.OrderDate >= DateTime.Now.AddMonths(-1));
 
     public async Task<decimal> CountMonthlyEarningsAsync()
         => await DbContext.Orders.Where(o => o.IsActive && o.OrderDate >= DateTime.Now.AddMonths(-1)).Select(o=>o.TotalPrice).SumAsync();
+
+    public override async Task CreateAsync(Order order)
+    {
+        var currentUser = UserContext.GetCurrentUser();
+
+        if (currentUser == null)
+        {
+            return;
+        }
+
+        order.CreatedById = currentUser.Id;
+        DbContext.Add(order);
+        await DbContext.SaveChangesAsync();
+    }
 } 

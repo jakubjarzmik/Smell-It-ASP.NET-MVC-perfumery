@@ -1,5 +1,4 @@
-﻿@using SmellIt.Application.Features.OrderStatuses.DTOs
-@model SmellIt.Application.Features.Orders.DTOs.OrderDto
+﻿@model SmellIt.Application.Features.Orders.DTOs.OrderDto
 @{
     ViewData["Title"] = WebsiteTexts.GetValue("Order") + " " + Model.Id;
 }
@@ -34,6 +33,32 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m12">
+            <h6>@WebsiteTexts.GetValue("User"): @Model.UserEmail</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m4">
+            <h6>@WebsiteTexts.GetValue("Address"):</h6>
+            <p>@Model.Address.FullName</p>
+            <p>@Model.Address.FirstLine</p>
+            @if (Model.Address.SecondLine != null)
+            {
+                <p>@Model.Address.SecondLine</p>
+            }
+            <p>@(Model.Address.PostalCode + " " + Model.Address.City)</p>
+        </div>
+        <div class="col m4">
+            <h6>@WebsiteTexts.GetValue("Payment"): @Model.Payment</h6>
+            <h6>@WebsiteTexts.GetValue("Delivery"): @Model.Delivery</h6>
+            <h6>@WebsiteTexts.GetValue("PhoneNumber"): @Model.PhoneNumber</h6>
+        </div>
+        <div class="col m4">
+            <h6>@WebsiteTexts.GetValue("MessageToTheSeller"): </h6>
+            <p>@Model.Notes</p>
         </div>
     </div>
     <div class="row">

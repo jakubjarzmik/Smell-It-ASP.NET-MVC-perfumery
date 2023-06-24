@@ -6,16 +6,21 @@ public class AddCartItemsToUserCommandHandler : IRequestHandler<AddCartItemsToUs
 {
     private readonly ICartItemRepository _cartItemRepository;
     private readonly IUserContext _userContext;
+    private readonly IUserRepository _userRepository;
 
-    public AddCartItemsToUserCommandHandler(ICartItemRepository cartItemRepository, IUserContext userContext)
+    public AddCartItemsToUserCommandHandler(ICartItemRepository cartItemRepository, IUserContext userContext, IUserRepository userRepository)
     {
         _cartItemRepository = cartItemRepository;
         _userContext = userContext;
+        _userRepository = userRepository;
     }
     public async Task<Unit> Handle(AddCartItemsToUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userContext.GetUser(request.Email);
-
+        var user = await _userRepository.GetByEmailAsync(request.Email);
+        if (user == null)
+        {
+            return Unit.Value;
+        }
         var cartItemsFromSession = (await _cartItemRepository.GetBySessionAsync(request.Session)).ToList();
         var cartItemsFromUser = (await _cartItemRepository.GetByUserAsync(user.Id)).ToList();
 

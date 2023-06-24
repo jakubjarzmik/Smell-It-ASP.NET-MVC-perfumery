@@ -7,6 +7,7 @@ public interface IOrderRepository : IBaseRepository<Order>
 {
     Task<IEnumerable<Order>?> GetAllAsync(IdentityUser user);
     Task<IEnumerable<Order>?> GetAllAsync(string userId);
+    Task<Order?> GetLatestUserOrderAsync(string userId);
     Task<int> CountLastMonthAsync();
     Task<decimal> CountMonthlyEarningsAsync();
 }

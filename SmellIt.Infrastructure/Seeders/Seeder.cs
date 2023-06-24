@@ -737,6 +737,18 @@ public class Seeder
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(addressTranslations);
 
 
+            var fullName = new WebsiteText { Key = "FullName" };
+            await _dbContext.WebsiteTexts.AddAsync(fullName);
+
+            List<WebsiteTextTranslation> fullNameTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = fullName, Language = _polish, Text = "Pełna nazwa" },
+                new WebsiteTextTranslation { WebsiteText = fullName, Language = _english, Text = "Full Name" },
+            };
+            fullName.WebsiteTextTranslations = fullNameTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(fullNameTranslations);
+
+
             var firstLine = new WebsiteText { Key = "FirstLine" };
             await _dbContext.WebsiteTexts.AddAsync(firstLine);
 
@@ -831,6 +843,18 @@ public class Seeder
             };
             remove.WebsiteTextTranslations = removeTranslations;
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(removeTranslations);
+
+
+            var messageToTheSeller = new WebsiteText { Key = "MessageToTheSeller" };
+            await _dbContext.WebsiteTexts.AddAsync(messageToTheSeller);
+
+            List<WebsiteTextTranslation> messageToTheSellerTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = messageToTheSeller, Language = _polish, Text = "Wiadomość do sprzedającego" },
+                new WebsiteTextTranslation { WebsiteText = messageToTheSeller, Language = _english, Text = "Message to the Seller" },
+            };
+            messageToTheSeller.WebsiteTextTranslations = messageToTheSellerTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(messageToTheSellerTranslations);
 
 
             var placeOrder = new WebsiteText { Key = "PlaceOrder" };

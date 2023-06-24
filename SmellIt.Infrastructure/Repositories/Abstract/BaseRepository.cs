@@ -8,11 +8,8 @@ namespace SmellIt.Infrastructure.Repositories.Abstract;
 
 public abstract class BaseRepository<T> : Repository, IBaseRepository<T> where T : BaseEntity
 {
-    protected readonly IUserContext UserContext;
-
-    protected BaseRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext)
+    protected BaseRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
-        UserContext = userContext;
     }
 
     public virtual async Task CreateAsync(T cartItem)
@@ -46,6 +43,9 @@ public abstract class BaseRepository<T> : Repository, IBaseRepository<T> where T
 
     public virtual async Task<IEnumerable<T>> GetAllAsync()
         => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).ToListAsync();
+
+    public virtual async Task<T?> GetAsync(T entity)
+        => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b == entity);
 
     public virtual async Task<T?> GetAsync(int id)
         => await DbContext.Set<T>().Where(b => b.IsActive).FirstOrDefaultAsync(b => b.Id == id);

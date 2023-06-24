@@ -150,6 +150,9 @@
   <data name="AddNewWebsiteText" xml:space="preserve">
     <value>Add New Website Text</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="AlreadyHaveAnAccount" xml:space="preserve">
     <value>Already have an account? Sign in</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Change Status</value>
+  </data>
   <data name="Checkout" xml:space="preserve">
     <value>Checkout</value>
   </data>
@@ -197,6 +203,9 @@
   </data>
   <data name="DateCreated" xml:space="preserve">
     <value>Date Created</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Delivery</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -318,6 +327,9 @@
   <data name="Message" xml:space="preserve">
     <value>Message</value>
   </data>
+  <data name="MessageToTheSeller" xml:space="preserve">
+    <value>Message to the Seller</value>
+  </data>
   <data name="MonthlyEarnings" xml:space="preserve">
     <value>Monthly Earnings</value>
   </data>
@@ -354,6 +366,9 @@
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Order Status</value>
+  </data>
   <data name="Oriental" xml:space="preserve">
     <value>Oriental</value>
   </data>
@@ -372,6 +387,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
   <data name="Pcs" xml:space="preserve">
     <value>pcs</value>
   </data>
@@ -380,6 +398,9 @@
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
   </data>
   <data name="PopularProducts" xml:space="preserve">
     <value>Popular Products</value>

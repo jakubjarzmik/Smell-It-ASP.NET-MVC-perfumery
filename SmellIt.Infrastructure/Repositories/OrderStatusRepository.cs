@@ -1,4 +1,5 @@
-﻿using SmellIt.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
@@ -9,6 +10,9 @@ public class OrderStatusRepository : BaseRepositoryWithEncodedName<OrderStatus>,
     public OrderStatusRepository(SmellItDbContext dbContext, IUserContext userContext) : base(dbContext, userContext)
     {
     }
+
+    public async Task<OrderStatus?> GetByName(string name)
+        => (await DbContext.OrderStatusTranslations.FirstOrDefaultAsync(ost => ost.Name == name))?.OrderStatus;
     public override async Task DeleteAsync(OrderStatus orderStatus)
     {
         var currentUser = UserContext.GetCurrentUser();
