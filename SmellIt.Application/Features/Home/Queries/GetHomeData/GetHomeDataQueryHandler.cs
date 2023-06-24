@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.Features.Brands.DTOs;
 using SmellIt.Application.Features.Orders.DTOs;
 using SmellIt.Application.Features.Products.DTOs;
-using SmellIt.Application.Features.Users.DTOs;
 using SmellIt.Application.ViewModels.Admin;
-using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
 namespace SmellIt.Application.Features.Home.Queries.GetHomeData;

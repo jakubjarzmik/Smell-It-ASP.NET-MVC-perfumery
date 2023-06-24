@@ -14,12 +14,13 @@ public class OrderMappingProfile : Profile
                 opt => opt.MapFrom(src => src.Address))
             .ForMember(dto => dto.OrderItems,
                 opt => opt.MapFrom(src => src.OrderItems))
+            .ForMember(dto => dto.OrderStatus,
+                opt => opt.MapFrom(src => src.OrderStatus))
             .AfterMap((src, dest, ctx) =>
             {
                 var languageCode = ctx.Items["LanguageCode"].ToString();
                 dest.Delivery = src.Delivery.DeliveryTranslations.First(fct => fct.Language.Code == languageCode).Name;
                 dest.Payment = src.Payment.PaymentTranslations.First(fct => fct.Language.Code == languageCode).Name;
-                dest.OrderStatus = src.OrderStatus.OrderStatusTranslations.First(fct => fct.Language.Code == languageCode).Name;
             });
     }
 }

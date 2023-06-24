@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.Features.Brands.Queries.GetAllBrandsForWebsite;
-using SmellIt.Application.Features.FragranceCategories.Queries.GetAllFragranceCategoriesForWebsite;
+using SmellIt.Application.Features.Orders.Commands.UpdateOrderStatus;
 using SmellIt.Application.Features.Orders.Queries.GetPaginatedOrders;
-using SmellIt.Application.Features.Genders.Queries.GetAllGendersForWebsite;
 using SmellIt.Application.Features.Orders.Queries.GetOrderById;
+using SmellIt.Application.Features.OrderStatuses.Queries.GetAllOrderStatuses;
 
 namespace SmellIt.Admin.Controllers;
 
@@ -24,19 +23,22 @@ public class OrdersController : BaseController
         var viewModel = await Mediator.Send(new GetPaginatedOrdersQuery(CurrentCulture, pageNumber, 7));
         return View(viewModel);
     }
-    
+
     [Route("{id}/details")]
     public async Task<IActionResult> Details(int id)
     {
+        ViewBag.OrderStatuses = new SelectList(await Mediator.Send(new GetAllOrderStatusesQuery(CurrentCulture)), "Id", "Name");
         var order = await Mediator.Send(new GetOrderByIdQuery(CurrentCulture, id));
         return View(order);
     }
-
-    [Authorize(Roles = "Admin")]
-    [Route("{id}/delete")]
-    public async Task<IActionResult> Delete(int id)
+    [HttpPost]
+    [Route("update-status")]
+    public async Task<IActionResult> UpdateStatus(int orderId, int orderStatusId)
     {
-        //await Mediator.Send(new DeleteOrderByEncodedNameCommand(encodedName));
-        return RedirectToAction(nameof(Index));
+        await Mediator.Send(new UpdateOrderStatusCommand(orderId, orderStatusId));
+
+        var newOrderStatus = (await Mediator.Send(new GetOrderByIdQuery(CurrentCulture, orderId))).OrderStatus.Name;
+
+        return Json(new { success = true, orderStatus = newOrderStatus });
     }
 }

@@ -34,15 +34,9 @@
                     </td>
                     <td class="center-align">@item.OrderDate</td>
                     <td class="center-align">@item.TotalPrice zł</td>
-                    <td class="center-align">@item.OrderStatus</td>
+                    <td class="center-align">@item.OrderStatus.Name</td>
                     <td class="right">
                         <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.Id" class="btn"><i class="material-icons">more</i></a>
-
-                        @if (User.IsInRole("Admin"))
-                        {
-                            @*<a asp-controller="Orders" asp-action="Edit" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">edit</i></a>
-                            <a asp-controller="Orders" asp-action="Delete" asp-route-encodedName="@item.EncodedName" class="btn"> <i class="material-icons">delete</i></a>*@
-                        }
                     </td>
                 </tr>
             }

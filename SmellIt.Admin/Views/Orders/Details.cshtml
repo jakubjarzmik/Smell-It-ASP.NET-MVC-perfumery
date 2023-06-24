@@ -1,8 +1,7 @@
-﻿@model SmellIt.Application.Features.Orders.DTOs.OrderDto
+﻿@using SmellIt.Application.Features.OrderStatuses.DTOs
+@model SmellIt.Application.Features.Orders.DTOs.OrderDto
 @{
     ViewData["Title"] = WebsiteTexts.GetValue("Order") + " " + Model.Id;
-    var requestCulture = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
-    var currentCulture = requestCulture.RequestCulture.Culture.ToString();
 }
 <div class="card-content">
     <div class="card-title">
@@ -10,25 +9,66 @@
 
         <p class="right">@(WebsiteTexts.GetValue("OrderDate") + ": " + Model.OrderDate)</p>
     </div>
-    <br />
-    <h5 class="center-align">@Model.OrderStatus</h5>
-    <br />
-    <table class="striped">
-        <tbody>
-            @foreach (var item in Model.OrderItems!)
-            {
-                <tr>
-                    <td class="center-align"><img src="@item.ProductImage" class="small-img" /></td>
-                    <td class="center-align">@item.Product</td>
-                    <td class="center-align">@item.UnitPrice zł</td>
-                    <td class="center-align">@item.Quantity @WebsiteTexts.GetValue("Pcs")</td>
-                    <td class="center-align">@item.TotalPrice zł</td>
-                </tr>
-            }
-            <tr>
-                <td colspan="4" class="right-align"><strong>@WebsiteTexts.GetValue("TotalPrice"):</strong></td>
-                <td class="center-align"><strong>@Model.TotalPrice zł</strong></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col m12">
+            <h5 id="orderStatusText" class="center-align">@Model.OrderStatus.Name</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m12">
+            <table class="striped">
+                <tbody>
+                    @foreach (var item in Model.OrderItems!)
+                    {
+                        <tr>
+                            <td class="center-align"><img src="@item.ProductImage" class="small-img" /></td>
+                            <td class="center-align">@item.Product</td>
+                            <td class="center-align">@item.UnitPrice zł</td>
+                            <td class="center-align">@item.Quantity @WebsiteTexts.GetValue("Pcs")</td>
+                            <td class="center-align">@item.TotalPrice zł</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="4" class="right-align"><strong>@WebsiteTexts.GetValue("TotalPrice"):</strong></td>
+                        <td class="center-align"><strong>@Model.TotalPrice zł</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m4">
+            <div class="form-group">
+                <label for="OrderStatus">@WebsiteTexts.GetValue("OrderStatus")</label>
+                <select class="form-control" id="OrderStatus" asp-for="OrderStatus.Id" asp-items="ViewBag.OrderStatuses"></select>
+                <button id="submitOrderStatus" class="btn btn-main">@WebsiteTexts.GetValue("ChangeStatus")</button>
+            </div>
+        </div>
+    </div>
 </div>
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $('#submitOrderStatus').on('click', function (e) {
+                e.preventDefault();
+                var orderStatusId = $('#OrderStatus').val();
+                $.ajax({
+                    url: '@Url.Action("UpdateStatus", "Orders")',
+                    type: 'POST',
+                    data: {
+                        'orderId': '@Model.Id',
+                        'orderStatusId': orderStatusId
+                    },
+                    success: function (response) {
+                        $('#orderStatusText').text(response.orderStatus);
+                    },
+                    error: function (response) {
+                        // obsłuż błąd
+                        console.error(response);
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,6 +1,5 @@
 ﻿using SmellIt.Application.Features.Orders.DTOs;
 using SmellIt.Application.Features.Products.DTOs;
-using SmellIt.Application.Features.Users.DTOs;
 
 namespace SmellIt.Application.ViewModels.Admin;
 
