@@ -14,6 +14,7 @@ public class OrderDto
     public string? UserEmail { get; set; }
     public AddressDto Address { get; set; } = default!;
     public string Delivery { get; set; } = default!;
+    public decimal DeliveryPrice { get; set; }
     public string Payment { get; set; } = default!;
     public OrderStatusDto OrderStatus { get; set; } = default!;
     public ICollection<OrderItemDto>? OrderItems { get; set; }

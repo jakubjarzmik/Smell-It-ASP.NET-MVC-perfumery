@@ -28,6 +28,13 @@
                         </tr>
                     }
                     <tr>
+                        <td></td>
+                        <td class="center-align">@WebsiteTexts.GetValue("Delivery") - @Model.Delivery</td>
+                        <td class="center-align">@Model.DeliveryPrice zł</td>
+                        <td class="center-align">1 @WebsiteTexts.GetValue("Pcs")</td>
+                        <td class="center-align">@Model.DeliveryPrice zł</td>
+                    </tr>
+                    <tr>
                         <td colspan="4" class="right-align"><strong>@WebsiteTexts.GetValue("TotalPrice"):</strong></td>
                         <td class="center-align"><strong>@Model.TotalPrice zł</strong></td>
                     </tr>
