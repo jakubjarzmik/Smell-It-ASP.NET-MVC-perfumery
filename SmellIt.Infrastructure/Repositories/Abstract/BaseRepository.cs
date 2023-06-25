@@ -63,6 +63,6 @@ public abstract class BaseRepository<T> : Repository, IBaseRepository<T> where T
         return await entities.ToListAsync();
     }
 
-    public async Task<IEnumerable<T>> GetLatestListAsync(int count)
+    public virtual async Task<IEnumerable<T>> GetLatestListAsync(int count)
         => await DbContext.Set<T>().Where(b => b.IsActive).OrderByDescending(b => b.CreatedAt).Take(count).ToListAsync();
 }

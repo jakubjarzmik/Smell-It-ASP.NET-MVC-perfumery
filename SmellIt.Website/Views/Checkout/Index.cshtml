@@ -111,7 +111,7 @@
                             <div class="block">
                                 <div class="form-group">
                                     <label for="notes">@await WebsiteTexts.GetValueAsync("MessageToTheSeller")</label>
-                                    <textarea class="form-control" id="notes" placeholder=""></textarea>
+                                    <textarea class="form-control" id="notes" asp-for="Notes" name="Notes"></textarea>
                                 </div>
                             </div>
                             <div class="block">

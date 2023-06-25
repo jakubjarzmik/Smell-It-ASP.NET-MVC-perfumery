@@ -17,6 +17,9 @@ public class CartItemRepository : BaseRepository<CartItem>, ICartItemRepository
     public async Task<IEnumerable<CartItem>> GetByUserAsync(string userId)
         => await DbContext.CartItems.Where(ci => ci.IsActive &&  ci.UserId == userId).OrderByDescending(ci => ci.CreatedAt).ToListAsync();
 
+    public IEnumerable<CartItem> GetByUser(string userId)
+        => DbContext.CartItems.Where(ci => ci.IsActive &&  ci.UserId == userId).OrderByDescending(ci => ci.CreatedAt).ToList();
+
     public async Task<CartItem?> GetBySessionAndProductEncodedNameAsync(string session, string productEncodedName)
         => await DbContext.CartItems.FirstOrDefaultAsync(ci => ci.IsActive && ci.Session.Equals(session) && ci.Product.EncodedName!.Equals(productEncodedName));
 

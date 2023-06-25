@@ -15,6 +15,6 @@ public class OrderStatusResolver : IValueResolver<OrderCreateDto, Order, OrderSt
 
     public OrderStatus Resolve(OrderCreateDto source, Order destination, OrderStatus destMember, ResolutionContext context)
     {
-        return _orderStatusRepository.GetByName("Received").Result!;
+        return _orderStatusRepository.GetByName("Received")!;
     }
 }

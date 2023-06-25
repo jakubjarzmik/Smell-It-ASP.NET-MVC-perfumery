@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<SmellIt.Application.Features.Orders.DTOs.OrderDto>
+@{
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("Orders");
+}
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">@await WebsiteTexts.GetValueAsync("Orders")</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="user-dashboard page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+                <div class="dashboard-wrapper user-dashboard">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+                                    <th>ID</th>
+                                    <th>@await WebsiteTexts.GetValueAsync("Date")</th>
+                                    <th>@await WebsiteTexts.GetValueAsync("Quantity")</th>
+                                    <th>@await WebsiteTexts.GetValueAsync("Value")</th>
+                                    <th>@await WebsiteTexts.GetValueAsync("Status")</th>
+                                    <th></th>
+								</tr>
+							</thead>
+							<tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Id
+                                    </td>
+                                    <td>@item.OrderDate</td>
+                                    <td>@item.OrderItems?.Count</td>
+                                    <td>@item.TotalPrice zł</td>
+                                    <td>@item.OrderStatus.Name</td>
+                                    <td class="right">
+                                            <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.Id" class="btn btn-default">@await WebsiteTexts.GetValueAsync("View")</a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

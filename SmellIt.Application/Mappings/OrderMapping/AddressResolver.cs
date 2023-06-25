@@ -15,7 +15,7 @@ public class AddressResolver : IValueResolver<OrderCreateDto, Order, Address>
 
     public Address Resolve(OrderCreateDto source, Order destination, Address destMember, ResolutionContext context)
     {
-        var checkedAddress = _addressRepository.GetAddress(source.FullName, source.FirstLine, source.SecondLine, source.PostalCode, source.City).Result;
+        var checkedAddress = _addressRepository.GetAddress(source.FullName, source.FirstLine, source.SecondLine, source.PostalCode, source.City);
         if (checkedAddress != null)
         {
             return checkedAddress;

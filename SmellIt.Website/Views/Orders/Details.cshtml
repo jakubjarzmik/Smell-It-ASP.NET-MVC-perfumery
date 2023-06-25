@@ -1,0 +1,124 @@
+﻿@model SmellIt.Application.Features.Orders.DTOs.OrderDto
+@{
+    ViewData["Title"] = await WebsiteTexts.GetValueAsync("Order") + " " + Model.Id;
+}
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">@(await WebsiteTexts.GetValueAsync("Order") + " " + Model.Id)</h1>
+                    <p class="right">@(await WebsiteTexts.GetValueAsync("OrderDate") + ": " + Model.OrderDate)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 id="orderStatusText" class="text-center">@Model.OrderStatus.Name</h3>
+                <div class="dashboard-wrapper user-dashboard">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>@await WebsiteTexts.GetValueAsync("Product")</th>
+                                <th>@await WebsiteTexts.GetValueAsync("UnitPrice")</th>
+                                <th>@await WebsiteTexts.GetValueAsync("Quantity")</th>
+                                <th>@await WebsiteTexts.GetValueAsync("TotalPrice")</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.OrderItems!)
+                            {
+                                <tr>
+                                    <td><img src="@item.ProductImage" class="img-rounded small-img" /></td>
+                                    <td>@item.Product</td>
+                                    <td>@item.UnitPrice zł</td>
+                                    <td>@item.Quantity @await WebsiteTexts.GetValueAsync("Pcs")</td>
+                                    <td>@item.TotalPrice zł</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td>@await WebsiteTexts.GetValueAsync("Delivery") - @Model.Delivery</td>
+                                <td>@Model.DeliveryPrice zł</td>
+                                <td>1 @await WebsiteTexts.GetValueAsync("Pcs")</td>
+                                <td>@Model.DeliveryPrice zł</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right"><strong>@await WebsiteTexts.GetValueAsync("TotalPrice"):</strong></td>
+                                <td><strong>@Model.TotalPrice zł</strong></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>@await WebsiteTexts.GetValueAsync("Address"):</strong></p>
+                <p>@Model.Address.FullName</p>
+                <p>@Model.Address.FirstLine</p>
+                @if (Model.Address.SecondLine != null)
+                {
+                    <p>@Model.Address.SecondLine</p>
+                }
+                <p>@(Model.Address.PostalCode + " " + Model.Address.City)</p>
+            </div>
+            <div class="col-md-4">
+                <br />
+                <p>@await WebsiteTexts.GetValueAsync("Payment"): @Model.Payment</p>
+                <p>@await WebsiteTexts.GetValueAsync("Delivery"): @Model.Delivery</p>
+                <p>@await WebsiteTexts.GetValueAsync("Phone"): @Model.PhoneNumber</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>@await WebsiteTexts.GetValueAsync("MessageToTheSeller"):</strong></p>
+                <p>@Model.Notes</p>
+            </div>
+        </div>
+        @if (@Model.OrderStatus.Id == ViewBag.ReceivedOrderStatus.Id)
+        {
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button id="cancelOrderBtn" data-order-id="@Model.Id" class="btn btn-large btn-danger">Anuluj zamówienie</button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#cancelOrderBtn").click(function() {
+                var orderId = $(this).data('order-id');
+
+                var confirmation = confirm("@Html.Raw(await WebsiteTexts.GetValueAsync("CancelingConfirmationText"))");
+                if (confirmation) {
+                    $.ajax({
+                        url: '/orders/cancel-order',
+                        type: 'POST',
+                        data: { orderId: orderId },
+                        success: function(response) {
+                            if (response.success) {
+                                $("#orderStatusText").text(response.orderStatus);
+                                $("#cancelOrderBtn").hide();
+                            } else {
+                                alert("@Html.Raw(await WebsiteTexts.GetValueAsync("ErrorAfterCancellationText"))");
+                            }
+                        },
+                        error: function() {
+                                alert("@Html.Raw(await WebsiteTexts.GetValueAsync("ErrorAfterCancellationText"))");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

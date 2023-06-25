@@ -857,6 +857,30 @@ public class Seeder
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(messageToTheSellerTranslations);
 
 
+            var orders = new WebsiteText { Key = "Orders" };
+            await _dbContext.WebsiteTexts.AddAsync(orders);
+
+            List<WebsiteTextTranslation> ordersTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = orders, Language = _polish, Text = "Zamówienia" },
+                new WebsiteTextTranslation { WebsiteText = orders, Language = _english, Text = "Orders" },
+            };
+            orders.WebsiteTextTranslations = ordersTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(ordersTranslations);
+
+
+            var order = new WebsiteText { Key = "Order" };
+            await _dbContext.WebsiteTexts.AddAsync(order);
+
+            List<WebsiteTextTranslation> orderTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = order, Language = _polish, Text = "Zamówienie" },
+                new WebsiteTextTranslation { WebsiteText = order, Language = _english, Text = "Order" },
+            };
+            order.WebsiteTextTranslations = orderTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(orderTranslations);
+
+
             var placeOrder = new WebsiteText { Key = "PlaceOrder" };
             await _dbContext.WebsiteTexts.AddAsync(placeOrder);
 
@@ -867,6 +891,126 @@ public class Seeder
             };
             placeOrder.WebsiteTextTranslations = placeOrderTranslations;
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(placeOrderTranslations);
+
+
+            var date = new WebsiteText { Key = "Date" };
+            await _dbContext.WebsiteTexts.AddAsync(date);
+
+            List<WebsiteTextTranslation> dateTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = date, Language = _polish, Text = "Data" },
+                new WebsiteTextTranslation { WebsiteText = date, Language = _english, Text = "Date" },
+            };
+            date.WebsiteTextTranslations = dateTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(dateTranslations);
+
+
+            var value = new WebsiteText { Key = "Value" };
+            await _dbContext.WebsiteTexts.AddAsync(value);
+
+            List<WebsiteTextTranslation> valueTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = value, Language = _polish, Text = "Wartość" },
+                new WebsiteTextTranslation { WebsiteText = value, Language = _english, Text = "Value" },
+            };
+            value.WebsiteTextTranslations = valueTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(valueTranslations);
+
+
+            var view = new WebsiteText { Key = "View" };
+            await _dbContext.WebsiteTexts.AddAsync(view);
+
+            List<WebsiteTextTranslation> viewTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = view, Language = _polish, Text = "Zobacz" },
+                new WebsiteTextTranslation { WebsiteText = view, Language = _english, Text = "View" },
+            };
+            view.WebsiteTextTranslations = viewTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(viewTranslations);
+
+
+            var product = new WebsiteText { Key = "Product" };
+            await _dbContext.WebsiteTexts.AddAsync(product);
+
+            List<WebsiteTextTranslation> productTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = product, Language = _polish, Text = "Produkt" },
+                new WebsiteTextTranslation { WebsiteText = product, Language = _english, Text = "Product" },
+            };
+            product.WebsiteTextTranslations = productTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(productTranslations);
+
+
+            var pcs = new WebsiteText { Key = "Pcs" };
+            await _dbContext.WebsiteTexts.AddAsync(pcs);
+
+            List<WebsiteTextTranslation> pcsTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = pcs, Language = _polish, Text = "Szt." },
+                new WebsiteTextTranslation { WebsiteText = pcs, Language = _english, Text = "Pcs" },
+            };
+            pcs.WebsiteTextTranslations = pcsTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(pcsTranslations);
+
+
+            var unitPrice = new WebsiteText { Key = "UnitPrice" };
+            await _dbContext.WebsiteTexts.AddAsync(unitPrice);
+
+            List<WebsiteTextTranslation> unitPriceTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = unitPrice, Language = _polish, Text = "Cena jednostkowa" },
+                new WebsiteTextTranslation { WebsiteText = unitPrice, Language = _english, Text = "Unit Price" },
+            };
+            unitPrice.WebsiteTextTranslations = unitPriceTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(unitPriceTranslations);
+
+
+            var totalPrice = new WebsiteText { Key = "TotalPrice" };
+            await _dbContext.WebsiteTexts.AddAsync(totalPrice);
+
+            List<WebsiteTextTranslation> totalPriceTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = totalPrice, Language = _polish, Text = "Cena całkowita" },
+                new WebsiteTextTranslation { WebsiteText = totalPrice, Language = _english, Text = "Total Price" },
+            };
+            totalPrice.WebsiteTextTranslations = totalPriceTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(totalPriceTranslations);
+
+
+            var orderDate = new WebsiteText { Key = "OrderDate" };
+            await _dbContext.WebsiteTexts.AddAsync(orderDate);
+
+            List<WebsiteTextTranslation> orderDateTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = orderDate, Language = _polish, Text = "Data zamówienia" },
+                new WebsiteTextTranslation { WebsiteText = orderDate, Language = _english, Text = "Order Date" },
+            };
+            orderDate.WebsiteTextTranslations = orderDateTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(orderDateTranslations);
+
+
+            var errorAfterCancellationText = new WebsiteText { Key = "ErrorAfterCancellationText" };
+            await _dbContext.WebsiteTexts.AddAsync(errorAfterCancellationText);
+
+            List<WebsiteTextTranslation> errorAfterCancellationTextTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = errorAfterCancellationText, Language = _polish, Text = "Wystąpił błąd podczas anulowania zamówienia." },
+                new WebsiteTextTranslation { WebsiteText = errorAfterCancellationText, Language = _english, Text = "An error occurred during the cancellation of the order." },
+            };
+            errorAfterCancellationText.WebsiteTextTranslations = errorAfterCancellationTextTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(errorAfterCancellationTextTranslations);
+
+
+            var cancelingConfirmationText = new WebsiteText { Key = "CancelingConfirmationText" };
+            await _dbContext.WebsiteTexts.AddAsync(cancelingConfirmationText);
+
+            List<WebsiteTextTranslation> cancelingConfirmationTextTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = cancelingConfirmationText, Language = _polish, Text = "Czy na pewno chcesz anulować zamówienie?" },
+                new WebsiteTextTranslation { WebsiteText = cancelingConfirmationText, Language = _english, Text = "Are you sure you want to cancel the order?" },
+            };
+            cancelingConfirmationText.WebsiteTextTranslations = cancelingConfirmationTextTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(cancelingConfirmationTextTranslations);
 
 
             var productsPrice = new WebsiteText { Key = "ProductsPrice" };

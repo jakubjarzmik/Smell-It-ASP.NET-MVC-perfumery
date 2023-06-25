@@ -5,12 +5,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using SmellIt.Application.Features.CartItems.Commands.AddCartItemToUser;
+using SmellIt.Application.Helpers;
 
 namespace SmellIt.Website.Areas.Identity.Pages.Account;
 
@@ -134,6 +137,7 @@ public class RegisterModel : PageModel
                 else
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    Session.SetSessionWhenUserIsLogged(HttpContext, Input.Email);
                     return LocalRedirect(returnUrl);
                 }
             }

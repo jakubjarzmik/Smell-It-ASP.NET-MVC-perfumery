@@ -19,7 +19,7 @@ public class OrderItemsResolver : IValueResolver<OrderCreateDto, Order, ICollect
 
     public ICollection<OrderItem>? Resolve(OrderCreateDto source, Order destination, ICollection<OrderItem>? destMember, ResolutionContext context)
     {
-        var cartItems = _cartItemRepository.GetByUserAsync(_userContext.GetCurrentUser()!.Id).Result;
+        var cartItems = _cartItemRepository.GetByUser(_userContext.GetCurrentUser()!.Id);
         List<OrderItem> orderItems = new();
         foreach (var cartItem in cartItems)
         {

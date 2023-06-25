@@ -2341,3 +2341,9 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 .no-bold {
     font-weight: normal;
 }
+
+
+.small-img {
+    height: 80px;
+    width: 80px;
+}

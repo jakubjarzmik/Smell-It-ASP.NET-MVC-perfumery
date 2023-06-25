@@ -201,6 +201,9 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Panel</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
   <data name="DateCreated" xml:space="preserve">
     <value>Data utworzenia</value>
   </data>

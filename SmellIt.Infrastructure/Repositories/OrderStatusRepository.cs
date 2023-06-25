@@ -11,8 +11,10 @@ public class OrderStatusRepository : BaseRepositoryWithEncodedName<OrderStatus>,
     {
     }
 
-    public async Task<OrderStatus?> GetByName(string name)
+    public async Task<OrderStatus?> GetByNameAsync(string name)
         => (await DbContext.OrderStatusTranslations.FirstOrDefaultAsync(ost => ost.Name == name))?.OrderStatus;
+    public OrderStatus? GetByName(string name)
+        => (DbContext.OrderStatusTranslations.FirstOrDefault(ost => ost.Name == name))?.OrderStatus;
     public override async Task DeleteAsync(OrderStatus orderStatus)
     {
         var currentUser = UserContext.GetCurrentUser();

@@ -15,10 +15,10 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
     {
         var category = await DbContext.ProductCategories.FirstOrDefaultAsync(pc => pc.IsActive && pc.EncodedName == encodedName);
         
-        return (await GetAllProducts(category)).OrderBy(p => p.CreatedAt);
+        return (await GetAllProductsAsync(category)).OrderBy(p => p.CreatedAt);
     }
 
-    private async Task<IEnumerable<Product>> GetAllProducts(ProductCategory? category)
+    private async Task<IEnumerable<Product>> GetAllProductsAsync(ProductCategory? category)
     {
         var products = new List<Product>();
         
@@ -31,7 +31,7 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
         {
             foreach (var subcategory in category.ProductCategories)
             {
-                products.AddRange(await GetAllProducts(subcategory));
+                products.AddRange(await GetAllProductsAsync(subcategory));
             }
         }
 
@@ -40,8 +40,10 @@ public class ProductRepository : BaseRepositoryWithEncodedName<Product>, IProduc
 
     public async Task<IEnumerable<Product>> GetMostPopularProductsAsync(int count)
     {
+        var canceledStatus = (await DbContext.OrderStatusTranslations.FirstOrDefaultAsync(ost => ost.Name == "Canceled"))?.OrderStatus;
+
         var topProducts = await DbContext.OrderItems
-            .Where(oi => oi.IsActive && oi.Order.OrderDate >= DateTime.Now.AddMonths(-1))
+            .Where(oi => oi.IsActive && oi.Order.OrderStatus != canceledStatus && oi.Order.OrderDate >= DateTime.Now.AddMonths(-1))
             .GroupBy(oi => oi.ProductId)
             .Select(group => new
             {

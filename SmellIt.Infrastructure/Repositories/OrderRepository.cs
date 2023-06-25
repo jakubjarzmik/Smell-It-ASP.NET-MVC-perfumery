@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Dropbox.Api.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
@@ -13,18 +14,26 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
     }
 
     public async Task<IEnumerable<Order>?> GetAllAsync(string userId)
-        => await DbContext.Orders.Where(o => o.IsActive && o.UserId == userId).ToListAsync();
+        => await DbContext.Orders.Where(o => o.IsActive && o.UserId == userId).OrderByDescending(o => o.OrderDate).ToListAsync();
 
     public async Task<IEnumerable<Order>?> GetAllAsync(IdentityUser user)
-        => await DbContext.Orders.Where(o => o.IsActive && o.User == user).ToListAsync();
+        => await DbContext.Orders.Where(o => o.IsActive && o.User == user).OrderByDescending(o => o.OrderDate).ToListAsync();
 
     public async Task<Order?> GetLatestUserOrderAsync(string userId)
-        => await DbContext.Orders.Where(o => o.IsActive && o.UserId == userId).OrderByDescending(o=>o.OrderDate).FirstOrDefaultAsync();
+        => await DbContext.Orders.Where(o => o.IsActive && o.UserId == userId).OrderByDescending(o => o.OrderDate).FirstOrDefaultAsync();
+
     public async Task<int> CountLastMonthAsync()
-        => await DbContext.Orders.CountAsync(o => o.IsActive && o.OrderDate >= DateTime.Now.AddMonths(-1));
+    {
+        var canceledStatus = await GetCanceledStatus();
+        return await DbContext.Orders.CountAsync(o =>
+            o.IsActive && o.OrderStatus != canceledStatus && o.OrderDate >= DateTime.Now.AddMonths(-1));
+    }
 
     public async Task<decimal> CountMonthlyEarningsAsync()
-        => await DbContext.Orders.Where(o => o.IsActive && o.OrderDate >= DateTime.Now.AddMonths(-1)).Select(o=>o.TotalPrice).SumAsync();
+    {
+        var canceledStatus = await GetCanceledStatus();
+        return await DbContext.Orders.Where(o => o.IsActive && o.OrderStatus != canceledStatus && o.OrderDate >= DateTime.Now.AddMonths(-1)).Select(o => o.TotalPrice).SumAsync();
+    }
 
     public override async Task CreateAsync(Order order)
     {
@@ -39,4 +48,17 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
         DbContext.Add(order);
         await DbContext.SaveChangesAsync();
     }
-} 
+
+    public override async Task<IEnumerable<Order>> GetLatestListAsync(int count)
+    {
+        var canceledStatus = await GetCanceledStatus();
+        return await DbContext.Set<Order>().Where(b => b.IsActive && b.OrderStatus != canceledStatus).OrderByDescending(b => b.CreatedAt).Take(count)
+            .ToListAsync();
+    }
+
+    private async Task<OrderStatus?> GetCanceledStatus()
+    {
+        return (await DbContext.OrderStatusTranslations.FirstOrDefaultAsync(ost => ost.Name == "Canceled"))?.OrderStatus;
+    }
+
+}

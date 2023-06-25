@@ -32,6 +32,9 @@ public class UserRepository : Repository, IUserRepository
     public async Task<IdentityUser?> GetByEmailAsync(string email)
         => await DbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
 
+    public IdentityUser? GetByEmail(string email)
+        => DbContext.Users.FirstOrDefault(u => u.Email == email);
+
     public async Task DeleteAsync(string id)
     {
         var deletedUser = DbContext.Users.FirstOrDefault(u => u.Id == id);

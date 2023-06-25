@@ -11,8 +11,15 @@ public class AddressRepository : BaseRepository<Address>, IAddressRepository
     {
     }
 
-    public async Task<Address?> GetAddress(string fullName, string firstLine, string secondLine, string postalCode, string city)
+    public async Task<Address?> GetAddressAsync(string fullName, string firstLine, string secondLine, string postalCode, string city)
         => await DbContext.Addresses.FirstOrDefaultAsync(a => a.IsActive == true &&
+                                                              a.FullName == fullName &&
+                                                              a.FirstLine == firstLine &&
+                                                              a.SecondLine == secondLine &&
+                                                              a.PostalCode == postalCode &&
+                                                              a.City == city);
+    public Address? GetAddress(string fullName, string firstLine, string secondLine, string postalCode, string city)
+        => DbContext.Addresses.FirstOrDefault(a => a.IsActive == true &&
                                                               a.FullName == fullName &&
                                                               a.FirstLine == firstLine &&
                                                               a.SecondLine == secondLine &&
