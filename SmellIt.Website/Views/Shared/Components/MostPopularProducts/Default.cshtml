@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<SmellIt.Application.Features.Products.DTOs.WebsiteProductDto>
+@foreach (var item in Model)
+{
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="product-item">
+            <div class="product-thumb">
+                <img class="img-responsive" src="@(item.ProductImages?.FirstOrDefault()?.ImageUrl ?? "/images/shop/products/product-default.png")" alt="@item.ProductImages?.FirstOrDefault()?.ImageAlt" />
+                <div class="preview-meta">
+                    <ul>
+                        <li>
+                            <span data-toggle="modal" data-target="#product-modal-@item.EncodedName">
+                                <i class="tf-ion-android-search"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName"><i class="tf-ion-android-list"></i></a>
+                        </li>
+                        <li>
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-encoded-name="@item.EncodedName"><i class="tf-ion-android-cart"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-content">
+
+                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName">
+                    <h4>
+                        @item.Brand?.Name<br />
+                        <strong>@item.Name</strong>
+                    </h4>
+                </a>
+
+                <p class="price">@Html.Raw(item.PromotionalPrice == null ? item.Price.Value : "<del>"+item.Price.Value+"</del> "+ item.PromotionalPrice.Value) zł</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal product-modal fade white-text" id="product-modal-@item.EncodedName">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="tf-ion-close"></i>
+        </button>
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <div class="modal-image">
+                                <img class="img-responsive" src="@(item.ProductImages?.FirstOrDefault()?.ImageUrl ?? "/images/shop/products/product-default.png")" alt="@item.ProductImages?.FirstOrDefault()?.ImageAlt" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="product-short-details">
+                                <h2 class="product-title">@((item.Brand != null ? $"{item.Brand.Name} - " : "") + $"{item.Name}")</h2>
+                                @if (item.PromotionalPrice == null)
+                                {
+                                    <p class="product-price">@item.Price.Value zł</p>
+                                }
+                                else
+                                {
+                                    <p class="product-price"><del>@item.Price.Value</del> @item.PromotionalPrice.Value zł</p>
+                                    <p>@await WebsiteTexts.GetValueAsync("Last30DaysLowestPrice"): @item.Last30DaysLowestPrice zł</p>
+                                }
+                                <p class="product-short-description">
+                                    @item.Description
+                                </p>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-encoded-name="@item.EncodedName" class="btn btn-main">@await WebsiteTexts.GetValueAsync("AddToCart")</a>
+                                <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.EncodedName" class="btn btn-transparent">@await WebsiteTexts.GetValueAsync("ViewProductDetails")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

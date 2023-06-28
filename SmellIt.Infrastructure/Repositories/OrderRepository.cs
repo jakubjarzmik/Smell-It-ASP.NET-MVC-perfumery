@@ -1,5 +1,4 @@
-﻿using Dropbox.Api.Users;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;

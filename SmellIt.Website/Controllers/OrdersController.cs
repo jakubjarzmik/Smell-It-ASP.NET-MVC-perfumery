@@ -1,20 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using SmellIt.Application.Features.CartItems.Queries.GetAllCartItemsBySession;
-using SmellIt.Application.Features.Deliveries.Queries.GetAllDeliveriesForWebsite;
 using SmellIt.Application.Features.Orders.Commands.CancelOrder;
-using SmellIt.Application.Features.Orders.Commands.CreateOrder;
-using SmellIt.Application.Features.Orders.Commands.UpdateOrderStatus;
-using SmellIt.Application.Features.Orders.Queries.GetLatestUserData;
 using SmellIt.Application.Features.Orders.Queries.GetOrderById;
 using SmellIt.Application.Features.Orders.Queries.GetOrderByUserEmail;
-using SmellIt.Application.Features.OrderStatuses.Queries.GetAllOrderStatuses;
 using SmellIt.Application.Features.OrderStatuses.Queries.GetCanceledOrderStatus;
-using SmellIt.Application.Features.Payments.Queries.GetAllPaymentsForWebsite;
 using SmellIt.Domain.Interfaces;
-using SmellIt.Domain.Models;
 using SmellIt.Website.Controllers.Abstract;
 
 namespace SmellIt.Website.Controllers;
