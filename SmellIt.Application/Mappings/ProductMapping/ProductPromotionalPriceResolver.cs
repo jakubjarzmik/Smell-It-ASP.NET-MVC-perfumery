@@ -11,7 +11,7 @@ public class ProductPromotionalPriceResolver<T> : IValueResolver<Product, T, Pro
         var productPrice = source.ProductPrices
             .Where(pp =>
                 pp.IsActive && pp.IsPromotion && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now) &&
-                pp.StartDateTime <= DateTime.Now).OrderByDescending(pp => pp.StartDateTime).FirstOrDefault();
+                pp.StartDateTime <= DateTime.Now).MaxBy(pp => pp.StartDateTime);
         if(productPrice == null) return null;
         return new ProductPriceDto
         {

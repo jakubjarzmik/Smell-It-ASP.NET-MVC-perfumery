@@ -11,27 +11,40 @@ public class AddressRepository : BaseRepository<Address>, IAddressRepository
     {
     }
 
-    public async Task<Address?> GetAddressAsync(string fullName, string firstLine, string secondLine, string postalCode, string city)
-        => await DbContext.Addresses.FirstOrDefaultAsync(a => a.IsActive == true &&
-                                                              a.FullName == fullName &&
-                                                              a.FirstLine == firstLine &&
-                                                              a.SecondLine == secondLine &&
-                                                              a.PostalCode == postalCode &&
-                                                              a.City == city);
-    public Address? GetAddress(string fullName, string firstLine, string secondLine, string postalCode, string city)
-        => DbContext.Addresses.FirstOrDefault(a => a.IsActive == true &&
-                                                              a.FullName == fullName &&
-                                                              a.FirstLine == firstLine &&
-                                                              a.SecondLine == secondLine &&
-                                                              a.PostalCode == postalCode &&
-                                                              a.City == city);
-    public override async Task CreateAsync(Address cartItem)
+    public async Task<Address> GetAddressAsync(string fullName, string firstLine, string? secondLine, string postalCode, string city)
+    {
+        var address = await DbContext.Addresses.FirstOrDefaultAsync(a => a.IsActive == true &&
+                                                                         a.FullName == fullName &&
+                                                                         a.FirstLine == firstLine &&
+                                                                         a.SecondLine == secondLine &&
+                                                                         a.PostalCode == postalCode &&
+                                                                         a.City == city);
+
+        if (address == null)
+        {
+            address = new Address
+            {
+                FullName = fullName,
+                FirstLine = firstLine,
+                SecondLine = secondLine,
+                PostalCode = postalCode,
+                City = city
+            };
+            await CreateAsync(address);
+        }
+
+        address = await GetAsync(address);
+
+        return address!;
+    }
+
+    public override async Task CreateAsync(Address address)
     {
         var currentUser = UserContext.GetCurrentUser();
 
 
-        cartItem.CreatedById = currentUser?.Id;
-        DbContext.Add(cartItem);
+        address.CreatedById = currentUser?.Id;
+        DbContext.Add(address);
         await DbContext.SaveChangesAsync();
     }
 }

@@ -24,14 +24,5 @@ public class OrderMappingProfile : Profile
                 dest.Delivery = src.Delivery.DeliveryTranslations.First(fct => fct.Language.Code == languageCode).Name;
                 dest.Payment = src.Payment.PaymentTranslations.First(fct => fct.Language.Code == languageCode).Name;
             });
-        CreateMap<OrderCreateDto, Order>()
-            .ForMember(o => o.User,
-                opt => opt.MapFrom<UserResolver>())
-            .ForMember(o => o.Address,
-                opt => opt.MapFrom<AddressResolver>())
-            .ForMember(o => o.OrderStatus,
-                opt => opt.MapFrom<OrderStatusResolver>())
-            .ForMember(o => o.OrderItems,
-                opt => opt.MapFrom<OrderItemsResolver>());
     }
 }
