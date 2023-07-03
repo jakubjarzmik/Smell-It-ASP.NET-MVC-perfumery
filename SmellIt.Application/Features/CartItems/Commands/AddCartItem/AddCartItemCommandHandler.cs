@@ -7,12 +7,14 @@ namespace SmellIt.Application.Features.CartItems.Commands.AddCartItem;
 public class AddCartItemCommandHandler : IRequestHandler<AddCartItemCommand>
 {
     private readonly ICartItemRepository _cartItemRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     private readonly IUserContext _userContext;
 
-    public AddCartItemCommandHandler(ICartItemRepository cartItemRepository, IMapper mapper, IUserContext userContext)
+    public AddCartItemCommandHandler(ICartItemRepository cartItemRepository, IProductRepository productRepository, IMapper mapper, IUserContext userContext)
     {
         _cartItemRepository = cartItemRepository;
+        _productRepository = productRepository;
         _mapper = mapper;
         _userContext = userContext;
     }
@@ -39,6 +41,7 @@ public class AddCartItemCommandHandler : IRequestHandler<AddCartItemCommand>
         else
         {
             var cartItem = _mapper.Map<CartItem>(request);
+            cartItem.Product = (await _productRepository.GetAsync(request.ProductEncodedName))!;
             await _cartItemRepository.CreateAsync(cartItem);
         }
         return Unit.Value;

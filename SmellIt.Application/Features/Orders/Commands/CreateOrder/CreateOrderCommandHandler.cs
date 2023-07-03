@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using SmellIt.Application.Helpers;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;
 
@@ -17,7 +17,6 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
 
     public CreateOrderCommandHandler(IUserContext userContext, IOrderRepository orderRepository, IDeliveryRepository deliveryRepository, IUserRepository userRepository, IAddressRepository addressRepository, IOrderStatusRepository orderStatusRepository, ICartItemRepository cartItemRepository)
     {
-
         _orderRepository = orderRepository;
         _deliveryRepository = deliveryRepository;
         _userRepository = userRepository;
@@ -70,7 +69,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
     {
         foreach (var cartItem in cartItems)
         {
-            var unitPrice = CalculateUnitPrice(cartItem);
+            var unitPrice = PriceResolver.GetActualPrice(cartItem);
             var orderItem = new OrderItem
             {
                 Quantity = cartItem.Quantity,
@@ -88,17 +87,5 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
     private async Task CalculateTotalPrice(Order order)
     {
         order!.TotalPrice = order.OrderItems!.Sum(oi => oi.TotalPrice) + (await _deliveryRepository.GetAsync(order.DeliveryId))!.Price;
-    }
-    private static decimal CalculateUnitPrice(CartItem cartItem)
-    {
-        var price = cartItem.Product.ProductPrices
-            .Where(pp =>
-                pp.IsActive && !pp.IsPromotion && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now) &&
-                pp.StartDateTime <= DateTime.Now).MaxBy(pp => pp.StartDateTime)!.Value;
-        var promotionalPrice = cartItem.Product.ProductPrices
-            .Where(pp =>
-                pp.IsActive && pp.IsPromotion && (pp.EndDateTime == null || pp.EndDateTime > DateTime.Now) &&
-                pp.StartDateTime <= DateTime.Now).MaxBy(pp => pp.StartDateTime)?.Value;
-        return promotionalPrice ?? price;
     }
 }

@@ -857,6 +857,18 @@ public class Seeder
             await _dbContext.WebsiteTextTranslations.AddRangeAsync(messageToTheSellerTranslations);
 
 
+            var cancelOrder = new WebsiteText { Key = "CancelOrder" };
+            await _dbContext.WebsiteTexts.AddAsync(cancelOrder);
+
+            List<WebsiteTextTranslation> cancelOrderTranslations = new()
+            {
+                new WebsiteTextTranslation { WebsiteText = cancelOrder, Language = _polish, Text = "Anuluj zamówienie" },
+                new WebsiteTextTranslation { WebsiteText = cancelOrder, Language = _english, Text = "Cancel Order" },
+            };
+            cancelOrder.WebsiteTextTranslations = cancelOrderTranslations;
+            await _dbContext.WebsiteTextTranslations.AddRangeAsync(cancelOrderTranslations);
+
+
             var orders = new WebsiteText { Key = "Orders" };
             await _dbContext.WebsiteTexts.AddAsync(orders);
 

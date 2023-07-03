@@ -8,9 +8,7 @@ public class BrandMappingProfile : Profile
 {
     public BrandMappingProfile()
     {
-        CreateMap<BrandDto, Brand>()
-            .ForMember(brand => brand.BrandTranslations,
-                opt => opt.MapFrom<BrandTranslationsResolver>());
+        CreateMap<BrandDto, Brand>();
 
         CreateMap<Brand, BrandDto>()
             .ForMember(dto => dto.DescriptionPl,

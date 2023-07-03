@@ -8,9 +8,7 @@ public class WebsiteTextMappingProfile : Profile
 {
     public WebsiteTextMappingProfile()
     {
-        CreateMap<WebsiteTextForAdminDto, WebsiteText>()
-            .ForMember(websiteTexts => websiteTexts.WebsiteTextTranslations,
-                opt => opt.MapFrom<WebsiteTextTranslationsResolver>());
+        CreateMap<WebsiteTextForAdminDto, WebsiteText>();
 
         CreateMap<WebsiteText, WebsiteTextForAdminDto>()
             .ForMember(dto => dto.TextPl,

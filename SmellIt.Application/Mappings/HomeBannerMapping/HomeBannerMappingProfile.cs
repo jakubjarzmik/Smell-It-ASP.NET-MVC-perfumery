@@ -8,9 +8,7 @@ public class HomeBannerMappingProfile : Profile
 {
     public HomeBannerMappingProfile()
     {
-        CreateMap<HomeBannerDto, HomeBanner>()
-            .ForMember(websiteTexts => websiteTexts.HomeBannerTranslations,
-                opt => opt.MapFrom<HomeBannerTranslationsResolver>());
+        CreateMap<HomeBannerDto, HomeBanner>();
 
         CreateMap<HomeBanner, HomeBannerDto>()
             .ForMember(dto => dto.TextPl,

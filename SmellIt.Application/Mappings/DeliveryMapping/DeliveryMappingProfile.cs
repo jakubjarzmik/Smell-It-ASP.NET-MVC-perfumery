@@ -8,9 +8,7 @@ public class DeliveryMappingProfile : Profile
 {
     public DeliveryMappingProfile()
     {
-        CreateMap<DeliveryDto, Delivery>()
-            .ForMember(brand => brand.DeliveryTranslations,
-                opt => opt.MapFrom<DeliveryTranslationsResolver>());
+        CreateMap<DeliveryDto, Delivery>();
 
         CreateMap<Delivery, DeliveryDto>()
             .ForMember(dto => dto.NamePl,

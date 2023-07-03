@@ -9,11 +9,15 @@ namespace SmellIt.Application.Features.Products.Queries.GetFilteredProductsForWe
 public class GetFilteredProductsForWebsiteQueryHandler : IRequestHandler<GetFilteredProductsForWebsiteQuery, IEnumerable<WebsiteProductDto>>
 {
     private readonly IProductRepository _productRepository;
+    private readonly IOrderStatusRepository _orderStatusRepository;
+    private readonly IOrderItemRepository _orderItemRepository;
     private readonly IMapper _mapper;
 
-    public GetFilteredProductsForWebsiteQueryHandler(IProductRepository productRepository, IMapper mapper)
+    public GetFilteredProductsForWebsiteQueryHandler(IProductRepository productRepository, IOrderStatusRepository orderStatusRepository, IOrderItemRepository orderItemRepository, IMapper mapper)
     {
         _productRepository = productRepository;
+        _orderStatusRepository = orderStatusRepository;
+        _orderItemRepository = orderItemRepository;
         _mapper = mapper;
     }
 
@@ -21,8 +25,18 @@ public class GetFilteredProductsForWebsiteQueryHandler : IRequestHandler<GetFilt
     {
         var products = await FetchProductsAsync(request);
         products = ApplyFilters(request, products);
-        var dtos = _mapper.Map<IEnumerable<WebsiteProductDto>>(products, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
-        dtos = SortDtos(request, dtos);
+
+        var canceledOrderStatus = await _orderStatusRepository.GetByNameAsync("Canceled");
+
+        var dtos = new List<WebsiteProductDto>();
+        foreach (var product in products)
+        {
+            var dto = _mapper.Map<WebsiteProductDto>(product, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
+            dto.SoldAmount = (await _orderItemRepository.GetAsync(product))?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus).Sum(oi => oi.Quantity);
+            dtos.Add(dto);
+        }
+
+        dtos = SortDtos(request, dtos).ToList();
 
         return dtos;
     }

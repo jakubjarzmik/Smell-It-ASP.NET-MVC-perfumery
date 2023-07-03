@@ -86,7 +86,7 @@
         {
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <button id="cancelOrderBtn" data-order-id="@Model.Id" class="btn btn-large btn-danger">Anuluj zamówienie</button>
+                    <button id="cancelOrderBtn" data-order-id="@Model.Id" class="btn btn-large btn-danger">@await WebsiteTexts.GetValueAsync("CancelOrder")</button>
                 </div>
             </div>
         }

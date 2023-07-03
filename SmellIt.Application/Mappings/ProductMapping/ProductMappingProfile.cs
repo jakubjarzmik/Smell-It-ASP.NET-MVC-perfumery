@@ -8,21 +8,7 @@ public class ProductMappingProfile : Profile
 {
     public ProductMappingProfile()
     {
-        CreateMap<ProductDto, Product>()
-            .ForMember(product => product.ProductTranslations,
-                opt => opt.MapFrom<ProductTranslationsResolver>())
-            .ForMember(product => product.ProductCategory,
-                opt => opt.MapFrom<ProductCategoryResolver>())
-            .ForMember(product => product.Brand,
-                opt => opt.MapFrom<BrandResolver>())
-            .ForMember(product => product.FragranceCategory,
-                opt => opt.MapFrom<FragranceCategoryResolver>())
-            .ForMember(product => product.Gender,
-                opt => opt.MapFrom<GenderResolver>())
-            .ForMember(product => product.ProductImages,
-                opt => opt.MapFrom<ProductImagesResolver>())
-            .ForMember(product => product.ProductPrices,
-                opt => opt.MapFrom<ProductPricesResolver>());
+        CreateMap<ProductDto, Product>();
 
         CreateMap<Product, ProductDto>()
             .ForMember(dto => dto.NamePl,
@@ -30,9 +16,11 @@ public class ProductMappingProfile : Profile
             .ForMember(dto => dto.NameEn,
                 opt => opt.MapFrom(src => src.ProductTranslations.First(fct => fct.Language.Code == "en-GB").Name))
             .ForMember(dto => dto.DescriptionPl,
-                opt => opt.MapFrom(src => src.ProductTranslations.First(fct => fct.Language.Code == "pl-PL").Description))
+                opt => opt.MapFrom(
+                    src => src.ProductTranslations.First(fct => fct.Language.Code == "pl-PL").Description))
             .ForMember(dto => dto.DescriptionEn,
-                opt => opt.MapFrom(src => src.ProductTranslations.First(fct => fct.Language.Code == "en-GB").Description))
+                opt => opt.MapFrom(
+                    src => src.ProductTranslations.First(fct => fct.Language.Code == "en-GB").Description))
             .ForMember(dto => dto.ProductCategory,
                 opt => opt.MapFrom(src => src.ProductCategory))
             .ForMember(dto => dto.Brand,
@@ -48,9 +36,9 @@ public class ProductMappingProfile : Profile
             .ForMember(dest => dest.PromotionalPrice,
                 opt => opt.MapFrom<ProductPromotionalPriceResolver<ProductDto>>())
             .ForMember(dest => dest.Last30DaysLowestPrice,
-                opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<ProductDto>>())
-            .ForMember(dest => dest.SoldAmount,
-                opt => opt.MapFrom<SoldAmountResolver<ProductDto>>());
+                opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<ProductDto>>());
+            //.ForMember(dest => dest.SoldAmount,
+            //    opt => opt.MapFrom<SoldAmountResolver<ProductDto>>());
 
         CreateMap<ProductDto, EditProductCommand>();
 
@@ -71,8 +59,8 @@ public class ProductMappingProfile : Profile
                 opt => opt.MapFrom<ProductPromotionalPriceResolver<WebsiteProductDto>>())
             .ForMember(dest => dest.Last30DaysLowestPrice,
                 opt => opt.MapFrom<ProductLast30DaysLowestPriceResolver<WebsiteProductDto>>())
-            .ForMember(dest => dest.SoldAmount,
-                opt => opt.MapFrom<SoldAmountResolver<WebsiteProductDto>>())
+            //.ForMember(dest => dest.SoldAmount,
+            //    opt => opt.MapFrom<SoldAmountResolver<WebsiteProductDto>>())
             .ForMember(dto => dto.Name,
                 opt => opt.Ignore())
             .ForMember(dto => dto.Description,

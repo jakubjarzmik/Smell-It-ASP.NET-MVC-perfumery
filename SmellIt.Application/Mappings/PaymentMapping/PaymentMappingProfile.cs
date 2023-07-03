@@ -8,9 +8,7 @@ public class PaymentMappingProfile : Profile
 {
     public PaymentMappingProfile()
     {
-        CreateMap<PaymentDto, Payment>()
-            .ForMember(brand => brand.PaymentTranslations,
-                opt => opt.MapFrom<PaymentTranslationsResolver>());
+        CreateMap<PaymentDto, Payment>();
 
         CreateMap<Payment, PaymentDto>()
             .ForMember(dto => dto.NamePl,

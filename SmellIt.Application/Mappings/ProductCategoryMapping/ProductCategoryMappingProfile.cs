@@ -8,11 +8,7 @@ public class ProductCategoryMappingProfile : Profile
 {
     public ProductCategoryMappingProfile()
     {
-        CreateMap<ProductCategoryDto, ProductCategory>()
-            .ForMember(brand => brand.ProductCategoryTranslations,
-                opt => opt.MapFrom<ProductCategoryTranslationsResolver>())
-            .ForMember(brand => brand.ParentCategory,
-                opt => opt.MapFrom<ParentCategoryResolver>());
+        CreateMap<ProductCategoryDto, ProductCategory>();
 
         CreateMap<ProductCategory, ProductCategoryDto>()
             .ForMember(dto => dto.ParentCategory,

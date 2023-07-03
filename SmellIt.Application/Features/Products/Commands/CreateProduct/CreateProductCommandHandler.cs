@@ -19,13 +19,14 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IGenderRepository _genderRepository;
     private readonly IProductPriceRepository _productPriceRepository;
     private readonly IProductImageRepository _productImageRepository;
+    private readonly ILanguageRepository _languageRepository;
     private readonly IMapper _mapper;
     private readonly IImageUploader _imageUploader;
 
     public CreateProductCommandHandler(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository,
         IBrandRepository brandRepository, IFragranceCategoryRepository fragranceCategoryRepository,
         IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IProductImageRepository productImageRepository,
-        IMapper mapper, IImageUploader imageUploader)
+        ILanguageRepository languageRepository, IMapper mapper, IImageUploader imageUploader)
     {
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
@@ -34,44 +35,54 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
         _genderRepository = genderRepository;
         _productPriceRepository = productPriceRepository;
         _productImageRepository = productImageRepository;
+        _languageRepository = languageRepository;
         _mapper = mapper;
         _imageUploader = imageUploader;
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        await SetRelatedEntitiesAsync(request);
+        var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
+        var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 
         var product = _mapper.Map<Product>(request);
+
+        if (plLanguage != null && enLanguage != null)
+        {
+            product.ProductTranslations = new List<ProductTranslation>
+            {
+                new ProductTranslation { Language = plLanguage, Name = request.NamePl, Description = request.DescriptionPl },
+                new ProductTranslation { Language = enLanguage, Name = request.NameEn, Description = request.DescriptionEn }
+            };
+        }
+
+
+        await SetRelatedEntitiesAsync(request, product);
+
         await _productRepository.CreateAsync(product);
 
         await ProcessImagesAsync(request, product);
-
         await ProcessProductPriceAsync(request, product);
 
         return Unit.Value;
     }
 
-    private async Task SetRelatedEntitiesAsync(CreateProductCommand request)
+    private async Task SetRelatedEntitiesAsync(CreateProductCommand request, Product product)
     {
         if (!string.IsNullOrWhiteSpace(request.ProductCategoryEncodedName))
         {
-            var productCategory = await _productCategoryRepository.GetAsync(request.ProductCategoryEncodedName!);
-            request.ProductCategory = _mapper.Map<ProductCategoryDto>(productCategory);
+            product.ProductCategory = await _productCategoryRepository.GetAsync(request.ProductCategoryEncodedName);
         }
         if (!string.IsNullOrWhiteSpace(request.BrandEncodedName))
         {
-            var brand = await _brandRepository.GetAsync(request.BrandEncodedName!);
-            request.Brand = _mapper.Map<BrandDto>(brand);
+            product.Brand = await _brandRepository.GetAsync(request.BrandEncodedName);
         }
         if (!string.IsNullOrWhiteSpace(request.FragranceCategoryEncodedName))
         {
-            var fragranceCategory = await _fragranceCategoryRepository.GetAsync(request.FragranceCategoryEncodedName!);
-            request.FragranceCategory = _mapper.Map<FragranceCategoryDto>(fragranceCategory);
+            product.FragranceCategory = await _fragranceCategoryRepository.GetAsync(request.FragranceCategoryEncodedName);
         }
         if (request.GenderId != null)
         {
-            var gender = await _genderRepository.GetAsync(request.GenderId.Value);
-            request.Gender = _mapper.Map<GenderDto>(gender);
+            product.GenderId = request.GenderId;
         }
     }
 

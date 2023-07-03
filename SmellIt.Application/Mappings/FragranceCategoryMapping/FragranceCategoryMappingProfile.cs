@@ -8,9 +8,7 @@ public class FragranceCategoryMappingProfile : Profile
 {
     public FragranceCategoryMappingProfile()
     {
-        CreateMap<FragranceCategoryDto, FragranceCategory>()
-            .ForMember(brand => brand.FragranceCategoryTranslations,
-                opt => opt.MapFrom<FragranceCategoryTranslationsResolver>());
+        CreateMap<FragranceCategoryDto, FragranceCategory>();
 
         CreateMap<FragranceCategory, FragranceCategoryDto>()
             .ForMember(dto => dto.NamePl,

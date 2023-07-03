@@ -7,9 +7,7 @@ public class GenderMappingProfile : Profile
 {
     public GenderMappingProfile()
     {
-        CreateMap<GenderDto, Gender>()
-            .ForMember(gender => gender.GenderTranslations,
-                opt => opt.MapFrom<GenderTranslationsResolver>());
+        CreateMap<GenderDto, Gender>();
 
         CreateMap<Gender, GenderDto>()
             .ForMember(dto => dto.NamePl,

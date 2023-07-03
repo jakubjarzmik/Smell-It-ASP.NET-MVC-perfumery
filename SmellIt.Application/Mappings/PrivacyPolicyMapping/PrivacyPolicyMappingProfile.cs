@@ -8,9 +8,8 @@ public class PrivacyPolicyMappingProfile : Profile
 {
     public PrivacyPolicyMappingProfile()
     {
-        CreateMap<PrivacyPolicyDto, PrivacyPolicy>()
-            .ForMember(pp => pp.Language,
-                opt => opt.MapFrom<PrivacyPolicyLanguageResolver>());
+        CreateMap<PrivacyPolicyDto, PrivacyPolicy>();
+
         CreateMap<PrivacyPolicy, PrivacyPolicyDto>()
             .ForMember(pp => pp.LanguageCode,
                 opt => opt.MapFrom(src=>src.Language.Code));

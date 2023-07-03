@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SmellIt.Application.Features.CartItems.DTOs.Website;
+using SmellIt.Application.Helpers;
 using SmellIt.Domain.Entities;
 
 namespace SmellIt.Application.Mappings.CartItemMapping;
@@ -18,9 +19,9 @@ public class CartItemMappingProfile : Profile
             .ForMember(ct => ct.ImageAlt,
                 opt => opt.MapFrom(src => src.Product.ProductImages.FirstOrDefault().ImageAlt))
             .ForMember(ct => ct.Price,
-                opt => opt.MapFrom<CartItemPriceResolver>())
+                opt => opt.MapFrom(src => PriceResolver.GetNonPromotionalPrice(src)))
             .ForMember(ct => ct.PromotionalPrice,
-                opt => opt.MapFrom<CartItemPromotionalPriceResolver>())
+                opt => opt.MapFrom(src => PriceResolver.GetPromotionalPrice(src)))
             .AfterMap((src, dest, ctx) =>
             {
                 var languageCode = ctx.Items["LanguageCode"].ToString();

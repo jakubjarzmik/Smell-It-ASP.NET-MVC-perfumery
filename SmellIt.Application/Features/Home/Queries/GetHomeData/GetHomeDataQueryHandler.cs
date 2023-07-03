@@ -10,13 +10,17 @@ public class GetHomeDataQueryHandler : IRequestHandler<GetHomeDataQuery, HomeVie
 {
     private readonly IProductRepository _productRepository;
     private readonly IOrderRepository _orderRepository;
+    private readonly IOrderStatusRepository _orderStatusRepository;
+    private readonly IOrderItemRepository _orderItemRepository;
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public GetHomeDataQueryHandler(IProductRepository productRepository, IOrderRepository orderRepository, IUserRepository userRepository, IMapper mapper)
+    public GetHomeDataQueryHandler(IProductRepository productRepository, IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository, IOrderItemRepository orderItemRepository, IUserRepository userRepository, IMapper mapper)
     {
         _productRepository = productRepository;
         _orderRepository = orderRepository;
+        _orderStatusRepository = orderStatusRepository;
+        _orderItemRepository = orderItemRepository;
         _userRepository = userRepository;
         _mapper = mapper;
     }
@@ -29,7 +33,17 @@ public class GetHomeDataQueryHandler : IRequestHandler<GetHomeDataQuery, HomeVie
         {
             opt.Items["LanguageCode"] = request.LanguageCode;
         });
-        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+
+        var canceledOrderStatus = await _orderStatusRepository.GetByNameAsync("Canceled");
+
+        var dtos = new List<ProductDto>();
+        foreach (var product in products)
+        {
+            var dto = _mapper.Map<ProductDto>(product);
+            dto.SoldAmount = (await _orderItemRepository.GetAsync(product))
+                ?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus).Sum(oi => oi.Quantity);
+            dtos.Add(dto);
+        }
 
         var viewModel = new HomeViewModel
         {
@@ -38,7 +52,7 @@ public class GetHomeDataQueryHandler : IRequestHandler<GetHomeDataQuery, HomeVie
             MonthlyEarnings = (int)await _orderRepository.CountMonthlyEarningsAsync(),
             UsersCount = await _userRepository.CountAsync(),
             RecentOrders = orderDtos,
-            MostPopularProducts = productDtos.OrderByDescending(p=>p.SoldAmount)
+            MostPopularProducts = dtos.OrderByDescending(p=>p.SoldAmount)
         };
 
         return viewModel;
