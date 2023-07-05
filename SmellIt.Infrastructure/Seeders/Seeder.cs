@@ -435,7 +435,7 @@ public class Seeder
     public async Task SeedDefaultUsers()
     {
         _defaultAdmin = new IdentityUser { UserName = "admin@smellit.com", Email = "admin@smellit.com" };
-        if (_userManager.FindByEmailAsync(_defaultAdmin.Email).Result == null)
+        if (await _userManager.FindByEmailAsync(_defaultAdmin.Email) == null)
         {
             await _userManager.CreateAsync(_defaultAdmin, "zaq1@WSX");
             await _userManager.AddToRoleAsync(_defaultAdmin, "Admin");
@@ -443,20 +443,20 @@ public class Seeder
         }
 
         var defaultEmployee = new IdentityUser { UserName = "employee@smellit.com", Email = "employee@smellit.com" };
-        if (_userManager.FindByEmailAsync(defaultEmployee.Email).Result == null)
+        if (await _userManager.FindByEmailAsync(defaultEmployee.Email) == null)
         {
             await _userManager.CreateAsync(defaultEmployee, "zaq1@WSX");
             await _userManager.AddToRoleAsync(defaultEmployee, "Employee");
         }
 
         _defaultClient = new IdentityUser { UserName = "jankowalski@gmail.com", Email = "jankowalski@gmail.com" };
-        if (_userManager.FindByEmailAsync(_defaultClient.Email).Result == null)
+        if (await _userManager.FindByEmailAsync(_defaultClient.Email) == null)
         {
             await _userManager.CreateAsync(_defaultClient, "zaq1@WSX");
         }
 
         _defaultClient2 = new IdentityUser { UserName = "adamnowak@outlook.com", Email = "adamnowak@outlook.com" };
-        if (_userManager.FindByEmailAsync(_defaultClient2.Email).Result == null)
+        if (await _userManager.FindByEmailAsync(_defaultClient2.Email) == null)
         {
             await _userManager.CreateAsync(_defaultClient2, "zaq1@WSX");
         }

@@ -8,9 +8,7 @@ public class CartItemMappingProfile : Profile
 {
     public CartItemMappingProfile()
     {
-        CreateMap<CartItemDtoForAdd, CartItem>()
-            .ForMember(ct => ct.Product,
-                opt => opt.MapFrom<CartItemProductResolver>());
+        CreateMap<CartItemDtoForAdd, CartItem>();
         CreateMap<CartItem, CartItemDtoForView>()
             .ForMember(ct => ct.ProductEncodedName,
                 opt => opt.MapFrom(src => src.Product.EncodedName))
