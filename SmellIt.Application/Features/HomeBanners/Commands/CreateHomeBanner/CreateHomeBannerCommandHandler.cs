@@ -8,12 +8,14 @@ namespace SmellIt.Application.Features.HomeBanners.Commands.CreateHomeBanner;
 
 public class CreateHomeBannerCommandHandler : IRequestHandler<CreateHomeBannerCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IHomeBannerRepository _homeBannerRepository;
     private readonly IMapper _mapper;
     private readonly ILanguageRepository _languageRepository;
     private readonly IImageUploader _imageUploader;
-    public CreateHomeBannerCommandHandler(IHomeBannerRepository homeBannerRepository, IMapper mapper, ILanguageRepository languageRepository, IImageUploader imageUploader)
+    public CreateHomeBannerCommandHandler(IUserContext userContext, IHomeBannerRepository homeBannerRepository, IMapper mapper, ILanguageRepository languageRepository, IImageUploader imageUploader)
     {
+        _userContext = userContext;
         _homeBannerRepository = homeBannerRepository;
         _mapper = mapper;
         _languageRepository = languageRepository;
@@ -22,6 +24,13 @@ public class CreateHomeBannerCommandHandler : IRequestHandler<CreateHomeBannerCo
 
     public async Task<Unit> Handle(CreateHomeBannerCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

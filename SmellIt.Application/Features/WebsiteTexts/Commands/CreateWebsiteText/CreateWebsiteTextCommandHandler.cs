@@ -7,17 +7,26 @@ namespace SmellIt.Application.Features.WebsiteTexts.Commands.CreateWebsiteText;
 
 public class CreateWebsiteTextCommandHandler : IRequestHandler<CreateWebsiteTextCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IWebsiteTextRepository _websiteTextRepository;
     private readonly ILanguageRepository _languageRepository;
     private readonly IMapper _mapper;
-    public CreateWebsiteTextCommandHandler(IWebsiteTextRepository websiteTextRepository, ILanguageRepository languageRepository, IMapper mapper)
+    public CreateWebsiteTextCommandHandler(IUserContext userContext,IWebsiteTextRepository websiteTextRepository, ILanguageRepository languageRepository, IMapper mapper)
     {
+        _userContext = userContext;
         _websiteTextRepository = websiteTextRepository;
         _languageRepository = languageRepository;
         _mapper = mapper;
     }
     public async Task<Unit> Handle(CreateWebsiteTextCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

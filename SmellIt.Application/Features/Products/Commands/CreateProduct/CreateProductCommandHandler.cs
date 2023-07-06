@@ -12,6 +12,7 @@ using System.Globalization;
 namespace SmellIt.Application.Features.Products.Commands.CreateProduct;
 public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IProductRepository _productRepository;
     private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly IBrandRepository _brandRepository;
@@ -23,11 +24,12 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IMapper _mapper;
     private readonly IImageUploader _imageUploader;
 
-    public CreateProductCommandHandler(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository,
+    public CreateProductCommandHandler(IUserContext userContext, IProductRepository productRepository, IProductCategoryRepository productCategoryRepository,
         IBrandRepository brandRepository, IFragranceCategoryRepository fragranceCategoryRepository,
         IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IProductImageRepository productImageRepository,
         ILanguageRepository languageRepository, IMapper mapper, IImageUploader imageUploader)
     {
+        _userContext = userContext;
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
         _brandRepository = brandRepository;
@@ -41,6 +43,13 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     }
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

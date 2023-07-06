@@ -6,17 +6,26 @@ using SmellIt.Domain.Interfaces;
 namespace SmellIt.Application.Features.Deliveries.Commands.CreateDelivery;
 public class CreateDeliveryCommandHandler : IRequestHandler<CreateDeliveryCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IDeliveryRepository _deliveryRepository;
     private readonly ILanguageRepository _languageRepository;
     private readonly IMapper _mapper;
-    public CreateDeliveryCommandHandler(IDeliveryRepository deliveryRepository, ILanguageRepository languageRepository,IMapper mapper)
+    public CreateDeliveryCommandHandler(IUserContext userContext, IDeliveryRepository deliveryRepository, ILanguageRepository languageRepository, IMapper mapper)
     {
+        _userContext = userContext;
         _deliveryRepository = deliveryRepository;
         _languageRepository = languageRepository;
         _mapper = mapper;
     }
     public async Task<Unit> Handle(CreateDeliveryCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

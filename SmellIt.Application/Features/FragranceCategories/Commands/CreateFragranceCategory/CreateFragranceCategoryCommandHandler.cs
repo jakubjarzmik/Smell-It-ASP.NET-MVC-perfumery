@@ -6,17 +6,26 @@ using SmellIt.Domain.Interfaces;
 namespace SmellIt.Application.Features.FragranceCategories.Commands.CreateFragranceCategory;
 public class CreateFragranceCategoryCommandHandler : IRequestHandler<CreateFragranceCategoryCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
     private readonly ILanguageRepository _languageRepository;
     private readonly IMapper _mapper;
-    public CreateFragranceCategoryCommandHandler(IFragranceCategoryRepository fragranceCategoryRepository, ILanguageRepository languageRepository, IMapper mapper)
+    public CreateFragranceCategoryCommandHandler(IUserContext userContext, IFragranceCategoryRepository fragranceCategoryRepository, ILanguageRepository languageRepository, IMapper mapper)
     {
+        _userContext = userContext;
         _fragranceCategoryRepository = fragranceCategoryRepository;
         _languageRepository = languageRepository;
         _mapper = mapper;
     }
     public async Task<Unit> Handle(CreateFragranceCategoryCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

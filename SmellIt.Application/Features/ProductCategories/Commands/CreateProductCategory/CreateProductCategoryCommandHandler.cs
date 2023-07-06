@@ -7,17 +7,26 @@ using SmellIt.Domain.Interfaces;
 namespace SmellIt.Application.Features.ProductCategories.Commands.CreateProductCategory;
 public class CreateProductCategoryCommandHandler : IRequestHandler<CreateProductCategoryCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly ILanguageRepository _languageRepository;
     private readonly IMapper _mapper;
-    public CreateProductCategoryCommandHandler(IProductCategoryRepository productCategoryRepository, ILanguageRepository languageRepository, IMapper mapper)
+    public CreateProductCategoryCommandHandler(IUserContext userContext, IProductCategoryRepository productCategoryRepository, ILanguageRepository languageRepository, IMapper mapper)
     {
+        _userContext = userContext;
         _productCategoryRepository = productCategoryRepository;
         _languageRepository = languageRepository;
         _mapper = mapper;
     }
     public async Task<Unit> Handle(CreateProductCategoryCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+
+        if (currentUser == null || !currentUser.IsInRole("Admin"))
+        {
+            return Unit.Value;
+        }
+
         var plLanguage = await _languageRepository.GetByCodeAsync("pl-PL");
         var enLanguage = await _languageRepository.GetByCodeAsync("en-GB");
 

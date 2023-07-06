@@ -5,10 +5,12 @@ namespace SmellIt.Application.Features.Payments.Commands.DeletePaymentByEncodedN
 
 public class DeletePaymentByEncodedNameCommandHandler : IRequestHandler<DeletePaymentByEncodedNameCommand>
 {
+    private readonly IUserContext _userContext;
     private readonly IPaymentRepository _paymentRepository;
 
-    public DeletePaymentByEncodedNameCommandHandler(IPaymentRepository paymentRepository)
+    public DeletePaymentByEncodedNameCommandHandler(IUserContext userContext,IPaymentRepository paymentRepository)
     {
+        _userContext = userContext;
         _paymentRepository = paymentRepository;
     }
 

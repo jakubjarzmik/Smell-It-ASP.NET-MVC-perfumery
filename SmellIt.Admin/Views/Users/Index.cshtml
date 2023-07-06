@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SmellIt.Application.Features.Roles.DTOs
 @model SmellIt.Application.ViewModels.Admin.UsersViewModel
 @{
     ViewData["Title"] = WebsiteTexts.GetValue("Users");
@@ -10,30 +11,94 @@
 
     <table class="striped">
         <thead>
-        <tr>
-            <th class="center-align">ID</th>
-            <th class="center-align">@WebsiteTexts.GetValue("Email")</th>
-            <th class="center-align">@WebsiteTexts.GetValue("PhoneNumber")</th>
-            <th></th>
-        </tr>
+            <tr>
+                <th class="center-align">ID</th>
+                <th class="center-align">@WebsiteTexts.GetValue("Email")</th>
+                <th class="center-align">@WebsiteTexts.GetValue("PhoneNumber")</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.Items!)
-        {
-            <tr>
-                <td class="center-align">
-                    @item.Id
-                </td>
-                <td class="center-align">
-                    @item.Email
-                </td>
-                <td class="center-align">@item.PhoneNumber</td>
-                <td class="right">
-                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id" class="btn"> <i class="material-icons">delete</i></a>
-                </td>
-            </tr>
-        }
+            @{
+                int index = 0;
+            }
+            @foreach (var item in Model.Items!)
+            {
+                <tr>
+                    <td class="center-align">
+                        @item.Id
+                    </td>
+                    <td class="center-align">
+                        @item.Email
+                    </td>
+                    <td class="center-align">@item.PhoneNumber</td>
+
+                    <td class="right">
+                        @if (item.Email != "admin@smellit.com")
+                        {
+                            <a href="#modal_@index" class="btn modal-trigger"><i class="material-icons">edit</i></a>
+                            <div id="modal_@index" class="modal">
+                                <div class="modal-content">
+                                    <h4>@WebsiteTexts.GetValue("ChangeRoleFor"): @item.Email</h4>
+                                    @foreach (var role in ViewBag.Roles as IEnumerable<RoleDto>)
+                                    {
+                                        <p>
+                                            <label class="white-text">
+                                                <input type="checkbox" id="@role.Id" @(item.Roles!.Contains(role.Name) ? "checked" : "") />
+                                                <span>@role.Name</span>
+                                            </label>
+                                        </p>
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class="modal-close btn save-button">@WebsiteTexts.GetValue("Save")</a>
+                                    <a href="#" class="modal-close btn">@WebsiteTexts.GetValue("Cancel")</a>
+                                </div>
+                            </div>
+
+                            <a asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id" class="btn"> <i class="material-icons">delete</i></a>
+                        }
+                    </td>
+
+                </tr>
+                index++;
+            }
         </tbody>
     </table>
 </div>
 <partial name="PartialViews/_Pagination" />
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            // Po kliknięciu przycisku 'Save'...
+            $(".modal .modal-footer .save-button").click(function () {
+                // Pobieranie otwartego modala...
+                var modal = $(this).closest(".modal");
+                // Pobieranie adresu email użytkownika z tytułu modala...
+                var userEmail = modal.find(".modal-content h4").text().split(": ")[1];
+                // Pobieranie listy ról, które są zaznaczone...
+                var roles = modal.find(".modal-content input[type='checkbox']:checked").map(function () {
+                    return $(this).next().text();
+                }).get();
+
+                // Wywołanie metody AJAX...
+                $.ajax({
+                    url: '/users/change-role',
+                    method: 'POST',
+                    data: {
+                        userEmail: userEmail,
+                        roles: roles
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Role zostały pomyślnie zaktualizowane');
+                        } else {
+                            alert('Wystąpił błąd podczas aktualizacji ról');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
