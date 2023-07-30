@@ -177,6 +177,9 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="ChangeRoleFor" xml:space="preserve">
+    <value>Change role for</value>
+  </data>
   <data name="ChangeStatus" xml:space="preserve">
     <value>Change Status</value>
   </data>
@@ -251,6 +254,9 @@
   </data>
   <data name="EditWebsiteText" xml:space="preserve">
     <value>Edit Website Text</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
   </data>
   <data name="EndDate" xml:space="preserve">
     <value>End Date</value>

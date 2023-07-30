@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmellIt.DomainTests", "Smel
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{59EBC1A3-A8B0-477B-BB5E-13AED7BF788B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmellIt.InfrastructureTests", "SmellIt.InfrastructureTests\SmellIt.InfrastructureTests.csproj", "{C3934718-CEFE-4AA4-955B-ADBC4B627E3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{68E9806B-2DA6-4D80-8703-A5256A134D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68E9806B-2DA6-4D80-8703-A5256A134D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68E9806B-2DA6-4D80-8703-A5256A134D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3934718-CEFE-4AA4-955B-ADBC4B627E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3934718-CEFE-4AA4-955B-ADBC4B627E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3934718-CEFE-4AA4-955B-ADBC4B627E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3934718-CEFE-4AA4-955B-ADBC4B627E3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{89FB1A1E-22C3-49D2-B43D-C67849AAFC82} = {59EBC1A3-A8B0-477B-BB5E-13AED7BF788B}
 		{68E9806B-2DA6-4D80-8703-A5256A134D38} = {59EBC1A3-A8B0-477B-BB5E-13AED7BF788B}
+		{C3934718-CEFE-4AA4-955B-ADBC4B627E3F} = {59EBC1A3-A8B0-477B-BB5E-13AED7BF788B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8D9D441-9F22-4BD4-8031-88FE03B3CAB0}

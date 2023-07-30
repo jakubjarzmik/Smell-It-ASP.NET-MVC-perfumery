@@ -45,7 +45,7 @@
                                         <p>
                                             <label class="white-text">
                                                 <input type="checkbox" id="@role.Id" @(item.Roles!.Contains(role.Name) ? "checked" : "") />
-                                                <span>@role.Name</span>
+                                                <span>@WebsiteTexts.GetValue(role.Name!)</span>
                                             </label>
                                         </p>
                                     }

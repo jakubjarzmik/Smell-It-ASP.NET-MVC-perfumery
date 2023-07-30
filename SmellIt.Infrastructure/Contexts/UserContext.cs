@@ -23,7 +23,7 @@ public class UserContext : IUserContext
             throw new InvalidOperationException("User null reference");
         }
 
-        if (user?.Identity?.IsAuthenticated == false)
+        if (user.Identity?.IsAuthenticated == false)
         {
             return null;
         }

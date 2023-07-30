@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmellIt.Application\SmellIt.Application.csproj" />
     <ProjectReference Include="..\SmellIt.Infrastructure\SmellIt.Infrastructure.csproj" />
   </ItemGroup>
 
