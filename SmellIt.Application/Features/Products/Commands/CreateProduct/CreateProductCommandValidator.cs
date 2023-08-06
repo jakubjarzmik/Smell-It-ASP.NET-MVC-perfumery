@@ -19,7 +19,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .LessThan(10000000).WithMessage("Price should be less than 10,000,000");
         RuleFor(b => b.PromotionalPriceValue)
             .GreaterThan(0).WithMessage("Promotional Price should be greater than 0")
-            .LessThan(10000000).WithMessage("Promotional Price should be less than 10,000,000");
+            .LessThan(b=>b.PriceValue).WithMessage("Promotional Price should be less than Price");
         RuleFor(b => b.ProductCategoryEncodedName)
             .NotEmpty().WithMessage("Category is required");
     }

@@ -17,7 +17,6 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly IBrandRepository _brandRepository;
     private readonly IFragranceCategoryRepository _fragranceCategoryRepository;
-    private readonly IGenderRepository _genderRepository;
     private readonly IProductPriceRepository _productPriceRepository;
     private readonly IProductImageRepository _productImageRepository;
     private readonly ILanguageRepository _languageRepository;
@@ -25,16 +24,14 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     private readonly IImageUploader _imageUploader;
 
     public CreateProductCommandHandler(IUserContext userContext, IProductRepository productRepository, IProductCategoryRepository productCategoryRepository,
-        IBrandRepository brandRepository, IFragranceCategoryRepository fragranceCategoryRepository,
-        IGenderRepository genderRepository, IProductPriceRepository productPriceRepository, IProductImageRepository productImageRepository,
-        ILanguageRepository languageRepository, IMapper mapper, IImageUploader imageUploader)
+        IBrandRepository brandRepository, IFragranceCategoryRepository fragranceCategoryRepository, IProductPriceRepository productPriceRepository, 
+        IProductImageRepository productImageRepository, ILanguageRepository languageRepository, IMapper mapper, IImageUploader imageUploader)
     {
         _userContext = userContext;
         _productRepository = productRepository;
         _productCategoryRepository = productCategoryRepository;
         _brandRepository = brandRepository;
         _fragranceCategoryRepository = fragranceCategoryRepository;
-        _genderRepository = genderRepository;
         _productPriceRepository = productPriceRepository;
         _productImageRepository = productImageRepository;
         _languageRepository = languageRepository;
