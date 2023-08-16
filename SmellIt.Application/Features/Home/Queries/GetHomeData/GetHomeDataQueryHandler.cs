@@ -41,7 +41,7 @@ public class GetHomeDataQueryHandler : IRequestHandler<GetHomeDataQuery, HomeVie
         {
             var dto = _mapper.Map<ProductDto>(product);
             dto.SoldAmount = (await _orderItemRepository.GetAsync(product))
-                ?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus).Sum(oi => oi.Quantity);
+                ?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus && oi.Order.OrderDate >= DateTime.Now.AddMonths(-1)).Sum(oi => oi.Quantity);
             dtos.Add(dto);
         }
 

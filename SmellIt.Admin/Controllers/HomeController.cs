@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmellIt.Admin.Models;
-using System.Diagnostics;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Localization;
@@ -29,11 +27,5 @@ public class HomeController : BaseController
             new CookieOptions() { Expires = DateTimeOffset.Now.AddYears(1) });
 
         return Redirect(Request.Headers["Referer"].ToString());
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

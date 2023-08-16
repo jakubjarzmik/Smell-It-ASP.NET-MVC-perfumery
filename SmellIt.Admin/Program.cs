@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
 using Microsoft.Extensions.Options;
-using SmellIt.Admin.Models;
+using SmellIt.Admin.Services;
 using SmellIt.Application.Extensions;
 using SmellIt.Infrastructure.Extensions;
 using SmellIt.Infrastructure.Seeders;

@@ -3,8 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmellIt.Admin.Controllers.Abstract;
-using SmellIt.Application.Features.Orders.Commands.UpdateOrderStatus;
-using SmellIt.Application.Features.Orders.Queries.GetOrderById;
 using SmellIt.Application.Features.Roles.Queries.GetAllRoles;
 using SmellIt.Application.Features.Users.Commands.ChangeUserRole;
 using SmellIt.Application.Features.Users.Commands.DeleteUserById;

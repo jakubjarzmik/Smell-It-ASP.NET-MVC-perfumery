@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.Localization;
 
-namespace SmellIt.Admin.Models;
+namespace SmellIt.Admin.Services;
 public class LanguageService
 {
     private readonly IStringLocalizer _localizer;
