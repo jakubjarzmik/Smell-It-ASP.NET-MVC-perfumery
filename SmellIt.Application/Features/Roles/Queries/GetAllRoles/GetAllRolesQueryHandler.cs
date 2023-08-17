@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using SmellIt.Application.Features.Roles.DTOs;
 using SmellIt.Domain.Interfaces;
 

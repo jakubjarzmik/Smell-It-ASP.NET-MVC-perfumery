@@ -1,6 +1,4 @@
-﻿using SmellIt.Application.Features.Roles.DTOs;
-
-namespace SmellIt.Application.Features.Users.DTOs;
+﻿namespace SmellIt.Application.Features.Users.DTOs;
 
 public class UserDto
 {

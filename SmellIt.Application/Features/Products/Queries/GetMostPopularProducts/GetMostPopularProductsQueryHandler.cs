@@ -27,10 +27,10 @@ public class GetMostPopularProductsQueryHandler : IRequestHandler<GetMostPopular
         foreach (var product in products)
         {
             var dto = _mapper.Map<WebsiteProductDto>(product, opt => { opt.Items["LanguageCode"] = request.LanguageCode; });
-            dto.SoldAmount = (await _orderItemRepository.GetAsync(product))?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus).Sum(oi => oi.Quantity);
+            dto.SoldAmount = (await _orderItemRepository.GetAsync(product))?.Where(oi => oi.Order.OrderStatus != canceledOrderStatus && oi.Order.OrderDate >= DateTime.Now.AddMonths(-1)).Sum(oi => oi.Quantity);
             dtos.Add(dto);
         }
 
-        return dtos;
+        return dtos.OrderByDescending(p => p.SoldAmount);
     }
 }

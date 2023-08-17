@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmellIt.Application.Features.Brands.DTOs;
-using SmellIt.Application.Features.FragranceCategories.DTOs;
-using SmellIt.Application.Features.Genders.DTOs;
-using SmellIt.Application.Features.ProductCategories.DTOs;
 using SmellIt.Application.Helpers.Images;
 using SmellIt.Domain.Entities;
 using SmellIt.Domain.Interfaces;

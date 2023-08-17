@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using SmellIt.Domain.Interfaces;
 using SmellIt.Infrastructure.Persistence;
 using SmellIt.Infrastructure.Repositories.Abstract;
-using static Dropbox.Api.Files.ListRevisionsMode;
 
 namespace SmellIt.Infrastructure.Repositories;
 public class RoleRepository : Repository, IRoleRepository

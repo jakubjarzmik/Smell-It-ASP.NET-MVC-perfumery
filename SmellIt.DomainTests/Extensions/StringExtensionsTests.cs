@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using SmellIt.Domain.Extensions;
 using Xunit;
-using Xunit.Sdk;
 
 namespace SmellIt.DomainTests.Extensions;
 
