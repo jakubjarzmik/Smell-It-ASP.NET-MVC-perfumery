@@ -15,7 +15,7 @@ public static class ServiceCollectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellIt")).UseLazyLoadingProxies());
+        services.AddDbContext<SmellItDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SmellItDb")).UseLazyLoadingProxies());
 
         services.AddDefaultIdentity<IdentityUser>()
             .AddRoles<IdentityRole>()

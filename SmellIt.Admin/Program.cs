@@ -12,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
+builder.Configuration.AddUserSecrets<Program>();
+
 // Add db
 builder.Services.AddInfrastructure(builder.Configuration);
 
