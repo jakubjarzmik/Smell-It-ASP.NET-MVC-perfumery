@@ -8,63 +8,63 @@
 </a>
 
 <div class="dropdown-menu cart-dropdown">
-@if (cartItemsCount > 0)
-{
-    @foreach (var item in Model.CartItems)
+    @if (cartItemsCount > 0)
     {
-        <div class="media">
-            <a class="pull-left" href="#!">
-                <img class="media-object" src="@item.ImageUrl" alt="@item.ImageAlt"/>
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">
-                    <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.ProductEncodedName">
-                        @item.Name
-                    </a>
-                </h4>
-                <div class="cart-price">
-                    <span>@item.Quantity x</span>
-                    <span>
-                        @if (item.PromotionalPrice == null)
-                        {
-                            @item.Price.ToString("F2")
-                        }
-                        else
-                        {
-                            <del>@item.Price.ToString("F2") zł</del>
-                            @item.PromotionalPrice.Value.ToString("F2")
-                        }
-                        zł
-                    </span>
+        @foreach (var item in Model.CartItems)
+        {
+            <div class="media">
+                <a class="pull-left" href="#!">
+                    <img class="media-object" src="@item.ImageUrl" alt="@item.ImageAlt" />
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a asp-controller="Products" asp-action="Details" asp-route-encodedName="@item.ProductEncodedName">
+                            @item.Name
+                        </a>
+                    </h4>
+                    <div class="cart-price">
+                        <span>@item.Quantity x</span>
+                        <span>
+                            @if (item.PromotionalPrice == null)
+                            {
+                                @item.Price.ToString("F2")
+                            }
+                            else
+                            {
+                                <del>@item.Price.ToString("F2") zł</del>
+                                @item.PromotionalPrice.Value.ToString("F2")
+                            }
+                            zł
+                        </span>
+                    </div>
+                    <h5>
+                        <strong>
+                            @if (item.TotalPromotionalPrice == null)
+                            {
+                                @item.TotalPrice.ToString("F2")
+                            }
+                            else
+                            {
+                                <del>@item.TotalPrice.ToString("F2") zł</del>
+                                @item.TotalPromotionalPrice.Value.ToString("F2")
+                            }
+                            zł
+                        </strong>
+                    </h5>
                 </div>
-                <h5>
-                    <strong>
-                        @if (item.TotalPromotionalPrice == null)
-                        {
-                            @item.TotalPrice.ToString("F2")
-                        }
-                        else
-                        {
-                            <del>@item.TotalPrice.ToString("F2") zł</del>
-                            @item.TotalPromotionalPrice.Value.ToString("F2")
-                        }
-                        zł
-                    </strong>
-                </h5>
+                <a class="remove" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-encodedName="@item.ProductEncodedName"><i class="tf-ion-close"></i></a>
             </div>
-            <a class="remove" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-encodedName="@item.ProductEncodedName"><i class="tf-ion-close"></i></a>
+        }
+        <div class="cart-summary">
+            <span>@await WebsiteTexts.GetValueAsync("Total"):</span>
+            <span class="total-price">@Model.TotalPrice zł</span>
         </div>
+        <ul class="text-center cart-buttons">
+            <li><a asp-action="Index" asp-controller="Cart" class="btn btn-small">@await WebsiteTexts.GetValueAsync("Cart")</a></li>
+        </ul>
     }
-    <div class="cart-summary">
-        <span>@await WebsiteTexts.GetValueAsync("Total"):</span>
-        <span class="total-price">@Model.TotalPrice zł</span>
-    </div>
-    <ul class="text-center cart-buttons">
-        <li><a asp-action="Index" asp-controller="Cart" class="btn btn-small">@await WebsiteTexts.GetValueAsync("Cart")</a></li>
-    </ul>
-}
-else
-{
-    <span>Koszyk jest pusty</span>
-}
+    else
+    {
+        <span>Koszyk jest pusty</span>
+    }
 </div>
